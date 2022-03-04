@@ -19,6 +19,7 @@ public class MicToSpeechly : MonoBehaviour
 
 
   public TMP_Text TextAudioStatus;
+  public Button PushToTalkButton;
   public Slider SliderAudioPeak;
 
   public TMP_Text TranscriptText;
@@ -73,9 +74,7 @@ public class MicToSpeechly : MonoBehaviour
 
   void Start()
   {
-    // TODO Provide input selection
-    //inputDevices = new string[Microphone.devices.Length];
-
+    // Start audio capture
     audioSource = GetComponent<AudioSource>();
     clip = Microphone.Start(CaptureDeviceName, true, MicBufferLengthSecs, MicSampleRate);
 
@@ -85,7 +84,6 @@ public class MicToSpeechly : MonoBehaviour
       audioSource.loop = true;
       float playbackLatencySecs = 0;
       float playbackLatencySamples = playbackLatencySecs * MicSampleRate;
-      // waveData = new float[MicSampleRate * MicBufferLengthSecs];
       waveData = new float[audioSource.clip.samples * audioSource.clip.channels];
       while (Microphone.GetPosition(CaptureDeviceName) <= playbackLatencySamples)
       {
@@ -140,10 +138,9 @@ public class MicToSpeechly : MonoBehaviour
           clip.GetData(waveData, oldCaptureRingbufferPos);
           if (client.isListening)
           {
-            await client.sendAudio(waveData, 0, samples);
+            // await client.sendAudio(waveData, 0, samples);
           }
           int s = 0;
-          // int l = samples * clip.channels;
           while (s < samples)
           {
             peak = Mathf.Max(peak, waveData[s]);

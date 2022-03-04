@@ -484,7 +484,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 2010365547}
           m_MethodName: onMouseDown
           m_Mode: 1
           m_Arguments:
@@ -499,7 +499,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 0}
+        - m_Target: {fileID: 2010365547}
           m_MethodName: onMouseUp
           m_Mode: 1
           m_Arguments:
@@ -1605,5 +1605,6 @@ MonoBehaviour:
   MicSampleRate: 16000
   MicBufferLengthSecs: 1
   TextAudioStatus: {fileID: 928573496}
+  PushToTalkButton: {fileID: 358568577}
   SliderAudioPeak: {fileID: 670502117}
   TranscriptText: {fileID: 1523007325}
