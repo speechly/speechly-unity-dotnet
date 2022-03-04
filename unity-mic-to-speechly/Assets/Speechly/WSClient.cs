@@ -59,35 +59,9 @@ public class WsClient : IDisposable
     }
   }
 
-  public async Task sendAudio(Stream fileStream) {
-    var b = new byte[8192];
-
-    while (true) {
-      int bytesRead = fileStream.Read(b, 0, b.Length);
-      if (bytesRead == 0) break;
-      await WS.SendAsync(new ArraySegment<byte>(b, 0, bytesRead), WebSocketMessageType.Binary, true, CTS.Token);
-    }
+  public async Task sendAudio(ArraySegment<byte> byteArraySegment) {
+    await WS.SendAsync(byteArraySegment, WebSocketMessageType.Binary, true, CTS.Token);
   }
-
-  public async Task sendAudio(byte[] bytes) {
-    await WS.SendAsync(new ArraySegment<byte>(bytes), WebSocketMessageType.Binary, true, CTS.Token);
-  }
-
-  public async Task sendAudio(float[] floats, int start = 0, int end = -1) {
-    if (end < 0) end = floats.Length;
-    var bufSize = end - start;
-    var buf = new byte[bufSize * 2];
-    int i = 0;
-
-    for (var l = start; l < end; l++) {
-      short v = (short)(floats[l] * 0x7fff);
-      buf[i++] = (byte)(v);
-      buf[i++] = (byte)(v >> 8);
-    }
-
-    await WS.SendAsync(new ArraySegment<byte>(buf), WebSocketMessageType.Binary, true, CTS.Token);
-  }
-
 
   public void stopContext() {
     WS.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes($"{{\"event\": \"stop\"}}")), WebSocketMessageType.Text, true, CTS.Token);

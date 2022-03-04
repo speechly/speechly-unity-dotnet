@@ -70,6 +70,39 @@ public class SpeechlyClient {
     return contextId;
   }
 
+  public async Task sendAudio(Stream fileStream) {
+    // @TODO Use a pre-allocated buf
+    var b = new byte[8192];
+
+    while (true) {
+      int bytesRead = fileStream.Read(b, 0, b.Length);
+      if (bytesRead == 0) break;
+      await wsClient.sendAudio(new ArraySegment<byte>(b, 0, bytesRead));
+    }
+  }
+
+  public async Task sendAudio(float[] floats, int start = 0, int end = -1) {
+    if (end < 0) end = floats.Length;
+    var bufSize = end - start;
+    // @TODO Use a pre-allocated buf
+    var buf = new byte[bufSize * 2];
+    int i = 0;
+
+    for (var l = start; l < end; l++) {
+      short v = (short)(floats[l] * 0x7fff);
+      buf[i++] = (byte)(v);
+      buf[i++] = (byte)(v >> 8);
+    }
+
+    await wsClient.sendAudio(new ArraySegment<byte>(buf));
+  }
+
+  public async Task sendAudioFile(string fileName) {
+    var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+    await sendAudio(fileStream);
+    fileStream.Close();
+  }
+
   public async Task stopContext() {
     if (!isListening) {
       throw new Exception("Already stopped listening.");
@@ -78,12 +111,6 @@ public class SpeechlyClient {
     stopContextTCS = new TaskCompletionSource<MsgCommon>();
     wsClient.stopContext();
     var contextId = (await stopContextTCS.Task).audio_context;
-  }
-
-  public async Task sendAudioFile(string fileName) {
-    var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-    await wsClient.sendAudio(fileStream);
-    fileStream.Close();
   }
 
   private void ResponseReceived(MemoryStream inputStream)
