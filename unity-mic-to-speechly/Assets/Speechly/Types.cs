@@ -5,6 +5,23 @@ using System.Text;
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor.
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 
+public enum ClientState {
+  Failed = 0,
+  NoBrowserSupport,
+  NoAudioConsent,
+  __UnrecoverableErrors,
+  Disconnected,
+  Disconnecting,
+  Connecting,
+  Preinitialized,
+  Initializing,
+  Connected,
+  Stopping,
+  Starting,
+  Recording,
+}
+
+
 public interface IMsgCommonProps {
   string type { get; set; }
   string audio_context { get; set; }

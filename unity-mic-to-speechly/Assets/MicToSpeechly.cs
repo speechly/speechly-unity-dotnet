@@ -75,9 +75,11 @@ public class MicToSpeechly : MonoBehaviour
     client.onTentativeIntent = (msg) => Logger.Log($"Tentative intent: '{msg.data.intent}'");
 
     await client.connect();
-    await client.startContext();
-    await client.sendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
-    await client.stopContext();
+
+    // Send test audio:
+    // await client.startContext();
+    // await client.sendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
+    // await client.stopContext();
 
   }
 
@@ -113,16 +115,20 @@ public class MicToSpeechly : MonoBehaviour
 
   public async void onMouseDown()
   {
-    Debug.Log("Down");
-    IsButtonHeld = true;
-    await client.startContext();
+    if (!IsButtonHeld && !client.isListening) {
+      Debug.Log("Down");
+      IsButtonHeld = true;
+      await client.startContext();
+    }
   }
 
   public async void onMouseUp()
   {
-    Debug.Log("Up");
-    IsButtonHeld = false;
-    await client.stopContext();
+    if (IsButtonHeld && client.isListening) {
+      Debug.Log("Up");
+      IsButtonHeld = false;
+      await client.stopContext();
+    }
   }
 
   // Update is called once per frame
@@ -152,7 +158,7 @@ public class MicToSpeechly : MonoBehaviour
         {
           // Note: Always captures full clip length (44100 samples)
           clip.GetData(waveData, oldCaptureRingbufferPos);
-          if (IsButtonHeld)
+          if (IsButtonHeld && client.isListening)
           {
             await client.sendAudio(waveData, 0, samples);
           }

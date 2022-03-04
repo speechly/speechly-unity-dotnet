@@ -39,7 +39,7 @@ public class WsClient : IDisposable
   public async Task DisconnectAsync()
   {
     if (WS is null) return;
-    // TODO: requests cleanup code, sub-protocol dependent.
+    // @TODO: requests cleanup code, sub-protocol dependent.
     if (WS.State == WebSocketState.Open)
     {
       CTS.CancelAfter(TimeSpan.FromSeconds(2));
@@ -51,11 +51,12 @@ public class WsClient : IDisposable
     CTS.Dispose();
     CTS = null;
   }
-  public void startContext(string appId = null) {
+
+  public async Task startContext(string appId = null) {
     if (appId != null) {
-      WS.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}")), WebSocketMessageType.Text, true, CTS.Token);
+      await WS.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}")), WebSocketMessageType.Text, true, CTS.Token);
     } else {
-      WS.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes($"{{\"event\": \"start\"}}")), WebSocketMessageType.Text, true, CTS.Token);
+      await WS.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes($"{{\"event\": \"start\"}}")), WebSocketMessageType.Text, true, CTS.Token);
     }
   }
 
@@ -63,8 +64,8 @@ public class WsClient : IDisposable
     await WS.SendAsync(byteArraySegment, WebSocketMessageType.Binary, true, CTS.Token);
   }
 
-  public void stopContext() {
-    WS.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes($"{{\"event\": \"stop\"}}")), WebSocketMessageType.Text, true, CTS.Token);
+  public async Task stopContext() {
+    await WS.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes($"{{\"event\": \"stop\"}}")), WebSocketMessageType.Text, true, CTS.Token);
   }
 
   private async Task ReceiveLoop()
@@ -97,12 +98,6 @@ public class WsClient : IDisposable
       outputStream?.Dispose();
     }
   }
-
-  /*
-          private async Task<ResponseType> SendMessageAsync<RequestType>(RequestType message) {
-              // TODO: handle serializing requests and deserializing responses, handle matching responses to the requests.
-          }
-  */
 
   public void Dispose() => DisconnectAsync().Wait();
 

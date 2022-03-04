@@ -27,10 +27,11 @@ public class SpeechlyClient {
   private WsClient wsClient;
   private TaskCompletionSource<MsgCommon> startContextTCS;
   private TaskCompletionSource<MsgCommon> stopContextTCS;
-  string loginUrl = "https://api.speechly.com/login";
-  string apiUrl = "wss://api.speechly.com/ws/v1?sampleRate=16000";
-  string projectId = null;
-  string appId = null;
+  private string loginUrl = "https://api.speechly.com/login";
+  private string apiUrl = "wss://api.speechly.com/ws/v1?sampleRate=16000";
+  private string projectId = null;
+  private string appId = null;
+  private ClientState state = ClientState.Disconnected;
 
   public SpeechlyClient(
     string loginUrl = null,
@@ -48,6 +49,7 @@ public class SpeechlyClient {
   }
 
   public async Task connect() {
+    setState(ClientState.Connecting);
     deviceId = System.Guid.NewGuid().ToString();
 
     var tokenFetcher = new LoginToken();
@@ -57,6 +59,9 @@ public class SpeechlyClient {
     Logger.Log($"token: {token}");
 
     await wsClient.ConnectAsync(apiUrl, token);
+    setState(ClientState.Preinitialized);
+    setState(ClientState.Initializing);
+    setState(ClientState.Connected);
   }
 
   public async Task<string> startContext(string appId = null) {
@@ -64,13 +69,17 @@ public class SpeechlyClient {
       throw new Exception("Already listening.");
     }
     isListening = true;
+    setState(ClientState.Starting);
     startContextTCS = new TaskCompletionSource<MsgCommon>();
     wsClient.startContext(appId);
     var contextId = (await startContextTCS.Task).audio_context;
+    setState(ClientState.Recording);
     return contextId;
   }
 
   public async Task sendAudio(Stream fileStream) {
+    if (state != ClientState.Recording) return;
+
     // @TODO Use a pre-allocated buf
     var b = new byte[8192];
 
@@ -82,6 +91,8 @@ public class SpeechlyClient {
   }
 
   public async Task sendAudio(float[] floats, int start = 0, int end = -1) {
+    if (state != ClientState.Recording) return;
+
     if (end < 0) end = floats.Length;
     var bufSize = end - start;
     // @TODO Use a pre-allocated buf
@@ -107,10 +118,16 @@ public class SpeechlyClient {
     if (!isListening) {
       throw new Exception("Already stopped listening.");
     }
+    setState(ClientState.Stopping);
     isListening = false;
     stopContextTCS = new TaskCompletionSource<MsgCommon>();
     wsClient.stopContext();
     var contextId = (await stopContextTCS.Task).audio_context;
+    setState(ClientState.Connected);
+  }
+
+  private void setState(ClientState state) {
+    this.state = state;
   }
 
   private void ResponseReceived(MemoryStream inputStream)
