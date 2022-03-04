@@ -1,13 +1,16 @@
-# Speechly Client for .Net Standard 2.0 and Unity
+# Speechly Client for .NET Standard 2.0 and Unity
 
 Early preview version
+
+## Requirements
+
+- C# development environment with .NET Standard 2.0 APIs like Unity or Microsoft .NET
+- Tested with Unity 2019.4.36f1 and .NET 6.0.200
 
 ## Contents
 
 - .Net code project in `speechly-client-net-standard-2.0/` folder. See its README.md for details
 - Unity sample project in `speechly-client-net-standard-2.0/` folder. See its README.md for details
-
-- Tested with Unity 2019.4.36f1 Personal and `dotnet` 6.0.200
 
 ## Usage
 
