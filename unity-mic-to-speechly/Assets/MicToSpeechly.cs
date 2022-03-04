@@ -12,6 +12,8 @@ using System.Linq;
 
 public class MicToSpeechly : MonoBehaviour
 {
+  [Tooltip("Speechly App Id")]
+  public string AppId = "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1"; // Speechly Client Demos / speech-to-text only configuration
   [Tooltip("Capture device name or null for default")]
   public string CaptureDeviceName = null;
   public int MicSampleRate = 16000;
@@ -41,9 +43,7 @@ public class MicToSpeechly : MonoBehaviour
     Logger.Log = Debug.Log;
 
     client = new SpeechlyClient(
-        loginUrl: "https://staging.speechly.com/login",
-        apiUrl: "wss://staging.speechly.com/ws/v1?sampleRate=16000",
-        appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e" // Chinese
+        appId: this.AppId
     );
 
     // Note: Callbacks can't access UI directly as they are called from async methods
@@ -131,7 +131,6 @@ public class MicToSpeechly : MonoBehaviour
     }
   }
 
-  // Update is called once per frame
   async void Update()
   {
     lock(lastWord) {
@@ -152,11 +151,10 @@ public class MicToSpeechly : MonoBehaviour
       int samples = captureRingbufferPos - oldCaptureRingbufferPos;
       if (samples != 0)
       {
-        // Debug.Log(string.Format("Samples {0}", samples));
         // TODO: Process looped samples as well
         if (!looped)
         {
-          // Note: Always captures full clip length (44100 samples)
+          // Note: Always captures full buffer length, MicSampleRate * MicBufferLengthSecs samples
           clip.GetData(waveData, oldCaptureRingbufferPos);
           if (IsButtonHeld && client.isListening)
           {

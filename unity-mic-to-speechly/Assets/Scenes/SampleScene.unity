@@ -385,7 +385,7 @@ RectTransform:
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
   m_AnchoredPosition: {x: 0, y: 30}
-  m_SizeDelta: {x: 320, y: 80}
+  m_SizeDelta: {x: 320, y: 120}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &358568577
 MonoBehaviour:
@@ -1601,6 +1601,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6b6837b89e74c51819907efcc77c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  AppId: ef84e8ba-c5a7-46c2-856e-8b853e2c77b1
   CaptureDeviceName: 
   MicSampleRate: 16000
   MicBufferLengthSecs: 1

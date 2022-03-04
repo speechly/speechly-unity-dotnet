@@ -52,20 +52,12 @@ public class WsClient : IDisposable
     CTS = null;
   }
 
-  public async Task startContext(string appId = null) {
-    if (appId != null) {
-      await WS.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}")), WebSocketMessageType.Text, true, CTS.Token);
-    } else {
-      await WS.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes($"{{\"event\": \"start\"}}")), WebSocketMessageType.Text, true, CTS.Token);
-    }
+  public async Task sendText(string text) {
+    await WS.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(text)), WebSocketMessageType.Text, true, CTS.Token);
   }
 
-  public async Task sendAudio(ArraySegment<byte> byteArraySegment) {
+  public async Task sendBytes(ArraySegment<byte> byteArraySegment) {
     await WS.SendAsync(byteArraySegment, WebSocketMessageType.Binary, true, CTS.Token);
-  }
-
-  public async Task stopContext() {
-    await WS.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes($"{{\"event\": \"stop\"}}")), WebSocketMessageType.Text, true, CTS.Token);
   }
 
   private async Task ReceiveLoop()

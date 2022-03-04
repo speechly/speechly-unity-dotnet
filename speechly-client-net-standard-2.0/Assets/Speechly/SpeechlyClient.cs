@@ -50,6 +50,7 @@ public class SpeechlyClient {
 
   public async Task connect() {
     setState(ClientState.Connecting);
+    // @TODO Retain device ID
     deviceId = System.Guid.NewGuid().ToString();
 
     var tokenFetcher = new LoginToken();
@@ -71,7 +72,11 @@ public class SpeechlyClient {
     isListening = true;
     setState(ClientState.Starting);
     startContextTCS = new TaskCompletionSource<MsgCommon>();
-    await wsClient.startContext(appId);
+    if (appId != null) {
+      await wsClient.sendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
+    } else {
+      await wsClient.sendText($"{{\"event\": \"start\"}}");
+    }
     var contextId = (await startContextTCS.Task).audio_context;
     setState(ClientState.Recording);
     return contextId;
@@ -86,7 +91,7 @@ public class SpeechlyClient {
     while (true) {
       int bytesRead = fileStream.Read(b, 0, b.Length);
       if (bytesRead == 0) break;
-      await wsClient.sendAudio(new ArraySegment<byte>(b, 0, bytesRead));
+      await wsClient.sendBytes(new ArraySegment<byte>(b, 0, bytesRead));
     }
   }
 
@@ -105,7 +110,7 @@ public class SpeechlyClient {
       buf[i++] = (byte)(v >> 8);
     }
 
-    await wsClient.sendAudio(new ArraySegment<byte>(buf));
+    await wsClient.sendBytes(new ArraySegment<byte>(buf));
   }
 
   public async Task sendAudioFile(string fileName) {
@@ -121,7 +126,7 @@ public class SpeechlyClient {
     setState(ClientState.Stopping);
     isListening = false;
     stopContextTCS = new TaskCompletionSource<MsgCommon>();
-    await wsClient.stopContext();
+    await wsClient.sendText($"{{\"event\": \"stop\"}}");
     var contextId = (await stopContextTCS.Task).audio_context;
     setState(ClientState.Connected);
   }
@@ -130,11 +135,14 @@ public class SpeechlyClient {
     this.state = state;
   }
 
+  // @TODO Suppress logging
+
   private void ResponseReceived(MemoryStream inputStream)
   {
     var msgString = Encoding.UTF8.GetString(inputStream.ToArray());
     // Logger.Log(msgString);
     try {
+      // @TODO Find a way to deserialize only once
       var msgCommon = JSON.JSONDeserialize(msgString, new MsgCommon());
       // Logger.Log($"message type {msgCommon.type}");
       switch (msgCommon.type) {
