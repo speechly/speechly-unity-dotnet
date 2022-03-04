@@ -9,9 +9,9 @@ Early preview version
 
 ## Key files and folders in this repo
 
-- <speechly-client.unitypackage> is a snapshot of Unity project's `Assets/Speechly` folder.
-- <speechly-client-net-standard-2.0/> folder contains the Unity sample project. See its README.md for details.
-- <speechly-client-net-standard-2.0/> folder contains the .NET solutions. See its README.md for details.
+- [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of Unity project's `Assets/Speechly` folder.
+- [unity-mic-to-speechly/](unity-mic-to-speechly/) folder contains the Unity sample project. See its README.md for details.
+- [speechly-client-net-standard-2.0/](speechly-client-net-standard-2.0/) folder contains the .NET solutions. See its README.md for details.
 
 ## Usage
 
