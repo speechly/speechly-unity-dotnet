@@ -32,10 +32,9 @@ using System.Linq;
   {
     Logger.Log = Debug.Log;
 
+    // Get your app id from https://api.speechly.com/dashboard
     client = new SpeechlyClient(
-        loginUrl: "https://staging.speechly.com/login",
-        apiUrl: "wss://staging.speechly.com/ws/v1?sampleRate=16000",
-        appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e" // Chinese
+        appId: "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1"; // Basic speech-to-text configuration
     );
 
     // Note: Callbacks can't access UI directly as they are called from async methods
