@@ -16,7 +16,7 @@ public class SpeechlyClientTest {
     client.onTentativeTranscript = (msg) => {
       StringBuilder sb = new StringBuilder();
       sb.Append($"Tentative transcript ({msg.data.words.Length} words): ");
-      // msg.data.words.ToList().ForEach(w => sb.Append($"'{w.word}'@{w.index} {w.startTimestamp}..{w.endTimestamp}ms " ));
+      msg.data.words.ToList().ForEach(w => sb.Append($"'{w.word}'@{w.index} {w.startTimestamp}..{w.endTimestamp}ms " ));
       Logger.Log(sb.ToString());
     };
     client.onTentativeEntity = (msg) => {
