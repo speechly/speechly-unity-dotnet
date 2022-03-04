@@ -10,7 +10,7 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Linq;
 
-public class AudioCapture : MonoBehaviour
+public class MicToSpeechly : MonoBehaviour
 {
   [Tooltip("Capture device name or null for default")]
   public string CaptureDeviceName = null;
@@ -19,7 +19,6 @@ public class AudioCapture : MonoBehaviour
 
 
   public TMP_Text TextAudioStatus;
-  public TMP_Text TextAudioPeak;
   public Slider SliderAudioPeak;
 
   public TMP_Text TranscriptText;
@@ -150,7 +149,6 @@ public class AudioCapture : MonoBehaviour
             peak = Mathf.Max(peak, waveData[s]);
             s++;
           }
-          TextAudioPeak.text = string.Format("Peak {0:0.00}", peak);
           SliderAudioPeak.value = peak;
         }
         oldCaptureRingbufferPos = captureRingbufferPos;
