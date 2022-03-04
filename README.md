@@ -7,10 +7,11 @@ Early preview version
 - C# development environment with .NET Standard 2.0 APIs like Unity or Microsoft .NET
 - Tested with Unity 2019.4.36f1 and .NET 6.0.200
 
-## Contents
+## Key files and folders in this repo
 
-- .Net code project in `speechly-client-net-standard-2.0/` folder. See its README.md for details
-- Unity sample project in `speechly-client-net-standard-2.0/` folder. See its README.md for details
+- <speechly-client.unitypackage> is a snapshot of Unity project's `Assets/Speechly` folder.
+- <speechly-client-net-standard-2.0/> folder contains the Unity sample project. See its README.md for details.
+- <speechly-client-net-standard-2.0/> folder contains the .NET solutions. See its README.md for details.
 
 ## Usage
 
