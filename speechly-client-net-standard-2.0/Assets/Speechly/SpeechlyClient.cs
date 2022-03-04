@@ -71,7 +71,7 @@ public class SpeechlyClient {
     isListening = true;
     setState(ClientState.Starting);
     startContextTCS = new TaskCompletionSource<MsgCommon>();
-    wsClient.startContext(appId);
+    await wsClient.startContext(appId);
     var contextId = (await startContextTCS.Task).audio_context;
     setState(ClientState.Recording);
     return contextId;
@@ -121,7 +121,7 @@ public class SpeechlyClient {
     setState(ClientState.Stopping);
     isListening = false;
     stopContextTCS = new TaskCompletionSource<MsgCommon>();
-    wsClient.stopContext();
+    await wsClient.stopContext();
     var contextId = (await stopContextTCS.Task).audio_context;
     setState(ClientState.Connected);
   }
