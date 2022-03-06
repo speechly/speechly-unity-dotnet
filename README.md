@@ -44,8 +44,8 @@ using System.Linq;
         appId: "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1"; // Basic speech-to-text configuration
     );
 
+    // Set tentative callbacks to receive preliminary results as soon as they arrive
     // Note: Callbacks can't access UI directly as they are called from async methods
-
     client.onTentativeTranscript = (msg) =>
     {
       StringBuilder sb = new StringBuilder();
@@ -60,17 +60,12 @@ using System.Linq;
       msg.data.entities.ToList().ForEach(w => sb.Append($"'{w.entity}': '{w.value}' @ {w.startPosition}..{w.endPosition} "));
       Logger.Log(sb.ToString());
     };
-    client.onIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
-
-    client.onTranscript = (msg) =>
-    {
-      lock(lastWord) {
-        lastWord = msg.data.word;
-      }
-      Logger.Log($"Final transcript: '{msg.data.word}'@{msg.data.index} {msg.data.startTimestamp}..{msg.data.endTimestamp}ms");
-    };
-    client.onEntity = (msg) => Logger.Log($"Final entity '{msg.data.entity}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
     client.onTentativeIntent = (msg) => Logger.Log($"Tentative intent: '{msg.data.intent}'");
+
+    // Set callbacks to receive final transcript and NLU results
+    client.onIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
+    client.onTranscript = (msg) => Logger.Log($"Final transcript: '{msg.data.word}'@{msg.data.index} {msg.data.startTimestamp}..{msg.data.endTimestamp}ms");
+    client.onEntity = (msg) => Logger.Log($"Final entity '{msg.data.entity}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
 
     await client.connect();
 
