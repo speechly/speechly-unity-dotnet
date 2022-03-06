@@ -4,8 +4,9 @@ Early preview version
 
 ## Requirements
 
-- C# development environment with .NET Standard 2.0 APIs like Unity or Microsoft .NET
-- Tested with Unity 2019.4.36f1 and .NET 6.0.200
+- A C# development environment conforming to .NET Standard 2.0 API
+  - Unity 2018.1 or later (tested with 2019.4.36f1 and 2021.2.12f1)
+  - Microsoft .NET Core 3 or later (tested with .NET 6.0.200)
 
 ## Key files and folders in this repo
 
