@@ -18,7 +18,7 @@ Early preview version.
 
 ## Usage
 
-Copy the contents of `Assets/Speechly/` folder to your own project. Then see the example below for usage (API docs will follow!).
+Copy the source files from of `Assets/Speechly/` folder to your own project or use `speechly-client.unitypackage. Then see the example below for usage (API docs will follow!).
 
 ## Unity example
 
