@@ -81,4 +81,4 @@ See `MicToSpeechly.cs` for an example of data streamed from microphone and showi
 
 ## Developing
 
-- `link-speechly-sources.sh` shell script will create hard links from Speechly folder from `speechly-client-net-standard-2.0/Assets/Speechly` to `speechly-client-net-standard-2.0/Assets/Speechly` folder so code changes will be immediately reflected to both for quick development and testing.
+- `link-speechly-sources.sh` shell script will create hard links from `speechly-client-net-standard-2.0/Assets/Speechly` to `speechly-client-net-standard-2.0/Assets/Speechly` folder so code changes will be immediately reflected to both for quick development and testing.
