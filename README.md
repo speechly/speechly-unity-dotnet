@@ -10,17 +10,17 @@ Early preview version.
   - Unity 2018.1 or later (tested with 2019.4.36f1 and 2021.2.12f1)
   - Microsoft .NET Core 3 or later (tested with .NET 6.0.200)
 
-## Key files and folders in this repo
+## Contents of this repo
 
 - [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of `speechly-client-net-standard-2.0/Assets/Speechly` folder.
 - [speechly-client-net-standard-2.0/](speechly-client-net-standard-2.0/) contains the Speechly client library code and a sample console app.
 - [unity-mic-to-speechly/](unity-mic-to-speechly/) folder contains the Unity sample project using the Speechly client library.
 
-## Usage
+## Unity usage
 
-Copy the source files from of [speechly-client-net-standard-2.0/Assets/Speechly/](speechly-client-net-standard-2.0/Assets/Speechly/) folder to your own project or use `speechly-client.unitypackage. Then see the example below for usage (API docs will follow!).
+Copy the source files from of [speechly-client-net-standard-2.0/Assets/Speechly/](speechly-client-net-standard-2.0/Assets/Speechly/) folder to your own project or use `speechly-client.unitypackage` which contains the same files. Then see the example below for usage (API docs will follow!).
 
-## Unity example
+### Unity example
 
 Streams a pre-recorded raw audio file (16 bit mono, 16000 samples/sec) to Speechly via the websocket API, logs data using callbacks.
 
