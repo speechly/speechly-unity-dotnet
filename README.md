@@ -74,11 +74,10 @@ using System.Linq;
 
     await client.connect();
 
-    // Send test audio:
-    // await client.startContext();
-    // await client.sendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
-    // await client.stopContext();
-
+    // Send test audio, see log for results
+    await client.startContext();
+    await client.sendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
+    await client.stopContext();
   }
 
 ```
