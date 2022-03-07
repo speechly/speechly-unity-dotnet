@@ -7,16 +7,12 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Text;
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-
 namespace Speechly.SLUClient {
 
   public class WsClient : IDisposable
   {
     public delegate void ResponseReceivedDelegate(MemoryStream inputStream);
-    public ResponseReceivedDelegate onResponseReceived = (inputStream) => {};
+    public ResponseReceivedDelegate OnResponseReceived = (inputStream) => {};
 
     private ClientWebSocket WS;
     private CancellationTokenSource CTS;
@@ -54,11 +50,11 @@ namespace Speechly.SLUClient {
       CTS = null;
     }
 
-    public async Task sendText(string text) {
+    public async Task SendText(string text) {
       await WS.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(text)), WebSocketMessageType.Text, true, CTS.Token);
     }
 
-    public async Task sendBytes(ArraySegment<byte> byteArraySegment) {
+    public async Task SendBytes(ArraySegment<byte> byteArraySegment) {
       await WS.SendAsync(byteArraySegment, WebSocketMessageType.Binary, true, CTS.Token);
     }
 
@@ -82,7 +78,7 @@ namespace Speechly.SLUClient {
           while (!receiveResult.EndOfMessage);
           if (receiveResult.MessageType == WebSocketMessageType.Close) break;
           outputStream.Position = 0;
-          onResponseReceived(outputStream);
+          OnResponseReceived(outputStream);
           outputStream.Dispose();
         }
       }
@@ -94,6 +90,5 @@ namespace Speechly.SLUClient {
     }
 
     public void Dispose() => DisconnectAsync().Wait();
-
   }
 }

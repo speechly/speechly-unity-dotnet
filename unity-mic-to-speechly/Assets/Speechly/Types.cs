@@ -2,9 +2,6 @@ using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-
 namespace Speechly.SLUClient {
 
   public enum ClientState {

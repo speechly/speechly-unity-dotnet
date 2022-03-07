@@ -40,31 +40,31 @@ using System.Linq;
 
     // Set tentative callbacks to receive preliminary results as soon as they arrive
     // Note: Callbacks can't access UI directly as they are called from async methods
-    client.onTentativeTranscript = (msg) =>
+    client.OnTentativeTranscript = (msg) =>
     {
       var s = $"Tentative transcript ({msg.data.words.Length} words):";
       msg.data.words.ToList().ForEach(w => s = $"{s} '{w.word}'@{w.index} {w.startTimestamp}..{w.endTimestamp}ms ");
       Logger.Log(s);
     };
-    client.onTentativeEntity = (msg) =>
+    client.OnTentativeEntity = (msg) =>
     {
       var s = $"Tentative entities ({msg.data.entities.Length}):";
       msg.data.entities.ToList().ForEach(w => s = $"{s} '{w.entity}': '{w.value}' @ {w.startPosition}..{w.endPosition} ");
       Logger.Log(s);
     };
-    client.onTentativeIntent = (msg) => Logger.Log($"Tentative intent: '{msg.data.intent}'");
+    client.OnTentativeIntent = (msg) => Logger.Log($"Tentative intent: '{msg.data.intent}'");
 
     // Set callbacks to receive final transcript and NLU results
-    client.onIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
-    client.onTranscript = (msg) => Logger.Log($"Final transcript: '{msg.data.word}'@{msg.data.index} {msg.data.startTimestamp}..{msg.data.endTimestamp}ms");
-    client.onEntity = (msg) => Logger.Log($"Final entity '{msg.data.entity}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
+    client.OnIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
+    client.OnTranscript = (msg) => Logger.Log($"Final transcript: '{msg.data.word}'@{msg.data.index} {msg.data.startTimestamp}..{msg.data.endTimestamp}ms");
+    client.OnEntity = (msg) => Logger.Log($"Final entity '{msg.data.entity}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
 
-    await client.connect();
+    await client.Connect();
 
     // Send test audio, see log for results
-    await client.startContext();
-    await client.sendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
-    await client.stopContext();
+    await client.StartContext();
+    await client.SendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
+    await client.StopContext();
   }
 
 ```

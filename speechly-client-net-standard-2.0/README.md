@@ -2,7 +2,7 @@
 
 ## Requirements
 
-- dotnet binary
+- `dotnet` CLI
 - .Net Standard 2.0 APIs
 
 ## Testing

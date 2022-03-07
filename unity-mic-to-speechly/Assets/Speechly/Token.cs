@@ -1,16 +1,10 @@
 ﻿using System.Threading.Tasks;
 using System.Net.Http;
-using System.Runtime.Serialization.Json;  
-using System;  
-using System.IO;  
+using System.Runtime.Serialization.Json;
+using System;
+using System.IO;
 using System.Text;
 using System.Diagnostics;
-
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-#pragma warning disable CS8600 // Converting null literal or possible null value to non-nullable type.
-#pragma warning disable CS8602 // Dereference of a possibly null reference.
-#pragma warning disable CS8604 // Possible null reference argument for parameter 'projectId'
 
 namespace Speechly.SLUClient {
   public class AppTokenRequest
@@ -32,7 +26,7 @@ namespace Speechly.SLUClient {
   }
 
   class LoginToken {
-    public async Task<string> fetchToken(
+    public async Task<string> FetchToken(
       string baseUrl,
       string projectId,
       string appId,
@@ -47,14 +41,14 @@ namespace Speechly.SLUClient {
           projectId = projectId,
           deviceId = deviceId
         };
-        json = JSON.JSONSerialize(body);
+        json = JSON.Stringify(body);
         // postResponse = await httpClient.PostAsJsonAsync(baseUrl, body);
       } else {
         var body = new AppTokenRequest{
           appId = appId,
           deviceId = deviceId
         };
-        json = JSON.JSONSerialize(body);
+        json = JSON.Stringify(body);
       }
       // Log(json);
       // Log(baseUrl);
@@ -77,7 +71,7 @@ namespace Speechly.SLUClient {
       var contentStream = await postResponse.Content.ReadAsStreamAsync();
       TokenResponse tokenResponse;
       try {
-        tokenResponse = JSON.JSONDeserializeStream(contentStream, new TokenResponse());
+        tokenResponse = JSON.ParseFromStream(contentStream, new TokenResponse());
       } catch (Exception) {
         throw new Exception("Invalid JSON.");
       }
@@ -87,31 +81,6 @@ namespace Speechly.SLUClient {
       }
 
       return tokenResponse.access_token;
-    }
-
-    public async Task test() {
-      // See https://aka.ms/new-console-template for more information
-      Logger.Log("Fetching token...");
-
-      var loginUrl = "https://api.speechly.com/login";
-      string projectId = null;
-      var appId = "c9f51b42-626c-4557-93a9-93cb205141d9";
-      var deviceId = System.Guid.NewGuid().ToString();
-
-      Stopwatch stopWatch = new Stopwatch();
-      stopWatch.Start();
-      string token = "";
-      token = await fetchToken(loginUrl, projectId, appId, deviceId);
-      stopWatch.Stop();
-      
-      TimeSpan ts = stopWatch.Elapsed;
-      string elapsedTime = String.Format("{0:00}:{1:00}:{2:00}.{3:00}",
-              ts.Hours, ts.Minutes, ts.Seconds,
-              ts.Milliseconds / 10);
-      Logger.Log($"Time elapsed is {elapsedTime}");
-
-
-      Logger.Log($"The token is {token}");
     }
   }
 }

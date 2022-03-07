@@ -4,9 +4,6 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 
-#pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor.
-#pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
-
 namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
@@ -15,14 +12,14 @@ namespace Speechly.SLUClient {
     public delegate void TentativeEntityDelegate(MsgTentativeEntity msg);
     public delegate void EntityDelegate(MsgEntity msg);
     public delegate void IntentDelegate(MsgIntent msg);
-    public TentativeTranscriptDelegate onTentativeTranscript = (msg) => {};
-    public TranscriptDelegate onTranscript = (msg) => {};
-    public TentativeEntityDelegate onTentativeEntity = (msg) => {};
-    public EntityDelegate onEntity = (msg) => {};
-    public IntentDelegate onTentativeIntent = (msg) => {};
-    public IntentDelegate onIntent = (msg) => {};
+    public TentativeTranscriptDelegate OnTentativeTranscript = (msg) => {};
+    public TranscriptDelegate OnTranscript = (msg) => {};
+    public TentativeEntityDelegate OnTentativeEntity = (msg) => {};
+    public EntityDelegate OnEntity = (msg) => {};
+    public IntentDelegate OnTentativeIntent = (msg) => {};
+    public IntentDelegate OnIntent = (msg) => {};
 
-    public bool isListening { get; private set; } = false;
+    public bool IsListening { get; private set; } = false;
     private string deviceId;
     private string token;
     private Dictionary<string, Dictionary<int, SegmentState>> activeContexts = new Dictionary<string, Dictionary<int, SegmentState>>();
@@ -47,44 +44,44 @@ namespace Speechly.SLUClient {
       if (appId != null) this.appId = appId;
 
       wsClient = new WsClient();
-      wsClient.onResponseReceived = ResponseReceived;
+      wsClient.OnResponseReceived = ResponseReceived;
     }
 
-    public async Task connect() {
-      setState(ClientState.Connecting);
+    public async Task Connect() {
+      SetState(ClientState.Connecting);
       // @TODO Retain device ID
       deviceId = System.Guid.NewGuid().ToString();
 
       var tokenFetcher = new LoginToken();
-      token = await tokenFetcher.fetchToken(loginUrl, projectId, appId, deviceId);
+      token = await tokenFetcher.FetchToken(loginUrl, projectId, appId, deviceId);
 
       Logger.Log($"deviceId: {deviceId}");
       Logger.Log($"token: {token}");
 
       await wsClient.ConnectAsync(apiUrl, token);
-      setState(ClientState.Preinitialized);
-      setState(ClientState.Initializing);
-      setState(ClientState.Connected);
+      SetState(ClientState.Preinitialized);
+      SetState(ClientState.Initializing);
+      SetState(ClientState.Connected);
     }
 
-    public async Task<string> startContext(string appId = null) {
-      if (isListening) {
+    public async Task<string> StartContext(string appId = null) {
+      if (IsListening) {
         throw new Exception("Already listening.");
       }
-      isListening = true;
-      setState(ClientState.Starting);
+      IsListening = true;
+      SetState(ClientState.Starting);
       startContextTCS = new TaskCompletionSource<MsgCommon>();
       if (appId != null) {
-        await wsClient.sendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
+        await wsClient.SendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
       } else {
-        await wsClient.sendText($"{{\"event\": \"start\"}}");
+        await wsClient.SendText($"{{\"event\": \"start\"}}");
       }
       var contextId = (await startContextTCS.Task).audio_context;
-      setState(ClientState.Recording);
+      SetState(ClientState.Recording);
       return contextId;
     }
 
-    public async Task sendAudio(Stream fileStream) {
+    public async Task SendAudio(Stream fileStream) {
       if (state != ClientState.Recording) return;
 
       // @TODO Use a pre-allocated buf
@@ -93,11 +90,11 @@ namespace Speechly.SLUClient {
       while (true) {
         int bytesRead = fileStream.Read(b, 0, b.Length);
         if (bytesRead == 0) break;
-        await wsClient.sendBytes(new ArraySegment<byte>(b, 0, bytesRead));
+        await wsClient.SendBytes(new ArraySegment<byte>(b, 0, bytesRead));
       }
     }
 
-    public async Task sendAudio(float[] floats, int start = 0, int end = -1) {
+    public async Task SendAudio(float[] floats, int start = 0, int end = -1) {
       if (state != ClientState.Recording) return;
 
       if (end < 0) end = floats.Length;
@@ -112,40 +109,39 @@ namespace Speechly.SLUClient {
         buf[i++] = (byte)(v >> 8);
       }
 
-      await wsClient.sendBytes(new ArraySegment<byte>(buf));
+      await wsClient.SendBytes(new ArraySegment<byte>(buf));
     }
 
-    public async Task sendAudioFile(string fileName) {
+    public async Task SendAudioFile(string fileName) {
       var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-      await sendAudio(fileStream);
+      await SendAudio(fileStream);
       fileStream.Close();
     }
 
-    public async Task stopContext() {
-      if (!isListening) {
+    public async Task StopContext() {
+      if (!IsListening) {
         throw new Exception("Already stopped listening.");
       }
-      setState(ClientState.Stopping);
-      isListening = false;
+      SetState(ClientState.Stopping);
+      IsListening = false;
       stopContextTCS = new TaskCompletionSource<MsgCommon>();
-      await wsClient.sendText($"{{\"event\": \"stop\"}}");
+      await wsClient.SendText($"{{\"event\": \"stop\"}}");
       var contextId = (await stopContextTCS.Task).audio_context;
-      setState(ClientState.Connected);
+      SetState(ClientState.Connected);
     }
 
-    private void setState(ClientState state) {
+    private void SetState(ClientState state) {
       this.state = state;
     }
 
     // @TODO Suppress logging
-
     private void ResponseReceived(MemoryStream inputStream)
     {
       var msgString = Encoding.UTF8.GetString(inputStream.ToArray());
       // Logger.Log(msgString);
       try {
         // @TODO Find a way to deserialize only once
-        var msgCommon = JSON.JSONDeserialize(msgString, new MsgCommon());
+        var msgCommon = JSON.Parse(msgString, new MsgCommon());
         // Logger.Log($"message type {msgCommon.type}");
         switch (msgCommon.type) {
           case "started": {
@@ -154,35 +150,35 @@ namespace Speechly.SLUClient {
             break;
           }
           case "tentative_transcript": {
-            var msg = JSON.JSONDeserialize(msgString, new MsgTentativeTranscript());
-            onTentativeTranscript(msg);
+            var msg = JSON.Parse(msgString, new MsgTentativeTranscript());
+            OnTentativeTranscript(msg);
             break;
           }
           case "transcript": {
-            var msg = JSON.JSONDeserialize(msgString, new MsgTranscript());
+            var msg = JSON.Parse(msgString, new MsgTranscript());
             msg.data.isFinal = true;
-            onTranscript(msg);
+            OnTranscript(msg);
             break;
           }
           case "tentative_entities": {
-            var msg = JSON.JSONDeserialize(msgString, new MsgTentativeEntity());
-            onTentativeEntity(msg);
+            var msg = JSON.Parse(msgString, new MsgTentativeEntity());
+            OnTentativeEntity(msg);
             break;
           }
           case "entity": {
-            var msg = JSON.JSONDeserialize(msgString, new MsgEntity());
+            var msg = JSON.Parse(msgString, new MsgEntity());
             msg.data.isFinal = true;
-            onEntity(msg);
+            OnEntity(msg);
             break;
           }
           case "tentative_intent": {
-            var msg = JSON.JSONDeserialize(msgString, new MsgIntent());
-            onTentativeIntent(msg);
+            var msg = JSON.Parse(msgString, new MsgIntent());
+            OnTentativeIntent(msg);
             break;
           }
           case "intent": {
-            var msg = JSON.JSONDeserialize(msgString, new MsgIntent());
-            onIntent(msg);
+            var msg = JSON.Parse(msgString, new MsgIntent());
+            OnIntent(msg);
             break;
           }
           case "segment_end": {

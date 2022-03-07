@@ -17,32 +17,32 @@ namespace Speechly.SLUClient {
         appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e" // Chinese
       );
 
-      client.onTentativeTranscript = (msg) => {
+      client.OnTentativeTranscript = (msg) => {
         StringBuilder sb = new StringBuilder();
         sb.Append($"Tentative transcript ({msg.data.words.Length} words): ");
         msg.data.words.ToList().ForEach(w => sb.Append($"'{w.word}'@{w.index} {w.startTimestamp}..{w.endTimestamp}ms " ));
         Logger.Log(sb.ToString());
       };
-      client.onTentativeEntity = (msg) => {
+      client.OnTentativeEntity = (msg) => {
         StringBuilder sb = new StringBuilder();
         sb.Append($"Tentative entities ({msg.data.entities.Length}): ");
         msg.data.entities.ToList().ForEach(w => sb.Append($"'{w.entity}': '{w.value}' @ {w.startPosition}..{w.endPosition} " ));
         Logger.Log(sb.ToString());
       };
-      client.onTentativeIntent = (msg) => Logger.Log($"Tentative intent: '{msg.data.intent}'");
+      client.OnTentativeIntent = (msg) => Logger.Log($"Tentative intent: '{msg.data.intent}'");
       
-      client.onTranscript = (msg) => Logger.Log($"Final transcript: '{msg.data.word}'@{msg.data.index} {msg.data.startTimestamp}..{msg.data.endTimestamp}ms");
-      client.onEntity = (msg) => Logger.Log($"Final entity '{msg.data.entity}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
-      client.onIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
+      client.OnTranscript = (msg) => Logger.Log($"Final transcript: '{msg.data.word}'@{msg.data.index} {msg.data.startTimestamp}..{msg.data.endTimestamp}ms");
+      client.OnEntity = (msg) => Logger.Log($"Final entity '{msg.data.entity}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
+      client.OnIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
 
       sw.Restart();
-      await client.connect();
+      await client.Connect();
       var connectTime = sw.ElapsedMilliseconds;
 
       sw.Restart();
-      await client.startContext();
-      await client.sendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
-      await client.stopContext();
+      await client.StartContext();
+      await client.SendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
+      await client.StopContext();
       var sluTime = sw.ElapsedMilliseconds;
 
       Logger.Log($"==== STATS ====");
