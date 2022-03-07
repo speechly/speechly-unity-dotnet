@@ -27,10 +27,7 @@ Streams a pre-recorded raw audio file (16 bit mono, 16000 samples/sec) to Speech
 Please note that altering UI is not possible in callbacks, they are (currently) run in an async receive loop.
 
 ```
-using System.Text;
 using System.Linq;
-
-...
 
   async void Start()
   {
@@ -45,17 +42,15 @@ using System.Linq;
     // Note: Callbacks can't access UI directly as they are called from async methods
     client.onTentativeTranscript = (msg) =>
     {
-      StringBuilder sb = new StringBuilder();
-      sb.Append($"Tentative transcript ({msg.data.words.Length} words): ");
-      msg.data.words.ToList().ForEach(w => sb.Append($"'{w.word}'@{w.index} {w.startTimestamp}..{w.endTimestamp}ms "));
-      Logger.Log(sb.ToString());
+      var s = $"Tentative transcript ({msg.data.words.Length} words):";
+      msg.data.words.ToList().ForEach(w => s = $"{s} '{w.word}'@{w.index} {w.startTimestamp}..{w.endTimestamp}ms ");
+      Logger.Log(s);
     };
     client.onTentativeEntity = (msg) =>
     {
-      StringBuilder sb = new StringBuilder();
-      sb.Append($"Tentative entities ({msg.data.entities.Length}): ");
-      msg.data.entities.ToList().ForEach(w => sb.Append($"'{w.entity}': '{w.value}' @ {w.startPosition}..{w.endPosition} "));
-      Logger.Log(sb.ToString());
+      var s = $"Tentative entities ({msg.data.entities.Length}):";
+      msg.data.entities.ToList().ForEach(w => s = $"{s} '{w.entity}': '{w.value}' @ {w.startPosition}..{w.endPosition} ");
+      Logger.Log(s);
     };
     client.onTentativeIntent = (msg) => Logger.Log($"Tentative intent: '{msg.data.intent}'");
 
