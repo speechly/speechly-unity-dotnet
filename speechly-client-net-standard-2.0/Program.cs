@@ -1,3 +1,13 @@
-﻿using Speechly.SLUClient;
+﻿using System;
+using System.Threading.Tasks;
 
-await SpeechlyClientTest.test();
+using Speechly.SLUClient;
+
+class Program
+{
+  static async Task Main(string[] args)
+  {
+    await SpeechlyClientTest.test();
+
+  }
+}

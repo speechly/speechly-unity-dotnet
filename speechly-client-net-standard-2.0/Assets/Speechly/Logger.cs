@@ -1,3 +1,4 @@
+using System;
 namespace Speechly.SLUClient {
   public class Logger {
     public delegate void LoggerDelegate(string s);
