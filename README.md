@@ -27,10 +27,7 @@ Streams a pre-recorded raw audio file (16 bit mono, 16000 samples/sec) to Speech
 Please note that altering UI is not possible in callbacks, they are (currently) run in an async receive loop.
 
 ```
-using System;
 using System.Text;
-using System.IO;
-using System.Threading.Tasks;
 using System.Linq;
 
 ...
@@ -40,8 +37,8 @@ using System.Linq;
     Logger.Log = Debug.Log;
 
     // Get your app id from https://api.speechly.com/dashboard
-    client = new SpeechlyClient(
-        appId: "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1"; // Basic speech-to-text configuration
+    var client = new SpeechlyClient(
+        appId: "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1" // Basic speech-to-text configuration
     );
 
     // Set tentative callbacks to receive preliminary results as soon as they arrive
