@@ -4,9 +4,12 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Linq;
+using System.Diagnostics;
 
 public class SpeechlyClientTest {
   public static async Task test() {
+    Stopwatch sw = new Stopwatch();
+
     var client = new SpeechlyClient(
       loginUrl: "https://staging.speechly.com/login",
       apiUrl: "wss://staging.speechly.com/ws/v1?sampleRate=16000",
@@ -31,9 +34,18 @@ public class SpeechlyClientTest {
     client.onEntity = (msg) => Logger.Log($"Final entity '{msg.data.entity}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
     client.onIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
 
+    sw.Restart();
     await client.connect();
+    var connectTime = sw.ElapsedMilliseconds;
+
+    sw.Restart();
     await client.startContext();
     await client.sendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
     await client.stopContext();
+    var sluTime = sw.ElapsedMilliseconds;
+
+    Logger.Log($"==== STATS ====");
+    Logger.Log($"Connect time: {connectTime} ms");
+    Logger.Log($"SLU time: {sluTime} ms");
   }
 }
