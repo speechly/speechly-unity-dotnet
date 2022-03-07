@@ -10,6 +10,9 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Linq;
 
+using Speechly.SLUClient;
+using Logger = Speechly.SLUClient.Logger;
+
 public class MicToSpeechly : MonoBehaviour
 {
   [Tooltip("Speechly App Id")]

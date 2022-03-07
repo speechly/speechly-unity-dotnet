@@ -7,197 +7,200 @@ using System.Collections.Generic;
 #pragma warning disable CS8618 // Non-nullable field must contain a non-null value when exiting constructor.
 #pragma warning disable CS8625 // Cannot convert null literal to non-nullable reference type.
 
-public class SpeechlyClient {
-  public delegate void TentativeTranscriptDelegate(MsgTentativeTranscript msg);
-  public delegate void TranscriptDelegate(MsgTranscript msg);
-  public delegate void TentativeEntityDelegate(MsgTentativeEntity msg);
-  public delegate void EntityDelegate(MsgEntity msg);
-  public delegate void IntentDelegate(MsgIntent msg);
-  public TentativeTranscriptDelegate onTentativeTranscript = (msg) => {};
-  public TranscriptDelegate onTranscript = (msg) => {};
-  public TentativeEntityDelegate onTentativeEntity = (msg) => {};
-  public EntityDelegate onEntity = (msg) => {};
-  public IntentDelegate onTentativeIntent = (msg) => {};
-  public IntentDelegate onIntent = (msg) => {};
+namespace Speechly.SLUClient {
 
-  public bool isListening { get; private set; } = false;
-  private string deviceId;
-  private string token;
-  private Dictionary<string, Dictionary<int, SegmentState>> activeContexts = new Dictionary<string, Dictionary<int, SegmentState>>();
-  private WsClient wsClient;
-  private TaskCompletionSource<MsgCommon> startContextTCS;
-  private TaskCompletionSource<MsgCommon> stopContextTCS;
-  private string loginUrl = "https://api.speechly.com/login";
-  private string apiUrl = "wss://api.speechly.com/ws/v1?sampleRate=16000";
-  private string projectId = null;
-  private string appId = null;
-  private ClientState state = ClientState.Disconnected;
+  public class SpeechlyClient {
+    public delegate void TentativeTranscriptDelegate(MsgTentativeTranscript msg);
+    public delegate void TranscriptDelegate(MsgTranscript msg);
+    public delegate void TentativeEntityDelegate(MsgTentativeEntity msg);
+    public delegate void EntityDelegate(MsgEntity msg);
+    public delegate void IntentDelegate(MsgIntent msg);
+    public TentativeTranscriptDelegate onTentativeTranscript = (msg) => {};
+    public TranscriptDelegate onTranscript = (msg) => {};
+    public TentativeEntityDelegate onTentativeEntity = (msg) => {};
+    public EntityDelegate onEntity = (msg) => {};
+    public IntentDelegate onTentativeIntent = (msg) => {};
+    public IntentDelegate onIntent = (msg) => {};
 
-  public SpeechlyClient(
-    string loginUrl = null,
-    string apiUrl = null,
-    string projectId = null,
-    string appId = null
-  ) {
-    if (loginUrl != null) this.loginUrl = loginUrl;
-    if (apiUrl != null) this.apiUrl = apiUrl;
-    if (projectId != null) this.projectId = projectId;
-    if (appId != null) this.appId = appId;
+    public bool isListening { get; private set; } = false;
+    private string deviceId;
+    private string token;
+    private Dictionary<string, Dictionary<int, SegmentState>> activeContexts = new Dictionary<string, Dictionary<int, SegmentState>>();
+    private WsClient wsClient;
+    private TaskCompletionSource<MsgCommon> startContextTCS;
+    private TaskCompletionSource<MsgCommon> stopContextTCS;
+    private string loginUrl = "https://api.speechly.com/login";
+    private string apiUrl = "wss://api.speechly.com/ws/v1?sampleRate=16000";
+    private string projectId = null;
+    private string appId = null;
+    private ClientState state = ClientState.Disconnected;
 
-    wsClient = new WsClient();
-    wsClient.onResponseReceived = ResponseReceived;
-  }
+    public SpeechlyClient(
+      string loginUrl = null,
+      string apiUrl = null,
+      string projectId = null,
+      string appId = null
+    ) {
+      if (loginUrl != null) this.loginUrl = loginUrl;
+      if (apiUrl != null) this.apiUrl = apiUrl;
+      if (projectId != null) this.projectId = projectId;
+      if (appId != null) this.appId = appId;
 
-  public async Task connect() {
-    setState(ClientState.Connecting);
-    // @TODO Retain device ID
-    deviceId = System.Guid.NewGuid().ToString();
-
-    var tokenFetcher = new LoginToken();
-    token = await tokenFetcher.fetchToken(loginUrl, projectId, appId, deviceId);
-
-    Logger.Log($"deviceId: {deviceId}");
-    Logger.Log($"token: {token}");
-
-    await wsClient.ConnectAsync(apiUrl, token);
-    setState(ClientState.Preinitialized);
-    setState(ClientState.Initializing);
-    setState(ClientState.Connected);
-  }
-
-  public async Task<string> startContext(string appId = null) {
-    if (isListening) {
-      throw new Exception("Already listening.");
-    }
-    isListening = true;
-    setState(ClientState.Starting);
-    startContextTCS = new TaskCompletionSource<MsgCommon>();
-    if (appId != null) {
-      await wsClient.sendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
-    } else {
-      await wsClient.sendText($"{{\"event\": \"start\"}}");
-    }
-    var contextId = (await startContextTCS.Task).audio_context;
-    setState(ClientState.Recording);
-    return contextId;
-  }
-
-  public async Task sendAudio(Stream fileStream) {
-    if (state != ClientState.Recording) return;
-
-    // @TODO Use a pre-allocated buf
-    var b = new byte[8192];
-
-    while (true) {
-      int bytesRead = fileStream.Read(b, 0, b.Length);
-      if (bytesRead == 0) break;
-      await wsClient.sendBytes(new ArraySegment<byte>(b, 0, bytesRead));
-    }
-  }
-
-  public async Task sendAudio(float[] floats, int start = 0, int end = -1) {
-    if (state != ClientState.Recording) return;
-
-    if (end < 0) end = floats.Length;
-    var bufSize = end - start;
-    // @TODO Use a pre-allocated buf
-    var buf = new byte[bufSize * 2];
-    int i = 0;
-
-    for (var l = start; l < end; l++) {
-      short v = (short)(floats[l] * 0x7fff);
-      buf[i++] = (byte)(v);
-      buf[i++] = (byte)(v >> 8);
+      wsClient = new WsClient();
+      wsClient.onResponseReceived = ResponseReceived;
     }
 
-    await wsClient.sendBytes(new ArraySegment<byte>(buf));
-  }
+    public async Task connect() {
+      setState(ClientState.Connecting);
+      // @TODO Retain device ID
+      deviceId = System.Guid.NewGuid().ToString();
 
-  public async Task sendAudioFile(string fileName) {
-    var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-    await sendAudio(fileStream);
-    fileStream.Close();
-  }
+      var tokenFetcher = new LoginToken();
+      token = await tokenFetcher.fetchToken(loginUrl, projectId, appId, deviceId);
 
-  public async Task stopContext() {
-    if (!isListening) {
-      throw new Exception("Already stopped listening.");
+      Logger.Log($"deviceId: {deviceId}");
+      Logger.Log($"token: {token}");
+
+      await wsClient.ConnectAsync(apiUrl, token);
+      setState(ClientState.Preinitialized);
+      setState(ClientState.Initializing);
+      setState(ClientState.Connected);
     }
-    setState(ClientState.Stopping);
-    isListening = false;
-    stopContextTCS = new TaskCompletionSource<MsgCommon>();
-    await wsClient.sendText($"{{\"event\": \"stop\"}}");
-    var contextId = (await stopContextTCS.Task).audio_context;
-    setState(ClientState.Connected);
-  }
 
-  private void setState(ClientState state) {
-    this.state = state;
-  }
-
-  // @TODO Suppress logging
-
-  private void ResponseReceived(MemoryStream inputStream)
-  {
-    var msgString = Encoding.UTF8.GetString(inputStream.ToArray());
-    // Logger.Log(msgString);
-    try {
-      // @TODO Find a way to deserialize only once
-      var msgCommon = JSON.JSONDeserialize(msgString, new MsgCommon());
-      // Logger.Log($"message type {msgCommon.type}");
-      switch (msgCommon.type) {
-        case "started": {
-          Logger.Log($"Started context '{msgCommon.audio_context}'");
-          startContextTCS.SetResult(msgCommon);
-          break;
-        }
-        case "tentative_transcript": {
-          var msg = JSON.JSONDeserialize(msgString, new MsgTentativeTranscript());
-          onTentativeTranscript(msg);
-          break;
-        }
-        case "transcript": {
-          var msg = JSON.JSONDeserialize(msgString, new MsgTranscript());
-          msg.data.isFinal = true;
-          onTranscript(msg);
-          break;
-        }
-        case "tentative_entities": {
-          var msg = JSON.JSONDeserialize(msgString, new MsgTentativeEntity());
-          onTentativeEntity(msg);
-          break;
-        }
-        case "entity": {
-          var msg = JSON.JSONDeserialize(msgString, new MsgEntity());
-          msg.data.isFinal = true;
-          onEntity(msg);
-          break;
-        }
-        case "tentative_intent": {
-          var msg = JSON.JSONDeserialize(msgString, new MsgIntent());
-          onTentativeIntent(msg);
-          break;
-        }
-        case "intent": {
-          var msg = JSON.JSONDeserialize(msgString, new MsgIntent());
-          onIntent(msg);
-          break;
-        }
-        case "segment_end": {
-          break;
-        }
-        case "stopped": {
-          Logger.Log($"Stopped context '{msgCommon.audio_context}'");
-          stopContextTCS.SetResult(msgCommon);
-          break;
-        }
-        default: {
-          throw new Exception($"Unhandled message type '{msgCommon.type}' with content: {msgString}");
-        }
+    public async Task<string> startContext(string appId = null) {
+      if (isListening) {
+        throw new Exception("Already listening.");
       }
-    } catch (Exception e) {
-      throw new Exception($"Ouch. {e.GetType()} while handling message with content  with content: {msgString}");
+      isListening = true;
+      setState(ClientState.Starting);
+      startContextTCS = new TaskCompletionSource<MsgCommon>();
+      if (appId != null) {
+        await wsClient.sendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
+      } else {
+        await wsClient.sendText($"{{\"event\": \"start\"}}");
+      }
+      var contextId = (await startContextTCS.Task).audio_context;
+      setState(ClientState.Recording);
+      return contextId;
     }
-  }
 
+    public async Task sendAudio(Stream fileStream) {
+      if (state != ClientState.Recording) return;
+
+      // @TODO Use a pre-allocated buf
+      var b = new byte[8192];
+
+      while (true) {
+        int bytesRead = fileStream.Read(b, 0, b.Length);
+        if (bytesRead == 0) break;
+        await wsClient.sendBytes(new ArraySegment<byte>(b, 0, bytesRead));
+      }
+    }
+
+    public async Task sendAudio(float[] floats, int start = 0, int end = -1) {
+      if (state != ClientState.Recording) return;
+
+      if (end < 0) end = floats.Length;
+      var bufSize = end - start;
+      // @TODO Use a pre-allocated buf
+      var buf = new byte[bufSize * 2];
+      int i = 0;
+
+      for (var l = start; l < end; l++) {
+        short v = (short)(floats[l] * 0x7fff);
+        buf[i++] = (byte)(v);
+        buf[i++] = (byte)(v >> 8);
+      }
+
+      await wsClient.sendBytes(new ArraySegment<byte>(buf));
+    }
+
+    public async Task sendAudioFile(string fileName) {
+      var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+      await sendAudio(fileStream);
+      fileStream.Close();
+    }
+
+    public async Task stopContext() {
+      if (!isListening) {
+        throw new Exception("Already stopped listening.");
+      }
+      setState(ClientState.Stopping);
+      isListening = false;
+      stopContextTCS = new TaskCompletionSource<MsgCommon>();
+      await wsClient.sendText($"{{\"event\": \"stop\"}}");
+      var contextId = (await stopContextTCS.Task).audio_context;
+      setState(ClientState.Connected);
+    }
+
+    private void setState(ClientState state) {
+      this.state = state;
+    }
+
+    // @TODO Suppress logging
+
+    private void ResponseReceived(MemoryStream inputStream)
+    {
+      var msgString = Encoding.UTF8.GetString(inputStream.ToArray());
+      // Logger.Log(msgString);
+      try {
+        // @TODO Find a way to deserialize only once
+        var msgCommon = JSON.JSONDeserialize(msgString, new MsgCommon());
+        // Logger.Log($"message type {msgCommon.type}");
+        switch (msgCommon.type) {
+          case "started": {
+            Logger.Log($"Started context '{msgCommon.audio_context}'");
+            startContextTCS.SetResult(msgCommon);
+            break;
+          }
+          case "tentative_transcript": {
+            var msg = JSON.JSONDeserialize(msgString, new MsgTentativeTranscript());
+            onTentativeTranscript(msg);
+            break;
+          }
+          case "transcript": {
+            var msg = JSON.JSONDeserialize(msgString, new MsgTranscript());
+            msg.data.isFinal = true;
+            onTranscript(msg);
+            break;
+          }
+          case "tentative_entities": {
+            var msg = JSON.JSONDeserialize(msgString, new MsgTentativeEntity());
+            onTentativeEntity(msg);
+            break;
+          }
+          case "entity": {
+            var msg = JSON.JSONDeserialize(msgString, new MsgEntity());
+            msg.data.isFinal = true;
+            onEntity(msg);
+            break;
+          }
+          case "tentative_intent": {
+            var msg = JSON.JSONDeserialize(msgString, new MsgIntent());
+            onTentativeIntent(msg);
+            break;
+          }
+          case "intent": {
+            var msg = JSON.JSONDeserialize(msgString, new MsgIntent());
+            onIntent(msg);
+            break;
+          }
+          case "segment_end": {
+            break;
+          }
+          case "stopped": {
+            Logger.Log($"Stopped context '{msgCommon.audio_context}'");
+            stopContextTCS.SetResult(msgCommon);
+            break;
+          }
+          default: {
+            throw new Exception($"Unhandled message type '{msgCommon.type}' with content: {msgString}");
+          }
+        }
+      } catch (Exception e) {
+        throw new Exception($"Ouch. {e.GetType()} while handling message with content  with content: {msgString}");
+      }
+    }
+
+  }
 }

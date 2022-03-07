@@ -1,1 +1,3 @@
-﻿await SpeechlyClientTest.test();
+﻿using Speechly.SLUClient;
+
+await SpeechlyClientTest.test();
