@@ -145,34 +145,32 @@ public class MicToSpeechly : MonoBehaviour
       peak = peak * 0.95f;
 
       int captureRingbufferPos = Microphone.GetPosition(CaptureDeviceName);
-      bool looped = false;
+      // Always captures full buffer length (MicSampleRate * MicBufferLengthSecs samples), starting from offset
+      clip.GetData(waveData, oldCaptureRingbufferPos);
+
+      int samples;
       if (captureRingbufferPos < oldCaptureRingbufferPos)
       {
-        // Debug.Log(string.Format("Buffer loop"));
-        looped = true;
+        samples = (waveData.Length - oldCaptureRingbufferPos) + captureRingbufferPos;
+      } else {
+        samples = captureRingbufferPos - oldCaptureRingbufferPos;
       }
-      int samples = captureRingbufferPos - oldCaptureRingbufferPos;
+
       if (samples != 0)
       {
-        // TODO: Process looped samples as well
-        if (!looped)
+        if (IsButtonHeld && client.IsListening)
         {
-          // Note: Always captures full buffer length, MicSampleRate * MicBufferLengthSecs samples
-          clip.GetData(waveData, oldCaptureRingbufferPos);
-          if (IsButtonHeld && client.IsListening)
-          {
-            await client.SendAudio(waveData, 0, samples);
-          }
-          int s = 0;
-          while (s < samples)
-          {
-            peak = Mathf.Max(peak, waveData[s]);
-            s++;
-          }
-          SliderAudioPeak.value = peak;
+          await client.SendAudio(waveData, 0, samples);
         }
-        oldCaptureRingbufferPos = captureRingbufferPos;
+        int s = 0;
+        while (s < samples)
+        {
+          peak = Mathf.Max(peak, waveData[s]);
+          s++;
+        }
+        SliderAudioPeak.value = peak;
       }
+      oldCaptureRingbufferPos = captureRingbufferPos;
     }
   }
 }
