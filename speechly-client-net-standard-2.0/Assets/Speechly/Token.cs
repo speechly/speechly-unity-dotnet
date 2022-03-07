@@ -42,7 +42,6 @@ namespace Speechly.SLUClient {
           deviceId = deviceId
         };
         json = JSON.Stringify(body);
-        // postResponse = await httpClient.PostAsJsonAsync(baseUrl, body);
       } else {
         var body = new AppTokenRequest{
           appId = appId,
@@ -50,11 +49,8 @@ namespace Speechly.SLUClient {
         };
         json = JSON.Stringify(body);
       }
-      // Log(json);
-      // Log(baseUrl);
       var postRequest = new HttpRequestMessage(HttpMethod.Post, baseUrl);
       postRequest.Content = new StringContent(json, Encoding.UTF8, "application/json");
-        // var u = JSONDeserialize(json, new AppTokenRequest());
       try {
         postResponse = await httpClient.SendAsync(postRequest);
       } catch ( Exception ) {
@@ -67,7 +63,6 @@ namespace Speechly.SLUClient {
         throw new Exception("HTTP Response was invalid and cannot be deserialised.");
       }
 
-      // Log(postResponse.Headers.ToString());
       var contentStream = await postResponse.Content.ReadAsStreamAsync();
       TokenResponse tokenResponse;
       try {

@@ -7,6 +7,7 @@ using System.Collections.Generic;
 namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
+    public static bool DEBUG_LOG = false;
     public delegate void TentativeTranscriptDelegate(MsgTentativeTranscript msg);
     public delegate void TranscriptDelegate(MsgTranscript msg);
     public delegate void TentativeEntityDelegate(MsgTentativeEntity msg);
@@ -55,8 +56,8 @@ namespace Speechly.SLUClient {
       var tokenFetcher = new LoginToken();
       token = await tokenFetcher.FetchToken(loginUrl, projectId, appId, deviceId);
 
-      Logger.Log($"deviceId: {deviceId}");
-      Logger.Log($"token: {token}");
+      if (DEBUG_LOG) Logger.Log($"deviceId: {deviceId}");
+      if (DEBUG_LOG) Logger.Log($"token: {token}");
 
       await wsClient.ConnectAsync(apiUrl, token);
       SetState(ClientState.Preinitialized);
@@ -134,18 +135,15 @@ namespace Speechly.SLUClient {
       this.state = state;
     }
 
-    // @TODO Suppress logging
     private void ResponseReceived(MemoryStream inputStream)
     {
       var msgString = Encoding.UTF8.GetString(inputStream.ToArray());
-      // Logger.Log(msgString);
       try {
         // @TODO Find a way to deserialize only once
         var msgCommon = JSON.Parse(msgString, new MsgCommon());
-        // Logger.Log($"message type {msgCommon.type}");
         switch (msgCommon.type) {
           case "started": {
-            Logger.Log($"Started context '{msgCommon.audio_context}'");
+            if (DEBUG_LOG) Logger.Log($"Started context '{msgCommon.audio_context}'");
             startContextTCS.SetResult(msgCommon);
             break;
           }
@@ -185,7 +183,7 @@ namespace Speechly.SLUClient {
             break;
           }
           case "stopped": {
-            Logger.Log($"Stopped context '{msgCommon.audio_context}'");
+            if (DEBUG_LOG) Logger.Log($"Stopped context '{msgCommon.audio_context}'");
             stopContextTCS.SetResult(msgCommon);
             break;
           }
