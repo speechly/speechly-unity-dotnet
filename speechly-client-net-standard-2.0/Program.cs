@@ -8,6 +8,5 @@ class Program
   static async Task Main(string[] args)
   {
     await SpeechlyClientTest.test();
-
   }
 }

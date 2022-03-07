@@ -7,8 +7,8 @@ using System.Collections.Generic;
 namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
-    public static bool DEBUG_LOG = false;
-    
+    public static bool DEBUG_LOG = true;
+
     public delegate void TentativeTranscriptDelegate(MsgTentativeTranscript msg);
     public delegate void TranscriptDelegate(MsgTranscript msg);
     public delegate void TentativeEntityDelegate(MsgTentativeEntity msg);
@@ -51,13 +51,21 @@ namespace Speechly.SLUClient {
 
     public async Task Connect() {
       SetState(ClientState.Connecting);
-      // @TODO Retain device ID
-      deviceId = System.Guid.NewGuid().ToString();
+
+      var c = SpeechlyConfig.RestoreOrCreate();
+      if (c.deviceId == null) {
+        deviceId = System.Guid.NewGuid().ToString();
+        c.deviceId = deviceId;
+        c.Save();
+        if (DEBUG_LOG) Logger.Log($"New deviceId: {deviceId}");
+      } else {
+        deviceId = c.deviceId;
+        if (DEBUG_LOG) Logger.Log($"Restored deviceId: {deviceId}");
+      }
 
       var tokenFetcher = new LoginToken();
       token = await tokenFetcher.FetchToken(loginUrl, projectId, appId, deviceId);
 
-      if (DEBUG_LOG) Logger.Log($"deviceId: {deviceId}");
       if (DEBUG_LOG) Logger.Log($"token: {token}");
 
       await wsClient.ConnectAsync(apiUrl, token);

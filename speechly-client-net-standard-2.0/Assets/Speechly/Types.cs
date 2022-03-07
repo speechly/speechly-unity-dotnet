@@ -1,6 +1,8 @@
+using System;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Json;
 using System.Text;
+using System.IO;
 
 namespace Speechly.SLUClient {
 
@@ -96,4 +98,34 @@ namespace Speechly.SLUClient {
     public string audio_context { get; set; }
     public int segment_id { get; set; }
   }
+
+  [DataContract]
+  public class SpeechlyConfig {
+    public static string ConfigPath = "Speechly";
+    public static string ConfigFileName = "SLUClientConfig.json";
+
+    [DataMember(Name = "deviceId")]
+    public string deviceId = null;
+
+    public static SpeechlyConfig RestoreOrCreate() {
+      string basePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+      string pathToFile = Path.Combine(basePath, ConfigPath, ConfigFileName);
+      SpeechlyConfig config = new SpeechlyConfig();
+      try {
+        string jsonString = File.ReadAllText(pathToFile, Encoding.UTF8);
+        config = JSON.Parse(jsonString, config);
+      } catch (Exception) {
+      }
+      return config;
+    }
+
+    public void Save() {
+      string basePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+      Directory.CreateDirectory(Path.Combine(basePath, ConfigPath));
+
+      string pathToFile = Path.Combine(basePath, ConfigPath, ConfigFileName);
+      File.WriteAllText(pathToFile, JSON.Stringify(this), Encoding.UTF8);
+    }
+  }
+
 }
