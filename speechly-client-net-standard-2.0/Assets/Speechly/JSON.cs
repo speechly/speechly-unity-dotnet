@@ -5,9 +5,7 @@ using System.IO;
 namespace Speechly.SLUClient {
   public class JSON {
     public static MemoryStream StringifyToStream<T>(T obj) {  
-      // Create a stream to serialize the object to.
       var stream = new MemoryStream();
-      // Serializer the the object to the stream
       var serializer = new DataContractJsonSerializer(typeof(T));
       serializer.WriteObject(stream, obj);
       return stream;

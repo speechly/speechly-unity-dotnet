@@ -8,6 +8,7 @@ namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
     public static bool DEBUG_LOG = false;
+    
     public delegate void TentativeTranscriptDelegate(MsgTentativeTranscript msg);
     public delegate void TranscriptDelegate(MsgTranscript msg);
     public delegate void TentativeEntityDelegate(MsgTentativeEntity msg);
