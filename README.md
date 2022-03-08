@@ -27,38 +27,24 @@ Streams a pre-recorded raw audio file (16 bit mono, 16000 samples/sec) to Speech
 Please note that altering UI is not possible in callbacks, they are (currently) run in an async receive loop.
 
 ```
-using System.Linq;
+using Speechly.SLUClient;
 
   async void Start()
   {
-    Logger.Log = Debug.Log;
-
     // Get your app id from https://api.speechly.com/dashboard
     var client = new SpeechlyClient(
         appId: "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1" // Basic speech-to-text configuration
     );
+    
+    // Set desired callbacks. Note: Callbacks can't access UI directly as they are called from async methods
 
-    // Set tentative callbacks to receive preliminary results as soon as they arrive
-    // Note: Callbacks can't access UI directly as they are called from async methods
-    client.OnTentativeTranscript = (msg) =>
-    {
-      var s = $"Tentative transcript ({msg.data.words.Length} words):";
-      msg.data.words.ToList().ForEach(w => s = $"{s} '{w.word}'@{w.index} {w.startTimestamp}..{w.endTimestamp}ms ");
-      Logger.Log(s);
+    // Segment keeps record of all words and detected intents and entities. It's the recommended way to read SLU results.
+    Logger.Log = Debug.Log;
+    client.OnSegmentChange = (segment) => {
+      Logger.Log(segment.ToString());
     };
-    client.OnTentativeEntity = (msg) =>
-    {
-      var s = $"Tentative entities ({msg.data.entities.Length}):";
-      msg.data.entities.ToList().ForEach(w => s = $"{s} '{w.entity}': '{w.value}' @ {w.startPosition}..{w.endPosition} ");
-      Logger.Log(s);
-    };
-    client.OnTentativeIntent = (msg) => Logger.Log($"Tentative intent: '{msg.data.intent}'");
 
-    // Set callbacks to receive final transcript and NLU results
-    client.OnIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
-    client.OnTranscript = (msg) => Logger.Log($"Final transcript: '{msg.data.word}'@{msg.data.index} {msg.data.startTimestamp}..{msg.data.endTimestamp}ms");
-    client.OnEntity = (msg) => Logger.Log($"Final entity '{msg.data.entity}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
-
+    // Connect should be only done once
     await client.Connect();
 
     // Send test audio, see log for results
@@ -69,7 +55,10 @@ using System.Linq;
 
 ```
 
-See `MicToSpeechly.cs` for an example of data streamed from microphone and showing last received word in the UI.
+### More code examples
+
+- See [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/unity-mic-to-speechly/Assets/MicToSpeechly.cs) for an Unity example of streaming data from microphone and showing last received word in the UI.
+- See [SpeechlyClientTest.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-client-net-standard-2.0/Assets/Speechly/SpeechlyClientTest.cs) for a generic .NET Standard 2.0 example of streaming raw audio from a file and logging the transcript and SLU results. It showcases all available callbacks.
 
 ## Developing
 
