@@ -45,7 +45,7 @@ namespace Speechly.SLUClient {
   [DataContract]
   public class Entity {
     [DataMember(Name = "entity")]
-    public string entity;
+    public string type;
     [DataMember(Name = "value")]
     public string value;
     [DataMember(Name = "start_position")]

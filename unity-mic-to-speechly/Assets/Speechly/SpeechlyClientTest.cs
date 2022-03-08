@@ -17,6 +17,10 @@ namespace Speechly.SLUClient {
         appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e" // Chinese
       );
 
+      client.OnSegmentChange = (segment) => {
+        Logger.Log(segment.ToString());
+      };
+      
       client.OnTentativeTranscript = (msg) => {
         StringBuilder sb = new StringBuilder();
         sb.Append($"Tentative transcript ({msg.data.words.Length} words): ");
@@ -26,13 +30,13 @@ namespace Speechly.SLUClient {
       client.OnTentativeEntity = (msg) => {
         StringBuilder sb = new StringBuilder();
         sb.Append($"Tentative entities ({msg.data.entities.Length}): ");
-        msg.data.entities.ToList().ForEach(w => sb.Append($"'{w.entity}': '{w.value}' @ {w.startPosition}..{w.endPosition} " ));
+        msg.data.entities.ToList().ForEach(w => sb.Append($"'{w.type}': '{w.value}' @ {w.startPosition}..{w.endPosition} " ));
         Logger.Log(sb.ToString());
       };
       client.OnTentativeIntent = (msg) => Logger.Log($"Tentative intent: '{msg.data.intent}'");
       
       client.OnTranscript = (msg) => Logger.Log($"Final transcript: '{msg.data.word}'@{msg.data.index} {msg.data.startTimestamp}..{msg.data.endTimestamp}ms");
-      client.OnEntity = (msg) => Logger.Log($"Final entity '{msg.data.entity}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
+      client.OnEntity = (msg) => Logger.Log($"Final entity '{msg.data.type}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
       client.OnIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
 
       sw.Restart();

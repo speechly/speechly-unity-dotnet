@@ -50,6 +50,8 @@ public class MicToSpeechly : MonoBehaviour
     );
 
     // Note: Callbacks can't access UI directly as they are called from async methods
+    client.OnSegmentChange = (segment) => Logger.Log(segment.ToString());
+    client.OnStateChange = (clientState) => Logger.Log($"ClientState: {clientState}");
 
     client.OnTentativeTranscript = (msg) =>
     {
@@ -62,7 +64,7 @@ public class MicToSpeechly : MonoBehaviour
     {
       StringBuilder sb = new StringBuilder();
       sb.Append($"Tentative entities ({msg.data.entities.Length}): ");
-      msg.data.entities.ToList().ForEach(w => sb.Append($"'{w.entity}': '{w.value}' @ {w.startPosition}..{w.endPosition} "));
+      msg.data.entities.ToList().ForEach(w => sb.Append($"'{w.type}': '{w.value}' @ {w.startPosition}..{w.endPosition} "));
       Logger.Log(sb.ToString());
     };
     client.OnIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
@@ -74,7 +76,7 @@ public class MicToSpeechly : MonoBehaviour
       }
       Logger.Log($"Final transcript: '{msg.data.word}'@{msg.data.index} {msg.data.startTimestamp}..{msg.data.endTimestamp}ms");
     };
-    client.OnEntity = (msg) => Logger.Log($"Final entity '{msg.data.entity}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
+    client.OnEntity = (msg) => Logger.Log($"Final entity '{msg.data.type}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
     client.OnTentativeIntent = (msg) => Logger.Log($"Tentative intent: '{msg.data.intent}'");
 
     await client.Connect();

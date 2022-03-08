@@ -9,22 +9,27 @@ namespace Speechly.SLUClient {
   public class SpeechlyClient {
     public static bool DEBUG_LOG = false;
 
+    public delegate void SegmentChangeDelegate(Segment segment);
+    public delegate void StateChangeDelegate(ClientState state);
     public delegate void TentativeTranscriptDelegate(MsgTentativeTranscript msg);
     public delegate void TranscriptDelegate(MsgTranscript msg);
     public delegate void TentativeEntityDelegate(MsgTentativeEntity msg);
     public delegate void EntityDelegate(MsgEntity msg);
     public delegate void IntentDelegate(MsgIntent msg);
+    public SegmentChangeDelegate OnSegmentChange = (Segment segment) => {};
     public TentativeTranscriptDelegate OnTentativeTranscript = (msg) => {};
     public TranscriptDelegate OnTranscript = (msg) => {};
     public TentativeEntityDelegate OnTentativeEntity = (msg) => {};
     public EntityDelegate OnEntity = (msg) => {};
     public IntentDelegate OnTentativeIntent = (msg) => {};
     public IntentDelegate OnIntent = (msg) => {};
+    public StateChangeDelegate OnStateChange = (ClientState state) => {};
 
     public bool IsListening { get; private set; } = false;
+    public ClientState State { get; private set; } = ClientState.Disconnected;
     private string deviceId;
     private string token;
-    private Dictionary<string, Dictionary<int, SegmentState>> activeContexts = new Dictionary<string, Dictionary<int, SegmentState>>();
+    private Dictionary<string, Dictionary<int, Segment>> activeContexts = new Dictionary<string, Dictionary<int, Segment>>();
     private WsClient wsClient;
     private TaskCompletionSource<MsgCommon> startContextTCS;
     private TaskCompletionSource<MsgCommon> stopContextTCS;
@@ -32,7 +37,6 @@ namespace Speechly.SLUClient {
     private string apiUrl = "wss://api.speechly.com/ws/v1?sampleRate=16000";
     private string projectId = null;
     private string appId = null;
-    private ClientState state = ClientState.Disconnected;
 
     public SpeechlyClient(
       string loginUrl = null,
@@ -92,7 +96,7 @@ namespace Speechly.SLUClient {
     }
 
     public async Task SendAudio(Stream fileStream) {
-      if (state != ClientState.Recording) return;
+      if (State != ClientState.Recording) return;
 
       // @TODO Use a pre-allocated buf
       var b = new byte[8192];
@@ -105,7 +109,7 @@ namespace Speechly.SLUClient {
     }
 
     public async Task SendAudio(float[] floats, int start = 0, int end = -1) {
-      if (state != ClientState.Recording) return;
+      if (State != ClientState.Recording) return;
 
       if (end < 0) end = floats.Length;
       var bufSize = end - start;
@@ -141,7 +145,8 @@ namespace Speechly.SLUClient {
     }
 
     private void SetState(ClientState state) {
-      this.state = state;
+      this.State = state;
+      OnStateChange(state);
     }
 
     private void ResponseReceived(MemoryStream inputStream)
@@ -153,56 +158,83 @@ namespace Speechly.SLUClient {
         switch (msgCommon.type) {
           case "started": {
             if (DEBUG_LOG) Logger.Log($"Started context '{msgCommon.audio_context}'");
+            activeContexts.Add(msgCommon.audio_context, new Dictionary<int, Segment>());
             startContextTCS.SetResult(msgCommon);
-            break;
-          }
-          case "tentative_transcript": {
-            var msg = JSON.Parse(msgString, new MsgTentativeTranscript());
-            OnTentativeTranscript(msg);
-            break;
-          }
-          case "transcript": {
-            var msg = JSON.Parse(msgString, new MsgTranscript());
-            msg.data.isFinal = true;
-            OnTranscript(msg);
-            break;
-          }
-          case "tentative_entities": {
-            var msg = JSON.Parse(msgString, new MsgTentativeEntity());
-            OnTentativeEntity(msg);
-            break;
-          }
-          case "entity": {
-            var msg = JSON.Parse(msgString, new MsgEntity());
-            msg.data.isFinal = true;
-            OnEntity(msg);
-            break;
-          }
-          case "tentative_intent": {
-            var msg = JSON.Parse(msgString, new MsgIntent());
-            OnTentativeIntent(msg);
-            break;
-          }
-          case "intent": {
-            var msg = JSON.Parse(msgString, new MsgIntent());
-            OnIntent(msg);
-            break;
-          }
-          case "segment_end": {
             break;
           }
           case "stopped": {
             if (DEBUG_LOG) Logger.Log($"Stopped context '{msgCommon.audio_context}'");
+            activeContexts.Remove(msgCommon.audio_context);
             stopContextTCS.SetResult(msgCommon);
             break;
           }
           default: {
-            throw new Exception($"Unhandled message type '{msgCommon.type}' with content: {msgString}");
+            OnSegmentMessage(msgCommon, msgString);
+            break;
           }
         }
       } catch (Exception e) {
         throw new Exception($"Ouch. {e.GetType()} while handling message with content  with content: {msgString}");
       }
+    }
+
+    private void OnSegmentMessage(MsgCommon msgCommon, string msgString)
+    {
+      Segment segmentState;
+      if (!activeContexts[msgCommon.audio_context].TryGetValue(msgCommon.segment_id, out segmentState)) {
+        segmentState = new Segment(msgCommon.audio_context, msgCommon.segment_id);
+        activeContexts[msgCommon.audio_context].Add(msgCommon.segment_id, segmentState);
+      }
+
+      switch (msgCommon.type) {
+        case "tentative_transcript": {
+          var msg = JSON.Parse(msgString, new MsgTentativeTranscript());
+          segmentState.UpdateTranscript(msg.data.words);
+          OnTentativeTranscript(msg);
+          break;
+        }
+        case "transcript": {
+          var msg = JSON.Parse(msgString, new MsgTranscript());
+          msg.data.isFinal = true;
+          segmentState.UpdateTranscript(msg.data);
+          OnTranscript(msg);
+          break;
+        }
+        case "tentative_entities": {
+          var msg = JSON.Parse(msgString, new MsgTentativeEntity());
+          segmentState.UpdateEntity(msg.data.entities);
+          OnTentativeEntity(msg);
+          break;
+        }
+        case "entity": {
+          var msg = JSON.Parse(msgString, new MsgEntity());
+          msg.data.isFinal = true;
+          segmentState.UpdateEntity(msg.data);
+          OnEntity(msg);
+          break;
+        }
+        case "tentative_intent": {
+          var msg = JSON.Parse(msgString, new MsgIntent());
+          segmentState.UpdateIntent(msg.data.intent, false);
+          OnTentativeIntent(msg);
+          break;
+        }
+        case "intent": {
+          var msg = JSON.Parse(msgString, new MsgIntent());
+          segmentState.UpdateIntent(msg.data.intent, true);
+          OnIntent(msg);
+          break;
+        }
+        case "segment_end": {
+          segmentState.EndSegment();
+          break;
+        }
+        default: {
+          throw new Exception($"Unhandled message type '{msgCommon.type}' with content: {msgString}");
+        }
+      }
+
+      OnSegmentChange(segmentState);
     }
 
   }
