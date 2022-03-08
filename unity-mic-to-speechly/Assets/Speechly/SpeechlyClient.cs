@@ -8,6 +8,7 @@ namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
     public static bool DEBUG_LOG = false;
+    public static bool DEBUG_SAVE_AUDIO = false;
 
     public delegate void SegmentChangeDelegate(Segment segment);
     public delegate void StateChangeDelegate(ClientState state);
@@ -37,6 +38,7 @@ namespace Speechly.SLUClient {
     private string apiUrl = "wss://api.speechly.com/ws/v1?sampleRate=16000";
     private string projectId = null;
     private string appId = null;
+    private FileStream debugAudioStream;
 
     public SpeechlyClient(
       string loginUrl = null,
@@ -91,6 +93,9 @@ namespace Speechly.SLUClient {
         await wsClient.SendText($"{{\"event\": \"start\"}}");
       }
       var contextId = (await startContextTCS.Task).audio_context;
+      if (DEBUG_SAVE_AUDIO) {
+        debugAudioStream = new FileStream($"utterance_{contextId}.raw", FileMode.CreateNew, FileAccess.Write, FileShare.None);
+      }
       SetState(ClientState.Recording);
       return contextId;
     }
@@ -104,6 +109,9 @@ namespace Speechly.SLUClient {
       while (true) {
         int bytesRead = fileStream.Read(b, 0, b.Length);
         if (bytesRead == 0) break;
+        if (DEBUG_SAVE_AUDIO) {
+          debugAudioStream.Write(b, 0, bytesRead);
+        }
         await wsClient.SendBytes(new ArraySegment<byte>(b, 0, bytesRead));
       }
     }
@@ -112,7 +120,7 @@ namespace Speechly.SLUClient {
       if (State != ClientState.Recording) return;
 
       if (end < 0) end = floats.Length;
-      var bufSize = end - start;
+      int bufSize = end - start;
       // @TODO Use a pre-allocated buf
       var buf = new byte[bufSize * 2];
       int i = 0;
@@ -121,6 +129,10 @@ namespace Speechly.SLUClient {
         short v = (short)(floats[l] * 0x7fff);
         buf[i++] = (byte)(v);
         buf[i++] = (byte)(v >> 8);
+      }
+
+      if (DEBUG_SAVE_AUDIO) {
+        debugAudioStream.Write(buf, 0, buf.Length);
       }
 
       await wsClient.SendBytes(new ArraySegment<byte>(buf));
@@ -141,6 +153,10 @@ namespace Speechly.SLUClient {
       stopContextTCS = new TaskCompletionSource<MsgCommon>();
       await wsClient.SendText($"{{\"event\": \"stop\"}}");
       var contextId = (await stopContextTCS.Task).audio_context;
+      if (DEBUG_SAVE_AUDIO) {
+        debugAudioStream.Close();
+      }
+
       SetState(ClientState.Connected);
     }
 

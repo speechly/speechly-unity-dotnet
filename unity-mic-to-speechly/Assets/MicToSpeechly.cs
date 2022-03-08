@@ -93,15 +93,20 @@ public class MicToSpeechly : MonoBehaviour
     await StartSpeechly();
     // Start audio capture
     audioSource = GetComponent<AudioSource>();
+    int minFreq;
+    int maxFreq;
+    Microphone.GetDeviceCaps(CaptureDeviceName, out minFreq, out maxFreq);
+    Logger.Log($"minFreq {minFreq} maxFreq {maxFreq}");
     clip = Microphone.Start(CaptureDeviceName, true, MicBufferLengthSecs, MicSampleRate);
-
+    
     if (clip != null)
     {
       audioSource.clip = clip;
       audioSource.loop = true;
-      float playbackLatencySecs = 0;
-      float playbackLatencySamples = playbackLatencySecs * MicSampleRate;
+      Logger.Log($"Audiosource frequency {clip.frequency} channels {clip.channels}");
       waveData = new float[audioSource.clip.samples * audioSource.clip.channels];
+      float playbackLatencySecs = 0.1f;
+      float playbackLatencySamples = playbackLatencySecs * MicSampleRate;
       while (Microphone.GetPosition(CaptureDeviceName) <= playbackLatencySamples)
       {
         // wait for input to set latency
@@ -136,7 +141,7 @@ public class MicToSpeechly : MonoBehaviour
     }
   }
 
-  async void Update()
+  void Update()
   {
     lock(lastWord) {
       TranscriptText.text = lastWord;
@@ -147,8 +152,6 @@ public class MicToSpeechly : MonoBehaviour
       peak = peak * 0.95f;
 
       int captureRingbufferPos = Microphone.GetPosition(CaptureDeviceName);
-      // Always captures full buffer length (MicSampleRate * MicBufferLengthSecs samples), starting from offset
-      clip.GetData(waveData, oldCaptureRingbufferPos);
 
       int samples;
       if (captureRingbufferPos < oldCaptureRingbufferPos)
@@ -158,11 +161,17 @@ public class MicToSpeechly : MonoBehaviour
         samples = captureRingbufferPos - oldCaptureRingbufferPos;
       }
 
-      if (samples != 0)
+      if (samples > 0)
       {
+        Logger.Log($"samples: {oldCaptureRingbufferPos} + {samples} = {captureRingbufferPos}");
+        // Always captures full buffer length (MicSampleRate * MicBufferLengthSecs samples), starting from offset
+        clip.GetData(waveData, oldCaptureRingbufferPos);
         if (IsButtonHeld && client.IsListening)
         {
-          await client.SendAudio(waveData, 0, samples);
+          #pragma warning disable 4014
+          // Using this async call in fire-and-forget manner. Awaiting introduces distortion, which needs to be investigated.
+          client.SendAudio(waveData, 0, samples);
+          #pragma warning restore 4014
         }
         int s = 0;
         while (s < samples)
@@ -171,8 +180,8 @@ public class MicToSpeechly : MonoBehaviour
           s++;
         }
         SliderAudioPeak.value = peak;
+        oldCaptureRingbufferPos = captureRingbufferPos;
       }
-      oldCaptureRingbufferPos = captureRingbufferPos;
     }
   }
 }
