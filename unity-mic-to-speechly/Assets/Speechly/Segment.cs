@@ -7,7 +7,6 @@ namespace Speechly.SLUClient {
 
   class SegmentState {
   /*
-
     int id;
     string contextId;
     bool isFinalized = false;
@@ -15,18 +14,17 @@ namespace Speechly.SLUClient {
     Dictionary<string, Entity> entities = new Dictionary<string, Entity>();
     Intent intent = new Intent{ intent = "", isFinal = false };
 
+    // @TODO Implementation
 
-  class Program {
-      static void Main(string[] args) {
-          var a = new string[0];
-          Array.Resize(ref a, 20);
-          a[10] = "hoi";
-          a.Where(i => i != null).Select(i => $"item {i}").ToList().ForEach(i => {
-            Console.WriteLine(i);
-          });
-          Console.WriteLine("Hello, world!");
+    public void UpdateWords(MsgTranscript msg) {
+      if (msg.data.index >= words.Length) {
+        Array.Resize(ref words, msg.data.index + 1);
       }
-  }
+      words[msg.data.index] = msg.data;
+      words.Where(i => i.word != null).Select(i => i.word).ToList().ForEach(i => {
+        Console.WriteLine(i);
+      });
+    }
   */
 
   }
