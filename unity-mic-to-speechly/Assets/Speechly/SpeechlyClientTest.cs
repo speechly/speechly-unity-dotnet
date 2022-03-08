@@ -14,7 +14,7 @@ namespace Speechly.SLUClient {
       var client = new SpeechlyClient(
         loginUrl: "https://staging.speechly.com/login",
         apiUrl: "wss://staging.speechly.com/ws/v1?sampleRate=16000",
-        appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e" // Chinese
+        appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e" // Restaurant booking configuration
       );
 
       client.OnSegmentChange = (segment) => {
