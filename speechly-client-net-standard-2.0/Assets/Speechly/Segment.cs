@@ -49,8 +49,6 @@ namespace Speechly.SLUClient {
       return sb.ToString();
     }
 
-    // @TODO Implementation
-
     public void UpdateTranscript(Word word) {
       if (word.index >= words.Length) {
         Array.Resize(ref words, word.index + 1);
