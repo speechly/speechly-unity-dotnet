@@ -57,7 +57,7 @@ using Speechly.SLUClient;
 
 ### More examples
 
-- See [https://github.com/speechly/speechly-unity-dotnet/blob/main/unity-mic-to-speechly/Assets/MicToSpeechly.cs](MicToSpeechly.cs) for an Unity example of streaming data from microphone and showing last received word in the UI.
+- See [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/unity-mic-to-speechly/Assets/MicToSpeechly.cs) for an Unity example of streaming data from microphone and showing last received word in the UI.
 - See `SpeechlyClientTest.cs` for a generic .NET Standard 2.0 example of streaming raw audio from a file and logging the transcript and SLU results. It showcases all available callbacks.
 
 ## Developing
