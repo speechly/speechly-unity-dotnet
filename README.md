@@ -10,7 +10,7 @@ Early preview version.
   - Unity 2018.1 or later (tested with 2019.4.36f1 and 2021.2.12f1)
   - Microsoft .NET Core 3 or later (tested with .NET 6.0.200)
 
-## Contents of this repo
+## Contents of this repository
 
 - [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of `speechly-client-net-standard-2.0/Assets/Speechly` folder.
 - [speechly-client-net-standard-2.0/](speechly-client-net-standard-2.0/) contains the Speechly client library code and a sample console app.
