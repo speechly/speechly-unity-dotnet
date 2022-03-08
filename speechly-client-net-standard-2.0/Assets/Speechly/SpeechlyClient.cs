@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
-    public static bool DEBUG_LOG = true;
+    public static bool DEBUG_LOG = false;
 
     public delegate void TentativeTranscriptDelegate(MsgTentativeTranscript msg);
     public delegate void TranscriptDelegate(MsgTranscript msg);
