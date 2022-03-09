@@ -163,7 +163,6 @@ public class MicToSpeechly : MonoBehaviour
 
       if (samples > 0)
       {
-        Logger.Log($"samples: {oldCaptureRingbufferPos} + {samples} = {captureRingbufferPos}");
         // Always captures full buffer length (MicSampleRate * MicBufferLengthSecs samples), starting from offset
         clip.GetData(waveData, oldCaptureRingbufferPos);
         if (IsButtonHeld && client.IsListening)
