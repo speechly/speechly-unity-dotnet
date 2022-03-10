@@ -39,9 +39,9 @@ public class MicToSpeechly : MonoBehaviour
   private SpeechlyClient client;
   private bool IsButtonHeld = false;
 
-  async void Start()
+  void Start()
   {
-    await StartSpeechly();
+    StartCoroutine(StartSpeechly());
     
     // Start audio capture
     audioSource = GetComponent<AudioSource>();
@@ -75,16 +75,15 @@ public class MicToSpeechly : MonoBehaviour
     }
   }
 
-  private async Task StartSpeechly()
+  private IEnumerator StartSpeechly()
   {
     Logger.Log = Debug.Log;
 
     client = new SpeechlyClient(
-        appId: this.AppId,
-        manualUpdate: true
+      appId: this.AppId,
+      manualUpdate: true
     );
 
-    // Note: Callbacks can't access UI directly as they are called from async methods
     client.OnSegmentChange = (segment) => Logger.Log(segment.ToString());
     client.OnStateChange = (clientState) => Logger.Log($"ClientState: {clientState}");
 
@@ -112,12 +111,17 @@ public class MicToSpeechly : MonoBehaviour
     client.OnEntity = (msg) => Logger.Log($"Final entity '{msg.data.type}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
     client.OnTentativeIntent = (msg) => Logger.Log($"Tentative intent: '{msg.data.intent}'");
 
-    await client.Connect();
-
-    // Send test audio:
-    await client.StartContext();
-    await client.SendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
-    await client.StopContext();
+    Task task;
+    task = client.Connect();
+    yield return new WaitUntil(() => task.IsCompleted);
+    /*
+    task = client.StartContext();
+    yield return new WaitUntil(() => task.IsCompleted);
+    task = client.SendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
+    yield return new WaitUntil(() => task.IsCompleted);
+    task = client.StopContext();
+    yield return new WaitUntil(() => task.IsCompleted);
+    */
   }
 
   public async void OnMouseDown()
