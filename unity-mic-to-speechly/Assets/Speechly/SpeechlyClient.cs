@@ -3,6 +3,7 @@ using System.Text;
 using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
+using System.Collections.Concurrent;
 
 namespace Speechly.SLUClient {
 
@@ -28,6 +29,8 @@ namespace Speechly.SLUClient {
 
     public bool IsListening { get; private set; } = false;
     public ClientState State { get; private set; } = ClientState.Disconnected;
+    // Optional message queue should messages be run in the main thread
+    private ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
     private string deviceId;
     private string token;
     private Dictionary<string, Dictionary<int, Segment>> activeContexts = new Dictionary<string, Dictionary<int, Segment>>();
@@ -44,7 +47,8 @@ namespace Speechly.SLUClient {
       string loginUrl = null,
       string apiUrl = null,
       string projectId = null,
-      string appId = null
+      string appId = null,
+      bool manualUpdate = false
     ) {
       if (loginUrl != null) this.loginUrl = loginUrl;
       if (apiUrl != null) this.apiUrl = apiUrl;
@@ -52,7 +56,11 @@ namespace Speechly.SLUClient {
       if (appId != null) this.appId = appId;
 
       wsClient = new WsClient();
-      wsClient.OnResponseReceived = ResponseReceived;
+      if (manualUpdate) {
+        wsClient.OnResponseReceived = QueueResponse;
+      } else {
+        wsClient.OnResponseReceived = ProcessResponse;
+      }
     }
 
     public async Task Connect() {
@@ -160,14 +168,33 @@ namespace Speechly.SLUClient {
       SetState(ClientState.Connected);
     }
 
+    /**
+     * Fire Speechly callbacks manually if you want them to run in main UI/Unity thread
+     */    
+    public void Update() {
+      string msgString;
+      while (messageQueue.TryDequeue(out msgString)) {
+        OnResponse(msgString);
+      }
+    }
+
     private void SetState(ClientState state) {
       this.State = state;
       OnStateChange(state);
     }
 
-    private void ResponseReceived(MemoryStream inputStream)
-    {
+    private void QueueResponse(MemoryStream inputStream) {
       var msgString = Encoding.UTF8.GetString(inputStream.ToArray());
+      messageQueue.Enqueue(msgString);
+    }
+
+    private void ProcessResponse(MemoryStream inputStream) {
+      var msgString = Encoding.UTF8.GetString(inputStream.ToArray());
+      OnResponse(msgString);
+    }
+
+    private void OnResponse(string msgString)
+    {
       try {
         // @TODO Find a way to deserialize only once
         var msgCommon = JSON.Parse(msgString, new MsgCommon());

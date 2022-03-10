@@ -39,58 +39,10 @@ public class MicToSpeechly : MonoBehaviour
   private SpeechlyClient client;
   private bool IsButtonHeld = false;
 
-  private string lastWord = "";
-
-  async Task StartSpeechly()
-  {
-    Logger.Log = Debug.Log;
-
-    client = new SpeechlyClient(
-        appId: this.AppId
-    );
-
-    // Note: Callbacks can't access UI directly as they are called from async methods
-    client.OnSegmentChange = (segment) => Logger.Log(segment.ToString());
-    client.OnStateChange = (clientState) => Logger.Log($"ClientState: {clientState}");
-
-    client.OnTentativeTranscript = (msg) =>
-    {
-      StringBuilder sb = new StringBuilder();
-      sb.Append($"Tentative transcript ({msg.data.words.Length} words): ");
-      msg.data.words.ToList().ForEach(w => sb.Append($"'{w.word}'@{w.index} {w.startTimestamp}..{w.endTimestamp}ms "));
-      Logger.Log(sb.ToString());
-    };
-    client.OnTentativeEntity = (msg) =>
-    {
-      StringBuilder sb = new StringBuilder();
-      sb.Append($"Tentative entities ({msg.data.entities.Length}): ");
-      msg.data.entities.ToList().ForEach(w => sb.Append($"'{w.type}': '{w.value}' @ {w.startPosition}..{w.endPosition} "));
-      Logger.Log(sb.ToString());
-    };
-    client.OnIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
-
-    client.OnTranscript = (msg) =>
-    {
-      lock(lastWord) {
-        lastWord = msg.data.word;
-      }
-      Logger.Log($"Final transcript: '{msg.data.word}'@{msg.data.index} {msg.data.startTimestamp}..{msg.data.endTimestamp}ms");
-    };
-    client.OnEntity = (msg) => Logger.Log($"Final entity '{msg.data.type}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
-    client.OnTentativeIntent = (msg) => Logger.Log($"Tentative intent: '{msg.data.intent}'");
-
-    await client.Connect();
-
-    // Send test audio:
-    // await client.StartContext();
-    // await client.SendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
-    // await client.StopContext();
-
-  }
-
   async void Start()
   {
     await StartSpeechly();
+    
     // Start audio capture
     audioSource = GetComponent<AudioSource>();
     int minFreq;
@@ -123,6 +75,51 @@ public class MicToSpeechly : MonoBehaviour
     }
   }
 
+  private async Task StartSpeechly()
+  {
+    Logger.Log = Debug.Log;
+
+    client = new SpeechlyClient(
+        appId: this.AppId,
+        manualUpdate: true
+    );
+
+    // Note: Callbacks can't access UI directly as they are called from async methods
+    client.OnSegmentChange = (segment) => Logger.Log(segment.ToString());
+    client.OnStateChange = (clientState) => Logger.Log($"ClientState: {clientState}");
+
+    client.OnTentativeTranscript = (msg) =>
+    {
+      StringBuilder sb = new StringBuilder();
+      sb.Append($"Tentative transcript ({msg.data.words.Length} words): ");
+      msg.data.words.ToList().ForEach(w => sb.Append($"'{w.word}'@{w.index} {w.startTimestamp}..{w.endTimestamp}ms "));
+      Logger.Log(sb.ToString());
+    };
+    client.OnTentativeEntity = (msg) =>
+    {
+      StringBuilder sb = new StringBuilder();
+      sb.Append($"Tentative entities ({msg.data.entities.Length}): ");
+      msg.data.entities.ToList().ForEach(w => sb.Append($"'{w.type}': '{w.value}' @ {w.startPosition}..{w.endPosition} "));
+      Logger.Log(sb.ToString());
+    };
+    client.OnIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
+
+    client.OnTranscript = (msg) =>
+    {
+      TranscriptText.text = msg.data.word;
+      Logger.Log($"Final transcript: '{msg.data.word}'@{msg.data.index} {msg.data.startTimestamp}..{msg.data.endTimestamp}ms");
+    };
+    client.OnEntity = (msg) => Logger.Log($"Final entity '{msg.data.type}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
+    client.OnTentativeIntent = (msg) => Logger.Log($"Tentative intent: '{msg.data.intent}'");
+
+    await client.Connect();
+
+    // Send test audio:
+    await client.StartContext();
+    await client.SendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
+    await client.StopContext();
+  }
+
   public async void OnMouseDown()
   {
     if (!IsButtonHeld && !client.IsListening) {
@@ -141,11 +138,16 @@ public class MicToSpeechly : MonoBehaviour
     }
   }
 
+  // Wrap async Task SendAudio as async void
+  // To enable using it in fire-and-forget manner. Awaiting introduces distortion, which needs to be investigated.
+  async void SendAudio(float[] wavedata, int start, int end) {
+    await client.SendAudio(wavedata, start, end);
+  }
+
   void Update()
   {
-    lock(lastWord) {
-      TranscriptText.text = lastWord;
-    }
+    // Fire handlers
+    client.Update();
 
     if (audioRunning)
     {
@@ -167,10 +169,7 @@ public class MicToSpeechly : MonoBehaviour
         clip.GetData(waveData, oldCaptureRingbufferPos);
         if (IsButtonHeld && client.IsListening)
         {
-          #pragma warning disable 4014
-          // Using this async call in fire-and-forget manner. Awaiting introduces distortion, which needs to be investigated.
-          client.SendAudio(waveData, 0, samples);
-          #pragma warning restore 4014
+          SendAudio(waveData, 0, samples);
         }
         int s = 0;
         while (s < samples)

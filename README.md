@@ -22,16 +22,19 @@ Copy the source files from of [speechly-client-net-standard-2.0/Assets/Speechly/
 
 Streams a pre-recorded raw audio file (16 bit mono, 16000 samples/sec) to Speechly via the websocket API, logs data using callbacks.
 
-Please note that altering UI is not possible in callbacks, they are (currently) run in an async receive loop.
+`manualUpdate: true` postpones Speechly callbacks until you manually run `Update()`. This is recommended as you will be able to modify GameObjects, which is not allowed outside the main thread.
 
 ```
 using Speechly.SLUClient;
 
+  SpeechlyClient client;
+
   async void Start()
   {
     // Get your app id from https://api.speechly.com/dashboard
-    var client = new SpeechlyClient(
-        appId: "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1" // Basic speech-to-text configuration
+    client = new SpeechlyClient(
+        appId: "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1", // Basic speech-to-text configuration
+        manualUpdate: true
     );
     
     // Set desired callbacks. Note: Callbacks can't access UI directly as they are called from async methods
@@ -49,6 +52,11 @@ using Speechly.SLUClient;
     await client.StartContext();
     await client.SendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
     await client.StopContext();
+  }
+
+  void Update() {
+    // Manually fire Speechly callbacks in main thread
+    client.Update();
   }
 
 ```

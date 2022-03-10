@@ -21,7 +21,7 @@ namespace Speechly.SLUClient {
         Logger.Log(segment.ToString());
       };
 
-      client.OnStateChange = (clientState) => Logger.Log($"ClientState: {clientState}");
+      client.OnStateChange += (clientState) => Logger.Log($"ClientState: {clientState}");
       
       client.OnTentativeTranscript = (msg) => {
         StringBuilder sb = new StringBuilder();
