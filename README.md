@@ -22,7 +22,7 @@ Copy the source files from of [speechly-client-net-standard-2.0/Assets/Speechly/
 
 Streams a pre-recorded raw audio file (16 bit mono, 16000 samples/sec) to Speechly via the websocket API, logs data using callbacks.
 
-`manualUpdate: true` postpones Speechly callbacks until you manually run `Update()`. This is recommended as you will be able to modify GameObjects, which is not allowed outside the main thread.
+`manualUpdate: true` postpones Speechly callbacks until you manually run `Update()`. This enables you to use Unity API in callbacks, which is not allowed outside the main Unity thread.
 
 ```
 using Speechly.SLUClient;
