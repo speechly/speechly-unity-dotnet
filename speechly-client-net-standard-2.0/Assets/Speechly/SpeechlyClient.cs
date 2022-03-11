@@ -8,7 +8,6 @@ using System.Collections.Concurrent;
 namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
-    public static bool DEBUG_LOG = false;
     public static bool DEBUG_SAVE_AUDIO = false;
 
     public delegate void SegmentChangeDelegate(Segment segment);
@@ -34,13 +33,15 @@ namespace Speechly.SLUClient {
     private string deviceId;
     private string token;
     private Dictionary<string, Dictionary<int, Segment>> activeContexts = new Dictionary<string, Dictionary<int, Segment>>();
-    private WsClient wsClient;
+    private WsClient wsClient = null;
     private TaskCompletionSource<MsgCommon> startContextTCS;
     private TaskCompletionSource<MsgCommon> stopContextTCS;
     private string loginUrl = "https://api.speechly.com/login";
     private string apiUrl = "wss://api.speechly.com/ws/v1?sampleRate=16000";
     private string projectId = null;
     private string appId = null;
+    private bool manualUpdate;
+    private bool debug = false;
     private FileStream debugAudioStream;
 
     public SpeechlyClient(
@@ -48,44 +49,52 @@ namespace Speechly.SLUClient {
       string apiUrl = null,
       string projectId = null,
       string appId = null,
-      bool manualUpdate = false
+      bool manualUpdate = false,
+      bool debug = false
     ) {
       if (loginUrl != null) this.loginUrl = loginUrl;
       if (apiUrl != null) this.apiUrl = apiUrl;
       if (projectId != null) this.projectId = projectId;
       if (appId != null) this.appId = appId;
+      this.manualUpdate = manualUpdate;
+      this.debug = debug;
 
-      wsClient = new WsClient();
-      if (manualUpdate) {
-        wsClient.OnResponseReceived = QueueResponse;
-      } else {
-        wsClient.OnResponseReceived = ProcessResponse;
-      }
-    }
-
-    public async Task Connect() {
-      SetState(ClientState.Connecting);
-
+      // Load config
       var c = SpeechlyConfig.RestoreOrCreate();
+
+      // Restore or generate device id
       if (c.deviceId == null) {
         deviceId = System.Guid.NewGuid().ToString();
         c.deviceId = deviceId;
         c.Save();
-        if (DEBUG_LOG) Logger.Log($"New deviceId: {deviceId}");
+        if (this.debug) Logger.Log($"New deviceId: {deviceId}");
       } else {
         deviceId = c.deviceId;
-        if (DEBUG_LOG) Logger.Log($"Restored deviceId: {deviceId}");
+        if (this.debug) Logger.Log($"Restored deviceId: {deviceId}");
       }
 
-      var tokenFetcher = new LoginToken();
-      token = await tokenFetcher.FetchToken(loginUrl, projectId, appId, deviceId);
+    }
 
-      if (DEBUG_LOG) Logger.Log($"token: {token}");
+    public async Task Connect() {
+      if (State <= ClientState.Connecting) {
+        SetState(ClientState.Connecting);
 
-      await wsClient.ConnectAsync(apiUrl, token);
-      SetState(ClientState.Preinitialized);
-      SetState(ClientState.Initializing);
-      SetState(ClientState.Connected);
+        var tokenFetcher = new LoginToken();
+        token = await tokenFetcher.FetchToken(loginUrl, projectId, appId, deviceId);
+
+        if (debug) Logger.Log($"token: {token}");
+
+        wsClient = new WsClient();
+        if (manualUpdate) {
+          wsClient.OnResponseReceived = QueueResponse;
+        } else {
+          wsClient.OnResponseReceived = ProcessResponse;
+        }
+        await wsClient.ConnectAsync(apiUrl, token);
+        SetState(ClientState.Preinitialized);
+        SetState(ClientState.Initializing);
+        SetState(ClientState.Connected);
+      }
     }
 
     public async Task<string> StartContext(string appId = null) {
@@ -200,13 +209,13 @@ namespace Speechly.SLUClient {
         var msgCommon = JSON.Parse(msgString, new MsgCommon());
         switch (msgCommon.type) {
           case "started": {
-            if (DEBUG_LOG) Logger.Log($"Started context '{msgCommon.audio_context}'");
+            if (debug) Logger.Log($"Started context '{msgCommon.audio_context}'");
             activeContexts.Add(msgCommon.audio_context, new Dictionary<int, Segment>());
             startContextTCS.SetResult(msgCommon);
             break;
           }
           case "stopped": {
-            if (DEBUG_LOG) Logger.Log($"Stopped context '{msgCommon.audio_context}'");
+            if (debug) Logger.Log($"Stopped context '{msgCommon.audio_context}'");
             activeContexts.Remove(msgCommon.audio_context);
             stopContextTCS.SetResult(msgCommon);
             break;
