@@ -1,10 +1,11 @@
 using System;
 using System.Text;
 using System.Collections;
-using System.Linq;
 using System.Collections.Generic;
 
 namespace Speechly.SLUClient {
+  public delegate string IntentFormatter (string intent);
+  public delegate string EntityFormatter (string words, string entityType);
 
   public class Segment {
     int id;
@@ -20,6 +21,18 @@ namespace Speechly.SLUClient {
     }
 
     public override string ToString() {
+      return this.ToString(
+        (intent) => $"*{intent}",
+        (words, entityType) => $"[{words}]({entityType})",
+        " ✔"
+      );
+    }
+
+    public string ToString(
+        IntentFormatter intentTag,
+        EntityFormatter entityTag,
+        string confirmationMark
+      ) {
       var sb = new StringBuilder();
       var entityIds = new string[words.Length];
       foreach (KeyValuePair<string, Entity> entity in entities) {
@@ -28,23 +41,41 @@ namespace Speechly.SLUClient {
         }
       }
 
-      sb.Append($"*{this.intent.intent} ");
-      sb.Append(String.Join(" ", this.words.Select((i, index) => {
-        if (i == null) return null;
-        if (entityIds[index] != null) {
-          var entity = entities[entityIds[index]];
-          if (entity.startPosition == index && entity.endPosition == index + 1) {
-            return $"[{i.word}]({entity.type})";
-          } else if (entity.startPosition == index) {
-            return $"[{i.word}";
-          } else {
-            return $"{i.word}]({entity.type})";
+      sb.Append(intentTag(this.intent.intent));
+      
+      bool firstWord = this.intent.intent == "";
+      string lastEntityId = null;
+
+      for (int i = 0; i < words.Length; i++) {
+        var word = words[i];
+        if (word == null) continue;
+
+
+        if (entityIds[i] != lastEntityId) {
+          if (lastEntityId != null) {
+            var entity = entities[lastEntityId];
+            if (!firstWord) sb.Append(" ");
+            sb.Append(entityTag(entity.value, entity.type));
+            firstWord = false;
           }
         }
-        return i.word;
-      }).Where(i => i != null).ToArray()));
 
-      if (this.isFinal) sb.Append(" ✔");
+        if (entityIds[i] == null) {
+          if (!firstWord) sb.Append(" ");
+          sb.Append(word.word);
+          firstWord = false;
+        }
+
+        lastEntityId = entityIds[i];
+      }
+
+      if (lastEntityId != null) {
+        if (!firstWord) sb.Append(" ");
+        var entity = entities[lastEntityId];
+        sb.Append(entityTag(entity.value, entity.type));
+      }
+
+      if (this.isFinal) sb.Append(confirmationMark);
 
       return sb.ToString();
     }

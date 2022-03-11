@@ -18,7 +18,11 @@ public class UseSpeechly : MonoBehaviour
     speechlyClient.OnSegmentChange += (segment) =>
     {
       Debug.Log(segment.ToString());
-      TranscriptText.text = segment.ToString();
+      TranscriptText.text = segment.ToString(
+        (intent) => "",
+        (words, entityType) => $"<color=#15e8b5>{words}<color=#ffffff>",
+        ""
+      );
     };
   }
 
