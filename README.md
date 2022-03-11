@@ -10,12 +10,12 @@
 
 ## Contents of this repository
 
-- [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of `speechly-unity/Speechly/` folder.
-- [speechly-client-net-standard-2.0/](speechly-client-net-standard-2.0/) contains the Speechly client library code and a sample console app.
+- [speechly-client-net-standard-2.0/](speechly-client-net-standard-2.0/) contains the Speechly client library code and a sample .NET console app.
 - [speechly-unity/](speechly-unity/) folder contains the Unity sample projects using the Speechly client library.
   - [speechly-unity/Assets/AudioFileToSpeechly/](speechly-unity/Assets/AudioFileToSpeechly/)
   - [speechly-unity/Assets/MicToSpeechly/](speechly-unity/Assets/MicToSpeechly/)
   - [speechly-unity/Assets/VoiceCommands/](speechly-unity/Assets/VoiceCommands/)
+- [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of `speechly-unity/Speechly/` Speechly client library folder.
 
 ## Unity usage
 
