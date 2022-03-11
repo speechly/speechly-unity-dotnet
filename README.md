@@ -13,6 +13,9 @@
 - [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of `speechly-unity/Speechly/` folder.
 - [speechly-client-net-standard-2.0/](speechly-client-net-standard-2.0/) contains the Speechly client library code and a sample console app.
 - [speechly-unity/](speechly-unity/) folder contains the Unity sample projects using the Speechly client library.
+  - [speechly-unity/Assets/AudioFileToSpeechly/]()
+  - [speechly-unity/Assets/MicToSpeechly/]()
+  - [speechly-unity/Assets/VoiceCommands/]()
 
 ## Unity usage
 
