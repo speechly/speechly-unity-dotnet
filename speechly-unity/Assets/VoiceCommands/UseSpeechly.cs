@@ -27,17 +27,29 @@ namespace Speechly.Demo.VoiceCommands
         Debug.Log(segment.ToString());
         TranscriptText.text = segment.ToString(
           (intent) => "",
-          (words, entityType) => $"<color=#ffc0ff>{words.ToUpper()}<color=#ffffff>",
+          (words, entityType) => $"<b>{words.ToUpper()}</b>",
           ""
         );
 
         if (selection != null) {
           var size = segment.entities.Select(entry => entry.Value).ToList().Where(entity => entity.type == "size").Select(entity => entity.value).ToArray().FirstOrDefault();
+          var color = segment.entities.Select(entry => entry.Value).ToList().Where(entity => entity.type == "color").Select(entity => entity.value).ToArray().FirstOrDefault();
+          var shape = segment.entities.Select(entry => entry.Value).ToList().Where(entity => entity.type == "shape").Select(entity => entity.value).ToArray().FirstOrDefault();
+
           //.Where(entity => entity.type == "size").Select(entity => entity.value).First();
           if (size == "big") selection.localScale = new Vector3(2,2,2);
-          if (size == "normal") selection.localScale = new Vector3(1,1,1);
+          if (size == "medium") selection.localScale = new Vector3(1,1,1);
           if (size == "small") selection.localScale = new Vector3(0.5f,0.5f,0.5f);
           if (size == "tall") selection.localScale = new Vector3(0.5f,10f,0.5f);
+
+          var mesh = selection.GetComponent<MeshFilter>();
+          if (color == "yellow") mesh.GetComponent<Renderer>().material.color = new Color(1,1,0,1);
+          if (color == "red") mesh.GetComponent<Renderer>().material.color = new Color(1,0.2f,0.2f,1);
+          if (color == "pink") mesh.GetComponent<Renderer>().material.color = new Color(1,0.8f,0.8f,1);
+          if (color == "blue") mesh.GetComponent<Renderer>().material.color = new Color(0.2f,0.3f,1,1);
+
+          if (shape == "sphere") mesh.mesh = Sphere.GetComponent<MeshFilter>().sharedMesh;
+          if (shape == "cube") mesh.mesh = Cube.GetComponent<MeshFilter>().sharedMesh;
 
           // Set visibility
           selection.gameObject.SetActive(segment.intent.intent != "delete");
@@ -53,6 +65,7 @@ namespace Speechly.Demo.VoiceCommands
 
       if (Input.GetMouseButtonDown(0)) {
         Debug.Log("Button press");
+        TranscriptText.text = "LISTENING...";
 
         if (!speechlyClient.IsListening) {
           await speechlyClient.StartContext();
@@ -64,7 +77,6 @@ namespace Speechly.Demo.VoiceCommands
         if (Physics.Raycast(ray, out hit)) {
           selection = hit.transform;
           Debug.Log(selection);
-            // Do something with the object that was hit by the raycast.
         } else {
           selection = null;
         }
@@ -75,9 +87,7 @@ namespace Speechly.Demo.VoiceCommands
         if (speechlyClient.IsListening) {
           await speechlyClient.StopContext();
         }
-
       }
-
     }
 
     public async void OnMouseDown()

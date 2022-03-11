@@ -226,7 +226,7 @@ namespace Speechly.SLUClient {
           }
         }
       } catch (Exception e) {
-        throw new Exception($"Ouch. {e.GetType()} while handling message with content  with content: {msgString}");
+        throw new Exception($"Ouch. {e.GetType()} while handling message with content: {msgString}");
       }
     }
 
