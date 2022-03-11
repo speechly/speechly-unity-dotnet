@@ -26,7 +26,6 @@ public class MicToSpeechly : MonoBehaviour
   public bool CalcAudioPeaks = true;
   public float Peak {get; private set; } = 0f;
   public SpeechlyClient SpeechlyClient { get; private set; }
-  public Button PushToTalkButton;
   private AudioClip clip;
   private int oldCaptureRingbufferPos;
   private float[] waveData;

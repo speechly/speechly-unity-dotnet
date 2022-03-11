@@ -8,12 +8,12 @@ namespace Speechly.SLUClient {
   public delegate string EntityFormatter (string words, string entityType);
 
   public class Segment {
-    int id;
-    string contextId;
-    bool isFinal = false;
-    Word[] words = new Word[0];
-    Dictionary<string, Entity> entities = new Dictionary<string, Entity>();
-    Intent intent = new Intent{ intent = "", isFinal = false };
+    public int id;
+    public string contextId;
+    public bool isFinal = false;
+    public Word[] words = new Word[0];
+    public Dictionary<string, Entity> entities = new Dictionary<string, Entity>();
+    public Intent intent = new Intent{ intent = "", isFinal = false };
 
     public Segment(string audio_context, int segment_id) {
       this.contextId = audio_context;
@@ -43,7 +43,7 @@ namespace Speechly.SLUClient {
 
       sb.Append(intentTag(this.intent.intent));
       
-      bool firstWord = this.intent.intent == "";
+      bool firstWord = sb.Length == 0;
       string lastEntityId = null;
 
       for (int i = 0; i < words.Length; i++) {
