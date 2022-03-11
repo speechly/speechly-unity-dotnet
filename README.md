@@ -19,7 +19,7 @@
 
 ## Unity usage
 
-Copy the source files from of [speechly-unity/Speechly/](speechly-unity/Speechly/) folder to your own project or use `speechly-client.unitypackage` which contains the same files.
+Copy the source files from of [speechly-unity/Speechly/](speechly-unity/Speechly/) folder to your own project or import `speechly-client.unitypackage`.
 
 ### Unity example
 
