@@ -15,7 +15,7 @@
   - [speechly-unity/Assets/AudioFileToSpeechly/](speechly-unity/Assets/AudioFileToSpeechly/)
   - [speechly-unity/Assets/MicToSpeechly/](speechly-unity/Assets/MicToSpeechly/)
   - [speechly-unity/Assets/VoiceCommands/](speechly-unity/Assets/VoiceCommands/)
-- [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of `speechly-unity/Speechly/` Speechly client library folder.
+- [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of `speechly-unity/Speechly/` Speechly Unity client library.
 
 ## Unity usage
 
