@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace Speechly.SLUClient {
   public class SpeechlyClientTest {
-    public static async Task test() {
+    public static async Task test(string fileName) {
       Stopwatch sw = new Stopwatch();
 
       var client = new SpeechlyClient(
@@ -47,7 +47,7 @@ namespace Speechly.SLUClient {
 
       sw.Restart();
       await client.StartContext();
-      await client.SendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
+      await client.SendAudioFile(fileName);
       await client.StopContext();
       var sluTime = sw.ElapsedMilliseconds;
 

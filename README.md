@@ -10,13 +10,13 @@
 
 ## Contents of this repository
 
-- [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of `speechly-client-net-standard-2.0/Assets/Speechly` folder.
+- [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of `speechly-unity/Speechly/` folder.
 - [speechly-client-net-standard-2.0/](speechly-client-net-standard-2.0/) contains the Speechly client library code and a sample console app.
-- [unity-mic-to-speechly/](unity-mic-to-speechly/) folder contains the Unity sample project using the Speechly client library.
+- [speechly-unity/](speechly-unity/) folder contains the Unity sample projects using the Speechly client library.
 
 ## Unity usage
 
-Copy the source files from of [speechly-client-net-standard-2.0/Assets/Speechly/](speechly-client-net-standard-2.0/Assets/Speechly/) folder to your own project or use `speechly-client.unitypackage` which contains the same files. Then see the example below for usage (API docs will follow!).
+Copy the source files from of [speechly-unity/Speechly/](speechly-unity/Speechly/) folder to your own project or use `speechly-client.unitypackage` which contains the same files. Then see the example below for usage.
 
 ### Unity example
 
@@ -55,7 +55,7 @@ using Speechly.SLUClient;
   }
 
   void Update() {
-    // Manually fire Speechly callbacks in main thread
+    // Manually fire Speechly callbacks in main thread instead of websocket thread
     client.Update();
   }
 
@@ -63,9 +63,9 @@ using Speechly.SLUClient;
 
 ### More code examples
 
-- See [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/unity-mic-to-speechly/Assets/MicToSpeechly.cs) for an Unity example of streaming data from microphone and showing last received word in the UI.
-- See [SpeechlyClientTest.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-client-net-standard-2.0/Assets/Speechly/SpeechlyClientTest.cs) for a generic .NET Standard 2.0 example of streaming raw audio from a file and logging the transcript and SLU results. It showcases all available callbacks.
+- See [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/MicToSpeechly.cs) for an Unity example of streaming data from microphone and showing last received word in the UI.
+- See [SpeechlyClientTest.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-client-net-standard-2.0/Speechly/SLUClientTest/SpeechlyClientTest.cs) for a generic .NET Standard 2.0 example of streaming raw audio from a file and logging the transcript and SLU results. It showcases all available callbacks.
 
 ## Developing
 
-- `link-speechly-sources.sh` shell script will create hard links from `speechly-client-net-standard-2.0/Assets/Speechly` to `speechly-client-net-standard-2.0/Assets/Speechly` folder so code changes will be immediately reflected to both for quick development and testing.
+- `link-speechly-sources.sh` shell script will create hard links from `speechly-client-net-standard-2.0/Speechly` to `speechly-client-net-standard-2.0/Assets/Speechly` folder so code changes will be immediately reflected to both for quick development and testing.

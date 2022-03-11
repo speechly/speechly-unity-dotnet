@@ -1,18 +1,22 @@
 #!/bin/bash
 
-HARDLINK_SOURCE="speechly-client-net-standard-2.0/Assets/Speechly/"
-HARDLINK_DEST="unity-mic-to-speechly/Assets/Speechly"
+# See end of file for calls to linkSource
 
-if [ ! -d "$HARDLINK_SOURCE" ]; then
+linkSource () {
+
+  HARDLINK_SOURCE=$1
+  HARDLINK_DEST=$2
+
+  if [ ! -d "$HARDLINK_SOURCE" ]; then
     echo "ERROR: Source folder '$HARDLINK_SOURCE' does not exist"
     exit 1
-fi
+  fi
 
-pushd $HARDLINK_SOURCE
-ABS_HARDLINK_SOURCE=`pwd`
-popd
+  pushd $HARDLINK_SOURCE
+  ABS_HARDLINK_SOURCE=`pwd`
+  popd
 
-if [ -e "$HARDLINK_DEST" ]; then
+  if [ -e "$HARDLINK_DEST" ]; then
     echo
     echo ============ LOCAL CHANGES IN ============
 
@@ -36,25 +40,36 @@ if [ -e "$HARDLINK_DEST" ]; then
         exit 1
     fi
     rm -rf $HARDLINK_DEST
-fi
+  fi
 
-mkdir -p $HARDLINK_DEST
+  mkdir -p $HARDLINK_DEST
 
-pushd $HARDLINK_DEST
-ABS_HARDLINK_DEST=`pwd`
-popd
+  pushd $HARDLINK_DEST
+  ABS_HARDLINK_DEST=`pwd`
+  popd
 
-echo
-echo Linking content from:
-echo $ABS_HARDLINK_SOURCE
-echo
-echo To:
-echo $HARDLINK_DEST
-echo
+  echo
+  echo Linking content from:
+  echo $ABS_HARDLINK_SOURCE
+  echo
+  echo To:
+  echo $HARDLINK_DEST
+  echo
 
-pushd $ABS_HARDLINK_SOURCE
-pax -rwl . $ABS_HARDLINK_DEST
-popd
+  pushd $ABS_HARDLINK_SOURCE
+  pax -rwl . $ABS_HARDLINK_DEST
+  popd
 
-echo
-echo "OK"
+  echo
+  echo "OK"
+}
+
+HARDLINK_SOURCE="speechly-client-net-standard-2.0/Speechly/SLUClient"
+HARDLINK_DEST="speechly-unity/Assets/Speechly/SLUClient"
+
+linkSource $HARDLINK_SOURCE $HARDLINK_DEST
+
+HARDLINK_SOURCE="speechly-client-net-standard-2.0/Speechly/SLUClientTest"
+HARDLINK_DEST="speechly-unity/Assets/Speechly/SLUClientTest"
+
+linkSource $HARDLINK_SOURCE $HARDLINK_DEST
