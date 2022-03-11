@@ -77,6 +77,7 @@ namespace Speechly.Demo.VoiceCommands
         
         if (Physics.Raycast(ray, out hit)) {
           selection = hit.transform;
+          selection.gameObject.GetComponent<Outline>().enabled = true;
           Debug.Log(selection);
         } else {
           selection = null;
@@ -87,6 +88,9 @@ namespace Speechly.Demo.VoiceCommands
         Debug.Log("Button release");
         if (TranscriptText.text == "LISTENING...") {
           TranscriptText.text = "Point-and-Talk Demo";
+        }
+        if (selection != null) {
+          selection.gameObject.GetComponent<Outline>().enabled = false;
         }
         if (speechlyClient.IsListening) {
           await speechlyClient.StopContext();
