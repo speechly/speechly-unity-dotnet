@@ -17,7 +17,7 @@ namespace Speechly.Demo.VoiceCommands
     public Slider SliderAudioPeak;
     public TMP_Text TranscriptText;
     private SpeechlyClient speechlyClient;
-    private bool IsButtonHeld = false;
+    private Transform selection;
 
     void Start()
     {
@@ -36,7 +36,6 @@ namespace Speechly.Demo.VoiceCommands
           var color = segment.entities.Select(entry => entry.Value).ToList().Where(entity => entity.type == "color").Select(entity => entity.value).ToArray().FirstOrDefault();
           var shape = segment.entities.Select(entry => entry.Value).ToList().Where(entity => entity.type == "shape").Select(entity => entity.value).ToArray().FirstOrDefault();
 
-          //.Where(entity => entity.type == "size").Select(entity => entity.value).First();
           if (size == "big") selection.localScale = new Vector3(2,2,2);
           if (size == "medium") selection.localScale = new Vector3(1,1,1);
           if (size == "small") selection.localScale = new Vector3(0.5f,0.5f,0.5f);
@@ -58,14 +57,11 @@ namespace Speechly.Demo.VoiceCommands
       };
     }
 
-    private Transform selection;
-
     async void Update()
     {
       SliderAudioPeak.value = MicToSpeechly.Instance.Peak;
 
       if (Input.GetMouseButtonDown(0)) {
-        Debug.Log("Button press");
         TranscriptText.text = "LISTENING...";
 
         if (!speechlyClient.IsListening) {
@@ -78,14 +74,12 @@ namespace Speechly.Demo.VoiceCommands
         if (Physics.Raycast(ray, out hit)) {
           selection = hit.transform;
           selection.gameObject.GetComponent<Outline>().enabled = true;
-          Debug.Log(selection);
         } else {
           selection = null;
         }
       }
 
       if (Input.GetMouseButtonUp(0)) {
-        Debug.Log("Button release");
         if (TranscriptText.text == "LISTENING...") {
           TranscriptText.text = "Point-and-Talk Demo";
         }
@@ -95,26 +89,6 @@ namespace Speechly.Demo.VoiceCommands
         if (speechlyClient.IsListening) {
           await speechlyClient.StopContext();
         }
-      }
-    }
-
-    public async void OnMouseDown()
-    {
-      if (!IsButtonHeld && !speechlyClient.IsListening)
-      {
-        await speechlyClient.StartContext();
-        IsButtonHeld = true;
-        Debug.Log("Mouse Down");
-      }
-    }
-
-    public async void OnMouseUp()
-    {
-      if (IsButtonHeld && speechlyClient.IsListening)
-      {
-        Debug.Log("Mouse Up");
-        IsButtonHeld = false;
-        await speechlyClient.StopContext();
       }
     }
 
