@@ -19,7 +19,7 @@
 
 ## Unity usage
 
-Copy the source files from of [speechly-unity/Speechly/](speechly-unity/Speechly/) folder to your own project or use `speechly-client.unitypackage` which contains the same files. Then see the example below for usage.
+Copy the source files from of [speechly-unity/Speechly/](speechly-unity/Speechly/) folder to your own project or use `speechly-client.unitypackage` which contains the same files.
 
 ### Unity example
 
@@ -67,7 +67,6 @@ using Speechly.SLUClient;
 ### More code examples
 
 - See [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/MicToSpeechly.cs) for an Unity example of streaming data from microphone and showing last received word in the UI.
-- See [SpeechlyClientTest.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-client-net-standard-2.0/Speechly/SLUClientTest/SpeechlyClientTest.cs) for a generic .NET Standard 2.0 example of streaming raw audio from a file and logging the transcript and SLU results. It showcases all available callbacks.
 
 ## Developing
 
