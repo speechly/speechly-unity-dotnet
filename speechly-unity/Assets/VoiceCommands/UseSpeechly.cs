@@ -47,6 +47,7 @@ namespace Speechly.Demo.VoiceCommands
           if (color == "red") mesh.GetComponent<Renderer>().material.color = new Color(1,0.2f,0.2f,1);
           if (color == "pink") mesh.GetComponent<Renderer>().material.color = new Color(1,0.8f,0.8f,1);
           if (color == "blue") mesh.GetComponent<Renderer>().material.color = new Color(0.2f,0.3f,1,1);
+          if (color == "green") mesh.GetComponent<Renderer>().material.color = new Color(0.2f,1f,0.1f,1);
 
           if (shape == "sphere") mesh.mesh = Sphere.GetComponent<MeshFilter>().sharedMesh;
           if (shape == "cube") mesh.mesh = Cube.GetComponent<MeshFilter>().sharedMesh;
@@ -84,6 +85,9 @@ namespace Speechly.Demo.VoiceCommands
 
       if (Input.GetMouseButtonUp(0)) {
         Debug.Log("Button release");
+        if (TranscriptText.text == "LISTENING...") {
+          TranscriptText.text = "Point-and-Talk Demo";
+        }
         if (speechlyClient.IsListening) {
           await speechlyClient.StopContext();
         }
