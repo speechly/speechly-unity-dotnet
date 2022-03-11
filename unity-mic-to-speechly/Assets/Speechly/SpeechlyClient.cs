@@ -76,7 +76,7 @@ namespace Speechly.SLUClient {
     }
 
     public async Task Connect() {
-      if (State <= ClientState.Connecting) {
+      if (State < ClientState.Connecting) {
         SetState(ClientState.Connecting);
 
         var tokenFetcher = new LoginToken();

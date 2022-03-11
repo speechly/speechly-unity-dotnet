@@ -1,0 +1,50 @@
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using Speechly.SLUClient;
+using UnityEngine.UI;
+using TMPro;
+
+public class UseSpeechly : MonoBehaviour
+{
+  public Slider SliderAudioPeak;
+  public TMP_Text TranscriptText;
+  private SpeechlyClient speechlyClient;
+  private bool IsButtonHeld = false;
+
+  void Start()
+  {
+    speechlyClient = MicToSpeechly.Instance.SpeechlyClient;
+    speechlyClient.OnSegmentChange += (segment) =>
+    {
+      Debug.Log(segment.ToString());
+      TranscriptText.text = segment.ToString();
+    };
+  }
+
+  void Update()
+  {
+    SliderAudioPeak.value = MicToSpeechly.Instance.Peak;
+  }
+
+  public async void OnMouseDown()
+  {
+    if (!IsButtonHeld && !speechlyClient.IsListening)
+    {
+      Debug.Log("Mouse Down");
+      IsButtonHeld = true;
+      await speechlyClient.StartContext();
+    }
+  }
+
+  public async void OnMouseUp()
+  {
+    if (IsButtonHeld && speechlyClient.IsListening)
+    {
+      Debug.Log("Mouse Up");
+      IsButtonHeld = false;
+      await speechlyClient.StopContext();
+    }
+  }
+
+}
