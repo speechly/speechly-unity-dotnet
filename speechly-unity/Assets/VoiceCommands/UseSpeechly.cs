@@ -42,11 +42,17 @@ namespace Speechly.Demo.VoiceCommands
           if (size == "tall") selection.localScale = new Vector3(0.5f,10f,0.5f);
 
           var mesh = selection.GetComponent<MeshFilter>();
-          if (color == "yellow") mesh.GetComponent<Renderer>().material.color = new Color(1,1,0,1);
-          if (color == "red") mesh.GetComponent<Renderer>().material.color = new Color(1,0.2f,0.2f,1);
-          if (color == "pink") mesh.GetComponent<Renderer>().material.color = new Color(1,0.8f,0.8f,1);
-          if (color == "blue") mesh.GetComponent<Renderer>().material.color = new Color(0.2f,0.3f,1,1);
-          if (color == "green") mesh.GetComponent<Renderer>().material.color = new Color(0.2f,1f,0.1f,1);
+          var renderer = mesh.GetComponent<Renderer>();
+
+          switch (color) {
+            case "yellow": renderer.material.color = new Color(1,1,0,1); break;
+            case "red": renderer.material.color = new Color(1,0.2f,0.2f,1); break;
+            case "pink": renderer.material.color = new Color(1,0.8f,0.8f,1); break;
+            case "green": renderer.material.color = new Color(0.2f,1f,0.1f,1); break;
+            case "blue": renderer.material.color = new Color(0.2f,0.3f,1,1); break;
+            case "white": renderer.material.color = new Color(1,1,1,1); break;
+            case "black": renderer.material.color = new Color(0.1f,0.1f,0.1f,1); break;
+          }
 
           if (shape == "sphere") mesh.mesh = Sphere.GetComponent<MeshFilter>().sharedMesh;
           if (shape == "cube") mesh.mesh = Cube.GetComponent<MeshFilter>().sharedMesh;
@@ -73,7 +79,8 @@ namespace Speechly.Demo.VoiceCommands
         
         if (Physics.Raycast(ray, out hit)) {
           selection = hit.transform;
-          selection.gameObject.GetComponent<Outline>().enabled = true;
+          var outline = selection.gameObject.GetComponent<Outline>();
+          if (outline != null) outline.enabled = true;
         } else {
           selection = null;
         }
@@ -84,7 +91,8 @@ namespace Speechly.Demo.VoiceCommands
           TranscriptText.text = "Point-and-Talk Demo";
         }
         if (selection != null) {
-          selection.gameObject.GetComponent<Outline>().enabled = false;
+          var outline = selection.gameObject.GetComponent<Outline>();
+          if (outline != null) outline.enabled = false;
         }
         if (speechlyClient.IsListening) {
           await speechlyClient.StopContext();
