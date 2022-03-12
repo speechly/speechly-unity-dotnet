@@ -44,7 +44,7 @@ using Speechly.SLUClient;
       manualUpdate: true
     );
     
-    // Set desired callbacks.
+    // Set the desired callbacks.
     // OnSegmentChange fires on any change and keeps a record of all words, intents and entities until the end of utterance is signaled with `segment.isFinal`.
     // It's the recommended way to read SLU results.
     
@@ -55,7 +55,7 @@ using Speechly.SLUClient;
     // Connect should be only done once
     await client.Connect();
 
-    // Send test audio, see log for results
+    // Send test audio. Callback(s) will fire and log the results.
     await client.StartContext();
     await client.SendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
     await client.StopContext();
