@@ -23,7 +23,7 @@ Copy the source files from of [speechly-unity/Assets/Speechly/](speechly-unity/A
 
 ### Unity example
 
-The example below streams a pre-recorded raw audio file (16 bit mono, 16000 samples/sec) to Speechly via the websocket API and logs speech and language recognition results to console.
+The following code example streams a pre-recorded raw audio file (16 bit mono, 16000 samples/sec) to Speechly via the websocket API and logs speech and language recognition results to console.
 
 Constructing SpeechlyClient requires an `appId` (or `projectId`) from [Speechly Dashboard](https://api.speechly.com/dashboard/) to select a customizable configuration that determines what intents and keywords (entities) should be returned from the spoken utterance in addition to basic speech-to-text (ASR).
 
