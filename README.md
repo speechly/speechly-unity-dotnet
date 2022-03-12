@@ -25,7 +25,7 @@ Copy the source files from of [speechly-unity/Assets/Speechly/](speechly-unity/A
 
 Streams a pre-recorded raw audio file (16 bit mono, 16000 samples/sec) to Speechly via the websocket API, logs data using callbacks.
 
-`manualUpdate: true` postpones Speechly callbacks until you manually run `SpeechlyClient.Update()`. This enables you to use Unity API in callbacks, which is not allowed outside the main Unity thread.
+`manualUpdate: true` postpones Speechly callbacks until you manually run `SpeechlyClient.Update()`. This enables you to use Unity API in callbacks, which need to be executed in the main Unity thread.
 
 ```
 using Speechly.SLUClient;
