@@ -68,6 +68,6 @@ using Speechly.SLUClient;
 
 - See [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/MicToSpeechly.cs) for an Unity example of streaming data from microphone to Speechly and [speechly-unity/Assets/MicToSpeechly/](speechly-unity/Assets/MicToSpeechly/) for a project using it to show speech-to-text in the UI.
 
-## Developing
+## Developing and contributing
 
-- `link-speechly-sources.sh` shell script will create hard links from `speechly-client-net-standard-2.0/Speechly/` to `speechly-unity/Assets/Speechly/` so shared code using .NET API is in sync.
+- `link-speechly-sources.sh` shell script will create hard links from `speechly-client-net-standard-2.0/Speechly/` to `speechly-unity/Assets/Speechly/` so shared .NET code in `SLUClient` and `SLUClientTest` is in sync. Please run the script after checking out the repo. If you can't use this script please ensure that the files are identical manually.
