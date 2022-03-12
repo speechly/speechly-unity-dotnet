@@ -70,4 +70,4 @@ using Speechly.SLUClient;
 
 ## Developing and contributing
 
-- `link-speechly-sources.sh` shell script will create hard links from `speechly-client-net-standard-2.0/Speechly/` to `speechly-unity/Assets/Speechly/` so shared .NET code in `SLUClient` and `SLUClientTest` is in sync. Please run the script after checking out the repo. If you can't use this script please ensure that the files are identical manually.
+- `link-speechly-sources.sh` shell script will create hard links from `speechly-client-net-standard-2.0/Speechly/` to `speechly-unity/Assets/Speechly/` so shared .NET code in `SLUClient` and `SLUClientTest` is in sync. Please run the script after checking out the repo. If you can't use the script please ensure that the files are identical manually before opening a PR.
