@@ -70,4 +70,4 @@ using Speechly.SLUClient;
 
 ## Developing
 
-- `link-speechly-sources.sh` shell script will create hard links from `speechly-client-net-standard-2.0/Speechly/` to `speechly-unity/Assets/Speechly/` so shared code using .NET API only will remain in sync.
+- `link-speechly-sources.sh` shell script will create hard links from `speechly-client-net-standard-2.0/Speechly/` to `speechly-unity/Assets/Speechly/` so shared code using .NET API is in sync.
