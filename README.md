@@ -15,11 +15,11 @@
   - [speechly-unity/Assets/AudioFileToSpeechly/](speechly-unity/Assets/AudioFileToSpeechly/)
   - [speechly-unity/Assets/MicToSpeechly/](speechly-unity/Assets/MicToSpeechly/)
   - [speechly-unity/Assets/VoiceCommands/](speechly-unity/Assets/VoiceCommands/)
-- [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of `speechly-unity/Speechly/` Speechly Unity client library.
+- [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of `speechly-unity/Assets/Speechly/` Speechly Unity client library.
 
 ## Unity usage
 
-Copy the source files from of [speechly-unity/Speechly/](speechly-unity/Speechly/) folder to your own project or import `speechly-client.unitypackage`.
+Copy the source files from of [speechly-unity/Assets/Speechly/](speechly-unity/Assets/Speechly/) folder to your own project or import `speechly-client.unitypackage`.
 
 ### Unity example
 
