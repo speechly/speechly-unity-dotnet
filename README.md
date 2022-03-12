@@ -36,16 +36,18 @@ using Speechly.SLUClient;
 
   async void Start()
   {
+    Logger.Log = Debug.Log;
+
     // Get your app id from https://api.speechly.com/dashboard
     client = new SpeechlyClient(
       appId: "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1", // Basic speech-to-text configuration
       manualUpdate: true
     );
     
-    // Set desired callbacks. Note: Callbacks can't access UI directly as they are called from async methods
-
-    // Segment keeps record of all words and detected intents and entities. It's the recommended way to read SLU results.
-    Logger.Log = Debug.Log;
+    // Set desired callbacks.
+    // OnSegmentChange fires on any change and keeps a record of all words, intents and entities until the end of utterance is signaled with `segment.isFinal`.
+    // It's the recommended way to read SLU results.
+    
     client.OnSegmentChange = (segment) => {
       Logger.Log(segment.ToString());
     };
