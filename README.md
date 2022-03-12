@@ -68,7 +68,7 @@ using Speechly.SLUClient;
 
 ### More code examples
 
-- See [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/MicToSpeechly.cs) for an Unity example of streaming data from microphone to Speechly and [speechly-unity/Assets/MicToSpeechly/](speechly-unity/Assets/MicToSpeechly/) for a project using it to show speech-to-text in the UI.
+- [speechly-unity/Assets/MicToSpeechly/](speechly-unity/Assets/MicToSpeechly/) is a Unity sample project that streams data from microphone to Speechly using [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/MicToSpeechly.cs) script running on a GameObject. The speech-to-text results are shown in the UI.
 
 ## Developing and contributing
 
