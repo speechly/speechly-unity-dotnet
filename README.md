@@ -25,7 +25,9 @@ Copy the source files from of [speechly-unity/Assets/Speechly/](speechly-unity/A
 
 The example below streams a pre-recorded raw audio file (16 bit mono, 16000 samples/sec) to Speechly via the websocket API, logs data using callbacks.
 
-Constructing SpeechlyClient requires an `appId` from [Speechly Dashboard](https://api.speechly.com/dashboard/) to connect to a configuration that determines if the NLU engine should detect intents and keywords (entities) from the spoken utterance in addition to speech-to-text (ASR). Setting `manualUpdate: true` postpones SpeechlyClient's callbacks (OnSegmentChange, OnTranscript...) until you manually run `SpeechlyClient.Update()`. This enables you to use Unity API in callbacks, which need to be executed in the main Unity thread.
+Constructing SpeechlyClient requires an `appId` (or `projectId`) from [Speechly Dashboard](https://api.speechly.com/dashboard/) to select a customizable configuration that determines what intents and keywords (entities) should be returned from the spoken utterance in addition to basic speech-to-text (ASR).
+
+Setting `manualUpdate: true` postpones SpeechlyClient's callbacks (OnSegmentChange, OnTranscript...) until you manually run `SpeechlyClient.Update()`. This enables you to use Unity API in callbacks, which need to be executed in the main Unity thread.
 
 ```
 using Speechly.SLUClient;
