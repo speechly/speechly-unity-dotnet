@@ -6,6 +6,6 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/MicToSpeechly/MicToSpeechlyScene.unity
+    path: Assets/SpeechlyExamples/MicToSpeechly/MicToSpeechlyScene.unity
     guid: 4b5d0623ad0914a85bf7725caceeaae6
   m_configObjects: {}

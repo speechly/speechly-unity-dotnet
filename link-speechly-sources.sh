@@ -70,6 +70,6 @@ HARDLINK_DEST="speechly-unity/Assets/Speechly/SLUClient"
 linkSource $HARDLINK_SOURCE $HARDLINK_DEST
 
 HARDLINK_SOURCE="speechly-client-net-standard-2.0/Speechly/SLUClientTest"
-HARDLINK_DEST="speechly-unity/Assets/Speechly/SLUClientTest"
+HARDLINK_DEST="speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/SLUClientTest"
 
 linkSource $HARDLINK_SOURCE $HARDLINK_DEST
