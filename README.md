@@ -36,8 +36,6 @@ using Speechly.SLUClient;
 
   async void Start()
   {
-    Logger.Log = Debug.Log;
-
     // Get your app id from https://api.speechly.com/dashboard
     client = new SpeechlyClient(
       appId: "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1", // Basic speech-to-text configuration
@@ -49,7 +47,7 @@ using Speechly.SLUClient;
     // It's the recommended way to read SLU results.
     
     client.OnSegmentChange = (segment) => {
-      Logger.Log(segment.ToString());
+      Debug.Log(segment.ToString());
     };
 
     // Connect should be only done once
