@@ -70,7 +70,7 @@ using Speechly.SLUClient;
 
 ### More code examples
 
-- [SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/) is a Unity sample scene that streams data from microphone to Speechly using [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/MicToSpeechly.cs) script running on a GameObject. App-specific logic is in `UseSpeechly.cs` which registers a callback and shows speech-to-text results in the UI.
+- Import [SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/) and `Speechly/` folders from `speechly-client.unitypackage` to run a Unity sample scene that streams data from microphone to Speechly using [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/MicToSpeechly.cs) script running on a GameObject. App-specific logic is in `UseSpeechly.cs` which registers a callback and shows speech-to-text results in the UI.
 
 ## Developing and contributing
 
