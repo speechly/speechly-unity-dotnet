@@ -1,6 +1,6 @@
 # Speechly Client for Unity and .NET Standard 2.0 API
 
-[Speechly](https://www.speechly.com/?utm_source=github&utm_medium=react-client&utm_campaign=text) is a cloud API for building voice features into games, XR, applications and web sites. This client library streams audio from a Unity or .NET app to Speechly cloud API and provides a C# API for receiving real-time speech-to-text transcription and natural language understanding results.
+[Speechly](https://www.speechly.com/?utm_source=github&utm_medium=react-client&utm_campaign=text) is an API for building voice features into games, XR, applications and web sites. This client library streams audio from a Unity or .NET app to Speechly cloud API and provides a C# API for receiving real-time speech-to-text transcription and natural language understanding results.
 
 ## Requirements
 
@@ -12,14 +12,16 @@
 
 - [speechly-client-net-standard-2.0/](speechly-client-net-standard-2.0/) contains the Speechly client library code and a sample .NET console app.
 - [speechly-unity/](speechly-unity/) folder contains the .NET Speechly client code, Unity-specific microphone code and Unity sample projects:
-  - [speechly-unity/Assets/AudioFileToSpeechly/](speechly-unity/Assets/AudioFileToSpeechly/)
-  - [speechly-unity/Assets/MicToSpeechly/](speechly-unity/Assets/MicToSpeechly/)
-  - [speechly-unity/Assets/VoiceCommands/](speechly-unity/Assets/VoiceCommands/)
-- [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of Speechly Unity client library in [speechly-unity/Assets/Speechly/](speechly-unity/Assets/Speechly/).
+  - [speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/MicToSpeechly/)
+  - [speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/](speechly-unity/Assets/AudioFileToSpeechly/)
+  - [speechly-unity/Assets/SpeechlyExamples/VoiceCommands/](speechly-unity/Assets/VoiceCommands/)
+- [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of Speechly Unity client library and example scenes.
 
 ## Unity usage
 
-Copy the source files from of [speechly-unity/Assets/Speechly/](speechly-unity/Assets/Speechly/) folder to your own project or import `speechly-client.unitypackage`.
+Import `Speechly/` folder from `speechly-client.unitypackage` that contains code to use Speechly cloud API.
+
+If you want to skip straight to a working sample scene, see [more code examples](#more-code-examples) below.
 
 ### Unity example
 
@@ -68,8 +70,8 @@ using Speechly.SLUClient;
 
 ### More code examples
 
-- [speechly-unity/Assets/MicToSpeechly/](speechly-unity/Assets/MicToSpeechly/) is a Unity sample project that streams data from microphone to Speechly using [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/MicToSpeechly.cs) script running on a GameObject. The speech-to-text results are shown in the UI.
+- [SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/) is a Unity sample scene that streams data from microphone to Speechly using [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/MicToSpeechly.cs) script running on a GameObject. App-specific logic is in `UseSpeechly.cs` which registers a callback and shows speech-to-text results in the UI.
 
 ## Developing and contributing
 
-- `link-speechly-sources.sh` shell script will create hard links from `speechly-client-net-standard-2.0/Speechly/` to `speechly-unity/Assets/Speechly/` so shared .NET code in `SLUClient` and `SLUClientTest` is in sync. Please run the script after checking out the repo and before making any changes. If you can't use the script please ensure that the files are identical manually before opening a PR.
+- `link-speechly-sources.sh` shell script will create hard links from `speechly-client-net-standard-2.0/Speechly/` to `speechly-unity/Assets/Speechly/` so shared .NET code in `SLUClient` is in sync. Please run the script after checking out the repo and before making any changes. If you can't use the script please ensure that the files are identical manually before opening a PR.
