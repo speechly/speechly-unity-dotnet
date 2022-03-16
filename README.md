@@ -21,7 +21,7 @@
 
 Import `Speechly/` folder from `speechly-client.unitypackage` that contains code to use Speechly cloud API.
 
-If you want to skip straight to a working sample scene, see [more code examples](#more-code-examples) below.
+> If you want to skip straight to trying out a working sample scene, see [more code examples](#more-code-examples) below.
 
 ### Unity example
 
