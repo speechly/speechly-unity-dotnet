@@ -59,9 +59,11 @@ namespace Speechly.SLUClient {
         postResponse.EnsureSuccessStatusCode();
       } catch ( Exception e ) {
         if (projectId != null) {
-          throw new Exception($"{e.GetType()} while fetching auth token from '{baseUrl}' with Speechly projectId '{projectId}'. Is the projectId valid?" );
+          Logger.LogError($"Error while fetching auth token from '{baseUrl}' with Speechly projectId '{projectId}'. Is the projectId valid?");
+          throw;
         } else {
-          throw new Exception($"{e.GetType()} while fetching auth token from '{baseUrl}' with Speechly appId '{appId}'. Is the appId valid and deployed?" );
+          Logger.LogError($"Error while fetching auth token from '{baseUrl}' with Speechly appId '{appId}'. Is the appId valid and deployed?");
+          throw;
         }
       }
 
