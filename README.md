@@ -68,7 +68,8 @@ public class AudioFileToSpeechly : MonoBehaviour
     await client.StopContext();
   }
 
-  void Update() {
+  void Update()
+  {
     // Manually fire Speechly callbacks in main thread instead of websocket thread
     client.Update();
   }
