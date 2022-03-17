@@ -32,7 +32,11 @@ Constructing SpeechlyClient requires an `appId` (or `projectId`) from [Speechly 
 Setting `manualUpdate: true` postpones SpeechlyClient's callbacks (OnSegmentChange, OnTranscript...) until you manually run `SpeechlyClient.Update()`. This enables you to call Unity API in SpeechlyClient's callbacks, as Unity API should only be used in the main Unity thread.
 
 ```
+using UnityEngine;
 using Speechly.SLUClient;
+ 
+public class AudioFileToSpeechly : MonoBehaviour
+{
 
   SpeechlyClient client;
 
@@ -68,7 +72,7 @@ using Speechly.SLUClient;
     // Manually fire Speechly callbacks in main thread instead of websocket thread
     client.Update();
   }
-
+}
 ```
 
 ## More code examples
