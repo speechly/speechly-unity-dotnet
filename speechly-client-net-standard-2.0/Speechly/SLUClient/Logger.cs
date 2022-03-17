@@ -8,5 +8,10 @@ namespace Speechly.SLUClient {
         Console.WriteLine(s);
       #endif
     };
+    public static LoggerDelegate LogError = (string s) => {
+      #if !ENABLE_MONO && !ENABLE_IL2CPP && !ENABLE_DOTNET
+        Console.WriteLine(s);
+      #endif
+    };
   }
 }

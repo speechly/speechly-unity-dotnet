@@ -42,22 +42,28 @@ namespace Speechly.SLUClient {
           deviceId = deviceId
         };
         json = JSON.Stringify(body);
-      } else {
+      } else if (appId != null) {
         var body = new AppTokenRequest{
           appId = appId,
           deviceId = deviceId
         };
         json = JSON.Stringify(body);
+      } else {
+        throw new Exception($"A Speechly appId or projectId needs to be defined to connect.");
       }
+
       var postRequest = new HttpRequestMessage(HttpMethod.Post, baseUrl);
       postRequest.Content = new StringContent(json, Encoding.UTF8, "application/json");
       try {
         postResponse = await httpClient.SendAsync(postRequest);
-      } catch ( Exception ) {
-        throw new Exception($"Problem fetching auth token from '{baseUrl}'." );
+        postResponse.EnsureSuccessStatusCode();
+      } catch ( Exception e ) {
+        if (projectId != null) {
+          throw new Exception($"{e.GetType()} while fetching auth token from '{baseUrl}' with Speechly projectId '{projectId}'. Is the projectId valid?" );
+        } else {
+          throw new Exception($"{e.GetType()} while fetching auth token from '{baseUrl}' with Speechly appId '{appId}'. Is the appId valid and deployed?" );
+        }
       }
-
-      postResponse.EnsureSuccessStatusCode();
 
       if (!(postResponse.Content is object && postResponse.Content.Headers.ContentType.MediaType == "application/json")) {
         throw new Exception("HTTP Response was invalid and cannot be deserialised.");

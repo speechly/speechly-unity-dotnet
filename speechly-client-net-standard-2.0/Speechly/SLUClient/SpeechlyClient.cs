@@ -49,6 +49,7 @@ namespace Speechly.SLUClient {
       string apiUrl = null,
       string projectId = null,
       string appId = null,
+      SpeechlyConfig config = null,
       bool manualUpdate = false,
       bool debug = false
     ) {
@@ -59,17 +60,19 @@ namespace Speechly.SLUClient {
       this.manualUpdate = manualUpdate;
       this.debug = debug;
 
-      // Load config
-      var c = SpeechlyConfig.RestoreOrCreate();
+      if (config == null) {
+        // Load config
+        config = SpeechlyConfig.RestoreOrCreate();
+      }
 
       // Restore or generate device id
-      if (c.deviceId == null) {
+      if (config.deviceId == null) {
         deviceId = System.Guid.NewGuid().ToString();
-        c.deviceId = deviceId;
-        c.Save();
+        config.deviceId = deviceId;
+        config.Save();
         if (this.debug) Logger.Log($"New deviceId: {deviceId}");
       } else {
-        deviceId = c.deviceId;
+        deviceId = config.deviceId;
         if (this.debug) Logger.Log($"Restored deviceId: {deviceId}");
       }
 
@@ -78,22 +81,27 @@ namespace Speechly.SLUClient {
     public async Task Connect() {
       if (State < ClientState.Connecting) {
         SetState(ClientState.Connecting);
+        try {
+          var tokenFetcher = new LoginToken();
+          token = await tokenFetcher.FetchToken(loginUrl, projectId, appId, deviceId);
 
-        var tokenFetcher = new LoginToken();
-        token = await tokenFetcher.FetchToken(loginUrl, projectId, appId, deviceId);
+          if (debug) Logger.Log($"token: {token}");
 
-        if (debug) Logger.Log($"token: {token}");
-
-        wsClient = new WsClient();
-        if (manualUpdate) {
-          wsClient.OnResponseReceived = QueueResponse;
-        } else {
-          wsClient.OnResponseReceived = ProcessResponse;
+          wsClient = new WsClient();
+          if (manualUpdate) {
+            wsClient.OnResponseReceived = QueueResponse;
+          } else {
+            wsClient.OnResponseReceived = ProcessResponse;
+          }
+          await wsClient.ConnectAsync(apiUrl, token);
+          SetState(ClientState.Preinitialized);
+          SetState(ClientState.Initializing);
+          SetState(ClientState.Connected);
+        } catch (Exception e) {
+          SetState(ClientState.Failed);
+          Logger.LogError(e.ToString());
+          throw;
         }
-        await wsClient.ConnectAsync(apiUrl, token);
-        SetState(ClientState.Preinitialized);
-        SetState(ClientState.Initializing);
-        SetState(ClientState.Connected);
       }
     }
 
@@ -103,18 +111,24 @@ namespace Speechly.SLUClient {
       }
       IsListening = true;
       SetState(ClientState.Starting);
-      startContextTCS = new TaskCompletionSource<MsgCommon>();
-      if (appId != null) {
-        await wsClient.SendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
-      } else {
-        await wsClient.SendText($"{{\"event\": \"start\"}}");
+      try {
+        startContextTCS = new TaskCompletionSource<MsgCommon>();
+        if (appId != null) {
+          await wsClient.SendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
+        } else {
+          await wsClient.SendText($"{{\"event\": \"start\"}}");
+        }
+        var contextId = (await startContextTCS.Task).audio_context;
+        if (DEBUG_SAVE_AUDIO) {
+          debugAudioStream = new FileStream($"utterance_{contextId}.raw", FileMode.CreateNew, FileAccess.Write, FileShare.None);
+        }
+        SetState(ClientState.Recording);
+        return contextId;
+      } catch (Exception e) {
+        SetState(ClientState.Connected);
+        Logger.LogError(e.ToString());
+        throw;
       }
-      var contextId = (await startContextTCS.Task).audio_context;
-      if (DEBUG_SAVE_AUDIO) {
-        debugAudioStream = new FileStream($"utterance_{contextId}.raw", FileMode.CreateNew, FileAccess.Write, FileShare.None);
-      }
-      SetState(ClientState.Recording);
-      return contextId;
     }
 
     public async Task SendAudio(Stream fileStream) {
@@ -167,11 +181,17 @@ namespace Speechly.SLUClient {
       }
       SetState(ClientState.Stopping);
       IsListening = false;
-      stopContextTCS = new TaskCompletionSource<MsgCommon>();
-      await wsClient.SendText($"{{\"event\": \"stop\"}}");
-      var contextId = (await stopContextTCS.Task).audio_context;
-      if (DEBUG_SAVE_AUDIO) {
-        debugAudioStream.Close();
+      try {
+        stopContextTCS = new TaskCompletionSource<MsgCommon>();
+        await wsClient.SendText($"{{\"event\": \"stop\"}}");
+        var contextId = (await stopContextTCS.Task).audio_context;
+        if (DEBUG_SAVE_AUDIO) {
+          debugAudioStream.Close();
+        }
+      } catch (Exception e) {
+        SetState(ClientState.Connected);
+        Logger.LogError(e.ToString());
+        throw;
       }
 
       SetState(ClientState.Connected);

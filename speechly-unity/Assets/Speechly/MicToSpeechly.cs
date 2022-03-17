@@ -39,9 +39,15 @@ public class MicToSpeechly : MonoBehaviour
     }
 
     Logger.Log = Debug.Log;
+    Logger.LogError = Debug.LogError;
+
+    var config = new SpeechlyConfig{
+      deviceId = SystemInfo.deviceUniqueIdentifier
+    };
 
     SpeechlyClient = new SpeechlyClient(
       appId: this.AppId,
+      config: config,
       manualUpdate: true,
       debug: true
     );

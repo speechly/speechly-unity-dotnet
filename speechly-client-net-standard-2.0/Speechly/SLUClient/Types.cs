@@ -115,6 +115,7 @@ namespace Speechly.SLUClient {
         string jsonString = File.ReadAllText(pathToFile, Encoding.UTF8);
         config = JSON.Parse(jsonString, config);
       } catch (Exception) {
+        throw;
       }
       return config;
     }
