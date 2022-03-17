@@ -41,6 +41,9 @@ using Speechly.SLUClient;
     // Get your app id from https://api.speechly.com/dashboard
     client = new SpeechlyClient(
       appId: "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1", // Basic speech-to-text configuration
+      config: new SpeechlyConfig {
+        deviceId = SystemInfo.deviceUniqueIdentifier
+      },
       manualUpdate: true
     );
     
@@ -77,6 +80,28 @@ Import [SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/
 ### VoiceCommands
 
 Import [SpeechlyExamples/VoiceCommands/](speechly-unity/Assets/SpeechlyExamples/VoiceCommands/) and `Speechly/` folders from `speechly-client.unitypackage` to run a Unity sample scene that showcases a point-and-talk interface: target an object and hold the mouse button to issue speech commands like "make it big and red" or "delete". Again, app-specific logic is in `UseSpeechly.cs` which registers a callback to respond to detected intents and keywords (entities).
+
+## Android device testing
+
+To diagnose problems with device builds, you can do the following:
+
+- First try running MicToSpeechlyScene.unity in the editor without errors.
+- Change to Android player, set MicToSpeechlyScene.unity as the main scene and do a `build and run` to deploy the build to on a device.
+- On terminal, do `adb logcat -s Unity:E` to follow error logs from Unity.
+- Run the app on device. Keep `Hold to talk` button pressed and say "ONE, TWO, THREE". Then release the button.
+- You should see "ONE, TWO, THREE" displayed in the top-left corner of the screen. If not, see the terminal for errors.
+
+### Android troubleshooting
+
+- `Exception: Could not open microphone` and green VU meter won't move. Cause: There's no implementation in place to wait for permission prompt to complete so mic permission is not given on the first run and Microphone.Start() fails. Fix: Implement platform specific permission check, or, restart app after granting the permission.
+- `WebException: Error: NameResolutionFailure` and transcript won't change when button held and app is spoken to. Cause: Production builds restric access to internet. Fix: With Android target active, go Player settings and find "Internet Access" and change it to "required".
+- IL2CPP build fails with `NullReferenceException` at `System.Runtime.Serialization.Json.JsonFormatWriterInterpreter.TryWritePrimitive`. Cause: System.Runtime.Serialization.dll uses reflection to access some methods. Fix: To prevent Unity managed code linker from stripping away these methods add the file `link.xml` with the following content:
+
+```
+<linker>
+  <assembly fullname="System.Runtime.Serialization" preserve="all"/>
+</linker>
+```
 
 ## Developing and contributing
 
