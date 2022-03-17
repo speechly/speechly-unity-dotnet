@@ -2,7 +2,7 @@
 
 [Speechly](https://www.speechly.com/?utm_source=github&utm_medium=react-client&utm_campaign=text) is an API for building voice features into games, XR, applications and web sites. This client library streams audio from a Unity or .NET app to Speechly cloud API and provides a C# API for receiving real-time speech-to-text transcription and natural language understanding results.
 
-[Download speechly-client.unitypackage](speechly-client.unitypackage) with the latest Speechly Unity client library and example scenes.
+[Download speechly-client.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage) with the latest Speechly Unity client library and example scenes.
 
 ## Requirements
 
