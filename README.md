@@ -2,6 +2,8 @@
 
 [Speechly](https://www.speechly.com/?utm_source=github&utm_medium=react-client&utm_campaign=text) is an API for building voice features into games, XR, applications and web sites. This client library streams audio from a Unity or .NET app to Speechly cloud API and provides a C# API for receiving real-time speech-to-text transcription and natural language understanding results.
 
+[Download speechly-client.unitypackage](speechly-client.unitypackage) with the latest Speechly Unity client library and example scenes.
+
 ## Requirements
 
 - A C# development environment conforming to .NET Standard 2.0 API
@@ -12,10 +14,10 @@
 
 - [speechly-client-net-standard-2.0/](speechly-client-net-standard-2.0/) contains the Speechly client library code and a sample .NET console app.
 - [speechly-unity/](speechly-unity/) folder contains the .NET Speechly client code, Unity-specific microphone code and Unity sample projects:
+  - [speechly-unity/Assets/Speechly/](speechly-unity/Assets/Speechly/)
   - [speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/)
   - [speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/](speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/)
   - [speechly-unity/Assets/SpeechlyExamples/VoiceCommands/](speechly-unity/Assets/SpeechlyExamples/VoiceCommands/)
-- [speechly-client.unitypackage](speechly-client.unitypackage) contains a snapshot of Speechly Unity client library and example scenes.
 
 ## Unity usage
 
