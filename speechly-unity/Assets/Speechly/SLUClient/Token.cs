@@ -57,7 +57,7 @@ namespace Speechly.SLUClient {
       try {
         postResponse = await httpClient.SendAsync(postRequest);
         postResponse.EnsureSuccessStatusCode();
-      } catch ( Exception e ) {
+      } catch {
         if (projectId != null) {
           Logger.LogError($"Error while fetching auth token from '{baseUrl}' with Speechly projectId '{projectId}'. Is the projectId valid?");
           throw;
