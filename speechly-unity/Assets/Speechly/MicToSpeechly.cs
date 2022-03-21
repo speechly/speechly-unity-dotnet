@@ -29,6 +29,10 @@ public class MicToSpeechly : MonoBehaviour
   public float Energy {get; private set; } = 0f;
   public float BaselineEnergy {get; private set; } = -1f;
   public float SpeechTolerance {get; private set; } = 0f;
+  public int EnergyAnalysisWindowMillis = 30;
+  public int AttackMillis = 100;
+  public int ReleaseMillis = 300;
+  public int InitialSpeakHoldMillis = 3000;
   public bool IsSpeechDetected {get; private set; }
   public SpeechlyClient SpeechlyClient { get; private set; }
   private AudioClip clip;
@@ -37,6 +41,7 @@ public class MicToSpeechly : MonoBehaviour
   private int vadAnalysisWindowSamples;
   private int vadAnalysisWindowSamplesLeft;
   private float vadSum = 0f;
+  private float speakHoldMillis = 0;
 
   private void Awake() 
   { 
@@ -85,8 +90,7 @@ public class MicToSpeechly : MonoBehaviour
       throw new Exception($"Could not open microphone {CaptureDeviceName}");
     }
 
-    int vadAnalysisWindowMillis = 30;
-    vadAnalysisWindowSamples = MicSampleRate * vadAnalysisWindowMillis / 1000;
+    vadAnalysisWindowSamples = MicSampleRate * EnergyAnalysisWindowMillis / 1000;
     vadAnalysisWindowSamplesLeft = vadAnalysisWindowSamples;
 
     StartCoroutine(RunSpeechly());
@@ -149,19 +153,19 @@ public class MicToSpeechly : MonoBehaviour
               if (BaselineEnergy < 0f) {
                 BaselineEnergy = Energy;
               }
-              if (Energy > BaselineEnergy * 2f) {
-                SpeechTolerance = (float)Math.Min(SpeechTolerance + 0.3f, 4f); 
+              if (Energy > BaselineEnergy * 2.0f) {
+                SpeechTolerance = (float)Math.Min(SpeechTolerance + (1f * EnergyAnalysisWindowMillis / AttackMillis), 1f); 
               } else {
-                SpeechTolerance = (float)Math.Max(SpeechTolerance - 0.1f, 0f); 
+                SpeechTolerance = (float)Math.Max(SpeechTolerance - (1f * EnergyAnalysisWindowMillis / ReleaseMillis), 0f); 
               }
               if (!IsSpeechDetected) {
-                if (SpeechTolerance >= 1f) {
-                  SpeechTolerance = 3f;
+                if (SpeechTolerance == 1f) {
                   IsSpeechDetected = true;
+                  speakHoldMillis = InitialSpeakHoldMillis;
                   // SpeechlyClient.StartContext();
                 }
               } else {
-                if (SpeechTolerance < 1f) {
+                if (SpeechTolerance == 0f && speakHoldMillis == 0) {
                   SpeechTolerance = 0f;
                   IsSpeechDetected = false;
                   // SpeechlyClient.StopContext();
@@ -176,6 +180,7 @@ public class MicToSpeechly : MonoBehaviour
               }
 
               vadSum = 0f;
+              speakHoldMillis = Math.Max(speakHoldMillis - EnergyAnalysisWindowMillis, 0);
             }
             capturedSamplesLeft -= summedSamples;
           }
