@@ -87,7 +87,13 @@ Import [SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/
 
 Import [SpeechlyExamples/VoiceCommands/](speechly-unity/Assets/SpeechlyExamples/VoiceCommands/) and `Speechly/` folders from `speechly-client.unitypackage` to run a Unity sample scene that showcases a point-and-talk interface: target an object and hold the mouse button to issue speech commands like "make it big and red" or "delete". Again, app-specific logic is in `UseSpeechly.cs` which registers a callback to respond to detected intents and keywords (entities).
 
-## Android device testing
+## OS X
+
+To enable microphone input on OS X, set `Player Settings > Settings for PC, Mac & Linux Standalone > Other Settings > Microphone Usage Description`, to for example, "Voice input is automatically processed by Speechly.com".
+
+## Android
+
+### Device testing
 
 To diagnose problems with device builds, you can do the following:
 
