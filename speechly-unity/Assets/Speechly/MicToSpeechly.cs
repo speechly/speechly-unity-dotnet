@@ -24,11 +24,19 @@ public class MicToSpeechly : MonoBehaviour
   public int MicSampleRate = 16000;
   public int MicBufferLengthSecs = 1;
   public bool CalcAudioPeaks = true;
+  public bool CalcEnergyVAD = true;
   public float Peak {get; private set; } = 0f;
+  public float Energy {get; private set; } = 0f;
+  public float BaselineEnergy {get; private set; } = -1f;
+  public float SpeechTolerance {get; private set; } = 0f;
+  public bool IsSpeechDetected {get; private set; }
   public SpeechlyClient SpeechlyClient { get; private set; }
   private AudioClip clip;
   private int oldCaptureRingbufferPos;
   private float[] waveData;
+  private int vadAnalysisWindowSamples;
+  private int vadAnalysisWindowSamplesLeft;
+  private float vadSum = 0f;
 
   private void Awake() 
   { 
@@ -42,7 +50,10 @@ public class MicToSpeechly : MonoBehaviour
     Logger.LogError = Debug.LogError;
 
     SpeechlyClient = new SpeechlyClient(
-      appId: this.AppId,
+        loginUrl: "https://staging.speechly.com/login",
+        apiUrl: "wss://staging.speechly.com/ws/v1?sampleRate=16000",
+        appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e", // Restaurant booking configuration
+//      appId: this.AppId,
       config: new SpeechlyConfig {
         deviceId = SystemInfo.deviceUniqueIdentifier
       },
@@ -73,6 +84,10 @@ public class MicToSpeechly : MonoBehaviour
     {
       throw new Exception($"Could not open microphone {CaptureDeviceName}");
     }
+
+    int vadAnalysisWindowMillis = 30;
+    vadAnalysisWindowSamples = MicSampleRate * vadAnalysisWindowMillis / 1000;
+    vadAnalysisWindowSamplesLeft = vadAnalysisWindowSamples;
 
     StartCoroutine(RunSpeechly());
   }
@@ -113,6 +128,56 @@ public class MicToSpeechly : MonoBehaviour
           {
             Peak = Mathf.Max(Peak, waveData[s]);
             s++;
+          }
+        }
+
+        if (CalcEnergyVAD) {
+          int capturedSamplesLeft = samples;
+
+          while (capturedSamplesLeft > 0) {
+            int summedSamples = Math.Min(capturedSamplesLeft, vadAnalysisWindowSamplesLeft);
+            int s = summedSamples;
+            while (s > 0)
+            {
+              vadSum += waveData[s] * waveData[s];
+              s--;
+            }
+            vadAnalysisWindowSamplesLeft -= summedSamples;
+            if (vadAnalysisWindowSamplesLeft == 0) {
+              vadAnalysisWindowSamplesLeft = vadAnalysisWindowSamples;
+              Energy = (float)Math.Sqrt(vadSum / vadAnalysisWindowSamples);
+              if (BaselineEnergy < 0f) {
+                BaselineEnergy = Energy;
+              }
+              if (Energy > BaselineEnergy * 2f) {
+                SpeechTolerance = (float)Math.Min(SpeechTolerance + 0.3f, 4f); 
+              } else {
+                SpeechTolerance = (float)Math.Max(SpeechTolerance - 0.1f, 0f); 
+              }
+              if (!IsSpeechDetected) {
+                if (SpeechTolerance >= 1f) {
+                  SpeechTolerance = 3f;
+                  IsSpeechDetected = true;
+                  // SpeechlyClient.StartContext();
+                }
+              } else {
+                if (SpeechTolerance < 1f) {
+                  SpeechTolerance = 0f;
+                  IsSpeechDetected = false;
+                  // SpeechlyClient.StopContext();
+                }
+              }
+
+              // Learn background noise level
+              if (!IsSpeechDetected) {
+                BaselineEnergy = (BaselineEnergy * 0.95f) + (Energy * 0.05f);
+              } else {
+                BaselineEnergy = (BaselineEnergy * 0.99f) + (Energy * 0.01f);
+              }
+
+              vadSum = 0f;
+            }
+            capturedSamplesLeft -= summedSamples;
           }
         }
 

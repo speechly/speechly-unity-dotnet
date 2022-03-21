@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
-    public static bool DEBUG_SAVE_AUDIO = false;
+    public static bool DEBUG_SAVE_AUDIO = true;
 
     public delegate void SegmentChangeDelegate(Segment segment);
     public delegate void StateChangeDelegate(ClientState state);
