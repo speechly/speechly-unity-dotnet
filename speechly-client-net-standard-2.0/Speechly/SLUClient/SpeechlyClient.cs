@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
-    public static bool DEBUG_SAVE_AUDIO = false;
+    public static bool DEBUG_SAVE_AUDIO = true;
 
     public delegate void SegmentChangeDelegate(Segment segment);
     public delegate void StateChangeDelegate(ClientState state);
@@ -27,6 +27,7 @@ namespace Speechly.SLUClient {
     public StateChangeDelegate OnStateChange = (ClientState state) => {};
 
     public bool IsListening { get; private set; } = false;
+    public int SamplesSent { get; private set; } = 0;
     public ClientState State { get; private set; } = ClientState.Disconnected;
     // Optional message queue should messages be run in the main thread
     private ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
@@ -122,6 +123,7 @@ namespace Speechly.SLUClient {
         if (DEBUG_SAVE_AUDIO) {
           debugAudioStream = new FileStream($"utterance_{contextId}.raw", FileMode.CreateNew, FileAccess.Write, FileShare.None);
         }
+        SamplesSent = 0;
         SetState(ClientState.Recording);
         return contextId;
       } catch (Exception e) {
@@ -143,6 +145,7 @@ namespace Speechly.SLUClient {
         if (DEBUG_SAVE_AUDIO) {
           debugAudioStream.Write(b, 0, bytesRead);
         }
+        SamplesSent += bytesRead / 2;
         await wsClient.SendBytes(new ArraySegment<byte>(b, 0, bytesRead));
       }
     }
@@ -166,6 +169,7 @@ namespace Speechly.SLUClient {
         debugAudioStream.Write(buf, 0, buf.Length);
       }
 
+      SamplesSent += bufSize;
       await wsClient.SendBytes(new ArraySegment<byte>(buf));
     }
 
@@ -245,8 +249,9 @@ namespace Speechly.SLUClient {
             break;
           }
         }
-      } catch (Exception e) {
-        throw new Exception($"Ouch. {e.GetType()} while handling message with content: {msgString}");
+      } catch {
+        Logger.LogError($"Error while handling message with content: {msgString}");
+        throw;
       }
     }
 

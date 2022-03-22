@@ -27,6 +27,7 @@ namespace Speechly.SLUClient {
     public StateChangeDelegate OnStateChange = (ClientState state) => {};
 
     public bool IsListening { get; private set; } = false;
+    public int SamplesSent { get; private set; } = 0;
     public ClientState State { get; private set; } = ClientState.Disconnected;
     // Optional message queue should messages be run in the main thread
     private ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
@@ -63,17 +64,23 @@ namespace Speechly.SLUClient {
       if (config == null) {
         // Load config
         config = SpeechlyConfig.RestoreOrCreate();
-      }
-
-      // Restore or generate device id
-      if (config.deviceId == null) {
-        deviceId = System.Guid.NewGuid().ToString();
-        config.deviceId = deviceId;
-        config.Save();
-        if (this.debug) Logger.Log($"New deviceId: {deviceId}");
+        // Restore or generate device id
+        if (!String.IsNullOrEmpty(config.deviceId)) {
+          deviceId = config.deviceId;
+          if (this.debug) Logger.Log($"Restored deviceId: {deviceId}");
+        } else {
+          deviceId = System.Guid.NewGuid().ToString();
+          config.deviceId = deviceId;
+          config.Save();
+          if (this.debug) Logger.Log($"New deviceId: {deviceId}");
+        }
       } else {
-        deviceId = config.deviceId;
-        if (this.debug) Logger.Log($"Restored deviceId: {deviceId}");
+        if (String.IsNullOrEmpty(config.deviceId)) {
+          throw new Exception("The manually provided SpeechlyConfig.deviceId needs to be a non-identifiable unique device identifier.");
+        } else {
+          deviceId = config.deviceId;
+          if (this.debug) Logger.Log($"Using manual deviceId: {deviceId}");
+        }
       }
 
     }
@@ -122,6 +129,7 @@ namespace Speechly.SLUClient {
         if (DEBUG_SAVE_AUDIO) {
           debugAudioStream = new FileStream($"utterance_{contextId}.raw", FileMode.CreateNew, FileAccess.Write, FileShare.None);
         }
+        SamplesSent = 0;
         SetState(ClientState.Recording);
         return contextId;
       } catch (Exception e) {
@@ -143,6 +151,7 @@ namespace Speechly.SLUClient {
         if (DEBUG_SAVE_AUDIO) {
           debugAudioStream.Write(b, 0, bytesRead);
         }
+        SamplesSent += bytesRead / 2;
         await wsClient.SendBytes(new ArraySegment<byte>(b, 0, bytesRead));
       }
     }
@@ -166,6 +175,7 @@ namespace Speechly.SLUClient {
         debugAudioStream.Write(buf, 0, buf.Length);
       }
 
+      SamplesSent += bufSize;
       await wsClient.SendBytes(new ArraySegment<byte>(buf));
     }
 
@@ -245,8 +255,9 @@ namespace Speechly.SLUClient {
             break;
           }
         }
-      } catch (Exception e) {
-        throw new Exception($"Ouch. {e.GetType()} while handling message with content: {msgString}");
+      } catch {
+        Logger.LogError($"Error while handling message with content: {msgString}");
+        throw;
       }
     }
 
