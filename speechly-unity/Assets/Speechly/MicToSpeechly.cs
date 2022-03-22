@@ -29,26 +29,29 @@ public class MicToSpeechly : MonoBehaviour
   [Tooltip("Capture device name or null for default")]
   public string CaptureDeviceName = null;
   public int MicSampleRate = 16000;
-  public int MicBufferLengthMillis = 1000;
   [Tooltip("Milliseconds of history data to send upon StartContext to capture lead of the utterance.")]
-  public int SendHistoryMillis = 200;
   public bool CalcAudioPeaks = true;
-  public bool CalcEnergy = true;
   public bool VADUseEnergyGate = false;
   public float Peak {get; private set; } = 0f;
   public float Energy {get; private set; } = 0f;
   public float BaselineEnergy {get; private set; } = -1f;
-  public int VADAnalysisWindowMillis = 30;
+  public int FrameMillis = 30;
+  [Range(1, 32)]
+  public int HistoryFrames = 5;
   [Range(0.0f, 1.0f)]
   [Tooltip("Energy treshold - below this won't trigger activation")]
   public float VADEnergyTreshold = 0.005f;
   [Range(1.0f, 10.0f)]
   [Tooltip("Signal-to-noise energy ratio needed for activation")]
-  public float VADActivationRatio = 2.0f;
-  public int VADActivationMillis = 150;
-  public int VADReleaseMillis = 300;
+  public float VADSignalToNoise = 2.0f;
+  [Range(.0f, 1.0f)]
+  public float VADActivationRatio = 0.7f;
+  [Range(.0f, 1.0f)]
+  public float VADReleaseRatio = 0.2f;
   public int VADSustainMillis = 3000;
-  public bool PrintDebug = false;
+  private int activeFrameBits = 0;
+  public bool DebugVAD = false;
+  public bool DebugPrint = false;
   public bool IsSpeechDetected {get; private set; }
   public SpeechlyClient SpeechlyClient { get; private set; }
   private AudioClip clip;
@@ -56,10 +59,9 @@ public class MicToSpeechly : MonoBehaviour
   private int oldCaptureRingbufferPos;
   private int loops;
 
-  private int historySamples;
-  private float vadNoiseGateHeat = 0f;
-  private int vadAnalysisWindowSamples;
-  private int vadAnalysisWindowSamplesLeft;
+  private int historySizeSamples;
+  private int frameSamples;
+  private int frameSamplesLeft;
   private float vadSum = 0f;
   private float vadSustainContextMillis = 0;
 
@@ -82,7 +84,7 @@ public class MicToSpeechly : MonoBehaviour
         deviceId = SystemInfo.deviceUniqueIdentifier
       },
       manualUpdate: true,
-      debug: PrintDebug
+      debug: DebugPrint
     );
 
     _instance = this;
@@ -97,8 +99,10 @@ public class MicToSpeechly : MonoBehaviour
     // Debug.Log($"minFreq {minFreq} maxFreq {maxFreq}");
 
     // Start audio capture
-    clip = Microphone.Start(CaptureDeviceName, true, MicBufferLengthMillis / 1000, MicSampleRate);
-    
+    int micBufferMillis = FrameMillis * HistoryFrames + 500;
+    int micBufferSecs = (micBufferMillis / 1000) + 1;
+    clip = Microphone.Start(CaptureDeviceName, true, micBufferSecs, MicSampleRate);
+
     if (clip != null)
     {
       waveData = new float[clip.samples * clip.channels];
@@ -109,9 +113,9 @@ public class MicToSpeechly : MonoBehaviour
       throw new Exception($"Could not open microphone {CaptureDeviceName}");
     }
 
-    historySamples = MicSampleRate * SendHistoryMillis / 1000;
-    vadAnalysisWindowSamples = MicSampleRate * VADAnalysisWindowMillis / 1000;
-    vadAnalysisWindowSamplesLeft = vadAnalysisWindowSamples;
+    frameSamples = MicSampleRate * FrameMillis / 1000;
+    frameSamplesLeft = frameSamples;
+    historySizeSamples = frameSamples * HistoryFrames;
 
     StartCoroutine(RunSpeechly());
   }
@@ -141,11 +145,11 @@ public class MicToSpeechly : MonoBehaviour
       } else {
         samples = captureRingbufferPos - oldCaptureRingbufferPos;
       }
-      samples = Math.Min(samples, waveData.Length - historySamples);
+      samples = Math.Min(samples, waveData.Length - historySizeSamples);
 
       if (samples > 0) {
         if (loop) loops++;
-        int effectiveHistorySamples = loops > 0 ? historySamples : Math.Min(captureRingbufferPos, historySamples);
+        int effectiveHistorySamples = loops > 0 ? historySizeSamples : Math.Min(captureRingbufferPos, historySizeSamples);
         int effectiveCapturePos = (oldCaptureRingbufferPos + (waveData.Length - effectiveHistorySamples)) % waveData.Length;
 
         // Always captures full buffer length (MicSampleRate * MicBufferLengthMillis / 1000 samples), starting from offset
@@ -161,48 +165,44 @@ public class MicToSpeechly : MonoBehaviour
           }
         }
 
-        if (CalcEnergy) {
+        if (VADUseEnergyGate) {
           int capturedSamplesLeft = samples;
 
           while (capturedSamplesLeft > 0) {
-            int summedSamples = Math.Min(capturedSamplesLeft, vadAnalysisWindowSamplesLeft);
+            int summedSamples = Math.Min(capturedSamplesLeft, frameSamplesLeft);
             int s = summedSamples;
             while (s > 0)
             {
               vadSum += waveData[s + effectiveHistorySamples] * waveData[s + effectiveHistorySamples];
               s--;
             }
-            vadAnalysisWindowSamplesLeft -= summedSamples;
-            if (vadAnalysisWindowSamplesLeft == 0) {
-              vadAnalysisWindowSamplesLeft = vadAnalysisWindowSamples;
-              Energy = (float)Math.Sqrt(vadSum / vadAnalysisWindowSamples);
+            frameSamplesLeft -= summedSamples;
+            if (frameSamplesLeft == 0) {
+              frameSamplesLeft = frameSamples;
+              Energy = (float)Math.Sqrt(vadSum / frameSamples);
               if (BaselineEnergy < 0f) {
                 BaselineEnergy = Energy;
               }
-              if (Energy > Math.Max(VADEnergyTreshold, BaselineEnergy * VADActivationRatio)) {
-                vadNoiseGateHeat = (float)Math.Min(vadNoiseGateHeat + (1f * VADAnalysisWindowMillis / VADActivationMillis), 1f); 
-              } else {
-                vadNoiseGateHeat = (float)Math.Max(vadNoiseGateHeat - (1f * VADAnalysisWindowMillis / VADReleaseMillis), 0f); 
-              }
+              bool isLoudFrame = Energy > Math.Max(VADEnergyTreshold, BaselineEnergy * VADSignalToNoise);
+              PushFrameAnalysis(isLoudFrame);
 
-              if (vadNoiseGateHeat == 1f) {
+              int loudFrames = CountLoudFrames(HistoryFrames);
+              float loudFrameRatio = (1f * loudFrames) / HistoryFrames;
+
+              if (loudFrameRatio >= VADActivationRatio) {
+                vadSustainContextMillis = VADSustainMillis;
                 if (!IsSpeechDetected) {
                   IsSpeechDetected = true;
-                  if (VADUseEnergyGate) {
+                  if (!DebugVAD) {
                     StartContext();
                   }
                 }
               }
 
-              if (vadNoiseGateHeat > 0.5f) {
-                vadSustainContextMillis = VADSustainMillis;
-              }
-
-              if (vadNoiseGateHeat == 0f && vadSustainContextMillis == 0) {
+              if (loudFrameRatio < VADReleaseRatio && vadSustainContextMillis == 0) {
                 if (IsSpeechDetected) {
                   IsSpeechDetected = false;
-                  vadNoiseGateHeat = 0f;
-                  if (VADUseEnergyGate) {
+                  if (!DebugVAD) {
                     StopContext();
                   }
                 }
@@ -214,7 +214,7 @@ public class MicToSpeechly : MonoBehaviour
               }
 
               vadSum = 0f;
-              vadSustainContextMillis = Math.Max(vadSustainContextMillis - VADAnalysisWindowMillis, 0);
+              vadSustainContextMillis = Math.Max(vadSustainContextMillis - FrameMillis, 0);
             }
             capturedSamplesLeft -= summedSamples;
           }
@@ -237,6 +237,21 @@ public class MicToSpeechly : MonoBehaviour
 
     }
 
+  }
+
+  private void PushFrameAnalysis(bool active) {
+    activeFrameBits = (active ? 1 : 0) | (activeFrameBits << 1);
+  }
+
+  private int CountLoudFrames(int numHistoryFrames) {
+    int numActiveFrames = 0;
+    int t = activeFrameBits;
+    while (numHistoryFrames > 0) {
+      if ((t & 1) == 1) numActiveFrames++;
+      t = t >> 1;
+      numHistoryFrames--;
+    }
+    return numActiveFrames;
   }
 
   // Drop-and-forget wrapper for async StartContext

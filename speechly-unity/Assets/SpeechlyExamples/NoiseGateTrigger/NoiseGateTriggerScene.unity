@@ -1300,7 +1300,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &758041406
 GameObject:
@@ -2228,7 +2228,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2010365547
 MonoBehaviour:
@@ -2246,15 +2246,14 @@ MonoBehaviour:
   AppId: 76e901c8-7795-43d5-9c5c-4a25d5edf80e
   CaptureDeviceName: 
   MicSampleRate: 16000
-  MicBufferLengthMillis: 1000
-  SendHistoryMillis: 300
   CalcAudioPeaks: 1
-  CalcEnergy: 1
   VADUseEnergyGate: 1
-  VADAnalysisWindowMillis: 30
+  FrameMillis: 30
+  HistoryFrames: 5
   VADEnergyTreshold: 0.005
-  VADActivationRatio: 2
-  VADActivationMillis: 150
-  VADReleaseMillis: 300
+  VADSignalToNoise: 2
+  VADActivationRatio: 0.7
+  VADReleaseRatio: 0.2
   VADSustainMillis: 3000
-  PrintDebug: 1
+  DebugVAD: 1
+  DebugPrint: 1

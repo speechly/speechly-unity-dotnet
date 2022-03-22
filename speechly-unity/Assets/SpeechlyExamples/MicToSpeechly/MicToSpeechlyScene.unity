@@ -1475,15 +1475,14 @@ MonoBehaviour:
   AppId: ef84e8ba-c5a7-46c2-856e-8b853e2c77b1
   CaptureDeviceName: 
   MicSampleRate: 16000
-  MicBufferLengthMillis: 1000
-  SendHistoryMillis: 200
   CalcAudioPeaks: 1
-  CalcEnergy: 1
   VADUseEnergyGate: 0
-  VADAnalysisWindowMillis: 30
+  FrameMillis: 30
+  HistoryFrames: 5
   VADEnergyTreshold: 0.005
-  VADActivationRatio: 2
-  VADActivationMillis: 150
-  VADReleaseMillis: 300
+  VADSignalToNoise: 2
+  VADActivationRatio: 0.7
+  VADReleaseRatio: 0.2
   VADSustainMillis: 3000
-  PrintDebug: 0
+  DebugVAD: 0
+  DebugPrint: 0
