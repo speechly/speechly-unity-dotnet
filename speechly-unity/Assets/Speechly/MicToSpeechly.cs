@@ -25,6 +25,7 @@ public class MicToSpeechly : MonoBehaviour
   public int MicBufferLengthSecs = 1;
   public bool CalcAudioPeaks = true;
   public bool CalcEnergyVAD = true;
+  public bool VADControlListening = false;
   public float Peak {get; private set; } = 0f;
   public float Energy {get; private set; } = 0f;
   public float BaselineEnergy {get; private set; } = -1f;
@@ -33,15 +34,18 @@ public class MicToSpeechly : MonoBehaviour
   public int AttackMillis = 100;
   public int ReleaseMillis = 300;
   public int InitialSpeakHoldMillis = 3000;
+  public int SendHistoryMillis = 500;
   public bool IsSpeechDetected {get; private set; }
   public SpeechlyClient SpeechlyClient { get; private set; }
   private AudioClip clip;
   private int oldCaptureRingbufferPos;
   private float[] waveData;
+  private int historySamples;
   private int vadAnalysisWindowSamples;
   private int vadAnalysisWindowSamplesLeft;
   private float vadSum = 0f;
   private float speakHoldMillis = 0;
+  private int loops;
 
   private void Awake() 
   { 
@@ -90,6 +94,8 @@ public class MicToSpeechly : MonoBehaviour
       throw new Exception($"Could not open microphone {CaptureDeviceName}");
     }
 
+    historySamples = MicSampleRate * SendHistoryMillis / 1000;
+
     vadAnalysisWindowSamples = MicSampleRate * EnergyAnalysisWindowMillis / 1000;
     vadAnalysisWindowSamplesLeft = vadAnalysisWindowSamples;
 
@@ -111,27 +117,33 @@ public class MicToSpeechly : MonoBehaviour
       Peak = Peak * 0.95f;
 
       int captureRingbufferPos = Microphone.GetPosition(CaptureDeviceName);
-
+      
       int samples;
+      bool loop = false;
       if (captureRingbufferPos < oldCaptureRingbufferPos)
       {
         samples = (waveData.Length - oldCaptureRingbufferPos) + captureRingbufferPos;
+        loop = true;
       } else {
         samples = captureRingbufferPos - oldCaptureRingbufferPos;
       }
+      samples = Math.Min(samples, waveData.Length - historySamples);
 
       if (samples > 0) {
+        if (loop) loops++;
+        int effectiveHistorySamples = loops > 0 ? historySamples : Math.Min(captureRingbufferPos, historySamples);
+        int effectiveCapturePos = (oldCaptureRingbufferPos + (waveData.Length - effectiveHistorySamples)) % waveData.Length;
 
         // Always captures full buffer length (MicSampleRate * MicBufferLengthSecs samples), starting from offset
-        clip.GetData(waveData, oldCaptureRingbufferPos);
+        clip.GetData(waveData, effectiveCapturePos);
         oldCaptureRingbufferPos = captureRingbufferPos;
 
         if (CalcAudioPeaks) {
-          int s = 0;
-          while (s < samples)
+          int s = samples + effectiveHistorySamples - 1;
+          while (s >= effectiveHistorySamples)
           {
             Peak = Mathf.Max(Peak, waveData[s]);
-            s++;
+            s--;
           }
         }
 
@@ -143,7 +155,7 @@ public class MicToSpeechly : MonoBehaviour
             int s = summedSamples;
             while (s > 0)
             {
-              vadSum += waveData[s] * waveData[s];
+              vadSum += waveData[s + effectiveHistorySamples] * waveData[s + effectiveHistorySamples];
               s--;
             }
             vadAnalysisWindowSamplesLeft -= summedSamples;
@@ -162,13 +174,17 @@ public class MicToSpeechly : MonoBehaviour
                 if (SpeechTolerance == 1f) {
                   IsSpeechDetected = true;
                   speakHoldMillis = InitialSpeakHoldMillis;
-                  // SpeechlyClient.StartContext();
+                  if (VADControlListening) {
+                    SpeechlyClient.StartContext();
+                  }
                 }
               } else {
                 if (SpeechTolerance == 0f && speakHoldMillis == 0) {
                   SpeechTolerance = 0f;
                   IsSpeechDetected = false;
-                  // SpeechlyClient.StopContext();
+                  if (VADControlListening) {
+                    SpeechlyClient.StopContext();
+                  }
                 }
               }
 
@@ -187,8 +203,12 @@ public class MicToSpeechly : MonoBehaviour
         }
 
         if (SpeechlyClient.IsListening) {
+          if (SpeechlyClient.SamplesSent == 0) {
+            task = SpeechlyClient.SendAudio(waveData, 0, effectiveHistorySamples + samples);
+          } else {
+            task = SpeechlyClient.SendAudio(waveData, 0 + effectiveHistorySamples, samples + effectiveHistorySamples);
+          }
           audioSent = true;
-          task = SpeechlyClient.SendAudio(waveData, 0, samples);
           yield return new WaitUntil(() => task.IsCompleted);
         }
       }

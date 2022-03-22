@@ -1205,7 +1205,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 20, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1523007325
@@ -1476,4 +1476,9 @@ MonoBehaviour:
   MicSampleRate: 16000
   MicBufferLengthSecs: 1
   CalcAudioPeaks: 1
-  PushToTalkButton: {fileID: 358568577}
+  CalcEnergyVAD: 0
+  EnergyAnalysisWindowMillis: 30
+  AttackMillis: 100
+  ReleaseMillis: 300
+  InitialSpeakHoldMillis: 3000
+  SendHistoryMillis: 0
