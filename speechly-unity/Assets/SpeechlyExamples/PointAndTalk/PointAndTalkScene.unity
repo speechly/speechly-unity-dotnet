@@ -1173,7 +1173,7 @@ Transform:
   m_LocalScale: {x: 4, y: 4, z: 4}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &670502115
 GameObject:
@@ -1328,7 +1328,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &758041406
 GameObject:
@@ -2162,7 +2162,7 @@ Transform:
   - {fileID: 842721603}
   - {fileID: 185769847}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1255822663
 GameObject:
@@ -2236,7 +2236,7 @@ RectTransform:
   - {fileID: 550281442}
   - {fileID: 358568576}
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2878,8 +2878,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6b6837b89e74c51819907efcc77c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  SpeechlyEnv: 0
   AppId: f44486fe-d248-404f-b4bc-44ebe257b93f
   CaptureDeviceName: 
   MicSampleRate: 16000
-  MicBufferLengthSecs: 1
+  MicBufferLengthMillis: 1000
+  SendHistoryMillis: 200
   CalcAudioPeaks: 1
+  CalcEnergy: 1
+  VADUseEnergyGate: 0
+  VADAnalysisWindowMillis: 30
+  VADEnergyTreshold: 0.005
+  VADActivationRatio: 2
+  VADActivationMillis: 150
+  VADReleaseMillis: 300
+  VADSustainMillis: 3000
+  PrintDebug: 0

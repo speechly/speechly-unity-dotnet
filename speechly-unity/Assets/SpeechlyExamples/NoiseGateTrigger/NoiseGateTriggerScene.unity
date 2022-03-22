@@ -2242,15 +2242,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6b6837b89e74c51819907efcc77c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  AppId: ef84e8ba-c5a7-46c2-856e-8b853e2c77b1
+  SpeechlyEnv: 1
+  AppId: 76e901c8-7795-43d5-9c5c-4a25d5edf80e
   CaptureDeviceName: 
   MicSampleRate: 16000
-  MicBufferLengthSecs: 1
+  MicBufferLengthMillis: 1000
+  SendHistoryMillis: 300
   CalcAudioPeaks: 1
-  CalcEnergyVAD: 1
-  VADControlListening: 1
-  EnergyAnalysisWindowMillis: 30
-  AttackMillis: 100
-  ReleaseMillis: 300
-  InitialSpeakHoldMillis: 3000
-  SendHistoryMillis: 200
+  CalcEnergy: 1
+  VADUseEnergyGate: 1
+  VADAnalysisWindowMillis: 30
+  VADEnergyTreshold: 0.005
+  VADActivationRatio: 2
+  VADActivationMillis: 150
+  VADReleaseMillis: 300
+  VADSustainMillis: 3000
+  PrintDebug: 1
