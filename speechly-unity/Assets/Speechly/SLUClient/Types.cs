@@ -115,23 +115,17 @@ namespace Speechly.SLUClient {
 #endif
     }
 
-    // Parse string and return a valid Guid
-    // If a Guid is passed, it will be returned; otherwise a Guid will be created from the string bytes
+    // Parse string and return a valid Guid, attempting to retain the original string if it's a valid Guid.
     // return D-type Guid string: 00000000-0000-0000-0000-000000000000
     public static string GuidFromString(string s) {
       try {
-        var guid = new Guid(s);
-        return guid.ToString();
+        // Attempt to parse string as Guid as-is
+        return new Guid(s).ToString();
       } catch {
-        var bytes = new byte[16];
-        var stringBytes = Encoding.UTF8.GetBytes(s);
-        int i = 0;
-        while (i < 16 && i < stringBytes.Length) {
-          bytes[i] = stringBytes[i];
-          i++;
-        }
-        var guid = new Guid(bytes);
-        return guid.ToString();
+        // Guid will be created from the string bytes
+        var bytes = Encoding.UTF8.GetBytes(s);
+        Array.Resize<byte>(ref bytes, 16);
+        return new Guid(bytes).ToString();
       }
     }
   }
