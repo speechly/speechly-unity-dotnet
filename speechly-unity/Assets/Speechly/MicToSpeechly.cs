@@ -30,14 +30,15 @@ public class MicToSpeechly : MonoBehaviour
   public string CaptureDeviceName = null;
   public int MicSampleRate = 16000;
   [Tooltip("Milliseconds of history data to send upon StartContext to capture lead of the utterance.")]
+  public int FrameMillis = 30;
+  [Range(1, 32)]
+  public int HistoryFrames = 5;
   public bool CalcAudioPeaks = true;
-  public bool UseEnergyVAD = false;
+  [Tooltip("Voice Activity Detection (VAD) using adaptive energy tresholding. Automatically controls listening based on audio 'loudness'.")]
+  public bool EnergyTresholdVAD = false;
   public float Peak {get; private set; } = 0f;
   public float Energy {get; private set; } = 0f;
   public float BaselineEnergy {get; private set; } = -1f;
-  public int FrameMillis = 30;
-  [Range(1, 32)]
-  public int KeepHistoryFrames = 5;
   [Range(0.0f, 1.0f)]
   [Tooltip("Energy treshold - below this won't trigger activation")]
   public float VADMinimumEnergy = 0.005f;
@@ -102,7 +103,7 @@ public class MicToSpeechly : MonoBehaviour
     // Debug.Log($"minFreq {minFreq} maxFreq {maxFreq}");
 
     // Start audio capture
-    int micBufferMillis = FrameMillis * KeepHistoryFrames + 500;
+    int micBufferMillis = FrameMillis * HistoryFrames + 500;
     int micBufferSecs = (micBufferMillis / 1000) + 1;
     clip = Microphone.Start(CaptureDeviceName, true, micBufferSecs, MicSampleRate);
 
@@ -118,7 +119,7 @@ public class MicToSpeechly : MonoBehaviour
 
     frameSamples = MicSampleRate * FrameMillis / 1000;
     frameSamplesLeft = frameSamples;
-    historySizeSamples = frameSamples * KeepHistoryFrames;
+    historySizeSamples = frameSamples * HistoryFrames;
 
     StartCoroutine(RunSpeechly());
   }
@@ -168,7 +169,7 @@ public class MicToSpeechly : MonoBehaviour
           }
         }
 
-        if (UseEnergyVAD) {
+        if (EnergyTresholdVAD) {
           int capturedSamplesLeft = samples;
 
           while (capturedSamplesLeft > 0) {
@@ -189,8 +190,8 @@ public class MicToSpeechly : MonoBehaviour
               bool isLoudFrame = Energy > Math.Max(VADMinimumEnergy, BaselineEnergy * VADSignalToNoise);
               PushFrameAnalysis(isLoudFrame);
 
-              int loudFrames = CountLoudFrames(KeepHistoryFrames);
-              float loudFrameRatio = (1f * loudFrames) / KeepHistoryFrames;
+              int loudFrames = CountLoudFrames(HistoryFrames);
+              float loudFrameRatio = (1f * loudFrames) / HistoryFrames;
 
               if (loudFrameRatio >= VADActivation) {
                 vadSustainMillisLeft = VADSustainMillis;
