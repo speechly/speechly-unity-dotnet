@@ -102,13 +102,7 @@ namespace Speechly.SLUClient {
   public class Platform {
     public static string GetPersistentStoragePath()
     {
-#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-      return UnityEngine.Application.streamingAssetsPath;
-#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
-      return UnityEngine.Application.persistentDataPath;
-#elif UNITY_ANDROID
-      return UnityEngine.Application.persistentDataPath;
-#elif UNITY_IOS
+#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || UNITY_ANDROID || UNITY_IOS
       return UnityEngine.Application.persistentDataPath;
 #else
       return System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
@@ -146,7 +140,6 @@ namespace Speechly.SLUClient {
         string jsonString = File.ReadAllText(pathToFile, Encoding.UTF8);
         config = JSON.Parse(jsonString, config);
       } catch (Exception) {
-        throw;
       }
       return config;
     }
