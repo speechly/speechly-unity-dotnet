@@ -99,6 +99,31 @@ namespace Speechly.SLUClient {
     public int segment_id { get; set; }
   }
 
+  public class Platform {
+    public static string GetPersistentStoragePath()
+    {
+#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || UNITY_ANDROID || UNITY_IOS
+      return UnityEngine.Application.persistentDataPath;
+#else
+      return System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+#endif
+    }
+
+    // Parse string and return a valid Guid, attempting to retain the original string if it's a valid Guid.
+    // return D-type Guid string: 00000000-0000-0000-0000-000000000000
+    public static string GuidFromString(string s) {
+      try {
+        // Attempt to parse string as Guid as-is
+        return new Guid(s).ToString();
+      } catch {
+        // Guid will be created from the string bytes
+        var bytes = Encoding.UTF8.GetBytes(s);
+        Array.Resize<byte>(ref bytes, 16);
+        return new Guid(bytes).ToString();
+      }
+    }
+  }
+
   [DataContract]
   public class SpeechlyConfig {
     public static string ConfigPath = "Speechly";
@@ -108,20 +133,19 @@ namespace Speechly.SLUClient {
     public string deviceId = null;
 
     public static SpeechlyConfig RestoreOrCreate() {
-      string basePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+      string basePath = Platform.GetPersistentStoragePath();
       string pathToFile = Path.Combine(basePath, ConfigPath, ConfigFileName);
       SpeechlyConfig config = new SpeechlyConfig();
       try {
         string jsonString = File.ReadAllText(pathToFile, Encoding.UTF8);
         config = JSON.Parse(jsonString, config);
       } catch (Exception) {
-        throw;
       }
       return config;
     }
 
     public void Save() {
-      string basePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+      string basePath = Platform.GetPersistentStoragePath();
       Directory.CreateDirectory(Path.Combine(basePath, ConfigPath));
 
       string pathToFile = Path.Combine(basePath, ConfigPath, ConfigFileName);

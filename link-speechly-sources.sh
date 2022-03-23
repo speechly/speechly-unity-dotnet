@@ -20,14 +20,14 @@ linkSource () {
     echo
     echo ============ LOCAL CHANGES IN ============
 
-    rsync -au --out-format="%n" --dry-run $HARDLINK_DEST $ABS_HARDLINK_SOURCE
+    rsync -au --out-format="%n" --dry-run --exclude "*.meta" $HARDLINK_DEST/* $ABS_HARDLINK_SOURCE
 
     echo ==========================================
     echo LOCAL: $HARDLINK_DEST
     echo
     read -p "Do you wish to backport? [y/n] " yn
     if echo "$yn" | grep -iq "^y" ;then
-        rsync -au -vv $HARDLINK_DEST $ABS_HARDLINK_SOURCE | grep "is newer"
+      rsync -au -vv --exclude "*.meta" $HARDLINK_DEST/* $ABS_HARDLINK_SOURCE | grep "is newer"
     fi
 
     echo
