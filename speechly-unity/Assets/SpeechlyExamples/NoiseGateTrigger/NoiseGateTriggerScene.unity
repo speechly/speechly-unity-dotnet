@@ -2214,5 +2214,5 @@ MonoBehaviour:
   VADRelease: 0.2
   VADSustainMillis: 3000
   VADNoiseHalftimeMillis: 400
-  DebugNoStreaming: 0
+  DebugSimulateVAD: 0
   DebugPrint: 1

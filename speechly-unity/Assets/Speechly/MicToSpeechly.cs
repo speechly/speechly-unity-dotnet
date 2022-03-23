@@ -58,7 +58,8 @@ public class MicToSpeechly : MonoBehaviour
   [Range(0, 5000)]
   [Tooltip("Rate of background noise learn. Defined as duration in which background noise energy is moved halfway towards current frame's energy.")]
   public int VADNoiseHalftimeMillis = 400;
-  public bool DebugNoStreaming = false;
+  [Tooltip("When checked, VAD listening control is disabled but IsSignalDetected is updated.")]
+  public bool DebugSimulateVAD = false;
   public bool DebugPrint = false;
   public float Peak {get; private set; } = 0f;
   public float Energy {get; private set; } = 0f;
@@ -266,14 +267,14 @@ public class MicToSpeechly : MonoBehaviour
 
   // Drop-and-forget wrapper for async StartContext
   public void StartContext() {
-    if (!DebugNoStreaming) {
+    if (!DebugSimulateVAD) {
       _ = SpeechlyClient.StartContext();
     }
   }
 
   // Drop-and-forget wrapper for async StopContext
   public void StopContext() {
-    if (!DebugNoStreaming) {
+    if (!DebugSimulateVAD) {
       _ = SpeechlyClient.StopContext();
     }
   }
