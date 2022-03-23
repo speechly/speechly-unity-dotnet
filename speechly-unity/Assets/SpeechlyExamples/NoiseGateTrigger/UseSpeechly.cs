@@ -13,9 +13,9 @@ namespace Speechly.Example.NoiseGateTrigger
     public Slider SliderEnergy;
     public Slider SliderBaselineEnergy;
     public Image Fill;
+    public TMP_Text ButtonText;
     public TMP_Text TranscriptText;
     private SpeechlyClient speechlyClient;
-    private bool IsButtonHeld = false;
 
     void Start()
     {
@@ -36,27 +36,8 @@ namespace Speechly.Example.NoiseGateTrigger
       SliderAudioPeak.value = MicToSpeechly.Instance.Peak;
       SliderEnergy.value = MicToSpeechly.Instance.Energy;
       SliderBaselineEnergy.value = MicToSpeechly.Instance.BaselineEnergy;
-      Fill.color = MicToSpeechly.Instance.IsSpeechDetected ? Color.red : Color.white;
-    }
-
-    public async void OnMouseDown()
-    {
-      if (!IsButtonHeld && !speechlyClient.IsListening)
-      {
-        Debug.Log("Mouse Down");
-        IsButtonHeld = true;
-        await speechlyClient.StartContext();
-      }
-    }
-
-    public async void OnMouseUp()
-    {
-      if (IsButtonHeld && speechlyClient.IsListening)
-      {
-        Debug.Log("Mouse Up");
-        IsButtonHeld = false;
-        await speechlyClient.StopContext();
-      }
+      Fill.color = MicToSpeechly.Instance.IsSignalDetected ? Color.red : Color.white;
+      ButtonText.text = MicToSpeechly.Instance.IsSignalDetected ? "Signal Detected" : "No Signal";
     }
 
   }

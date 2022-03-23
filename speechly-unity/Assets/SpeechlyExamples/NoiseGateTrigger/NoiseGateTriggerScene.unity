@@ -542,7 +542,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Hold to talk
+  m_text: Signal Status
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -631,7 +631,6 @@ GameObject:
   - component: {fileID: 358568579}
   - component: {fileID: 358568578}
   - component: {fileID: 358568577}
-  - component: {fileID: 358568580}
   m_Layer: 0
   m_Name: PushToTalkButton
   m_TagString: Untagged
@@ -742,49 +741,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 358568575}
   m_CullTransparentMesh: 1
---- !u!114 &358568580
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 358568575}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d0b148fe25e99eb48b9724523833bab1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Delegates:
-  - eventID: 2
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 758041407}
-          m_MethodName: OnMouseDown
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-  - eventID: 3
-    callback:
-      m_PersistentCalls:
-        m_Calls:
-        - m_Target: {fileID: 758041407}
-          m_MethodName: OnMouseUp
-          m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
 --- !u!1 &451804421
 GameObject:
   m_ObjectHideFlags: 0
@@ -1335,6 +1291,7 @@ MonoBehaviour:
   SliderEnergy: {fileID: 275751998}
   SliderBaselineEnergy: {fileID: 451804423}
   Fill: {fileID: 358568578}
+  ButtonText: {fileID: 322247389}
   TranscriptText: {fileID: 1523007325}
 --- !u!4 &758041408
 Transform:
@@ -2249,11 +2206,11 @@ MonoBehaviour:
   CalcAudioPeaks: 1
   VADUseEnergyGate: 1
   FrameMillis: 30
-  HistoryFrames: 5
+  KeepHistoryFrames: 5
   VADEnergyTreshold: 0.005
   VADSignalToNoise: 2
   VADActivationRatio: 0.7
   VADReleaseRatio: 0.2
   VADSustainMillis: 3000
-  DebugVAD: 1
+  DebugNoStreaming: 0
   DebugPrint: 1

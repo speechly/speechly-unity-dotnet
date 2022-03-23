@@ -31,28 +31,31 @@ public class MicToSpeechly : MonoBehaviour
   public int MicSampleRate = 16000;
   [Tooltip("Milliseconds of history data to send upon StartContext to capture lead of the utterance.")]
   public bool CalcAudioPeaks = true;
-  public bool VADUseEnergyGate = false;
+  public bool UseEnergyVAD = false;
   public float Peak {get; private set; } = 0f;
   public float Energy {get; private set; } = 0f;
   public float BaselineEnergy {get; private set; } = -1f;
   public int FrameMillis = 30;
   [Range(1, 32)]
-  public int HistoryFrames = 5;
+  public int KeepHistoryFrames = 5;
   [Range(0.0f, 1.0f)]
   [Tooltip("Energy treshold - below this won't trigger activation")]
-  public float VADEnergyTreshold = 0.005f;
+  public float VADMinimumEnergy = 0.005f;
   [Range(1.0f, 10.0f)]
-  [Tooltip("Signal-to-noise energy ratio needed for activation")]
+  [Tooltip("Signal-to-noise energy ratio needed for frame to be 'loud'")]
   public float VADSignalToNoise = 2.0f;
   [Range(.0f, 1.0f)]
-  public float VADActivationRatio = 0.7f;
+  [Tooltip("Minimum 'loud' to 'silent' frame ratio in history to activate 'IsSignalDetected'")]
+  public float VADActivation = 0.7f;
   [Range(.0f, 1.0f)]
-  public float VADReleaseRatio = 0.2f;
+  [Tooltip("Maximum 'loud' to 'silent' frame ratio in history to inactivate 'IsSignalDetected'. Only evaluated when the sustain period is over.")]
+  public float VADRelease = 0.2f;
+  [Tooltip("Duration to keep 'IsSignalDetected' active. Renewed as long as VADActivation is holds true.")]
   public int VADSustainMillis = 3000;
   private int activeFrameBits = 0;
-  public bool DebugVAD = false;
+  public bool DebugNoStreaming = false;
   public bool DebugPrint = false;
-  public bool IsSpeechDetected {get; private set; }
+  public bool IsSignalDetected {get; private set; }
   public SpeechlyClient SpeechlyClient { get; private set; }
   private AudioClip clip;
   private float[] waveData;
@@ -63,7 +66,7 @@ public class MicToSpeechly : MonoBehaviour
   private int frameSamples;
   private int frameSamplesLeft;
   private float vadSum = 0f;
-  private float vadSustainContextMillis = 0;
+  private float vadSustainMillisLeft = 0;
 
   private void Awake() 
   { 
@@ -99,7 +102,7 @@ public class MicToSpeechly : MonoBehaviour
     // Debug.Log($"minFreq {minFreq} maxFreq {maxFreq}");
 
     // Start audio capture
-    int micBufferMillis = FrameMillis * HistoryFrames + 500;
+    int micBufferMillis = FrameMillis * KeepHistoryFrames + 500;
     int micBufferSecs = (micBufferMillis / 1000) + 1;
     clip = Microphone.Start(CaptureDeviceName, true, micBufferSecs, MicSampleRate);
 
@@ -115,7 +118,7 @@ public class MicToSpeechly : MonoBehaviour
 
     frameSamples = MicSampleRate * FrameMillis / 1000;
     frameSamplesLeft = frameSamples;
-    historySizeSamples = frameSamples * HistoryFrames;
+    historySizeSamples = frameSamples * KeepHistoryFrames;
 
     StartCoroutine(RunSpeechly());
   }
@@ -165,7 +168,7 @@ public class MicToSpeechly : MonoBehaviour
           }
         }
 
-        if (VADUseEnergyGate) {
+        if (UseEnergyVAD) {
           int capturedSamplesLeft = samples;
 
           while (capturedSamplesLeft > 0) {
@@ -183,38 +186,34 @@ public class MicToSpeechly : MonoBehaviour
               if (BaselineEnergy < 0f) {
                 BaselineEnergy = Energy;
               }
-              bool isLoudFrame = Energy > Math.Max(VADEnergyTreshold, BaselineEnergy * VADSignalToNoise);
+              bool isLoudFrame = Energy > Math.Max(VADMinimumEnergy, BaselineEnergy * VADSignalToNoise);
               PushFrameAnalysis(isLoudFrame);
 
-              int loudFrames = CountLoudFrames(HistoryFrames);
-              float loudFrameRatio = (1f * loudFrames) / HistoryFrames;
+              int loudFrames = CountLoudFrames(KeepHistoryFrames);
+              float loudFrameRatio = (1f * loudFrames) / KeepHistoryFrames;
 
-              if (loudFrameRatio >= VADActivationRatio) {
-                vadSustainContextMillis = VADSustainMillis;
-                if (!IsSpeechDetected) {
-                  IsSpeechDetected = true;
-                  if (!DebugVAD) {
-                    StartContext();
-                  }
+              if (loudFrameRatio >= VADActivation) {
+                vadSustainMillisLeft = VADSustainMillis;
+                if (!IsSignalDetected) {
+                  IsSignalDetected = true;
+                  StartContext();
                 }
               }
 
-              if (loudFrameRatio < VADReleaseRatio && vadSustainContextMillis == 0) {
-                if (IsSpeechDetected) {
-                  IsSpeechDetected = false;
-                  if (!DebugVAD) {
-                    StopContext();
-                  }
+              if (loudFrameRatio < VADRelease && vadSustainMillisLeft == 0) {
+                if (IsSignalDetected) {
+                  IsSignalDetected = false;
+                  StopContext();
                 }
               }
 
-              // Learn background noise level
-              if (!IsSpeechDetected) {
+              // Gradually learn background noise level
+              if (!IsSignalDetected) {
                 BaselineEnergy = (BaselineEnergy * 0.95f) + (Energy * 0.05f);
               }
 
               vadSum = 0f;
-              vadSustainContextMillis = Math.Max(vadSustainContextMillis - FrameMillis, 0);
+              vadSustainMillisLeft = Math.Max(vadSustainMillisLeft - FrameMillis, 0);
             }
             capturedSamplesLeft -= summedSamples;
           }
@@ -234,9 +233,7 @@ public class MicToSpeechly : MonoBehaviour
       if (!audioSent) {
         yield return null;
       }
-
     }
-
   }
 
   private void PushFrameAnalysis(bool active) {
@@ -256,12 +253,16 @@ public class MicToSpeechly : MonoBehaviour
 
   // Drop-and-forget wrapper for async StartContext
   public void StartContext() {
-    _ = SpeechlyClient.StartContext();
+    if (!DebugNoStreaming) {
+      _ = SpeechlyClient.StartContext();
+    }
   }
 
   // Drop-and-forget wrapper for async StopContext
   public void StopContext() {
-    _ = SpeechlyClient.StopContext();
+    if (!DebugNoStreaming) {
+      _ = SpeechlyClient.StopContext();
+    }
   }
 
 }
