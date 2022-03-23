@@ -99,6 +99,43 @@ namespace Speechly.SLUClient {
     public int segment_id { get; set; }
   }
 
+  public class Platform {
+    public static string GetPersistentStoragePath()
+    {
+#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+      return UnityEngine.Application.streamingAssetsPath;
+#elif UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN
+      return UnityEngine.Application.persistentDataPath;
+#elif UNITY_ANDROID
+      return UnityEngine.Application.persistentDataPath;
+#elif UNITY_IOS
+      return UnityEngine.Application.persistentDataPath;
+#else
+      return System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+#endif
+    }
+
+    // Parse string and return a valid Guid
+    // If a Guid is passed, it will be returned; otherwise a Guid will be created from the string bytes
+    // return D-type Guid string: 00000000-0000-0000-0000-000000000000
+    public static string GuidFromString(string s) {
+      try {
+        var guid = new Guid(s);
+        return guid.ToString();
+      } catch {
+        var bytes = new byte[16];
+        var stringBytes = Encoding.UTF8.GetBytes(s);
+        int i = 0;
+        while (i < 16 && i < stringBytes.Length) {
+          bytes[i] = stringBytes[i];
+          i++;
+        }
+        var guid = new Guid(bytes);
+        return guid.ToString();
+      }
+    }
+  }
+
   [DataContract]
   public class SpeechlyConfig {
     public static string ConfigPath = "Speechly";
@@ -108,7 +145,7 @@ namespace Speechly.SLUClient {
     public string deviceId = null;
 
     public static SpeechlyConfig RestoreOrCreate() {
-      string basePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+      string basePath = Platform.GetPersistentStoragePath();
       string pathToFile = Path.Combine(basePath, ConfigPath, ConfigFileName);
       SpeechlyConfig config = new SpeechlyConfig();
       try {
@@ -121,7 +158,7 @@ namespace Speechly.SLUClient {
     }
 
     public void Save() {
-      string basePath = System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
+      string basePath = Platform.GetPersistentStoragePath();
       Directory.CreateDirectory(Path.Combine(basePath, ConfigPath));
 
       string pathToFile = Path.Combine(basePath, ConfigPath, ConfigFileName);

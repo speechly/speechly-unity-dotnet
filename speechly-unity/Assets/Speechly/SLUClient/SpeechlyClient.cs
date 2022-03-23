@@ -78,7 +78,7 @@ namespace Speechly.SLUClient {
         if (String.IsNullOrEmpty(config.deviceId)) {
           throw new Exception("The manually provided SpeechlyConfig.deviceId needs to be a non-identifiable unique device identifier.");
         } else {
-          deviceId = config.deviceId;
+          deviceId = Platform.GuidFromString(config.deviceId);
           if (this.debug) Logger.Log($"Using manual deviceId: {deviceId}");
         }
       }
