@@ -8,7 +8,7 @@ using System.Collections.Concurrent;
 namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
-    public static bool DEBUG_SAVE_AUDIO = true;
+    public static bool DEBUG_SAVE_AUDIO = false;
 
     public delegate void SegmentChangeDelegate(Segment segment);
     public delegate void StateChangeDelegate(ClientState state);
@@ -64,17 +64,23 @@ namespace Speechly.SLUClient {
       if (config == null) {
         // Load config
         config = SpeechlyConfig.RestoreOrCreate();
-      }
-
-      // Restore or generate device id
-      if (config.deviceId == null) {
-        deviceId = System.Guid.NewGuid().ToString();
-        config.deviceId = deviceId;
-        config.Save();
-        if (this.debug) Logger.Log($"New deviceId: {deviceId}");
+        // Restore or generate device id
+        if (!String.IsNullOrEmpty(config.deviceId)) {
+          deviceId = config.deviceId;
+          if (this.debug) Logger.Log($"Restored deviceId: {deviceId}");
+        } else {
+          deviceId = System.Guid.NewGuid().ToString();
+          config.deviceId = deviceId;
+          config.Save();
+          if (this.debug) Logger.Log($"New deviceId: {deviceId}");
+        }
       } else {
-        deviceId = config.deviceId;
-        if (this.debug) Logger.Log($"Restored deviceId: {deviceId}");
+        if (String.IsNullOrEmpty(config.deviceId)) {
+          throw new Exception("The manually provided SpeechlyConfig.deviceId needs to be a non-identifiable unique device identifier.");
+        } else {
+          deviceId = Platform.GuidFromString(config.deviceId);
+          if (this.debug) Logger.Log($"Using manual deviceId: {deviceId}");
+        }
       }
 
     }
