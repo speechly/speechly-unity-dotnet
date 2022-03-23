@@ -53,7 +53,7 @@ public class MicToSpeechly : MonoBehaviour
   public float VADRelease = 0.2f;
   [Tooltip("Duration to keep 'IsSignalDetected' active. Renewed as long as VADActivation is holds true.")]
   public int VADSustainMillis = 3000;
-  private int activeFrameBits = 0;
+  private int loudFrameBits = 0;
   public bool DebugNoStreaming = false;
   public bool DebugPrint = false;
   public bool IsSignalDetected {get; private set; }
@@ -188,7 +188,7 @@ public class MicToSpeechly : MonoBehaviour
                 BaselineEnergy = Energy;
               }
               bool isLoudFrame = Energy > Math.Max(VADMinimumEnergy, BaselineEnergy * VADSignalToNoise);
-              PushFrameAnalysis(isLoudFrame);
+              PushToFrameHistory(isLoudFrame);
 
               int loudFrames = CountLoudFrames(HistoryFrames);
               float loudFrameRatio = (1f * loudFrames) / HistoryFrames;
@@ -237,13 +237,13 @@ public class MicToSpeechly : MonoBehaviour
     }
   }
 
-  private void PushFrameAnalysis(bool active) {
-    activeFrameBits = (active ? 1 : 0) | (activeFrameBits << 1);
+  private void PushToFrameHistory(bool isLoud) {
+    loudFrameBits = (isLoud ? 1 : 0) | (loudFrameBits << 1);
   }
 
   private int CountLoudFrames(int numHistoryFrames) {
     int numActiveFrames = 0;
-    int t = activeFrameBits;
+    int t = loudFrameBits;
     while (numHistoryFrames > 0) {
       if ((t & 1) == 1) numActiveFrames++;
       t = t >> 1;
