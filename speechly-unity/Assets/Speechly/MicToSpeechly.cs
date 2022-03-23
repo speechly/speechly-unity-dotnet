@@ -51,8 +51,12 @@ public class MicToSpeechly : MonoBehaviour
   [Range(.0f, 1.0f)]
   [Tooltip("Maximum 'loud' to 'silent' frame ratio in history to inactivate 'IsSignalDetected'. Only evaluated when the sustain period is over.")]
   public float VADRelease = 0.2f;
+  [Range(0, 8000)]
   [Tooltip("Duration to keep 'IsSignalDetected' active. Renewed as long as VADActivation is holds true.")]
   public int VADSustainMillis = 3000;
+  [Range(0, 5000)]
+  [Tooltip("Rate of background noise learn. Defined as duration in which background noise energy is moved halfway towards current frame's energy.")]
+  public int VADNoiseHalftimeMillis = 400;
   private int loudFrameBits = 0;
   public bool DebugNoStreaming = false;
   public bool DebugPrint = false;
@@ -210,7 +214,10 @@ public class MicToSpeechly : MonoBehaviour
 
               // Gradually learn background noise level
               if (!IsSignalDetected) {
-                BaselineEnergy = (BaselineEnergy * 0.95f) + (Energy * 0.05f);
+                if (VADNoiseHalftimeMillis > 0f) {
+                  var decay = (float)Math.Pow(2.0, -FrameMillis / (double)VADNoiseHalftimeMillis);
+                  BaselineEnergy = (BaselineEnergy * decay) + (Energy * (1f - decay));
+                }
               }
 
               vadSum = 0f;
