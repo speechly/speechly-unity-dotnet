@@ -26,25 +26,26 @@ public class MicToSpeechly : MonoBehaviour
 
   [Tooltip("Speechly App Id")]
   public string AppId = "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1"; // Speechly Client Demos / speech-to-text only configuration
-  [Tooltip("Capture device name or null for default")]
+  [Tooltip("Capture device name or null for default.")]
   public string CaptureDeviceName = null;
   public int MicSampleRate = 16000;
   [Tooltip("Milliseconds of history data to send upon StartContext to capture lead of the utterance.")]
   public int FrameMillis = 30;
   [Range(1, 32)]
-  public int HistoryFrames = 5;
+  [Tooltip("Number of frames to keep in memory. When listening is started, history frames are sent to capture the lead-in audio.")]
+  public int HistoryFrames = 8;
   public bool CalcAudioPeaks = true;
   [Tooltip("Voice Activity Detection (VAD) using adaptive energy tresholding. Automatically controls listening based on audio 'loudness'.")]
   public bool EnergyTresholdVAD = false;
-  public float Peak {get; private set; } = 0f;
-  public float Energy {get; private set; } = 0f;
-  public float BaselineEnergy {get; private set; } = -1f;
   [Range(0.0f, 1.0f)]
   [Tooltip("Energy treshold - below this won't trigger activation")]
   public float VADMinimumEnergy = 0.005f;
   [Range(1.0f, 10.0f)]
   [Tooltip("Signal-to-noise energy ratio needed for frame to be 'loud'")]
   public float VADSignalToNoise = 2.0f;
+  [Range(1, 32)]
+  [Tooltip("Number of past frames analyzed for energy treshold VAD. Should be <= than HistoryFrames.")]
+  public int VADFrames = 5;
   [Range(.0f, 1.0f)]
   [Tooltip("Minimum 'loud' to 'silent' frame ratio in history to activate 'IsSignalDetected'")]
   public float VADActivation = 0.7f;
@@ -57,10 +58,13 @@ public class MicToSpeechly : MonoBehaviour
   [Range(0, 5000)]
   [Tooltip("Rate of background noise learn. Defined as duration in which background noise energy is moved halfway towards current frame's energy.")]
   public int VADNoiseHalftimeMillis = 400;
-  private int loudFrameBits = 0;
   public bool DebugNoStreaming = false;
   public bool DebugPrint = false;
+  public float Peak {get; private set; } = 0f;
+  public float Energy {get; private set; } = 0f;
+  public float BaselineEnergy {get; private set; } = -1f;
   public bool IsSignalDetected {get; private set; }
+  private int loudFrameBits = 0;
   public SpeechlyClient SpeechlyClient { get; private set; }
   private AudioClip clip;
   private float[] waveData;
@@ -106,9 +110,10 @@ public class MicToSpeechly : MonoBehaviour
     // Microphone.GetDeviceCaps(CaptureDeviceName, out minFreq, out maxFreq);
     // Debug.Log($"minFreq {minFreq} maxFreq {maxFreq}");
 
-    // Start audio capture
-    int micBufferMillis = FrameMillis * HistoryFrames + 500;
+    int capturedAudioBufferMillis = 500;
+    int micBufferMillis = FrameMillis * HistoryFrames + capturedAudioBufferMillis;
     int micBufferSecs = (micBufferMillis / 1000) + 1;
+    // Start audio capture
     clip = Microphone.Start(CaptureDeviceName, true, micBufferSecs, MicSampleRate);
 
     if (clip != null)
@@ -194,8 +199,8 @@ public class MicToSpeechly : MonoBehaviour
               bool isLoudFrame = Energy > Math.Max(VADMinimumEnergy, BaselineEnergy * VADSignalToNoise);
               PushToFrameHistory(isLoudFrame);
 
-              int loudFrames = CountLoudFrames(HistoryFrames);
-              float loudFrameRatio = (1f * loudFrames) / HistoryFrames;
+              int loudFrames = CountLoudFrames(VADFrames);
+              float loudFrameRatio = (1f * loudFrames) / VADFrames;
 
               if (loudFrameRatio >= VADActivation) {
                 vadSustainMillisLeft = VADSustainMillis;

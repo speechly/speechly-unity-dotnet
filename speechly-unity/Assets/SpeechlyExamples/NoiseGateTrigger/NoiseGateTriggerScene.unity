@@ -1787,7 +1787,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 20, y: 0}
+  m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &1523007325
@@ -2204,11 +2204,12 @@ MonoBehaviour:
   CaptureDeviceName: 
   MicSampleRate: 16000
   FrameMillis: 30
-  HistoryFrames: 5
+  HistoryFrames: 8
   CalcAudioPeaks: 1
   EnergyTresholdVAD: 1
   VADMinimumEnergy: 0.005
   VADSignalToNoise: 2
+  VADFrames: 5
   VADActivation: 0.7
   VADRelease: 0.2
   VADSustainMillis: 3000
