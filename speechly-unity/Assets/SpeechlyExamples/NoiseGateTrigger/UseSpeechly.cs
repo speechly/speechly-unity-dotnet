@@ -9,7 +9,6 @@ namespace Speechly.Example.NoiseGateTrigger
 {
   public class UseSpeechly : MonoBehaviour
   {
-    public Slider SliderAudioPeak;
     public Slider SliderEnergy;
     public Slider SliderBaselineEnergy;
     public Image Fill;
@@ -33,7 +32,6 @@ namespace Speechly.Example.NoiseGateTrigger
 
     void Update()
     {
-      SliderAudioPeak.value = MicToSpeechly.Instance.Peak;
       SliderEnergy.value = MicToSpeechly.Instance.Energy;
       SliderBaselineEnergy.value = MicToSpeechly.Instance.BaselineEnergy;
       Fill.color = MicToSpeechly.Instance.IsSignalDetected ? Color.red : Color.white;
