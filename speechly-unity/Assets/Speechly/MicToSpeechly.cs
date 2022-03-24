@@ -35,16 +35,16 @@ public class MicToSpeechly : MonoBehaviour
   [Tooltip("Number of frames to keep in memory. When listening is started, history frames are sent to capture the lead-in audio.")]
   public int HistoryFrames = 8;
   public bool CalcAudioPeaks = true;
-  [Tooltip("Voice Activity Detection (VAD) using adaptive energy tresholding. Automatically controls listening based on audio 'loudness'.")]
-  public bool EnergyTresholdVAD = false;
+  [Tooltip("Voice Activity Detection (VAD) using adaptive energy thresholding. Automatically controls listening based on audio 'loudness'.")]
+  public bool EnergyThresholdVAD = false;
   [Range(0.0f, 1.0f)]
-  [Tooltip("Energy treshold - below this won't trigger activation")]
+  [Tooltip("Energy threshold - below this won't trigger activation")]
   public float VADMinimumEnergy = 0.005f;
   [Range(1.0f, 10.0f)]
   [Tooltip("Signal-to-noise energy ratio needed for frame to be 'loud'")]
   public float VADSignalToNoise = 2.0f;
   [Range(1, 32)]
-  [Tooltip("Number of past frames analyzed for energy treshold VAD. Should be <= than HistoryFrames.")]
+  [Tooltip("Number of past frames analyzed for energy threshold VAD. Should be <= than HistoryFrames.")]
   public int VADFrames = 5;
   [Range(.0f, 1.0f)]
   [Tooltip("Minimum 'loud' to 'silent' frame ratio in history to activate 'IsSignalDetected'")]
@@ -58,7 +58,7 @@ public class MicToSpeechly : MonoBehaviour
   [Range(0, 5000)]
   [Tooltip("Rate of background noise learn. Defined as duration in which background noise energy is moved halfway towards current frame's energy.")]
   public int VADNoiseHalftimeMillis = 400;
-  [Tooltip("Disable VAD listening control if you want to use the energy treshold but want to implement custom listening control by reading IsSignalDetected state.")]
+  [Tooltip("Disable VAD listening control if you want to use the energy threshold but want to implement custom listening control by reading IsSignalDetected state.")]
   public bool VADControlListening = true;
   public bool DebugPrint = false;
   public float Peak {get; private set; } = 0f;
@@ -179,7 +179,7 @@ public class MicToSpeechly : MonoBehaviour
           }
         }
 
-        if (EnergyTresholdVAD) {
+        if (EnergyThresholdVAD) {
           int capturedSamplesLeft = samples;
 
           while (capturedSamplesLeft > 0) {
@@ -237,7 +237,7 @@ public class MicToSpeechly : MonoBehaviour
         }
 
         // Turn off listening when VAD is disabled
-        bool vadEnabled = EnergyTresholdVAD && VADControlListening;
+        bool vadEnabled = EnergyThresholdVAD && VADControlListening;
         if (!vadEnabled && wasVADEnabled) {
           ResetVAD();
           if (SpeechlyClient.IsListening) {
@@ -279,7 +279,7 @@ public class MicToSpeechly : MonoBehaviour
   }
 
   private void ResetVAD() {
-    if (!EnergyTresholdVAD) {
+    if (!EnergyThresholdVAD) {
       IsSignalDetected = false;
       loudFrameBits = 0;
       Energy = 0f;

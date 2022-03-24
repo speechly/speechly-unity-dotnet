@@ -1821,7 +1821,7 @@ MonoBehaviour:
   FrameMillis: 30
   HistoryFrames: 8
   CalcAudioPeaks: 1
-  EnergyTresholdVAD: 1
+  EnergyThresholdVAD: 1
   VADMinimumEnergy: 0.005
   VADSignalToNoise: 2
   VADFrames: 5

@@ -26,6 +26,12 @@
 # Visual Studio cache directory
 .vs/
 
+# Visual Studio Code
+.vscode
+
+# Rider
+.idea
+
 # Gradle cache directory
 .gradle/
 
@@ -70,3 +76,6 @@ crashlytics-build.properties
 # Temporary auto-generated Android Assets
 /[Aa]ssets/[Ss]treamingAssets/aa.meta
 /[Aa]ssets/[Ss]treamingAssets/aa/*
+
+# OS X system files
+.DS_Store
