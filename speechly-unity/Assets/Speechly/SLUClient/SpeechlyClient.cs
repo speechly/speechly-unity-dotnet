@@ -8,7 +8,8 @@ using System.Collections.Concurrent;
 namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
-    public static bool DEBUG_SAVE_AUDIO = false;
+    public static bool DEBUG_SAVE_AUDIO = true;
+    public static bool SEND_AUDIO = false;
 
     public delegate void SegmentChangeDelegate(Segment segment);
     public delegate void StateChangeDelegate(ClientState state);
@@ -44,6 +45,7 @@ namespace Speechly.SLUClient {
     private bool manualUpdate;
     private bool debug = false;
     private FileStream debugAudioStream;
+    private EnergyTresholdVAD vad = null;
 
     private int sampleRate = 16000;
     private int frameMillis = 30;
@@ -55,6 +57,7 @@ namespace Speechly.SLUClient {
       string projectId = null,
       string appId = null,
       SpeechlyConfig config = null,
+      EnergyTresholdVAD vad = null,
       bool manualUpdate = false,
       bool debug = false
     ) {
@@ -122,6 +125,10 @@ namespace Speechly.SLUClient {
         throw new Exception("Already listening.");
       }
       IsListening = true;
+      if (DEBUG_SAVE_AUDIO) {
+        string fileIdentifier = System.Guid.NewGuid().ToString();
+        debugAudioStream = new FileStream($"utterance_{fileIdentifier}.raw", FileMode.CreateNew, FileAccess.Write, FileShare.None);
+      }
       SetState(ClientState.Starting);
       try {
         startContextTCS = new TaskCompletionSource<MsgCommon>();
@@ -131,9 +138,6 @@ namespace Speechly.SLUClient {
           await wsClient.SendText($"{{\"event\": \"start\"}}");
         }
         var contextId = (await startContextTCS.Task).audio_context;
-        if (DEBUG_SAVE_AUDIO) {
-          debugAudioStream = new FileStream($"utterance_{contextId}.raw", FileMode.CreateNew, FileAccess.Write, FileShare.None);
-        }
         SamplesSent = 0;
         SetState(ClientState.Recording);
         return contextId;
@@ -144,13 +148,13 @@ namespace Speechly.SLUClient {
       }
     }
 
-    public async Task SendAudioFile(string fileName) {
+    public async Task ProcessAudioFile(string fileName) {
       var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-      await SendAudio(fileStream);
+      await ProcessAudio(fileStream);
       fileStream.Close();
     }
 
-    public async Task SendAudio(Stream fileStream) {
+    public async Task ProcessAudio(Stream fileStream) {
       if (State != ClientState.Starting && State != ClientState.Recording) return;
 
       // @TODO Use a pre-allocated buf
@@ -172,20 +176,52 @@ namespace Speechly.SLUClient {
       }
     }
 
-    public async Task ProcessFrame(float[] floats, int start = 0, int samples = -1) {
-      if (samples < 0) samples = floats.Length;
-      if (samples == 0) return;
-      Logger.Log($"Processing {samples}, first value {floats[0]}");
-      SendAudio(floats, start, samples);
+    public async Task ProcessFrame(float[] floats, int start = 0, int length = -1) {
+      if (length < 0) length = floats.Length;
+      if (length == 0) return;
+      int end = start + length;
+      Logger.Log($"Processing {length}, first value {floats[0]}");
+      AnalyzeAudioFrame(in floats, start, length);
+
+      if (DEBUG_SAVE_AUDIO && IsListening) {
+        using (BinaryWriter writer = new BinaryWriter(debugAudioStream)) {
+          for (int i = start; i < end; i++) {
+            writer.Write(floats[i]);
+          }
+        }
+        // debugAudioStream.Write(floats, 0, floats.Length);
+      }
+      SamplesSent += length;
+
+      if (SEND_AUDIO) {
+        await SendAudio(floats, start, length);
+      }
     }
 
-    private async Task SendAudio(float[] floats, int start = 0, int samples = -1) {
+    private void AnalyzeAudioFrame(in float[] waveData, int s, int frameSamples) {
+/*
+      if (EnergyThresholdVAD) {
+        Energy = AudioTools.GetEnergy(in waveData, s, frameSamples);
+
+        if (BaselineEnergy < 0f) {
+          BaselineEnergy = Energy;
+        }
+        bool isLoudFrame = Energy > Math.Max(VADMinimumEnergy, BaselineEnergy * VADSignalToNoise);
+        PushFrameHistory(isLoudFrame);
+        IsSignalDetected = DetermineNewSignalState(IsSignalDetected);
+        AdaptBackgroundNoise();
+      }
+*/
+    }
+
+
+    private async Task SendAudio(float[] floats, int start = 0, int length = -1) {
       if (State != ClientState.Starting && State != ClientState.Recording) return;
 
-      if (samples < 0) samples = floats.Length;
-      int end = start + samples;
+      if (length < 0) length = floats.Length;
+      int end = start + length;
       // @TODO Use a pre-allocated buf
-      var buf = new byte[samples * 2];
+      var buf = new byte[length * 2];
       int i = 0;
 
       for (var l = start; l < end; l++) {
@@ -194,10 +230,6 @@ namespace Speechly.SLUClient {
         buf[i++] = (byte)(v >> 8);
       }
 
-      if (DEBUG_SAVE_AUDIO) {
-        debugAudioStream.Write(buf, 0, buf.Length);
-      }
-      SamplesSent += samples;
       await wsClient.SendBytes(new ArraySegment<byte>(buf));
     }
 

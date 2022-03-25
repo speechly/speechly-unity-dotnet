@@ -47,7 +47,7 @@ namespace Speechly.SLUClient {
 
       stopWatch.Restart();
       _ = client.StartContext();
-      await client.SendAudioFile(fileName);
+      await client.ProcessAudioFile(fileName);
       await client.StopContext();
       var sluTime = stopWatch.ElapsedMilliseconds;
 

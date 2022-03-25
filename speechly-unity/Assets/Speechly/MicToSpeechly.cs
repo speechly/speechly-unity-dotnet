@@ -177,7 +177,7 @@ public class MicToSpeechly : MonoBehaviour
           int audioPos = effectiveHistorySamples;
 
           while (unprocessedSamplesLeft >= frameSamples) {
-            AnalyzeAudioFrame(in waveData, audioPos, frameSamples);
+            // AnalyzeAudioFrame(in waveData, audioPos, frameSamples);
 
             // Control listening
             if (EnergyThresholdVAD && VADControlListening) {
@@ -189,9 +189,9 @@ public class MicToSpeechly : MonoBehaviour
             // If listening, send audio
             if (SpeechlyClient.IsListening) {
               if (SpeechlyClient.SamplesSent == 0) {
-                task = SpeechlyClient.SendAudio(waveData, 0, audioPos + frameSamples);
+                task = SpeechlyClient.ProcessFrame(waveData, 0, audioPos + frameSamples);
               } else {
-                task = SpeechlyClient.SendAudio(waveData, audioPos, frameSamples);
+                task = SpeechlyClient.ProcessFrame(waveData, audioPos, frameSamples);
               }
               audioSent = true;
               yield return new WaitUntil(() => task.IsCompleted);
@@ -228,7 +228,6 @@ public class MicToSpeechly : MonoBehaviour
       IsSignalDetected = DetermineNewSignalState(IsSignalDetected);
       AdaptBackgroundNoise();
     }
-
   }
 
   private void ControlListening(bool newState) {
