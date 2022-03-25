@@ -124,18 +124,15 @@ namespace Speechly.SLUClient {
     }
   }
 
-  [DataContract]
-  public class SpeechlyConfig {
+  public class ConfigTool {
     public static string ConfigPath = "Speechly";
-    public static string ConfigFileName = "SLUClientConfig.json";
 
     [DataMember(Name = "deviceId")]
     public string deviceId = null;
 
-    public static SpeechlyConfig RestoreOrCreate() {
-      string basePath = Platform.GetPersistentStoragePath();
-      string pathToFile = Path.Combine(basePath, ConfigPath, ConfigFileName);
-      SpeechlyConfig config = new SpeechlyConfig();
+    public static T RestoreOrCreate<T>(string ConfigFileName) where T: class, new() {
+      string pathToFile = Path.Combine(Platform.GetPersistentStoragePath(), ConfigPath, ConfigFileName);
+      T config = new T();
       try {
         string jsonString = File.ReadAllText(pathToFile, Encoding.UTF8);
         config = JSON.Parse(jsonString, config);
@@ -144,13 +141,20 @@ namespace Speechly.SLUClient {
       return config;
     }
 
-    public void Save() {
-      string basePath = Platform.GetPersistentStoragePath();
-      Directory.CreateDirectory(Path.Combine(basePath, ConfigPath));
+    public static void Save<T>(T configData, string ConfigFileName) {
+      Directory.CreateDirectory(Path.Combine(Platform.GetPersistentStoragePath(), ConfigPath));
 
-      string pathToFile = Path.Combine(basePath, ConfigPath, ConfigFileName);
-      File.WriteAllText(pathToFile, JSON.Stringify(this), Encoding.UTF8);
+      string pathToFile = Path.Combine(Platform.GetPersistentStoragePath(), ConfigPath, ConfigFileName);
+      File.WriteAllText(pathToFile, JSON.Stringify(configData), Encoding.UTF8);
     }
+  }
+
+  [DataContract]
+  public class Preferences {
+    public static string FileName = "SLUClientConfig.json";
+
+    [DataMember(Name = "deviceId")]
+    public string deviceId = null;
   }
 
 }

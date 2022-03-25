@@ -94,9 +94,7 @@ public class MicToSpeechly : MonoBehaviour
       loginUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "https://staging.speechly.com/login",
       apiUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "wss://staging.speechly.com/ws/v1?sampleRate=16000",
       appId: this.AppId,
-      config: new SpeechlyConfig {
-        deviceId = SystemInfo.deviceUniqueIdentifier
-      },
+      deviceId: SystemInfo.deviceUniqueIdentifier,
       manualUpdate: true,
       debug: DebugPrint
     );

@@ -79,7 +79,7 @@ namespace Speechly.SLUClient {
       int byteIndex = srcStartSample * 2;
       int endByte = byteIndex + lengthSamples * 2;
       while (byteIndex < endByte) {
-        dest[dstIndex++] = (src[byteIndex++] + (src[byteIndex++] << 8)) / (float)0x7fff;
+        dest[dstIndex++] = ((short)(src[byteIndex++] + (src[byteIndex++] << 8))) / (float)0x7fff;
       }
       return lengthSamples;
     }

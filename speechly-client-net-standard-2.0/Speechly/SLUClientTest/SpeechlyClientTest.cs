@@ -8,13 +8,14 @@ using System.Diagnostics;
 
 namespace Speechly.SLUClient {
   public class SpeechlyClientTest {
-    public static async Task test(string fileName) {
+    public static async Task test(string fileName, string saveToFolder = null) {
       Stopwatch stopWatch = new Stopwatch();
 
       var client = new SpeechlyClient(
         loginUrl: "https://staging.speechly.com/login",
         apiUrl: "wss://staging.speechly.com/ws/v1?sampleRate=16000",
-        appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e" // Restaurant booking configuration
+        appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e", // Restaurant booking configuration
+        saveToFolder: saveToFolder
       );
 
       client.OnSegmentChange = (segment) => {

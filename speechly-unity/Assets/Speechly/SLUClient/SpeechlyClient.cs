@@ -8,7 +8,6 @@ using System.Collections.Concurrent;
 namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
-    public static bool DEBUG_SAVE_AUDIO = true;
     public static bool SEND_AUDIO = false;
 
     public delegate void SegmentChangeDelegate(Segment segment);
@@ -44,7 +43,9 @@ namespace Speechly.SLUClient {
     private string appId = null;
     private bool manualUpdate;
     private bool debug = false;
-    private FileStream debugAudioStream;
+    private string saveToFolder = null;
+    private FileStream outAudioStream;
+    private BinaryWriter outAudioWriter;
     private EnergyTresholdVAD vad = null;
 
     private int sampleRate = 16000;
@@ -56,9 +57,10 @@ namespace Speechly.SLUClient {
       string apiUrl = null,
       string projectId = null,
       string appId = null,
-      SpeechlyConfig config = null,
+      string deviceId = null,
       EnergyTresholdVAD vad = null,
       bool manualUpdate = false,
+      string saveToFolder = null,
       bool debug = false
     ) {
       if (loginUrl != null) this.loginUrl = loginUrl;
@@ -66,27 +68,24 @@ namespace Speechly.SLUClient {
       if (projectId != null) this.projectId = projectId;
       if (appId != null) this.appId = appId;
       this.manualUpdate = manualUpdate;
+      this.saveToFolder = saveToFolder;
       this.debug = debug;
 
-      if (config == null) {
-        // Load config
-        config = SpeechlyConfig.RestoreOrCreate();
+      if (!String.IsNullOrEmpty(deviceId)) {
+        this.deviceId = Platform.GuidFromString(deviceId);
+        if (this.debug) Logger.Log($"Using manual deviceId: {deviceId}");
+      } else {
+        // Load settings
+        Preferences config = ConfigTool.RestoreOrCreate<Preferences>(Preferences.FileName);
         // Restore or generate device id
         if (!String.IsNullOrEmpty(config.deviceId)) {
-          deviceId = config.deviceId;
-          if (this.debug) Logger.Log($"Restored deviceId: {deviceId}");
+          this.deviceId = config.deviceId;
+          if (this.debug) Logger.Log($"Restored deviceId: {this.deviceId}");
         } else {
-          deviceId = System.Guid.NewGuid().ToString();
-          config.deviceId = deviceId;
-          config.Save();
-          if (this.debug) Logger.Log($"New deviceId: {deviceId}");
-        }
-      } else {
-        if (String.IsNullOrEmpty(config.deviceId)) {
-          throw new Exception("The manually provided SpeechlyConfig.deviceId needs to be a non-identifiable unique device identifier.");
-        } else {
-          deviceId = Platform.GuidFromString(config.deviceId);
-          if (this.debug) Logger.Log($"Using manual deviceId: {deviceId}");
+          this.deviceId = System.Guid.NewGuid().ToString();
+          config.deviceId = this.deviceId;
+          ConfigTool.Save<Preferences>(config, Preferences.FileName);
+          if (this.debug) Logger.Log($"New deviceId: {this.deviceId}");
         }
       }
 
@@ -125,9 +124,10 @@ namespace Speechly.SLUClient {
         throw new Exception("Already listening.");
       }
       IsListening = true;
-      if (DEBUG_SAVE_AUDIO) {
+      if (saveToFolder != null) {
         string fileIdentifier = System.Guid.NewGuid().ToString();
-        debugAudioStream = new FileStream($"utterance_{fileIdentifier}.raw", FileMode.CreateNew, FileAccess.Write, FileShare.None);
+        outAudioStream = new FileStream(Path.Combine(saveToFolder, $"utterance_{fileIdentifier}.raw"), FileMode.CreateNew, FileAccess.Write, FileShare.None);
+        outAudioWriter = new BinaryWriter(outAudioStream, Encoding.UTF8, true);
       }
       SetState(ClientState.Starting);
       try {
@@ -183,11 +183,9 @@ namespace Speechly.SLUClient {
       Logger.Log($"Processing {length}, first value {floats[0]}");
       AnalyzeAudioFrame(in floats, start, length);
 
-      if (DEBUG_SAVE_AUDIO && IsListening) {
-        using (BinaryWriter writer = new BinaryWriter(debugAudioStream)) {
-          for (int i = start; i < end; i++) {
-            writer.Write(floats[i]);
-          }
+      if (saveToFolder != null && IsListening) {
+        for (int i = start; i < end; i++) {
+          outAudioWriter.Write(floats[i]);
         }
         // debugAudioStream.Write(floats, 0, floats.Length);
       }
@@ -243,8 +241,9 @@ namespace Speechly.SLUClient {
         stopContextTCS = new TaskCompletionSource<MsgCommon>();
         await wsClient.SendText($"{{\"event\": \"stop\"}}");
         var contextId = (await stopContextTCS.Task).audio_context;
-        if (DEBUG_SAVE_AUDIO) {
-          debugAudioStream.Close();
+        if (saveToFolder != null) {
+          outAudioWriter.Close();
+          outAudioStream.Close();
         }
       } catch (Exception e) {
         SetState(ClientState.Connected);

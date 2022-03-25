@@ -7,6 +7,6 @@ class Program
 {
   static async Task Main(string[] args)
   {
-    await SpeechlyClientTest.test("Speechly/SLUClientTest/00_chinese_restaurant.raw");
+    await SpeechlyClientTest.test("Speechly/SLUClientTest/00_chinese_restaurant.raw", ".");
   }
 }
