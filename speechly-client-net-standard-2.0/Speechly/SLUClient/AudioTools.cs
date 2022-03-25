@@ -3,7 +3,7 @@ using System;
 namespace Speechly.SLUClient {
   public class AudioTools {
 
-    public static void Downsample(float[] src, ref float[] dest, int sourceIndex = 0, int sourceLength = -1, int destIndex = 0, int destLength = -1) {
+    public static void Downsample(in float[] src, ref float[] dest, int sourceIndex = 0, int sourceLength = -1, int destIndex = 0, int destLength = -1) {
       if (sourceLength < 0) sourceLength = src.Length - sourceIndex;
       if (destLength < 0) destLength = dest.Length - destIndex;
 
@@ -45,6 +45,30 @@ namespace Speechly.SLUClient {
       if (totalWeight > 0) {
         dest[destIndex++] = sum / totalWeight;
       }
+    }
+
+    public static float GetEnergy(in float[] samples, int start = 0, int length = -1) {
+      if (length < 0) length = samples.Length - start;
+      if (length <= 0) return 0f;
+      int endIndex = start + length;
+      float sumEnergySquared = 0f;
+      for ( ; start < endIndex; start++ ) {
+        sumEnergySquared += samples[start] * samples[start];
+      }
+      return (float)Math.Sqrt(sumEnergySquared / length);
+    }
+
+    public static float GetAudioPeak(in float[] samples, int start = 0, int length = -1) {
+      if (length < 0) length = samples.Length - start;
+      if (length <= 0) return 0f;
+      int endIndex = start + length;
+      float peak = 0f;
+      for ( ; start < endIndex; start++ ) {
+        if (samples[start] > peak) {
+          peak = samples[start];
+        }
+      }
+      return peak;
     }
 
   }

@@ -69,13 +69,13 @@ public class MicToSpeechly : MonoBehaviour
   public SpeechlyClient SpeechlyClient { get; private set; }
   private AudioClip clip;
   private float[] waveData;
-  private int oldCaptureRingbufferPos;
+  private int oldRingbufferPos;
+  private int processedRingbufferPos;
+  private int unprocessedSamplesLeft = 0;
   private int loops;
 
   private int historySizeSamples;
   private int frameSamples;
-  private int frameSamplesLeft;
-  private float sumEnergySquared = 0f;
   private float vadSustainMillisLeft = 0;
   private bool wasVADEnabled = false;
 
@@ -129,7 +129,6 @@ public class MicToSpeechly : MonoBehaviour
     }
 
     frameSamples = MicSampleRate * FrameMillis / 1000;
-    frameSamplesLeft = frameSamples;
     historySizeSamples = frameSamples * HistoryFrames;
 
     StartCoroutine(RunSpeechly());
@@ -153,112 +152,132 @@ public class MicToSpeechly : MonoBehaviour
       
       int samples;
       bool loop = false;
-      if (captureRingbufferPos < oldCaptureRingbufferPos)
+      if (captureRingbufferPos < oldRingbufferPos)
       {
-        samples = (waveData.Length - oldCaptureRingbufferPos) + captureRingbufferPos;
+        samples = (waveData.Length - oldRingbufferPos) + captureRingbufferPos;
         loop = true;
       } else {
-        samples = captureRingbufferPos - oldCaptureRingbufferPos;
+        samples = captureRingbufferPos - oldRingbufferPos;
       }
+      // Limit number of samples, during 1st processing frame as there may be a lot of data
       samples = Math.Min(samples, waveData.Length - historySizeSamples);
 
       if (samples > 0) {
         if (loop) loops++;
-        int effectiveHistorySamples = loops > 0 ? historySizeSamples : Math.Min(captureRingbufferPos, historySizeSamples);
-        int effectiveCapturePos = (oldCaptureRingbufferPos + (waveData.Length - effectiveHistorySamples)) % waveData.Length;
+        unprocessedSamplesLeft += samples;
+        oldRingbufferPos = captureRingbufferPos;
 
-        // Always captures full buffer length (MicSampleRate * MicBufferLengthMillis / 1000 samples), starting from offset
-        clip.GetData(waveData, effectiveCapturePos);
-        oldCaptureRingbufferPos = captureRingbufferPos;
+        if (unprocessedSamplesLeft >= frameSamples) {
+          int effectiveHistorySamples = loops > 0 ? historySizeSamples : Math.Min(captureRingbufferPos, historySizeSamples);
+          int effectiveCapturePos = (processedRingbufferPos + (waveData.Length - effectiveHistorySamples)) % waveData.Length;
 
-        if (CalcAudioPeaks) {
-          int s = samples + effectiveHistorySamples - 1;
-          while (s >= effectiveHistorySamples) {
-            Peak = Mathf.Max(Peak, waveData[s]);
-            s--;
-          }
-        }
+          // Always captures full buffer length (MicSampleRate * MicBufferLengthMillis / 1000 samples), starting from offset
+          clip.GetData(waveData, effectiveCapturePos);
 
-        if (EnergyThresholdVAD) {
-          int capturedSamplesLeft = samples;
+          int audioPos = effectiveHistorySamples;
 
-          while (capturedSamplesLeft > 0) {
-            int summedSamples = Math.Min(capturedSamplesLeft, frameSamplesLeft);
-            int s = summedSamples + effectiveHistorySamples - 1;
-            while (s >= effectiveHistorySamples) {
-              sumEnergySquared += waveData[s] * waveData[s];
-              s--;
+          while (unprocessedSamplesLeft >= frameSamples) {
+            AnalyzeAudioFrame(in waveData, audioPos, frameSamples);
+
+            // Control listening
+            if (EnergyThresholdVAD && VADControlListening) {
+              ControlListening(IsSignalDetected);
+            } else {
+              EnsureStopContext();
             }
-            frameSamplesLeft -= summedSamples;
-            if (frameSamplesLeft == 0) {
-              frameSamplesLeft = frameSamples;
-              Energy = (float)Math.Sqrt(sumEnergySquared / frameSamples);
-              if (BaselineEnergy < 0f) {
-                BaselineEnergy = Energy;
+
+            // If listening, send audio
+            if (SpeechlyClient.IsListening) {
+              if (SpeechlyClient.SamplesSent == 0) {
+                task = SpeechlyClient.SendAudio(waveData, 0, audioPos + frameSamples);
+              } else {
+                task = SpeechlyClient.SendAudio(waveData, audioPos, frameSamples);
               }
-              bool isLoudFrame = Energy > Math.Max(VADMinimumEnergy, BaselineEnergy * VADSignalToNoise);
-              PushFrameHistory(isLoudFrame);
-
-              int loudFrames = CountLoudFrames(VADFrames);
-              float loudFrameRatio = (1f * loudFrames) / VADFrames;
-
-              if (loudFrameRatio >= VADActivation) {
-                vadSustainMillisLeft = VADSustainMillis;
-                if (!IsSignalDetected) {
-                  IsSignalDetected = true;
-                  if (VADControlListening) {
-                    StartContext();
-                  }
-                }
-              }
-
-              if (loudFrameRatio < VADRelease && vadSustainMillisLeft == 0) {
-                if (IsSignalDetected) {
-                  IsSignalDetected = false;
-                  if (VADControlListening) {
-                    StopContext();
-                  }
-                }
-              }
-
-              // Gradually learn background noise level
-              if (!IsSignalDetected) {
-                if (VADNoiseHalftimeMillis > 0f) {
-                  var decay = (float)Math.Pow(2.0, -FrameMillis / (double)VADNoiseHalftimeMillis);
-                  BaselineEnergy = (BaselineEnergy * decay) + (Energy * (1f - decay));
-                }
-              }
-
-              sumEnergySquared = 0f;
-              vadSustainMillisLeft = Math.Max(vadSustainMillisLeft - FrameMillis, 0);
+              audioSent = true;
+              yield return new WaitUntil(() => task.IsCompleted);
             }
-            capturedSamplesLeft -= summedSamples;
-          }
-        }
 
-        // Turn off listening when VAD is disabled
-        bool vadEnabled = EnergyThresholdVAD && VADControlListening;
-        if (!vadEnabled && wasVADEnabled) {
-          ResetVAD();
-          if (SpeechlyClient.IsListening) {
-            StopContext();
+            // Next frame
+            audioPos += frameSamples;
+            unprocessedSamplesLeft -= frameSamples;
           }
-        }
-        wasVADEnabled = vadEnabled;
 
-        if (SpeechlyClient.IsListening) {
-          if (SpeechlyClient.SamplesSent == 0) {
-            task = SpeechlyClient.SendAudio(waveData, 0, effectiveHistorySamples + samples);
-          } else {
-            task = SpeechlyClient.SendAudio(waveData, 0 + effectiveHistorySamples, samples + effectiveHistorySamples);
-          }
-          audioSent = true;
-          yield return new WaitUntil(() => task.IsCompleted);
+          processedRingbufferPos = (processedRingbufferPos + audioPos - effectiveHistorySamples) % waveData.Length;
         }
       }
       
       if (!audioSent) {
         yield return null;
+      }
+    }
+  }
+
+  private void AnalyzeAudioFrame(in float[] waveData, int s, int frameSamples) {
+    if (CalcAudioPeaks) {
+      Peak = Mathf.Max(Peak, AudioTools.GetAudioPeak(in waveData, s, frameSamples));
+    }
+
+    if (EnergyThresholdVAD) {
+      Energy = AudioTools.GetEnergy(in waveData, s, frameSamples);
+
+      if (BaselineEnergy < 0f) {
+        BaselineEnergy = Energy;
+      }
+      bool isLoudFrame = Energy > Math.Max(VADMinimumEnergy, BaselineEnergy * VADSignalToNoise);
+      PushFrameHistory(isLoudFrame);
+      IsSignalDetected = DetermineNewSignalState(IsSignalDetected);
+      AdaptBackgroundNoise();
+    }
+
+  }
+
+  private void ControlListening(bool newState) {
+    wasVADEnabled = true;
+
+    if (!SpeechlyClient.IsListening && newState) {
+      StartContext();
+    }
+
+    if (SpeechlyClient.IsListening && !newState) {
+      StopContext();
+    }
+  }
+
+  private void EnsureStopContext() {
+    // Turn off listening when VAD is disabled
+    if (wasVADEnabled) {
+      wasVADEnabled = false;
+      ResetVAD();
+      if (SpeechlyClient.IsListening) {
+        StopContext();
+      }
+    }
+  }
+
+  private bool DetermineNewSignalState(bool currentState) {
+    vadSustainMillisLeft = Math.Max(vadSustainMillisLeft - FrameMillis, 0);
+
+    int loudFrames = CountLoudFrames(VADFrames);
+    float loudFrameRatio = (1f * loudFrames) / VADFrames;
+
+    if (loudFrameRatio >= VADActivation) {
+      vadSustainMillisLeft = VADSustainMillis;
+      return true;
+    }
+
+    if (loudFrameRatio < VADRelease && vadSustainMillisLeft == 0) {
+      return false;
+    }
+
+    return currentState;
+  }
+
+  private void AdaptBackgroundNoise() {
+    // Gradually learn background noise level
+    if (!IsSignalDetected) {
+      if (VADNoiseHalftimeMillis > 0f) {
+        var decay = (float)Math.Pow(2.0, -FrameMillis / (double)VADNoiseHalftimeMillis);
+        BaselineEnergy = (BaselineEnergy * decay) + (Energy * (1f - decay));
       }
     }
   }
@@ -284,8 +303,6 @@ public class MicToSpeechly : MonoBehaviour
       loudFrameBits = 0;
       Energy = 0f;
       BaselineEnergy = -1f;
-      frameSamplesLeft = frameSamples;
-      sumEnergySquared = 0f;
     }
   }
 

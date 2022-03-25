@@ -156,13 +156,13 @@ namespace Speechly.SLUClient {
       }
     }
 
-    public async Task SendAudio(float[] floats, int start = 0, int end = -1) {
+    public async Task SendAudio(float[] floats, int start = 0, int length = -1) {
       if (State != ClientState.Recording) return;
 
-      if (end < 0) end = floats.Length;
-      int bufSize = end - start;
+      if (length < 0) length = floats.Length;
+      int end = start + length;
       // @TODO Use a pre-allocated buf
-      var buf = new byte[bufSize * 2];
+      var buf = new byte[length * 2];
       int i = 0;
 
       for (var l = start; l < end; l++) {
@@ -174,8 +174,7 @@ namespace Speechly.SLUClient {
       if (DEBUG_SAVE_AUDIO) {
         debugAudioStream.Write(buf, 0, buf.Length);
       }
-
-      SamplesSent += bufSize;
+      SamplesSent += length;
       await wsClient.SendBytes(new ArraySegment<byte>(buf));
     }
 
