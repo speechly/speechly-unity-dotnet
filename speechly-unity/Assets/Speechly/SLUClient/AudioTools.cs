@@ -71,5 +71,18 @@ namespace Speechly.SLUClient {
       return peak;
     }
 
+    public static int ConvertInt16ToFloat(in byte[] src, ref float[] dest, int srcStartSample = 0, int lengthSamples = -1, int dstIndex = 0) {
+      if (lengthSamples < 0) lengthSamples = src.Length / 2 - srcStartSample;
+      int maxLen = Math.Min((src.Length / 2) - srcStartSample, dest.Length - dstIndex);
+      lengthSamples = Math.Min(lengthSamples, maxLen);
+      if (lengthSamples <= 0) return 0;
+      int byteIndex = srcStartSample * 2;
+      int endByte = byteIndex + lengthSamples * 2;
+      while (byteIndex < endByte) {
+        dest[dstIndex++] = (src[byteIndex++] + (src[byteIndex++] << 8)) / (float)0x7fff;
+      }
+      return lengthSamples;
+    }
+
   }
 }

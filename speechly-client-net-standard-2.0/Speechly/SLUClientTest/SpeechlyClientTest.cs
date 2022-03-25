@@ -9,7 +9,7 @@ using System.Diagnostics;
 namespace Speechly.SLUClient {
   public class SpeechlyClientTest {
     public static async Task test(string fileName) {
-      Stopwatch sw = new Stopwatch();
+      Stopwatch stopWatch = new Stopwatch();
 
       var client = new SpeechlyClient(
         loginUrl: "https://staging.speechly.com/login",
@@ -41,15 +41,15 @@ namespace Speechly.SLUClient {
       client.OnEntity = (msg) => Logger.Log($"Final entity '{msg.data.type}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
       client.OnIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
 
-      sw.Restart();
+      stopWatch.Restart();
       await client.Connect();
-      var connectTime = sw.ElapsedMilliseconds;
+      var connectTime = stopWatch.ElapsedMilliseconds;
 
-      sw.Restart();
-      await client.StartContext();
+      stopWatch.Restart();
+      _ = client.StartContext();
       await client.SendAudioFile(fileName);
       await client.StopContext();
-      var sluTime = sw.ElapsedMilliseconds;
+      var sluTime = stopWatch.ElapsedMilliseconds;
 
       Logger.Log($"==== STATS ====");
       Logger.Log($"Connect time: {connectTime} ms");

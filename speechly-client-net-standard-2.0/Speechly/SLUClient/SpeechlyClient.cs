@@ -45,6 +45,10 @@ namespace Speechly.SLUClient {
     private bool debug = false;
     private FileStream debugAudioStream;
 
+    private int sampleRate = 16000;
+    private int frameMillis = 30;
+    private int frameSamples;
+
     public SpeechlyClient(
       string loginUrl = null,
       string apiUrl = null,
@@ -83,6 +87,7 @@ namespace Speechly.SLUClient {
         }
       }
 
+      frameSamples = sampleRate * frameMillis / 1000;
     }
 
     public async Task Connect() {
@@ -139,30 +144,48 @@ namespace Speechly.SLUClient {
       }
     }
 
+    public async Task SendAudioFile(string fileName) {
+      var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+      await SendAudio(fileStream);
+      fileStream.Close();
+    }
+
     public async Task SendAudio(Stream fileStream) {
-      if (State != ClientState.Recording) return;
+      if (State != ClientState.Starting && State != ClientState.Recording) return;
 
       // @TODO Use a pre-allocated buf
-      var b = new byte[8192];
+      var bytes = new byte[frameSamples * 2];
+      var floats = new float[frameSamples];
 
       while (true) {
-        int bytesRead = fileStream.Read(b, 0, b.Length);
+        int bytesRead = fileStream.Read(bytes, 0, bytes.Length);
         if (bytesRead == 0) break;
-        if (DEBUG_SAVE_AUDIO) {
-          debugAudioStream.Write(b, 0, bytesRead);
+        int samples = bytesRead / 2;
+        Logger.Log($"Read {samples}, first value {bytes[0]}");
+        int processed = AudioTools.ConvertInt16ToFloat(in bytes, ref floats, 0, samples);
+        Logger.Log($"Converted {processed}, first value {floats[0]}");
+        // Pad with zeroes
+        for (int i = floats.Length-1 ; i >= samples; i--) {
+          floats[i] = 0;
         }
-        SamplesSent += bytesRead / 2;
-        await wsClient.SendBytes(new ArraySegment<byte>(b, 0, bytesRead));
+        await ProcessFrame(floats, 0, samples);
       }
     }
 
-    public async Task SendAudio(float[] floats, int start = 0, int length = -1) {
-      if (State != ClientState.Recording) return;
+    public async Task ProcessFrame(float[] floats, int start = 0, int samples = -1) {
+      if (samples < 0) samples = floats.Length;
+      if (samples == 0) return;
+      Logger.Log($"Processing {samples}, first value {floats[0]}");
+      SendAudio(floats, start, samples);
+    }
 
-      if (length < 0) length = floats.Length;
-      int end = start + length;
+    private async Task SendAudio(float[] floats, int start = 0, int samples = -1) {
+      if (State != ClientState.Starting && State != ClientState.Recording) return;
+
+      if (samples < 0) samples = floats.Length;
+      int end = start + samples;
       // @TODO Use a pre-allocated buf
-      var buf = new byte[length * 2];
+      var buf = new byte[samples * 2];
       int i = 0;
 
       for (var l = start; l < end; l++) {
@@ -174,14 +197,8 @@ namespace Speechly.SLUClient {
       if (DEBUG_SAVE_AUDIO) {
         debugAudioStream.Write(buf, 0, buf.Length);
       }
-      SamplesSent += length;
+      SamplesSent += samples;
       await wsClient.SendBytes(new ArraySegment<byte>(buf));
-    }
-
-    public async Task SendAudioFile(string fileName) {
-      var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-      await SendAudio(fileStream);
-      fileStream.Close();
     }
 
     public async Task StopContext() {
