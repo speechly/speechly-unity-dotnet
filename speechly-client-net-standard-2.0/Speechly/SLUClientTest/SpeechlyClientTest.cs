@@ -8,14 +8,15 @@ using System.Diagnostics;
 
 namespace Speechly.SLUClient {
   public class SpeechlyClientTest {
-    public static async Task test(string fileName, string saveToFolder = null) {
+    public static async Task test(string fileName, string saveToFolder = null, EnergyTresholdVAD vad = null) {
       Stopwatch stopWatch = new Stopwatch();
 
       var client = new SpeechlyClient(
         loginUrl: "https://staging.speechly.com/login",
         apiUrl: "wss://staging.speechly.com/ws/v1?sampleRate=16000",
         appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e", // Restaurant booking configuration
-        saveToFolder: saveToFolder
+        saveToFolder: saveToFolder,
+        vad: vad
       );
 
       client.OnSegmentChange = (segment) => {
@@ -47,9 +48,9 @@ namespace Speechly.SLUClient {
       var connectTime = stopWatch.ElapsedMilliseconds;
 
       stopWatch.Restart();
-      _ = client.StartContext();
+      if (vad == null) _ = client.StartContext();
       await client.ProcessAudioFile(fileName);
-      await client.StopContext();
+      if (vad == null) await client.StopContext();
       var sluTime = stopWatch.ElapsedMilliseconds;
 
       Logger.Log($"==== STATS ====");

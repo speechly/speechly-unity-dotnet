@@ -45,12 +45,12 @@ namespace Speechly.SLUClient {
     private bool debug = false;
     private string saveToFolder = null;
     private FileStream outAudioStream;
-    private BinaryWriter outAudioWriter;
     private EnergyTresholdVAD vad = null;
 
     private int sampleRate = 16000;
     private int frameMillis = 30;
     private int frameSamples;
+    private int utteranceSerial;
 
     public SpeechlyClient(
       string loginUrl = null,
@@ -69,6 +69,7 @@ namespace Speechly.SLUClient {
       if (appId != null) this.appId = appId;
       this.manualUpdate = manualUpdate;
       this.saveToFolder = saveToFolder;
+      this.vad = vad;
       this.debug = debug;
 
       if (!String.IsNullOrEmpty(deviceId)) {
@@ -124,23 +125,26 @@ namespace Speechly.SLUClient {
         throw new Exception("Already listening.");
       }
       IsListening = true;
+      SamplesSent = 0;
       if (saveToFolder != null) {
-        string fileIdentifier = System.Guid.NewGuid().ToString();
+        string fileIdentifier = (utteranceSerial++).ToString().PadLeft(4, '0');;
         outAudioStream = new FileStream(Path.Combine(saveToFolder, $"utterance_{fileIdentifier}.raw"), FileMode.CreateNew, FileAccess.Write, FileShare.None);
-        outAudioWriter = new BinaryWriter(outAudioStream, Encoding.UTF8, true);
       }
       SetState(ClientState.Starting);
       try {
-        startContextTCS = new TaskCompletionSource<MsgCommon>();
-        if (appId != null) {
-          await wsClient.SendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
-        } else {
-          await wsClient.SendText($"{{\"event\": \"start\"}}");
+        if (SEND_AUDIO) {
+          startContextTCS = new TaskCompletionSource<MsgCommon>();
+          if (appId != null) {
+            await wsClient.SendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
+          } else {
+            await wsClient.SendText($"{{\"event\": \"start\"}}");
+          }
+          var contextId = (await startContextTCS.Task).audio_context;
+          SetState(ClientState.Recording);
+          return contextId;
         }
-        var contextId = (await startContextTCS.Task).audio_context;
-        SamplesSent = 0;
         SetState(ClientState.Recording);
-        return contextId;
+        return "localContext";
       } catch (Exception e) {
         SetState(ClientState.Connected);
         Logger.LogError(e.ToString());
@@ -155,7 +159,7 @@ namespace Speechly.SLUClient {
     }
 
     public async Task ProcessAudio(Stream fileStream) {
-      if (State != ClientState.Starting && State != ClientState.Recording) return;
+      // if (State != ClientState.Starting && State != ClientState.Recording) return;
 
       // @TODO Use a pre-allocated buf
       var bytes = new byte[frameSamples * 2];
@@ -180,36 +184,34 @@ namespace Speechly.SLUClient {
       if (length < 0) length = floats.Length;
       if (length == 0) return;
       int end = start + length;
-      Logger.Log($"Processing {length}, first value {floats[0]}");
+
       AnalyzeAudioFrame(in floats, start, length);
 
-      if (saveToFolder != null && IsListening) {
-        for (int i = start; i < end; i++) {
-          outAudioWriter.Write(floats[i]);
-        }
-        // debugAudioStream.Write(floats, 0, floats.Length);
-      }
-      SamplesSent += length;
+      AutoControlListening();
 
-      if (SEND_AUDIO) {
-        await SendAudio(floats, start, length);
-      }
+      await SendAudio(floats, start, length);
     }
 
     private void AnalyzeAudioFrame(in float[] waveData, int s, int frameSamples) {
-/*
-      if (EnergyThresholdVAD) {
-        Energy = AudioTools.GetEnergy(in waveData, s, frameSamples);
-
-        if (BaselineEnergy < 0f) {
-          BaselineEnergy = Energy;
-        }
-        bool isLoudFrame = Energy > Math.Max(VADMinimumEnergy, BaselineEnergy * VADSignalToNoise);
-        PushFrameHistory(isLoudFrame);
-        IsSignalDetected = DetermineNewSignalState(IsSignalDetected);
-        AdaptBackgroundNoise();
+      if (this.vad != null) {
+        vad.ProcessFrame(waveData, s, frameSamples);
       }
-*/
+    }
+
+    private void AutoControlListening() {
+      if (this.vad != null) {
+        if (!IsListening && vad.IsSignalDetected) {
+          _ = StartContext();
+        }
+
+        if (IsListening && !vad.IsSignalDetected) {
+          _ = StopContext();
+        }
+        //} else {
+        //  EnsureStopContext();
+        //}
+
+      }
     }
 
 
@@ -228,30 +230,43 @@ namespace Speechly.SLUClient {
         buf[i++] = (byte)(v >> 8);
       }
 
-      await wsClient.SendBytes(new ArraySegment<byte>(buf));
+      SamplesSent += length;
+
+      // Stream to file
+      if (saveToFolder != null) {
+        outAudioStream.Write(buf, 0, length * 2);
+      }
+
+      // Stream via websocket
+      if (SEND_AUDIO) {
+        await wsClient.SendBytes(new ArraySegment<byte>(buf));
+      }
     }
 
-    public async Task StopContext() {
+    public async Task<string> StopContext() {
       if (!IsListening) {
         throw new Exception("Already stopped listening.");
       }
       SetState(ClientState.Stopping);
       IsListening = false;
       try {
-        stopContextTCS = new TaskCompletionSource<MsgCommon>();
-        await wsClient.SendText($"{{\"event\": \"stop\"}}");
-        var contextId = (await stopContextTCS.Task).audio_context;
         if (saveToFolder != null) {
-          outAudioWriter.Close();
           outAudioStream.Close();
         }
+        if (SEND_AUDIO) {
+          stopContextTCS = new TaskCompletionSource<MsgCommon>();
+          await wsClient.SendText($"{{\"event\": \"stop\"}}");
+          var contextId = (await stopContextTCS.Task).audio_context;
+          SetState(ClientState.Connected);
+          return contextId;
+        }
+        SetState(ClientState.Connected);
+        return "localContext";
       } catch (Exception e) {
         SetState(ClientState.Connected);
         Logger.LogError(e.ToString());
         throw;
       }
-
-      SetState(ClientState.Connected);
     }
 
     /**
