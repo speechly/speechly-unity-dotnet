@@ -24,6 +24,7 @@ namespace Speechly.SLUClient {
     public IntentDelegate OnIntent = (msg) => {};
     public StateChangeDelegate OnStateChange = (ClientState state) => {};
 
+    public bool IsAudioStreaming { get; private set; } = false;
     public bool IsListening { get; private set; } = false;
     public int SamplesSent { get; private set; } = 0;
     public ClientState State { get; private set; } = ClientState.Disconnected;
@@ -43,13 +44,18 @@ namespace Speechly.SLUClient {
     private string appId = null;
     private bool manualUpdate;
     private bool debug = false;
+    private string logUtteranceFolder = null;
     private string saveToFolder = null;
+    private string audioInputStreamIdentifier = "utterance";
     private FileStream outAudioStream;
+    private StreamWriter logUtteranceStream = null;
 
     private int sampleRate = 16000;
     private int frameMillis = 30;
     private int frameSamples;
-    private int utteranceSerial;
+    private int utteranceSerial = -1;
+    private int streamSamplePos;
+    private int utteranceStartSamplePos;
 
     public SpeechlyClient(
       string loginUrl = null,
@@ -58,8 +64,10 @@ namespace Speechly.SLUClient {
       string appId = null,
       string deviceId = null,
       EnergyTresholdVAD vad = null,
+      bool useCloudSpeechProcessing = true,
       bool manualUpdate = false,
       string saveToFolder = null,
+      string logUtteranceFolder = null,
       bool debug = false
     ) {
       if (loginUrl != null) this.loginUrl = loginUrl;
@@ -69,7 +77,9 @@ namespace Speechly.SLUClient {
       this.Vad = vad;
       this.manualUpdate = manualUpdate;
       this.saveToFolder = saveToFolder;
+      this.logUtteranceFolder = logUtteranceFolder;
       this.debug = debug;
+      this.UseCloudSpeechProcessing = useCloudSpeechProcessing;
 
       if (!String.IsNullOrEmpty(deviceId)) {
         this.deviceId = Platform.GuidFromString(deviceId);
@@ -90,6 +100,34 @@ namespace Speechly.SLUClient {
       }
 
       frameSamples = sampleRate * frameMillis / 1000;
+    }
+
+    public void BeginStream(string streamIdentifier) {
+      IsAudioStreaming = true;
+      streamSamplePos = 0;
+      utteranceSerial = -1;
+      this.audioInputStreamIdentifier = streamIdentifier;
+
+      if (logUtteranceFolder != null) {
+        logUtteranceStream = new StreamWriter(Path.Combine(logUtteranceFolder, $"{streamIdentifier}.tsv"), false);
+      }
+    }
+
+    public void EndStream() {
+      if (IsListening) {
+        _ = StopContext();
+      }
+
+      if (logUtteranceStream != null) {
+        logUtteranceStream.Close();
+        logUtteranceStream = null;
+      }
+
+      IsAudioStreaming = false;
+    }
+
+    ~SpeechlyClient() {
+      EndStream();
     }
 
     public async Task Connect() {
@@ -125,10 +163,20 @@ namespace Speechly.SLUClient {
       }
       IsListening = true;
       SamplesSent = 0;
-      if (saveToFolder != null) {
-        string fileIdentifier = (utteranceSerial++).ToString().PadLeft(4, '0');;
-        outAudioStream = new FileStream(Path.Combine(saveToFolder, $"utterance_{fileIdentifier}.raw"), FileMode.CreateNew, FileAccess.Write, FileShare.None);
+      utteranceStartSamplePos = streamSamplePos;
+      utteranceSerial++;
+
+      string localBaseName = $"{audioInputStreamIdentifier}_{utteranceSerial.ToString().PadLeft(4, '0')}";
+      string contextId = localBaseName;
+
+      if (!IsAudioStreaming) {
+        BeginStream(localBaseName);
       }
+
+      if (saveToFolder != null) {
+        outAudioStream = new FileStream(Path.Combine(saveToFolder, $"{localBaseName}.raw"), FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
+      }
+
       SetState(ClientState.Starting);
       try {
         if (UseCloudSpeechProcessing) {
@@ -138,12 +186,11 @@ namespace Speechly.SLUClient {
           } else {
             await wsClient.SendText($"{{\"event\": \"start\"}}");
           }
-          var contextId = (await startContextTCS.Task).audio_context;
-          SetState(ClientState.Recording);
-          return contextId;
+          contextId = (await startContextTCS.Task).audio_context;
         }
+
         SetState(ClientState.Recording);
-        return "localContext";
+        return contextId;
       } catch (Exception e) {
         SetState(ClientState.Connected);
         Logger.LogError(e.ToString());
@@ -152,8 +199,11 @@ namespace Speechly.SLUClient {
     }
 
     public async Task ProcessAudioFile(string fileName) {
+      string outBaseName = Path.GetFileNameWithoutExtension(fileName);
       var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
+      BeginStream(outBaseName);
       await ProcessAudio(fileStream);
+      EndStream();
       fileStream.Close();
     }
 
@@ -168,9 +218,7 @@ namespace Speechly.SLUClient {
         int bytesRead = fileStream.Read(bytes, 0, bytes.Length);
         if (bytesRead == 0) break;
         int samples = bytesRead / 2;
-        Logger.Log($"Read {samples}, first value {bytes[0]}");
         int processed = AudioTools.ConvertInt16ToFloat(in bytes, ref floats, 0, samples);
-        Logger.Log($"Converted {processed}, first value {floats[0]}");
         // Pad with zeroes
         for (int i = floats.Length-1 ; i >= samples; i--) {
           floats[i] = 0;
@@ -189,6 +237,8 @@ namespace Speechly.SLUClient {
       AutoControlListening();
 
       await SendAudio(floats, start, length);
+
+      streamSamplePos += length;
     }
 
     private void AnalyzeAudioFrame(in float[] waveData, int s, int frameSamples) {
@@ -249,9 +299,15 @@ namespace Speechly.SLUClient {
       SetState(ClientState.Stopping);
       IsListening = false;
       try {
+        if (logUtteranceFolder != null) {
+          string serialString = utteranceSerial.ToString().PadLeft(4, '0');
+          logUtteranceStream.WriteLine($"{audioInputStreamIdentifier}\t{serialString}\t{utteranceStartSamplePos}\t{SamplesSent}");
+        }
+
         if (saveToFolder != null) {
           outAudioStream.Close();
         }
+
         if (UseCloudSpeechProcessing) {
           stopContextTCS = new TaskCompletionSource<MsgCommon>();
           await wsClient.SendText($"{{\"event\": \"stop\"}}");
