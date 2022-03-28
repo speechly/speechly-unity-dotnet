@@ -1821,13 +1821,14 @@ MonoBehaviour:
   FrameMillis: 30
   HistoryFrames: 8
   CalcAudioPeaks: 1
-  EnergyThresholdVAD: 1
-  VADMinimumEnergy: 0.005
-  VADSignalToNoise: 2
-  VADFrames: 5
-  VADActivation: 0.7
-  VADRelease: 0.2
-  VADSustainMillis: 3000
-  VADNoiseHalftimeMillis: 400
-  VADControlListening: 1
+  Vad:
+    Enabled: 1
+    VADMinimumEnergy: 0.005
+    VADSignalToNoise: 2
+    VADFrames: 6
+    VADActivation: 0.7
+    VADRelease: 0.2
+    VADSustainMillis: 3000
+    VADNoiseHalftimeMillis: 1000
+    VADControlListening: 1
   DebugPrint: 1

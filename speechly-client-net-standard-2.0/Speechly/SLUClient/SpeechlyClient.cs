@@ -8,8 +8,6 @@ using System.Collections.Concurrent;
 namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
-    public static bool SEND_AUDIO = false;
-
     public delegate void SegmentChangeDelegate(Segment segment);
     public delegate void StateChangeDelegate(ClientState state);
     public delegate void TentativeTranscriptDelegate(MsgTentativeTranscript msg);
@@ -30,6 +28,8 @@ namespace Speechly.SLUClient {
     public int SamplesSent { get; private set; } = 0;
     public ClientState State { get; private set; } = ClientState.Disconnected;
     // Optional message queue should messages be run in the main thread
+    public EnergyTresholdVAD Vad { get; private set; } = null;
+    public bool UseCloudSpeechProcessing { get; private set; } = true;
     private ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
     private string deviceId;
     private string token;
@@ -45,7 +45,6 @@ namespace Speechly.SLUClient {
     private bool debug = false;
     private string saveToFolder = null;
     private FileStream outAudioStream;
-    private EnergyTresholdVAD vad = null;
 
     private int sampleRate = 16000;
     private int frameMillis = 30;
@@ -67,9 +66,9 @@ namespace Speechly.SLUClient {
       if (apiUrl != null) this.apiUrl = apiUrl;
       if (projectId != null) this.projectId = projectId;
       if (appId != null) this.appId = appId;
+      this.Vad = vad;
       this.manualUpdate = manualUpdate;
       this.saveToFolder = saveToFolder;
-      this.vad = vad;
       this.debug = debug;
 
       if (!String.IsNullOrEmpty(deviceId)) {
@@ -132,7 +131,7 @@ namespace Speechly.SLUClient {
       }
       SetState(ClientState.Starting);
       try {
-        if (SEND_AUDIO) {
+        if (UseCloudSpeechProcessing) {
           startContextTCS = new TaskCompletionSource<MsgCommon>();
           if (appId != null) {
             await wsClient.SendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
@@ -193,18 +192,18 @@ namespace Speechly.SLUClient {
     }
 
     private void AnalyzeAudioFrame(in float[] waveData, int s, int frameSamples) {
-      if (this.vad != null) {
-        vad.ProcessFrame(waveData, s, frameSamples);
+      if (this.Vad != null) {
+        Vad.ProcessFrame(waveData, s, frameSamples);
       }
     }
 
     private void AutoControlListening() {
-      if (this.vad != null) {
-        if (!IsListening && vad.IsSignalDetected) {
+      if (this.Vad != null) {
+        if (!IsListening && Vad.IsSignalDetected) {
           _ = StartContext();
         }
 
-        if (IsListening && !vad.IsSignalDetected) {
+        if (IsListening && !Vad.IsSignalDetected) {
           _ = StopContext();
         }
         //} else {
@@ -238,7 +237,7 @@ namespace Speechly.SLUClient {
       }
 
       // Stream via websocket
-      if (SEND_AUDIO) {
+      if (UseCloudSpeechProcessing) {
         await wsClient.SendBytes(new ArraySegment<byte>(buf));
       }
     }
@@ -253,7 +252,7 @@ namespace Speechly.SLUClient {
         if (saveToFolder != null) {
           outAudioStream.Close();
         }
-        if (SEND_AUDIO) {
+        if (UseCloudSpeechProcessing) {
           stopContextTCS = new TaskCompletionSource<MsgCommon>();
           await wsClient.SendText($"{{\"event\": \"stop\"}}");
           var contextId = (await stopContextTCS.Task).audio_context;
