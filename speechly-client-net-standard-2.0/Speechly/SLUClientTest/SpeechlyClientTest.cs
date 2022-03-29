@@ -8,7 +8,7 @@ using System.Diagnostics;
 
 namespace Speechly.SLUClient {
   public class SpeechlyClientTest {
-    public static async Task test(string fileName, string saveToFolder = null, string logUtteranceFolder = null, EnergyTresholdVAD vad = null, bool useCloudSpeechProcessing = true) {
+    public static async Task TestCloudProcessing(string fileName, string saveToFolder = null, string logUtteranceFolder = null, EnergyTresholdVAD vad = null, bool useCloudSpeechProcessing = true) {
       Stopwatch stopWatch = new Stopwatch();
 
       var client = new SpeechlyClient(
@@ -61,5 +61,29 @@ namespace Speechly.SLUClient {
       Logger.Log($"Connect time: {connectTime} ms");
       Logger.Log($"SLU time: {sluTime} ms");
     }
+
+    public static async Task SplitWithVAD(string fileName, string saveToFolder = null, string logUtteranceFolder = null) {
+      Stopwatch stopWatch = new Stopwatch();
+
+      EnergyTresholdVAD vad = new EnergyTresholdVAD();
+
+      var client = new SpeechlyClient(
+        useCloudSpeechProcessing: false,
+        saveToFolder: saveToFolder,
+        logUtteranceFolder: logUtteranceFolder,
+        vad: vad,
+        debug: true
+      );
+
+      stopWatch.Restart();
+      _ = client.StartContext();
+      await client.ProcessAudioFile(fileName);
+      await client.StopContext();
+      var processTime = stopWatch.ElapsedMilliseconds;
+
+      Logger.Log($"==== STATS ====");
+      Logger.Log($"Process time: {processTime} ms");
+    }
+
   }
 }

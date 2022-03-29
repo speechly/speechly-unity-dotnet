@@ -137,7 +137,7 @@ public class MicToSpeechly : MonoBehaviour
         if (loop) loops++;
         unprocessedSamplesLeft += samples;
         oldRingbufferPos = captureRingbufferPos;
-
+  
         if (unprocessedSamplesLeft >= frameSamples) {
           int effectiveHistorySamples = loops > 0 ? historySizeSamples : Math.Min(captureRingbufferPos, historySizeSamples);
           int effectiveCapturePos = (processedRingbufferPos + (waveData.Length - effectiveHistorySamples)) % waveData.Length;

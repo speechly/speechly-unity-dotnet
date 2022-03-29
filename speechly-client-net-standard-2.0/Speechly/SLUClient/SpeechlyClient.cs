@@ -15,6 +15,10 @@ namespace Speechly.SLUClient {
     public delegate void TentativeEntityDelegate(MsgTentativeEntity msg);
     public delegate void EntityDelegate(MsgEntity msg);
     public delegate void IntentDelegate(MsgIntent msg);
+    public delegate void StartStreamDelegate();
+    public delegate void StopStreamDelegate();
+    public delegate void StartContextDelegate();
+    public delegate void StopContextDelegate();
     public SegmentChangeDelegate OnSegmentChange = (Segment segment) => {};
     public TentativeTranscriptDelegate OnTentativeTranscript = (msg) => {};
     public TranscriptDelegate OnTranscript = (msg) => {};
@@ -23,6 +27,10 @@ namespace Speechly.SLUClient {
     public IntentDelegate OnTentativeIntent = (msg) => {};
     public IntentDelegate OnIntent = (msg) => {};
     public StateChangeDelegate OnStateChange = (ClientState state) => {};
+    public StartStreamDelegate OnStartStream = () => {};
+    public StopStreamDelegate OnStopStream = () => {};
+    public StartContextDelegate OnStartContext = () => {};
+    public StopContextDelegate OnStopContext = () => {};
 
     public bool IsAudioStreaming { get; private set; } = false;
     public bool IsListening { get; private set; } = false;
@@ -56,6 +64,7 @@ namespace Speechly.SLUClient {
     private int utteranceSerial = -1;
     private int streamSamplePos;
     private int utteranceStartSamplePos;
+    private bool streamAutoStarted;
 
     public SpeechlyClient(
       string loginUrl = null,
@@ -100,34 +109,49 @@ namespace Speechly.SLUClient {
       }
 
       frameSamples = sampleRate * frameMillis / 1000;
+
+      if (logUtteranceFolder != null) {
+        Directory.CreateDirectory(logUtteranceFolder);
+      }
+
+      if (saveToFolder != null) {
+        Directory.CreateDirectory(saveToFolder);
+      }
     }
 
-    public void BeginStream(string streamIdentifier) {
+    public void StartStream(string streamIdentifier, bool auto = false) {
       IsAudioStreaming = true;
+      streamAutoStarted = auto;
       streamSamplePos = 0;
       utteranceSerial = -1;
       this.audioInputStreamIdentifier = streamIdentifier;
+
+      OnStartStream();
 
       if (logUtteranceFolder != null) {
         logUtteranceStream = new StreamWriter(Path.Combine(logUtteranceFolder, $"{streamIdentifier}.tsv"), false);
       }
     }
 
-    public void EndStream() {
-      if (IsListening) {
-        _ = StopContext();
-      }
+    public void StopStream(bool auto = false) {
+      if (auto && streamAutoStarted) {
+        if (IsListening) {
+          _ = StopContext();
+        }
 
-      if (logUtteranceStream != null) {
-        logUtteranceStream.Close();
-        logUtteranceStream = null;
-      }
+        if (logUtteranceStream != null) {
+          logUtteranceStream.Close();
+          logUtteranceStream = null;
+        }
 
-      IsAudioStreaming = false;
+        IsAudioStreaming = false;
+      
+        OnStopStream();
+      }
     }
 
     ~SpeechlyClient() {
-      EndStream();
+      StopStream();
     }
 
     public async Task Connect() {
@@ -170,7 +194,7 @@ namespace Speechly.SLUClient {
       string contextId = localBaseName;
 
       if (!IsAudioStreaming) {
-        BeginStream(localBaseName);
+        StartStream(localBaseName, auto: true);
       }
 
       if (saveToFolder != null) {
@@ -180,6 +204,7 @@ namespace Speechly.SLUClient {
       SetState(ClientState.Starting);
       try {
         if (UseCloudSpeechProcessing) {
+          Logger.Log("StartContext 1");
           startContextTCS = new TaskCompletionSource<MsgCommon>();
           if (appId != null) {
             await wsClient.SendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
@@ -187,9 +212,15 @@ namespace Speechly.SLUClient {
             await wsClient.SendText($"{{\"event\": \"start\"}}");
           }
           contextId = (await startContextTCS.Task).audio_context;
+          Logger.Log("StartContext 2");
+
         }
 
+        Logger.Log("StartContext 3");
         SetState(ClientState.Recording);
+        Logger.Log("StartContext 4");
+        OnStartContext();
+        Logger.Log("StartContext 5");
         return contextId;
       } catch (Exception e) {
         SetState(ClientState.Connected);
@@ -201,9 +232,9 @@ namespace Speechly.SLUClient {
     public async Task ProcessAudioFile(string fileName) {
       string outBaseName = Path.GetFileNameWithoutExtension(fileName);
       var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
-      BeginStream(outBaseName);
+      StartStream(outBaseName);
       await ProcessAudio(fileStream);
-      EndStream();
+      StopStream();
       fileStream.Close();
     }
 
@@ -316,6 +347,7 @@ namespace Speechly.SLUClient {
           return contextId;
         }
         SetState(ClientState.Connected);
+        OnStopContext();
         return "localContext";
       } catch (Exception e) {
         SetState(ClientState.Connected);

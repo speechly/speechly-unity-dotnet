@@ -43,6 +43,7 @@ public class UseSpeechly : MonoBehaviour
 
   public async void OnMouseUp()
   {
+      Debug.Log("Mouse Up 1");
     if (IsButtonHeld && speechlyClient.IsListening)
     {
       Debug.Log("Mouse Up");

@@ -8,6 +8,6 @@ public class SpeechlyTest : MonoBehaviour
   async void Start()
   {
     Logger.Log = Debug.Log;
-    await SpeechlyClientTest.test("Assets/SpeechlyExamples/AudioFileToSpeechly/SLUClientTest/00_chinese_restaurant.raw");
+    await SpeechlyClientTest.TestCloudProcessing("Assets/SpeechlyExamples/AudioFileToSpeechly/SLUClientTest/00_chinese_restaurant.raw");
   }
 }
