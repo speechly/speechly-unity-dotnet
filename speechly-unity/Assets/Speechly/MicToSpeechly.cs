@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 using System;
+using System.Threading;
 using System.Threading.Tasks;
 
 using Speechly.SLUClient;
@@ -34,11 +35,9 @@ public class MicToSpeechly : MonoBehaviour
   [Range(1, 32)]
   [Tooltip("Number of frames to keep in memory. When listening is started, history frames are sent to capture the lead-in audio.")]
   public int HistoryFrames = 8;
-  public bool CalcAudioPeaks = true;
   [Tooltip("Voice Activity Detection (VAD) using adaptive energy thresholding. Automatically controls listening based on audio 'loudness'.")]
-  public EnergyTresholdVAD Vad = new EnergyTresholdVAD{ Enabled = false };
+  public EnergyTresholdVAD Vad = new EnergyTresholdVAD{ Enabled = true, VADControlListening = false };
   public bool DebugPrint = false;
-  public float Peak {get; private set; } = 0f;
   public SpeechlyClient SpeechlyClient { get; private set; }
   private AudioClip clip;
   private float[] waveData;
@@ -78,6 +77,8 @@ public class MicToSpeechly : MonoBehaviour
 
   void Start()
   {
+    Logger.Log($"Start mic loop @ {Thread.CurrentThread.ManagedThreadId}");
+
     // Show device caps
     // int minFreq, maxFreq;
     // Microphone.GetDeviceCaps(CaptureDeviceName, out minFreq, out maxFreq);
@@ -117,7 +118,6 @@ public class MicToSpeechly : MonoBehaviour
       SpeechlyClient.Update();
 
       bool audioSent = false;
-      Peak = Peak * 0.95f;
 
       int captureRingbufferPos = Microphone.GetPosition(CaptureDeviceName);
       
@@ -157,12 +157,17 @@ public class MicToSpeechly : MonoBehaviour
             yield return new WaitUntil(() => task.IsCompleted);
             audioSent = true;
 
-            // Control listening
+            // Ensure listening is stopped if VAD state is altered "on the fly"
             if (Vad != null) {
               if (Vad.Enabled && Vad.VADControlListening) {
                 wasVADEnabled = true;
               } else {
-                EnsureStopContext();
+                if (wasVADEnabled) {
+                  wasVADEnabled = false;
+                  if (SpeechlyClient.IsListening) {
+                    StopContext();
+                  }
+                }
               }
             }
 
@@ -177,16 +182,6 @@ public class MicToSpeechly : MonoBehaviour
       
       if (!audioSent) {
         yield return null;
-      }
-    }
-  }
-
-  private void EnsureStopContext() {
-    // Turn off listening when VAD is disabled
-    if (wasVADEnabled) {
-      wasVADEnabled = false;
-      if (SpeechlyClient.IsListening) {
-        StopContext();
       }
     }
   }

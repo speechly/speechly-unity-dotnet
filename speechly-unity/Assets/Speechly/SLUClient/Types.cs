@@ -6,6 +6,15 @@ using System.IO;
 
 namespace Speechly.SLUClient {
 
+  public struct SegmentMessage {
+    public MsgCommon msgCommon;
+    public string msgString;
+    public SegmentMessage(MsgCommon msgCommon, string msgString) {
+      this.msgCommon = msgCommon;
+      this.msgString = msgString;
+    }
+  }
+
   public enum ClientState {
     Failed = 0,
     NoBrowserSupport,

@@ -19,6 +19,7 @@ namespace Speechly.SLUClient {
     public delegate void StopStreamDelegate();
     public delegate void StartContextDelegate();
     public delegate void StopContextDelegate();
+    private delegate void ProcessResponseDelegate(MsgCommon msgCommon, string msgString);
     public SegmentChangeDelegate OnSegmentChange = (Segment segment) => {};
     public TentativeTranscriptDelegate OnTentativeTranscript = (msg) => {};
     public TranscriptDelegate OnTranscript = (msg) => {};
@@ -39,7 +40,8 @@ namespace Speechly.SLUClient {
     // Optional message queue should messages be run in the main thread
     public EnergyTresholdVAD Vad { get; private set; } = null;
     public bool UseCloudSpeechProcessing { get; private set; } = true;
-    private ConcurrentQueue<string> messageQueue = new ConcurrentQueue<string>();
+    private ConcurrentQueue<SegmentMessage> messageQueue = new ConcurrentQueue<SegmentMessage>();
+    private ProcessResponseDelegate ProcessResponse = (MsgCommon msgCommon, string msgString) => {};
     private string deviceId;
     private string token;
     private Dictionary<string, Dictionary<int, Segment>> activeContexts = new Dictionary<string, Dictionary<int, Segment>>();
@@ -90,6 +92,12 @@ namespace Speechly.SLUClient {
       this.debug = debug;
       this.UseCloudSpeechProcessing = useCloudSpeechProcessing;
 
+      if (this.manualUpdate) {
+        ProcessResponse = QueueMessage;
+      } else {
+        ProcessResponse = OnMessage;
+      }
+
       if (!String.IsNullOrEmpty(deviceId)) {
         this.deviceId = Platform.GuidFromString(deviceId);
         if (this.debug) Logger.Log($"Using manual deviceId: {deviceId}");
@@ -120,33 +128,37 @@ namespace Speechly.SLUClient {
     }
 
     public void StartStream(string streamIdentifier, bool auto = false) {
-      IsAudioStreaming = true;
-      streamAutoStarted = auto;
-      streamSamplePos = 0;
-      utteranceSerial = -1;
-      this.audioInputStreamIdentifier = streamIdentifier;
+      if (!IsAudioStreaming) {
+        IsAudioStreaming = true;
+        streamAutoStarted = auto;
+        streamSamplePos = 0;
+        utteranceSerial = -1;
+        this.audioInputStreamIdentifier = streamIdentifier;
 
-      OnStartStream();
+        OnStartStream();
 
-      if (logUtteranceFolder != null) {
-        logUtteranceStream = new StreamWriter(Path.Combine(logUtteranceFolder, $"{streamIdentifier}.tsv"), false);
+        if (logUtteranceFolder != null) {
+          logUtteranceStream = new StreamWriter(Path.Combine(logUtteranceFolder, $"{streamIdentifier}.tsv"), false);
+        }
       }
     }
 
     public void StopStream(bool auto = false) {
-      if (auto && streamAutoStarted) {
-        if (IsListening) {
-          _ = StopContext();
-        }
+      if (IsAudioStreaming) {
+        if ((auto && streamAutoStarted) || !streamAutoStarted) {
+          if (IsListening) {
+            _ = StopContext();
+          }
 
-        if (logUtteranceStream != null) {
-          logUtteranceStream.Close();
-          logUtteranceStream = null;
-        }
+          if (logUtteranceStream != null) {
+            logUtteranceStream.Close();
+            logUtteranceStream = null;
+          }
 
-        IsAudioStreaming = false;
-      
-        OnStopStream();
+          IsAudioStreaming = false;
+        
+          OnStopStream();
+        }
       }
     }
 
@@ -164,11 +176,8 @@ namespace Speechly.SLUClient {
           if (debug) Logger.Log($"token: {token}");
 
           wsClient = new WsClient();
-          if (manualUpdate) {
-            wsClient.OnResponseReceived = QueueResponse;
-          } else {
-            wsClient.OnResponseReceived = ProcessResponse;
-          }
+          wsClient.OnResponseReceived = OnResponse;
+
           await wsClient.ConnectAsync(apiUrl, token);
           SetState(ClientState.Preinitialized);
           SetState(ClientState.Initializing);
@@ -185,6 +194,11 @@ namespace Speechly.SLUClient {
       if (IsListening) {
         throw new Exception("Already listening.");
       }
+
+      if (!IsAudioStreaming) {
+        StartStream(audioInputStreamIdentifier, auto: true);
+      }
+
       IsListening = true;
       SamplesSent = 0;
       utteranceStartSamplePos = streamSamplePos;
@@ -193,10 +207,6 @@ namespace Speechly.SLUClient {
       string localBaseName = $"{audioInputStreamIdentifier}_{utteranceSerial.ToString().PadLeft(4, '0')}";
       string contextId = localBaseName;
 
-      if (!IsAudioStreaming) {
-        StartStream(localBaseName, auto: true);
-      }
-
       if (saveToFolder != null) {
         outAudioStream = new FileStream(Path.Combine(saveToFolder, $"{localBaseName}.raw"), FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
       }
@@ -204,23 +214,18 @@ namespace Speechly.SLUClient {
       SetState(ClientState.Starting);
       try {
         if (UseCloudSpeechProcessing) {
-          Logger.Log("StartContext 1");
           startContextTCS = new TaskCompletionSource<MsgCommon>();
           if (appId != null) {
             await wsClient.SendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
           } else {
             await wsClient.SendText($"{{\"event\": \"start\"}}");
           }
-          contextId = (await startContextTCS.Task).audio_context;
-          Logger.Log("StartContext 2");
-
+          MsgCommon msgCommon = await startContextTCS.Task;
+          contextId = msgCommon.audio_context;
         }
 
-        Logger.Log("StartContext 3");
         SetState(ClientState.Recording);
-        Logger.Log("StartContext 4");
         OnStartContext();
-        Logger.Log("StartContext 5");
         return contextId;
       } catch (Exception e) {
         SetState(ClientState.Connected);
@@ -265,7 +270,7 @@ namespace Speechly.SLUClient {
 
       AnalyzeAudioFrame(in floats, start, length);
 
-      AutoControlListening();
+      await AutoControlListening();
 
       await SendAudio(floats, start, length);
 
@@ -273,19 +278,19 @@ namespace Speechly.SLUClient {
     }
 
     private void AnalyzeAudioFrame(in float[] waveData, int s, int frameSamples) {
-      if (this.Vad != null) {
+      if (this.Vad != null && this.Vad.Enabled) {
         Vad.ProcessFrame(waveData, s, frameSamples);
       }
     }
 
-    private void AutoControlListening() {
-      if (this.Vad != null) {
+    private async Task AutoControlListening() {
+      if (this.Vad != null && this.Vad.Enabled && this.Vad.VADControlListening) {
         if (!IsListening && Vad.IsSignalDetected) {
-          _ = StartContext();
+          await StartContext();
         }
 
         if (IsListening && !Vad.IsSignalDetected) {
-          _ = StopContext();
+          await StopContext();
         }
         //} else {
         //  EnsureStopContext();
@@ -329,6 +334,10 @@ namespace Speechly.SLUClient {
       }
       SetState(ClientState.Stopping);
       IsListening = false;
+
+      string localBaseName = $"{audioInputStreamIdentifier}_{utteranceSerial.ToString().PadLeft(4, '0')}";
+      string contextId = localBaseName;
+
       try {
         if (logUtteranceFolder != null) {
           string serialString = utteranceSerial.ToString().PadLeft(4, '0');
@@ -342,13 +351,12 @@ namespace Speechly.SLUClient {
         if (UseCloudSpeechProcessing) {
           stopContextTCS = new TaskCompletionSource<MsgCommon>();
           await wsClient.SendText($"{{\"event\": \"stop\"}}");
-          var contextId = (await stopContextTCS.Task).audio_context;
-          SetState(ClientState.Connected);
-          return contextId;
+          MsgCommon msgCommon = await stopContextTCS.Task;
+          contextId = msgCommon.audio_context;
         }
         SetState(ClientState.Connected);
         OnStopContext();
-        return "localContext";
+        return contextId;
       } catch (Exception e) {
         SetState(ClientState.Connected);
         Logger.LogError(e.ToString());
@@ -360,58 +368,70 @@ namespace Speechly.SLUClient {
      * Fire Speechly callbacks manually if you want them to run in main UI/Unity thread
      */    
     public void Update() {
-      string msgString;
-      while (messageQueue.TryDequeue(out msgString)) {
-        OnResponse(msgString);
+      SegmentMessage segmentUpdateProps;
+      while (messageQueue.TryDequeue(out segmentUpdateProps)) {
+        OnMessage(segmentUpdateProps.msgCommon, segmentUpdateProps.msgString);
       }
     }
 
     private void SetState(ClientState state) {
+      // Logger.Log($"{this.State} -> {state}");
       this.State = state;
       OnStateChange(state);
     }
 
-    private void QueueResponse(MemoryStream inputStream) {
-      var msgString = Encoding.UTF8.GetString(inputStream.ToArray());
-      messageQueue.Enqueue(msgString);
-    }
-
-    private void ProcessResponse(MemoryStream inputStream) {
-      var msgString = Encoding.UTF8.GetString(inputStream.ToArray());
-      OnResponse(msgString);
-    }
-
-    private void OnResponse(string msgString)
+    private void OnResponse(MemoryStream inputStream)
     {
+      var msgString = Encoding.UTF8.GetString(inputStream.ToArray());
       try {
         // @TODO Find a way to deserialize only once
         var msgCommon = JSON.Parse(msgString, new MsgCommon());
         switch (msgCommon.type) {
           case "started": {
-            if (debug) Logger.Log($"Started context '{msgCommon.audio_context}'");
-            activeContexts.Add(msgCommon.audio_context, new Dictionary<int, Segment>());
+            if (debug) Logger.Log($"Started message received '{msgCommon.audio_context}'");
             startContextTCS.SetResult(msgCommon);
             break;
           }
           case "stopped": {
-            if (debug) Logger.Log($"Stopped context '{msgCommon.audio_context}'");
-            activeContexts.Remove(msgCommon.audio_context);
+            if (debug) Logger.Log($"Stopped message received '{msgCommon.audio_context}'");
             stopContextTCS.SetResult(msgCommon);
             break;
           }
-          default: {
-            OnSegmentMessage(msgCommon, msgString);
-            break;
-          }
         }
+        ProcessResponse(msgCommon, msgString);
       } catch {
         Logger.LogError($"Error while handling message with content: {msgString}");
         throw;
       }
     }
 
+    private void QueueMessage(MsgCommon msgCommon, string msgString) {
+      messageQueue.Enqueue(new SegmentMessage(msgCommon, msgString));
+    }
+
+    private void OnMessage(MsgCommon msgCommon, string msgString)
+    {
+      switch (msgCommon.type) {
+        case "started": {
+          if (debug) Logger.Log($"Started context '{msgCommon.audio_context}'");
+          activeContexts.Add(msgCommon.audio_context, new Dictionary<int, Segment>());
+          break;
+        }
+        case "stopped": {
+          if (debug) Logger.Log($"Stopped context '{msgCommon.audio_context}'");
+          activeContexts.Remove(msgCommon.audio_context);
+          break;
+        }
+        default: {
+          OnSegmentMessage(msgCommon, msgString);
+          break;
+        }
+      }
+    }
+
     private void OnSegmentMessage(MsgCommon msgCommon, string msgString)
     {
+
       Segment segmentState;
       if (!activeContexts[msgCommon.audio_context].TryGetValue(msgCommon.segment_id, out segmentState)) {
         segmentState = new Segment(msgCommon.audio_context, msgCommon.segment_id);

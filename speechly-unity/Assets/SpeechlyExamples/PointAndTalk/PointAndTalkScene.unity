@@ -1258,9 +1258,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 885213177}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 0.5
   m_WholeNumbers: 0
-  m_Value: 0.402
+  m_Value: 0.05
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2884,14 +2884,14 @@ MonoBehaviour:
   MicSampleRate: 16000
   FrameMillis: 30
   HistoryFrames: 5
-  CalcAudioPeaks: 1
-  EnergyThresholdVAD: 0
-  VADMinimumEnergy: 0.005
-  VADSignalToNoise: 2
-  VADFrames: 5
-  VADActivation: 0.7
-  VADRelease: 0.2
-  VADSustainMillis: 3000
-  VADNoiseHalftimeMillis: 400
-  VADControlListening: 0
+  Vad:
+    Enabled: 1
+    VADMinimumEnergy: 0.005
+    VADSignalToNoise: 2
+    VADFrames: 5
+    VADActivation: 0.7
+    VADRelease: 0.2
+    VADSustainMillis: 3000
+    VADNoiseHalftimeMillis: 400
+    VADControlListening: 0
   DebugPrint: 0

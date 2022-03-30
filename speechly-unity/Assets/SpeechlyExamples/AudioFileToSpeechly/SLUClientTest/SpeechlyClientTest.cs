@@ -75,10 +75,18 @@ namespace Speechly.SLUClient {
         debug: true
       );
 
+      client.OnStartStream = () => {
+        Logger.Log("client.OnStartStream");
+      };
+
+      client.OnStopStream = () => {
+        Logger.Log("client.OnStopStream");
+      };
+
       stopWatch.Restart();
-      _ = client.StartContext();
+      // _ = client.StartContext();
       await client.ProcessAudioFile(fileName);
-      await client.StopContext();
+      // await client.StopContext();
       var processTime = stopWatch.ElapsedMilliseconds;
 
       Logger.Log($"==== STATS ====");

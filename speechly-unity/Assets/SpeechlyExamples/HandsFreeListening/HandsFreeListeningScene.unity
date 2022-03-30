@@ -1814,8 +1814,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6b6837b89e74c51819907efcc77c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeechlyEnv: 0
-  AppId: ef84e8ba-c5a7-46c2-856e-8b853e2c77b1
+  SpeechlyEnv: 1
+  AppId: 42a85063-f6a0-47af-810e-1d11bff4ae34
   CaptureDeviceName: 
   MicSampleRate: 16000
   FrameMillis: 30
