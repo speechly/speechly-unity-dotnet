@@ -42,12 +42,6 @@ public class MicToSpeechly : MonoBehaviour
   private AudioClip clip;
   private float[] waveData;
   private int oldRingbufferPos;
-  private int processedRingbufferPos;
-  private int unprocessedSamplesLeft = 0;
-  private int loops;
-
-  private int historySizeSamples;
-  private int frameSamples;
   private bool wasVADEnabled = false;
 
   private void Awake() 
@@ -100,9 +94,6 @@ public class MicToSpeechly : MonoBehaviour
       throw new Exception($"Could not open microphone {CaptureDeviceName}");
     }
 
-    frameSamples = MicSampleRate * FrameMillis / 1000;
-    historySizeSamples = frameSamples * HistoryFrames;
-
     StartCoroutine(RunSpeechly());
   }
 
@@ -117,70 +108,38 @@ public class MicToSpeechly : MonoBehaviour
       // Fire handlers in main Unity thread
       SpeechlyClient.Update();
 
-      bool audioSent = false;
+      // Ensure VAD-initiated listening is stopped if VAD state is altered "on the fly"
+      if (Vad != null) {
+        if (Vad.Enabled && Vad.VADControlListening) {
+          wasVADEnabled = true;
+        } else {
+          if (wasVADEnabled) {
+            wasVADEnabled = false;
+            if (SpeechlyClient.IsListening) {
+              StopContext();
+            }
+          }
+        }
+      }
 
       int captureRingbufferPos = Microphone.GetPosition(CaptureDeviceName);
       
       int samples;
-      bool loop = false;
       if (captureRingbufferPos < oldRingbufferPos)
       {
         samples = (waveData.Length - oldRingbufferPos) + captureRingbufferPos;
-        loop = true;
       } else {
         samples = captureRingbufferPos - oldRingbufferPos;
       }
-      // Limit number of samples, during 1st processing frame as there may be a lot of data
-      samples = Math.Min(samples, waveData.Length - historySizeSamples);
 
       if (samples > 0) {
-        if (loop) loops++;
-        unprocessedSamplesLeft += samples;
+        // Always captures full buffer length (MicSampleRate * MicBufferLengthMillis / 1000 samples), starting from offset
+        clip.GetData(waveData, oldRingbufferPos);
         oldRingbufferPos = captureRingbufferPos;
-  
-        if (unprocessedSamplesLeft >= frameSamples) {
-          int effectiveHistorySamples = loops > 0 ? historySizeSamples : Math.Min(captureRingbufferPos, historySizeSamples);
-          int effectiveCapturePos = (processedRingbufferPos + (waveData.Length - effectiveHistorySamples)) % waveData.Length;
-
-          // Always captures full buffer length (MicSampleRate * MicBufferLengthMillis / 1000 samples), starting from offset
-          clip.GetData(waveData, effectiveCapturePos);
-
-          int audioPos = effectiveHistorySamples;
-
-          while (unprocessedSamplesLeft >= frameSamples) {
-            // If listening, send audio
-            if (SpeechlyClient.SamplesSent == 0) {
-              task = SpeechlyClient.ProcessFrame(waveData, 0, audioPos + frameSamples);
-            } else {
-              task = SpeechlyClient.ProcessFrame(waveData, audioPos, frameSamples);
-            }
-            yield return new WaitUntil(() => task.IsCompleted);
-            audioSent = true;
-
-            // Ensure listening is stopped if VAD state is altered "on the fly"
-            if (Vad != null) {
-              if (Vad.Enabled && Vad.VADControlListening) {
-                wasVADEnabled = true;
-              } else {
-                if (wasVADEnabled) {
-                  wasVADEnabled = false;
-                  if (SpeechlyClient.IsListening) {
-                    StopContext();
-                  }
-                }
-              }
-            }
-
-            // Next frame
-            audioPos += frameSamples;
-            unprocessedSamplesLeft -= frameSamples;
-          }
-
-          processedRingbufferPos = (processedRingbufferPos + audioPos - effectiveHistorySamples) % waveData.Length;
-        }
-      }
-      
-      if (!audioSent) {
+        task = SpeechlyClient.ProcessAudio(waveData, 0, samples);
+        yield return new WaitUntil(() => task.IsCompleted);
+      } else {
+        // Wait for a frame for new audio
         yield return null;
       }
     }

@@ -9,7 +9,7 @@ namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
     public delegate void SegmentChangeDelegate(Segment segment);
-    public delegate void StateChangeDelegate(ClientState state);
+    public delegate void StateChangeDelegate(ClientState state); // @TODO Future: Split to IsMicReady, IsConnected, IsListening
     public delegate void TentativeTranscriptDelegate(MsgTentativeTranscript msg);
     public delegate void TranscriptDelegate(MsgTranscript msg);
     public delegate void TentativeEntityDelegate(MsgTentativeEntity msg);
@@ -67,6 +67,10 @@ namespace Speechly.SLUClient {
     private int streamSamplePos;
     private int utteranceStartSamplePos;
     private bool streamAutoStarted;
+    private float[] currentFrameSamples = null;
+    private byte[] currentFrameBytes = null;
+    private int frameSamplePos;
+
 
     public SpeechlyClient(
       string loginUrl = null,
@@ -74,10 +78,10 @@ namespace Speechly.SLUClient {
       string projectId = null,
       string appId = null,
       string deviceId = null,
-      EnergyTresholdVAD vad = null,
+      EnergyTresholdVAD vad = null, // @TODO Future: Allow different VAD implementation thru IVAD interface
       bool useCloudSpeechProcessing = true,
       bool manualUpdate = false,
-      string saveToFolder = null,
+      string saveToFolder = null, // @TODO Future: Allow storing to memory stream as well for replay?
       string logUtteranceFolder = null,
       bool debug = false
     ) {
@@ -125,6 +129,9 @@ namespace Speechly.SLUClient {
       if (saveToFolder != null) {
         Directory.CreateDirectory(saveToFolder);
       }
+
+      currentFrameSamples = new float[frameSamples];
+      currentFrameBytes = new byte[frameSamples * 2];
     }
 
     public void StartStream(string streamIdentifier, bool auto = false) {
@@ -132,6 +139,7 @@ namespace Speechly.SLUClient {
         IsAudioStreaming = true;
         streamAutoStarted = auto;
         streamSamplePos = 0;
+        frameSamplePos = 0;
         utteranceSerial = -1;
         this.audioInputStreamIdentifier = streamIdentifier;
 
@@ -143,12 +151,15 @@ namespace Speechly.SLUClient {
       }
     }
 
-    public void StopStream(bool auto = false) {
+    public async Task StopStream(bool auto = false) {
       if (IsAudioStreaming) {
         if ((auto && streamAutoStarted) || !streamAutoStarted) {
           if (IsListening) {
             _ = StopContext();
           }
+
+          // Process remaining frame samples
+          await ProcessFrame(currentFrameSamples, 0, frameSamplePos);
 
           if (logUtteranceStream != null) {
             logUtteranceStream.Close();
@@ -211,15 +222,17 @@ namespace Speechly.SLUClient {
         outAudioStream = new FileStream(Path.Combine(saveToFolder, $"{localBaseName}.raw"), FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
       }
 
-      SetState(ClientState.Starting);
       try {
         if (UseCloudSpeechProcessing) {
           startContextTCS = new TaskCompletionSource<MsgCommon>();
+          Task t;
           if (appId != null) {
-            await wsClient.SendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
+            t = wsClient.SendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
           } else {
-            await wsClient.SendText($"{{\"event\": \"start\"}}");
+            t = wsClient.SendText($"{{\"event\": \"start\"}}");
           }
+          SetState(ClientState.Starting);
+          await t;
           MsgCommon msgCommon = await startContextTCS.Task;
           contextId = msgCommon.audio_context;
         }
@@ -244,8 +257,6 @@ namespace Speechly.SLUClient {
     }
 
     public async Task ProcessAudio(Stream fileStream) {
-      // if (State != ClientState.Starting && State != ClientState.Recording) return;
-
       // @TODO Use a pre-allocated buf
       var bytes = new byte[frameSamples * 2];
       var floats = new float[frameSamples];
@@ -263,11 +274,30 @@ namespace Speechly.SLUClient {
       }
     }
 
-    public async Task ProcessFrame(float[] floats, int start = 0, int length = -1) {
+    public async Task ProcessAudio(float[] floats, int start = 0, int length = -1) {
       if (length < 0) length = floats.Length;
       if (length == 0) return;
-      int end = start + length;
 
+      int i = start;
+      int endIndex = start + length;
+
+      while (i < endIndex) {
+        int frameEndIndex = Math.Min(frameSamplePos + endIndex - i, frameSamples);
+
+        // Fill frame
+        while (frameSamplePos < frameEndIndex) {
+          currentFrameSamples[frameSamplePos++] = floats[i++];
+        }
+
+        // Process full frame
+        if (frameSamplePos == frameSamples) {
+          frameSamplePos = 0;
+          await ProcessFrame(currentFrameSamples, 0, frameSamples);
+        }
+      }
+    }
+
+    private async Task ProcessFrame(float[] floats, int start = 0, int length = -1) {
       AnalyzeAudioFrame(in floats, start, length);
 
       await AutoControlListening();
@@ -292,16 +322,12 @@ namespace Speechly.SLUClient {
         if (IsListening && !Vad.IsSignalDetected) {
           await StopContext();
         }
-        //} else {
-        //  EnsureStopContext();
-        //}
-
       }
     }
 
 
     private async Task SendAudio(float[] floats, int start = 0, int length = -1) {
-      if (State != ClientState.Starting && State != ClientState.Recording) return;
+      if (!IsListening) return;
 
       if (length < 0) length = floats.Length;
       int end = start + length;
@@ -332,8 +358,8 @@ namespace Speechly.SLUClient {
       if (!IsListening) {
         throw new Exception("Already stopped listening.");
       }
-      SetState(ClientState.Stopping);
       IsListening = false;
+      SetState(ClientState.Stopping);
 
       string localBaseName = $"{audioInputStreamIdentifier}_{utteranceSerial.ToString().PadLeft(4, '0')}";
       string contextId = localBaseName;
@@ -386,6 +412,7 @@ namespace Speechly.SLUClient {
       try {
         // @TODO Find a way to deserialize only once
         var msgCommon = JSON.Parse(msgString, new MsgCommon());
+        Logger.Log($"[WsClient] IN MSG {msgCommon.type}");
         switch (msgCommon.type) {
           case "started": {
             if (debug) Logger.Log($"Started message received '{msgCommon.audio_context}'");

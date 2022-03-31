@@ -35,7 +35,7 @@ public class UseSpeechly : MonoBehaviour
     {
       Debug.Log("Mouse Down");
       IsButtonHeld = true;
-      await speechlyClient.StartContext();
+      _ = speechlyClient.StartContext();
     }
   }
 
@@ -46,7 +46,7 @@ public class UseSpeechly : MonoBehaviour
     {
       Debug.Log("Mouse Up");
       IsButtonHeld = false;
-      await speechlyClient.StopContext();
+      _ = speechlyClient.StopContext();
     }
   }
 
