@@ -61,7 +61,7 @@ namespace Speechly.SLUClient {
     private StreamWriter logUtteranceStream = null;
 
     private int inputSampleRate = 16000;
-    private int sampleRate = 16000;
+    private int internalSampleRate = 16000;
     private int frameMillis = 30;
     private int historyFrames = 8;
     private int frameSamples;
@@ -125,7 +125,7 @@ namespace Speechly.SLUClient {
         }
       }
 
-      frameSamples = sampleRate * frameMillis / 1000;
+      frameSamples = internalSampleRate * frameMillis / 1000;
 
       if (logUtteranceFolder != null) {
         Directory.CreateDirectory(logUtteranceFolder);
@@ -290,21 +290,21 @@ namespace Speechly.SLUClient {
       while (i < endIndex) {
         int frameBase = currentFrameNumber * frameSamples;
 
-        if (inputSampleRate != sampleRate) {
-          // Downsample to ringbuffer
-          float ratio = 1f * inputSampleRate / sampleRate;
-          int inputSamplesToFillFrame = Math.Min(endIndex - i, (int)Math.Round(ratio * (frameSamples - frameSamplePos)));
-          int samplesToFillFrame = Math.Min((int)Math.Round((endIndex - i) / ratio), frameSamples - frameSamplePos);
-          AudioTools.Downsample(floats, ref sampleRingBuffer, i,inputSamplesToFillFrame, frameBase+frameSamplePos,samplesToFillFrame);
-          i += inputSamplesToFillFrame;
-          frameSamplePos += samplesToFillFrame;
-        } else {
-          // Copy and fill frame
+        if (inputSampleRate == internalSampleRate) {
+          // Copy input samples to fill current ringbuffer frame
           int samplesToFillFrame = Math.Min(endIndex - i, frameSamples - frameSamplePos);
           int frameEndIndex = frameSamplePos + samplesToFillFrame;
           while (frameSamplePos < frameEndIndex) {
             sampleRingBuffer[frameBase + frameSamplePos++] = floats[i++];
           }
+        } else {
+          // Downsample input samples to fill current ringbuffer frame
+          float ratio = 1f * inputSampleRate / internalSampleRate;
+          int inputSamplesToFillFrame = Math.Min(endIndex - i, (int)Math.Round(ratio * (frameSamples - frameSamplePos)));
+          int samplesToFillFrame = Math.Min((int)Math.Round((endIndex - i) / ratio), frameSamples - frameSamplePos);
+          AudioTools.Downsample(floats, ref sampleRingBuffer, i,inputSamplesToFillFrame, frameBase+frameSamplePos,samplesToFillFrame);
+          i += inputSamplesToFillFrame;
+          frameSamplePos += samplesToFillFrame;
         }
 
         // Process frame
