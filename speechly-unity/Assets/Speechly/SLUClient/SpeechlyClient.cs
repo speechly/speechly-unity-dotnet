@@ -321,7 +321,6 @@ namespace Speechly.SLUClient {
 
     private async Task ProcessFrame(float[] floats, int start = 0, int length = -1) {
       AnalyzeAudioFrame(in floats, start, length);
-
       await AutoControlListening();
     }
 
