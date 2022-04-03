@@ -49,12 +49,12 @@ namespace Speechly.SLUClient {
     }
 
     public async Task SendText(string text) {
-      Logger.Log($"[WsClient] OUT {text}");
+      // Logger.Log($"[WsClient] OUT {text}");
       await WS.SendAsync(new ArraySegment<byte>(Encoding.UTF8.GetBytes(text)), WebSocketMessageType.Text, true, CTS.Token);
     }
 
     public async Task SendBytes(ArraySegment<byte> byteArraySegment) {
-      Logger.Log($"[WsClient] OUT BYTES");
+      // Logger.Log($"[WsClient] OUT BYTES");
       await WS.SendAsync(byteArraySegment, WebSocketMessageType.Binary, true, CTS.Token);
     }
 

@@ -62,14 +62,16 @@ namespace Speechly.SLUClient {
 
     private int sampleRate = 16000;
     private int frameMillis = 30;
+    private int historyFrames = 8;
     private int frameSamples;
     private int utteranceSerial = -1;
+    private int streamFramePos = 0;
     private int streamSamplePos;
     private int utteranceStartSamplePos;
     private bool streamAutoStarted;
-    private float[] currentFrameSamples = null;
-    private byte[] currentFrameBytes = null;
+    private float[] sampleRingBuffer = null;
     private int frameSamplePos;
+    private int currentFrameNumber = 0;
 
 
     public SpeechlyClient(
@@ -130,16 +132,17 @@ namespace Speechly.SLUClient {
         Directory.CreateDirectory(saveToFolder);
       }
 
-      currentFrameSamples = new float[frameSamples];
-      currentFrameBytes = new byte[frameSamples * 2];
+      sampleRingBuffer = new float[frameSamples * historyFrames];
     }
 
     public void StartStream(string streamIdentifier, bool auto = false) {
       if (!IsAudioStreaming) {
         IsAudioStreaming = true;
         streamAutoStarted = auto;
+        streamFramePos = 0;
         streamSamplePos = 0;
         frameSamplePos = 0;
+        currentFrameNumber = 0;
         utteranceSerial = -1;
         this.audioInputStreamIdentifier = streamIdentifier;
 
@@ -159,7 +162,7 @@ namespace Speechly.SLUClient {
           }
 
           // Process remaining frame samples
-          await ProcessFrame(currentFrameSamples, 0, frameSamplePos);
+          await ProcessAudio(sampleRingBuffer, 0, frameSamplePos, true);
 
           if (logUtteranceStream != null) {
             logUtteranceStream.Close();
@@ -270,11 +273,11 @@ namespace Speechly.SLUClient {
         for (int i = floats.Length-1 ; i >= samples; i--) {
           floats[i] = 0;
         }
-        await ProcessFrame(floats, 0, samples);
+        await ProcessAudio(floats, 0, samples);
       }
     }
 
-    public async Task ProcessAudio(float[] floats, int start = 0, int length = -1) {
+    public async Task ProcessAudio(float[] floats, int start = 0, int length = -1, bool forceSubFrameProcess = false) {
       if (length < 0) length = floats.Length;
       if (length == 0) return;
 
@@ -283,16 +286,35 @@ namespace Speechly.SLUClient {
 
       while (i < endIndex) {
         int frameEndIndex = Math.Min(frameSamplePos + endIndex - i, frameSamples);
-
+        int frameBase = currentFrameNumber * frameSamples;
         // Fill frame
         while (frameSamplePos < frameEndIndex) {
-          currentFrameSamples[frameSamplePos++] = floats[i++];
+          sampleRingBuffer[frameBase + frameSamplePos++] = floats[i++];
         }
 
-        // Process full frame
-        if (frameSamplePos == frameSamples) {
+        // Process frame
+        if (frameSamplePos == frameSamples || forceSubFrameProcess) {
           frameSamplePos = 0;
-          await ProcessFrame(currentFrameSamples, 0, frameSamples);
+          int subFrameSamples = forceSubFrameProcess ? frameSamplePos : frameSamples;
+
+          await ProcessFrame(sampleRingBuffer, frameBase, subFrameSamples);
+
+          if (IsListening) {
+            if (SamplesSent == 0) {
+              // Start of the utterance - send history if VAD in use
+              int sendHistory = Math.Min(Math.Min(streamFramePos, this.Vad != null && this.Vad.VADControlListening ? Vad.VADFrames : 0), historyFrames); // @TODO cap to actual history frames
+              int historyFrameIndex = (currentFrameNumber + historyFrames - sendHistory) % historyFrames;
+              while (historyFrameIndex != currentFrameNumber) {
+                await SendAudio(sampleRingBuffer, historyFrameIndex * frameSamples, frameSamples);
+                historyFrameIndex = (historyFrameIndex + 1) % historyFrames;
+              }
+            }
+            await SendAudio(sampleRingBuffer, frameBase, subFrameSamples);
+          }
+
+          streamFramePos += 1;
+          streamSamplePos += subFrameSamples;
+          currentFrameNumber = (currentFrameNumber + 1) % historyFrames;
         }
       }
     }
@@ -301,10 +323,6 @@ namespace Speechly.SLUClient {
       AnalyzeAudioFrame(in floats, start, length);
 
       await AutoControlListening();
-
-      await SendAudio(floats, start, length);
-
-      streamSamplePos += length;
     }
 
     private void AnalyzeAudioFrame(in float[] waveData, int s, int frameSamples) {
@@ -325,10 +343,7 @@ namespace Speechly.SLUClient {
       }
     }
 
-
     private async Task SendAudio(float[] floats, int start = 0, int length = -1) {
-      if (!IsListening) return;
-
       if (length < 0) length = floats.Length;
       int end = start + length;
       // @TODO Use a pre-allocated buf
