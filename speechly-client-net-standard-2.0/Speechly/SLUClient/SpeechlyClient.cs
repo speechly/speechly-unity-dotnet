@@ -60,6 +60,7 @@ namespace Speechly.SLUClient {
     private FileStream outAudioStream;
     private StreamWriter logUtteranceStream = null;
 
+    private int inputSampleRate = 16000;
     private int sampleRate = 16000;
     private int frameMillis = 30;
     private int historyFrames = 8;
@@ -85,6 +86,7 @@ namespace Speechly.SLUClient {
       bool manualUpdate = false,
       string saveToFolder = null, // @TODO Future: Allow storing to memory stream as well for replay?
       string logUtteranceFolder = null,
+      int inputSampleRate = 16000,
       bool debug = false
     ) {
       if (loginUrl != null) this.loginUrl = loginUrl;
@@ -97,6 +99,7 @@ namespace Speechly.SLUClient {
       this.logUtteranceFolder = logUtteranceFolder;
       this.debug = debug;
       this.UseCloudSpeechProcessing = useCloudSpeechProcessing;
+      this.inputSampleRate = inputSampleRate;
 
       if (this.manualUpdate) {
         ProcessResponse = QueueMessage;
@@ -285,11 +288,23 @@ namespace Speechly.SLUClient {
       int endIndex = start + length;
 
       while (i < endIndex) {
-        int frameEndIndex = Math.Min(frameSamplePos + endIndex - i, frameSamples);
         int frameBase = currentFrameNumber * frameSamples;
-        // Fill frame
-        while (frameSamplePos < frameEndIndex) {
-          sampleRingBuffer[frameBase + frameSamplePos++] = floats[i++];
+
+        if (inputSampleRate != sampleRate) {
+          // Downsample to ringbuffer
+          float ratio = 1f * inputSampleRate / sampleRate;
+          int inputSamplesToFillFrame = Math.Min(endIndex - i, (int)Math.Round(ratio * (frameSamples - frameSamplePos)));
+          int samplesToFillFrame = Math.Min((int)Math.Round((endIndex - i) / ratio), frameSamples - frameSamplePos);
+          AudioTools.Downsample(floats, ref sampleRingBuffer, i,inputSamplesToFillFrame, frameBase+frameSamplePos,samplesToFillFrame);
+          i += inputSamplesToFillFrame;
+          frameSamplePos += samplesToFillFrame;
+        } else {
+          // Copy and fill frame
+          int samplesToFillFrame = Math.Min(endIndex - i, frameSamples - frameSamplePos);
+          int frameEndIndex = frameSamplePos + samplesToFillFrame;
+          while (frameSamplePos < frameEndIndex) {
+            sampleRingBuffer[frameBase + frameSamplePos++] = floats[i++];
+          }
         }
 
         // Process frame
