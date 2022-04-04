@@ -276,6 +276,10 @@ namespace Speechly.SLUClient {
     }
 
     public async Task ProcessAudio(float[] floats, int start = 0, int length = -1, bool forceSubFrameProcess = false) {
+      if (!IsAudioStreaming) {
+        StartStream(AudioInputStreamIdentifier, auto: false);  // Assume no auto-start/stop if ProcessAudio call encountered before startContext call
+      }
+
       if (length < 0) length = floats.Length;
       if (length == 0) return;
 
