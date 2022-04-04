@@ -62,6 +62,8 @@ public class MicToSpeechly : MonoBehaviour
       deviceId: SystemInfo.deviceUniqueIdentifier,
       vad: this.Vad,
       manualUpdate: true,
+      frameMillis: FrameMillis,
+      historyFrames: HistoryFrames,
       inputSampleRate: MicSampleRate,
       debug: DebugPrint
     );

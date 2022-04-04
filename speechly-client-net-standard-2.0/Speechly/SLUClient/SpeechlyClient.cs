@@ -63,7 +63,10 @@ namespace Speechly.SLUClient {
     private int inputSampleRate = 16000;
     private int internalSampleRate = 16000;
     private int frameMillis = 30;
-    private int historyFrames = 8;
+
+    /// Total number of history frames to keep in memory. Will be sent upon a starting a new utterance.
+    private int historyFrames = 5;
+
     private int frameSamples;
     private int utteranceSerial = -1;
     private int streamFramePos = 0;
@@ -86,6 +89,8 @@ namespace Speechly.SLUClient {
       bool manualUpdate = false,
       string saveToFolder = null, // @TODO Future: Allow storing to memory stream as well for replay?
       string logUtteranceFolder = null,
+      int frameMillis = 30,
+      int historyFrames = 5,
       int inputSampleRate = 16000,
       bool debug = false
     ) {
@@ -100,6 +105,8 @@ namespace Speechly.SLUClient {
       this.debug = debug;
       this.UseCloudSpeechProcessing = useCloudSpeechProcessing;
       this.inputSampleRate = inputSampleRate;
+      this.frameMillis = Math.Max(frameMillis, 1);
+      this.historyFrames = Math.Max(historyFrames, 1);  // Need at least 1 frame; the current one
 
       if (this.manualUpdate) {
         ProcessResponse = QueueMessage;
@@ -316,8 +323,8 @@ namespace Speechly.SLUClient {
 
           if (IsListening) {
             if (SamplesSent == 0) {
-              // Start of the utterance - send history if VAD in use
-              int sendHistory = Math.Min(Math.Min(streamFramePos, this.Vad != null && this.Vad.VADControlListening ? Vad.VADFrames : 0), historyFrames); // @TODO cap to actual history frames
+              // Start of the utterance - send history frames
+              int sendHistory = Math.Min(streamFramePos, historyFrames - 1);
               int historyFrameIndex = (currentFrameNumber + historyFrames - sendHistory) % historyFrames;
               while (historyFrameIndex != currentFrameNumber) {
                 await SendAudio(sampleRingBuffer, historyFrameIndex * frameSamples, frameSamples);
