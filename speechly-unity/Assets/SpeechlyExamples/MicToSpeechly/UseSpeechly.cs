@@ -29,22 +29,21 @@ public class UseSpeechly : MonoBehaviour
     SliderAudioPeak.value = MicToSpeechly.Instance.SpeechlyClient.Vad.Energy;
   }
 
-  public async void OnMouseDown()
+  public void OnMouseDown()
   {
+    Debug.Log("Mouse Down");
     if (!IsButtonHeld && !speechlyClient.IsListening)
     {
-      Debug.Log("Mouse Down");
       IsButtonHeld = true;
       _ = speechlyClient.StartContext();
     }
   }
 
-  public async void OnMouseUp()
+  public void OnMouseUp()
   {
-      Debug.Log("Mouse Up 1");
+    Debug.Log("Mouse Up");
     if (IsButtonHeld && speechlyClient.IsListening)
     {
-      Debug.Log("Mouse Up");
       IsButtonHeld = false;
       _ = speechlyClient.StopContext();
     }

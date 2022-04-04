@@ -8,17 +8,14 @@ using System.Diagnostics;
 
 namespace Speechly.SLUClient {
   public class SpeechlyClientTest {
-    public static async Task TestCloudProcessing(string fileName, string saveToFolder = null, string logUtteranceFolder = null, EnergyTresholdVAD vad = null, bool useCloudSpeechProcessing = true) {
+    public static async Task TestCloudProcessing(string fileName) {
       Stopwatch stopWatch = new Stopwatch();
 
       var client = new SpeechlyClient(
         loginUrl: "https://staging.speechly.com/login",
         apiUrl: "wss://staging.speechly.com/ws/v1?sampleRate=16000",
         appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e", // Restaurant booking configuration
-        saveToFolder: saveToFolder,
-        logUtteranceFolder: logUtteranceFolder,
-        vad: vad,
-        useCloudSpeechProcessing: useCloudSpeechProcessing,
+        useCloudSpeechProcessing: true,
         debug: true
       );
 
@@ -51,10 +48,10 @@ namespace Speechly.SLUClient {
       var connectTime = stopWatch.ElapsedMilliseconds;
 
       stopWatch.Restart();
-      if (vad == null) _ = client.StartContext();
+      _ = client.StartContext();
 
       await client.ProcessAudioFile(fileName);
-      if (vad == null) await client.StopContext();
+      await client.StopContext();
       var sluTime = stopWatch.ElapsedMilliseconds;
 
       Logger.Log($"==== STATS ====");
@@ -67,20 +64,42 @@ namespace Speechly.SLUClient {
 
       EnergyTresholdVAD vad = new EnergyTresholdVAD();
 
+      StreamWriter logUtteranceStream = null;
+      int utteranceStartSamplePos = 0;
+
+      if (logUtteranceFolder != null) {
+        Directory.CreateDirectory(logUtteranceFolder);
+      }
+
       var client = new SpeechlyClient(
         useCloudSpeechProcessing: false,
         saveToFolder: saveToFolder,
-        logUtteranceFolder: logUtteranceFolder,
         vad: vad,
         debug: true
       );
 
       client.OnStartStream = () => {
         Logger.Log("client.OnStartStream");
+        if (logUtteranceFolder != null) {
+          logUtteranceStream = new StreamWriter(Path.Combine(logUtteranceFolder, $"{client.AudioInputStreamIdentifier}.tsv"), false);
+        }
       };
 
       client.OnStopStream = () => {
         Logger.Log("client.OnStopStream");
+        logUtteranceStream.Close();
+        logUtteranceStream = null;
+      };
+
+      client.OnStartContext = () => {
+        Logger.Log($"client.OnStartContext {client.StreamSamplePos}");
+        utteranceStartSamplePos = client.StreamSamplePos;
+      };
+
+      client.OnStopContext = () => {
+        Logger.Log("client.OnStopContext");
+        string serialString = client.UtteranceSerial.ToString().PadLeft(4, '0');
+        logUtteranceStream.WriteLine($"{client.AudioInputStreamIdentifier}\t{serialString}\t{utteranceStartSamplePos}\t{client.SamplesSent}");
       };
 
       stopWatch.Restart();

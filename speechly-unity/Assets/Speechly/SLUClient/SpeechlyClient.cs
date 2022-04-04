@@ -40,6 +40,14 @@ namespace Speechly.SLUClient {
     // Optional message queue should messages be run in the main thread
     public EnergyTresholdVAD Vad { get; private set; } = null;
     public bool UseCloudSpeechProcessing { get; private set; } = true;
+    public string AudioInputStreamIdentifier { get; private set; } = "utterance";
+
+    /// 0-based local index of utterance within the stream
+    public int UtteranceSerial { get; private set; } = -1;
+
+    // Current count of continuously processed samples (thru ProcessAudio) from start of stream
+    public int StreamSamplePos { get; private set; } = 0;
+
     private ConcurrentQueue<SegmentMessage> messageQueue = new ConcurrentQueue<SegmentMessage>();
     private ProcessResponseDelegate ProcessResponse = (MsgCommon msgCommon, string msgString) => {};
     private string deviceId;
@@ -54,11 +62,8 @@ namespace Speechly.SLUClient {
     private string appId = null;
     private bool manualUpdate;
     private bool debug = false;
-    private string logUtteranceFolder = null;
     private string saveToFolder = null;
-    private string audioInputStreamIdentifier = "utterance";
     private FileStream outAudioStream;
-    private StreamWriter logUtteranceStream = null;
 
     private int inputSampleRate = 16000;
     private int internalSampleRate = 16000;
@@ -68,10 +73,8 @@ namespace Speechly.SLUClient {
     private int historyFrames = 5;
 
     private int frameSamples;
-    private int utteranceSerial = -1;
+
     private int streamFramePos = 0;
-    private int streamSamplePos;
-    private int utteranceStartSamplePos;
     private bool streamAutoStarted;
     private float[] sampleRingBuffer = null;
     private int frameSamplePos;
@@ -87,11 +90,10 @@ namespace Speechly.SLUClient {
       EnergyTresholdVAD vad = null, // @TODO Future: Allow different VAD implementation thru IVAD interface
       bool useCloudSpeechProcessing = true,
       bool manualUpdate = false,
-      string saveToFolder = null, // @TODO Future: Allow storing to memory stream as well for replay?
-      string logUtteranceFolder = null,
       int frameMillis = 30,
       int historyFrames = 5,
       int inputSampleRate = 16000,
+      string saveToFolder = null, // @TODO Future: Allow storing to memory stream as well for replay?
       bool debug = false
     ) {
       if (loginUrl != null) this.loginUrl = loginUrl;
@@ -99,14 +101,13 @@ namespace Speechly.SLUClient {
       if (projectId != null) this.projectId = projectId;
       if (appId != null) this.appId = appId;
       this.Vad = vad;
-      this.manualUpdate = manualUpdate;
-      this.saveToFolder = saveToFolder;
-      this.logUtteranceFolder = logUtteranceFolder;
-      this.debug = debug;
       this.UseCloudSpeechProcessing = useCloudSpeechProcessing;
-      this.inputSampleRate = inputSampleRate;
+      this.manualUpdate = manualUpdate;
       this.frameMillis = Math.Max(frameMillis, 1);
       this.historyFrames = Math.Max(historyFrames, 1);  // Need at least 1 frame; the current one
+      this.inputSampleRate = inputSampleRate;
+      this.saveToFolder = saveToFolder;
+      this.debug = debug;
 
       if (this.manualUpdate) {
         ProcessResponse = QueueMessage;
@@ -134,10 +135,6 @@ namespace Speechly.SLUClient {
 
       frameSamples = internalSampleRate * frameMillis / 1000;
 
-      if (logUtteranceFolder != null) {
-        Directory.CreateDirectory(logUtteranceFolder);
-      }
-
       if (saveToFolder != null) {
         Directory.CreateDirectory(saveToFolder);
       }
@@ -150,17 +147,13 @@ namespace Speechly.SLUClient {
         IsAudioStreaming = true;
         streamAutoStarted = auto;
         streamFramePos = 0;
-        streamSamplePos = 0;
+        StreamSamplePos = 0;
         frameSamplePos = 0;
         currentFrameNumber = 0;
-        utteranceSerial = -1;
-        this.audioInputStreamIdentifier = streamIdentifier;
+        UtteranceSerial = -1;
+        this.AudioInputStreamIdentifier = streamIdentifier;
 
         OnStartStream();
-
-        if (logUtteranceFolder != null) {
-          logUtteranceStream = new StreamWriter(Path.Combine(logUtteranceFolder, $"{streamIdentifier}.tsv"), false);
-        }
       }
     }
 
@@ -174,11 +167,6 @@ namespace Speechly.SLUClient {
           // Process remaining frame samples
           await ProcessAudio(sampleRingBuffer, 0, frameSamplePos, true);
 
-          if (logUtteranceStream != null) {
-            logUtteranceStream.Close();
-            logUtteranceStream = null;
-          }
-
           IsAudioStreaming = false;
         
           OnStopStream();
@@ -187,7 +175,7 @@ namespace Speechly.SLUClient {
     }
 
     ~SpeechlyClient() {
-      StopStream();
+      _ = StopStream();
     }
 
     public async Task Connect() {
@@ -220,20 +208,22 @@ namespace Speechly.SLUClient {
       }
 
       if (!IsAudioStreaming) {
-        StartStream(audioInputStreamIdentifier, auto: true);
+        StartStream(AudioInputStreamIdentifier, auto: true);
       }
 
       IsListening = true;
       SamplesSent = 0;
-      utteranceStartSamplePos = streamSamplePos;
-      utteranceSerial++;
+      UtteranceSerial++;
 
-      string localBaseName = $"{audioInputStreamIdentifier}_{utteranceSerial.ToString().PadLeft(4, '0')}";
+      string localBaseName = $"{AudioInputStreamIdentifier}_{UtteranceSerial.ToString().PadLeft(4, '0')}";
       string contextId = localBaseName;
 
       if (saveToFolder != null) {
         outAudioStream = new FileStream(Path.Combine(saveToFolder, $"{localBaseName}.raw"), FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
       }
+
+      SetState(ClientState.Starting);
+      OnStartContext();
 
       try {
         if (UseCloudSpeechProcessing) {
@@ -244,14 +234,12 @@ namespace Speechly.SLUClient {
           } else {
             t = wsClient.SendText($"{{\"event\": \"start\"}}");
           }
-          SetState(ClientState.Starting);
           await t;
           MsgCommon msgCommon = await startContextTCS.Task;
           contextId = msgCommon.audio_context;
         }
 
         SetState(ClientState.Recording);
-        OnStartContext();
         return contextId;
       } catch (Exception e) {
         SetState(ClientState.Connected);
@@ -265,7 +253,7 @@ namespace Speechly.SLUClient {
       var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
       StartStream(outBaseName);
       await ProcessAudio(fileStream);
-      StopStream();
+      await StopStream();
       fileStream.Close();
     }
 
@@ -319,7 +307,9 @@ namespace Speechly.SLUClient {
           frameSamplePos = 0;
           int subFrameSamples = forceSubFrameProcess ? frameSamplePos : frameSamples;
 
-          await ProcessFrame(sampleRingBuffer, frameBase, subFrameSamples);
+          if (!forceSubFrameProcess) {
+            await ProcessFrame(sampleRingBuffer, frameBase, subFrameSamples);
+          }
 
           if (IsListening) {
             if (SamplesSent == 0) {
@@ -335,7 +325,7 @@ namespace Speechly.SLUClient {
           }
 
           streamFramePos += 1;
-          streamSamplePos += subFrameSamples;
+          StreamSamplePos += subFrameSamples;
           currentFrameNumber = (currentFrameNumber + 1) % historyFrames;
         }
       }
@@ -397,14 +387,10 @@ namespace Speechly.SLUClient {
       IsListening = false;
       SetState(ClientState.Stopping);
 
-      string localBaseName = $"{audioInputStreamIdentifier}_{utteranceSerial.ToString().PadLeft(4, '0')}";
+      string localBaseName = $"{AudioInputStreamIdentifier}_{UtteranceSerial.ToString().PadLeft(4, '0')}";
       string contextId = localBaseName;
 
       try {
-        if (logUtteranceFolder != null) {
-          string serialString = utteranceSerial.ToString().PadLeft(4, '0');
-          logUtteranceStream.WriteLine($"{audioInputStreamIdentifier}\t{serialString}\t{utteranceStartSamplePos}\t{SamplesSent}");
-        }
 
         if (saveToFolder != null) {
           outAudioStream.Close();
