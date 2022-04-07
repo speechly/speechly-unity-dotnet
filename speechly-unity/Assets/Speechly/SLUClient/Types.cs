@@ -1,6 +1,5 @@
 using System;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
 using System.Text;
 using System.IO;
 
@@ -106,31 +105,6 @@ namespace Speechly.SLUClient {
     public string type { get; set; }
     public string audio_context { get; set; }
     public int segment_id { get; set; }
-  }
-
-  public class Platform {
-    public static string GetPersistentStoragePath()
-    {
-#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_ANDROID || UNITY_IOS
-      return UnityEngine.Application.persistentDataPath;
-#else
-      return System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
-#endif
-    }
-
-    // Parse string and return a valid Guid, attempting to retain the original string if it's a valid Guid.
-    // return D-type Guid string: 00000000-0000-0000-0000-000000000000
-    public static string GuidFromString(string s) {
-      try {
-        // Attempt to parse string as Guid as-is
-        return new Guid(s).ToString();
-      } catch {
-        // Guid will be created from the string bytes
-        var bytes = Encoding.UTF8.GetBytes(s);
-        Array.Resize<byte>(ref bytes, 16);
-        return new Guid(bytes).ToString();
-      }
-    }
   }
 
   public class ConfigTool {

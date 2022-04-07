@@ -1,6 +1,7 @@
-﻿using System.Collections;
+﻿// #define SPEECHLY_ONDEVICE
+
+using System.Collections;
 using UnityEngine;
-using UnityEngine.UI;
 
 using System;
 using System.Threading;
@@ -14,6 +15,7 @@ public class MicToSpeechly : MonoBehaviour
   public enum SpeechlyEnvironment {
     Production,
     Staging,
+    OnDevice,
   }
 
   private static MicToSpeechly _instance;
@@ -56,10 +58,6 @@ public class MicToSpeechly : MonoBehaviour
     Logger.LogError = Debug.LogError;
 
     SpeechlyClient = new SpeechlyClient(
-      loginUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "https://staging.speechly.com/login",
-      apiUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "wss://staging.speechly.com/ws/v1?sampleRate=16000",
-      appId: this.AppId,
-      deviceId: SystemInfo.deviceUniqueIdentifier,
       vad: this.Vad,
       manualUpdate: true,
       frameMillis: FrameMillis,
@@ -74,37 +72,84 @@ public class MicToSpeechly : MonoBehaviour
 
   void Start()
   {
-    Logger.Log($"Start mic loop @ {Thread.CurrentThread.ManagedThreadId}");
+  }
 
-    // Show device caps
-    // int minFreq, maxFreq;
-    // Microphone.GetDeviceCaps(CaptureDeviceName, out minFreq, out maxFreq);
-    // Debug.Log($"minFreq {minFreq} maxFreq {maxFreq}");
+    private Coroutine runSpeechlyCoroutine = null;
 
-    int capturedAudioBufferMillis = 500;
-    int micBufferMillis = FrameMillis * HistoryFrames + capturedAudioBufferMillis;
-    int micBufferSecs = (micBufferMillis / 1000) + 1;
-    // Start audio capture
-    clip = Microphone.Start(CaptureDeviceName, true, micBufferSecs, MicSampleRate);
+    void OnEnable() {
+      Logger.Log("OnEnable");
+      Logger.Log($"Start mic loop @ {Thread.CurrentThread.ManagedThreadId}");
 
-    if (clip != null)
-    {
-      waveData = new float[clip.samples * clip.channels];
-      // Debug.Log($"Mic frequency {clip.frequency} channels {clip.channels}");
+      // Show device caps
+      // int minFreq, maxFreq;
+      // Microphone.GetDeviceCaps(CaptureDeviceName, out minFreq, out maxFreq);
+      // Debug.Log($"minFreq {minFreq} maxFreq {maxFreq}");
+
+      int capturedAudioBufferMillis = 500;
+      int micBufferMillis = FrameMillis * HistoryFrames + capturedAudioBufferMillis;
+      int micBufferSecs = (micBufferMillis / 1000) + 1;
+      // Start audio capture
+      clip = Microphone.Start(CaptureDeviceName, true, micBufferSecs, MicSampleRate);
+
+      if (clip != null)
+      {
+        waveData = new float[clip.samples * clip.channels];
+        // Debug.Log($"Mic frequency {clip.frequency} channels {clip.channels}");
+      }
+      else
+      {
+        throw new Exception($"Could not open microphone {CaptureDeviceName}");
+      }
+
+      runSpeechlyCoroutine = StartCoroutine(RunSpeechly());
     }
-    else
-    {
-      throw new Exception($"Could not open microphone {CaptureDeviceName}");
-    }
 
-    StartCoroutine(RunSpeechly());
+  async void OnDisable() {
+    Logger.Log("OnDisable...");
+    if (runSpeechlyCoroutine != null) StopCoroutine(runSpeechlyCoroutine);
+    runSpeechlyCoroutine = null;
+    await SpeechlyClient.Shutdown();
   }
 
   private IEnumerator RunSpeechly()
   {
+    IDecoder decoder = null;
+
+    if (SpeechlyEnv == SpeechlyEnvironment.OnDevice) {
+#if SPEECHLY_ONDEVICE
+#if UNITY_ANDROID
+      string path = $"{Application.streamingAssetsPath}/SpeechlyOnDevice/Models";
+
+      var encoderTask = Fetch($"{path}/encoder.ort");
+      var predictorTask = Fetch($"{path}/predictor.ort");
+      var jointTask = Fetch($"{path}/joint.ort");
+      var featTask = Fetch($"{path}/feat.ort");
+      var subwordsTask = Fetch($"{path}/subwords.lst");
+
+      var fetchAllTask = Task.WhenAll(new []{encoderTask, predictorTask, jointTask, featTask, subwordsTask});
+      yield return new WaitUntil(() => fetchAllTask.IsCompleted);
+
+      decoder = new OnDeviceDecoder(encoderTask.Result, predictorTask.Result, jointTask.Result, featTask.Result, subwordsTask.Result);
+#else
+      decoder = new OnDeviceDecoder();
+#endif
+#else
+      throw new Exception("SPEECHLY_ONDEVICE is not defined. Please contact Speechly to enable on-device speech recognition - you'll need extra files delivered under Speechly on-device licence.");
+#endif
+    }
+
+    if (SpeechlyEnv == SpeechlyEnvironment.Production || SpeechlyEnv == SpeechlyEnvironment.Staging) {
+      decoder = new CloudDecoder(
+        loginUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "https://staging.speechly.com/login",
+        apiUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "wss://staging.speechly.com/ws/v1?sampleRate=16000",
+        appId: this.AppId,
+        deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier)
+      );
+    }
+
     // Wait for connect if needed
     Task task;
-    task = SpeechlyClient.Connect();
+    task = SpeechlyClient.Connect(decoder);
     yield return new WaitUntil(() => task.IsCompleted);
 
     while (true) {
