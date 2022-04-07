@@ -19,7 +19,6 @@ namespace Speechly.SLUClient {
     public delegate void StopStreamDelegate();
     public delegate void StartContextDelegate();
     public delegate void StopContextDelegate();
-    private delegate void ProcessResponseDelegate(MsgCommon msgCommon, string msgString);
     public SegmentChangeDelegate OnSegmentChange = (Segment segment) => {};
     public TentativeTranscriptDelegate OnTentativeTranscript = (msg) => {};
     public TranscriptDelegate OnTranscript = (msg) => {};
@@ -39,7 +38,6 @@ namespace Speechly.SLUClient {
     public ClientState State { get; private set; } = ClientState.Disconnected;
     // Optional message queue should messages be run in the main thread
     public EnergyTresholdVAD Vad { get; private set; } = null;
-    public bool UseCloudSpeechProcessing { get; private set; } = true;
     public string AudioInputStreamIdentifier { get; private set; } = "utterance";
 
     /// 0-based local index of utterance within the stream
@@ -49,17 +47,7 @@ namespace Speechly.SLUClient {
     public int StreamSamplePos { get; private set; } = 0;
 
     private ConcurrentQueue<SegmentMessage> messageQueue = new ConcurrentQueue<SegmentMessage>();
-    private ProcessResponseDelegate ProcessResponse = (MsgCommon msgCommon, string msgString) => {};
-    private string deviceId;
-    private string token;
     private Dictionary<string, Dictionary<int, Segment>> activeContexts = new Dictionary<string, Dictionary<int, Segment>>();
-    private WsClient wsClient = null;
-    private TaskCompletionSource<MsgCommon> startContextTCS;
-    private TaskCompletionSource<MsgCommon> stopContextTCS;
-    private string loginUrl = "https://api.speechly.com/login";
-    private string apiUrl = "wss://api.speechly.com/ws/v1?sampleRate=16000";
-    private string projectId = null;
-    private string appId = null;
     private bool manualUpdate;
     private bool debug = false;
     private string saveToFolder = null;
@@ -79,6 +67,7 @@ namespace Speechly.SLUClient {
     private float[] sampleRingBuffer = null;
     private int frameSamplePos;
     private int currentFrameNumber = 0;
+    private IDecoder decoder;
 
 
     public SpeechlyClient(
@@ -96,42 +85,14 @@ namespace Speechly.SLUClient {
       string saveToFolder = null, // @TODO Future: Allow storing to memory stream as well for replay?
       bool debug = false
     ) {
-      if (loginUrl != null) this.loginUrl = loginUrl;
-      if (apiUrl != null) this.apiUrl = apiUrl;
-      if (projectId != null) this.projectId = projectId;
-      if (appId != null) this.appId = appId;
+
       this.Vad = vad;
-      this.UseCloudSpeechProcessing = useCloudSpeechProcessing;
       this.manualUpdate = manualUpdate;
       this.frameMillis = Math.Max(frameMillis, 1);
       this.historyFrames = Math.Max(historyFrames, 1);  // Need at least 1 frame; the current one
       this.inputSampleRate = inputSampleRate;
       this.saveToFolder = saveToFolder;
       this.debug = debug;
-
-      if (this.manualUpdate) {
-        ProcessResponse = QueueMessage;
-      } else {
-        ProcessResponse = OnMessage;
-      }
-
-      if (!String.IsNullOrEmpty(deviceId)) {
-        this.deviceId = Platform.GuidFromString(deviceId);
-        if (this.debug) Logger.Log($"Using manual deviceId: {deviceId}");
-      } else {
-        // Load settings
-        Preferences config = ConfigTool.RestoreOrCreate<Preferences>(Preferences.FileName);
-        // Restore or generate device id
-        if (!String.IsNullOrEmpty(config.deviceId)) {
-          this.deviceId = config.deviceId;
-          if (this.debug) Logger.Log($"Restored deviceId: {this.deviceId}");
-        } else {
-          this.deviceId = System.Guid.NewGuid().ToString();
-          config.deviceId = this.deviceId;
-          ConfigTool.Save<Preferences>(config, Preferences.FileName);
-          if (this.debug) Logger.Log($"New deviceId: {this.deviceId}");
-        }
-      }
 
       frameSamples = internalSampleRate * frameMillis / 1000;
 
@@ -174,23 +135,27 @@ namespace Speechly.SLUClient {
       }
     }
 
-    ~SpeechlyClient() {
-      _ = StopStream();
+    public async Task Shutdown() {
+      await StopStream();
+
+      if (this.decoder != null) {
+        await decoder.Shutdown();
+      }
     }
 
-    public async Task Connect() {
+    public async Task Connect(IDecoder decoder) {
+      this.decoder = decoder;
       if (State < ClientState.Connecting) {
         SetState(ClientState.Connecting);
         try {
-          var tokenFetcher = new LoginToken();
-          token = await tokenFetcher.FetchToken(loginUrl, projectId, appId, deviceId);
-
-          if (debug) Logger.Log($"token: {token}");
-
-          wsClient = new WsClient();
-          wsClient.OnResponseReceived = OnResponse;
-
-          await wsClient.ConnectAsync(apiUrl, token);
+          if (this.decoder != null) {
+            if (this.manualUpdate) {
+              this.decoder.OnMessage += QueueMessage;
+            } else {
+              this.decoder.OnMessage += OnMessage;
+            }
+            await this.decoder.Initialize();
+          }
           SetState(ClientState.Preinitialized);
           SetState(ClientState.Initializing);
           SetState(ClientState.Connected);
@@ -226,19 +191,9 @@ namespace Speechly.SLUClient {
       OnStartContext();
 
       try {
-        if (UseCloudSpeechProcessing) {
-          startContextTCS = new TaskCompletionSource<MsgCommon>();
-          Task t;
-          if (appId != null) {
-            t = wsClient.SendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
-          } else {
-            t = wsClient.SendText($"{{\"event\": \"start\"}}");
-          }
-          await t;
-          MsgCommon msgCommon = await startContextTCS.Task;
-          contextId = msgCommon.audio_context;
+        if (this.decoder != null) {
+          contextId = await this.decoder.StartContext() ?? contextId;
         }
-
         SetState(ClientState.Recording);
         return contextId;
       } catch (Exception e) {
@@ -359,6 +314,19 @@ namespace Speechly.SLUClient {
     }
 
     private async Task SendAudio(float[] floats, int start = 0, int length = -1) {
+      SamplesSent += length;
+
+      // Stream to file
+      if (saveToFolder != null) {
+        SaveToDisk(floats, start, length);
+      }
+
+      if (this.decoder != null) {
+        await this.decoder.SendAudio(floats, start, length);
+      }
+    }
+
+    private void SaveToDisk(float[] floats, int start = 0, int length = -1) {
       if (length < 0) length = floats.Length;
       int end = start + length;
       // @TODO Use a pre-allocated buf
@@ -371,17 +339,7 @@ namespace Speechly.SLUClient {
         buf[i++] = (byte)(v >> 8);
       }
 
-      SamplesSent += length;
-
-      // Stream to file
-      if (saveToFolder != null) {
-        outAudioStream.Write(buf, 0, length * 2);
-      }
-
-      // Stream via websocket
-      if (UseCloudSpeechProcessing) {
-        await wsClient.SendBytes(new ArraySegment<byte>(buf));
-      }
+      outAudioStream.Write(buf, 0, length * 2);
     }
 
     public async Task<string> StopContext() {
@@ -395,17 +353,14 @@ namespace Speechly.SLUClient {
       string contextId = localBaseName;
 
       try {
-
         if (saveToFolder != null) {
           outAudioStream.Close();
         }
 
-        if (UseCloudSpeechProcessing) {
-          stopContextTCS = new TaskCompletionSource<MsgCommon>();
-          await wsClient.SendText($"{{\"event\": \"stop\"}}");
-          MsgCommon msgCommon = await stopContextTCS.Task;
-          contextId = msgCommon.audio_context;
+        if (this.decoder != null) {
+          contextId = await this.decoder.StopContext() ?? contextId;
         }
+
         SetState(ClientState.Connected);
         OnStopContext();
         return contextId;
@@ -430,32 +385,6 @@ namespace Speechly.SLUClient {
       // Logger.Log($"{this.State} -> {state}");
       this.State = state;
       OnStateChange(state);
-    }
-
-    private void OnResponse(MemoryStream inputStream)
-    {
-      var msgString = Encoding.UTF8.GetString(inputStream.ToArray());
-      try {
-        // @TODO Find a way to deserialize only once
-        var msgCommon = JSON.Parse(msgString, new MsgCommon());
-        Logger.Log($"[WsClient] IN MSG {msgCommon.type}");
-        switch (msgCommon.type) {
-          case "started": {
-            if (debug) Logger.Log($"Started message received '{msgCommon.audio_context}'");
-            startContextTCS.SetResult(msgCommon);
-            break;
-          }
-          case "stopped": {
-            if (debug) Logger.Log($"Stopped message received '{msgCommon.audio_context}'");
-            stopContextTCS.SetResult(msgCommon);
-            break;
-          }
-        }
-        ProcessResponse(msgCommon, msgString);
-      } catch {
-        Logger.LogError($"Error while handling message with content: {msgString}");
-        throw;
-      }
     }
 
     private void QueueMessage(MsgCommon msgCommon, string msgString) {
