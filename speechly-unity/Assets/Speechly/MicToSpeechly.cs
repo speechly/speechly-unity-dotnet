@@ -120,11 +120,11 @@ public class MicToSpeechly : MonoBehaviour
 #if UNITY_ANDROID
       string path = $"{Application.streamingAssetsPath}/SpeechlyOnDevice/Models";
 
-      var encoderTask = Fetch($"{path}/encoder.ort");
-      var predictorTask = Fetch($"{path}/predictor.ort");
-      var jointTask = Fetch($"{path}/joint.ort");
-      var featTask = Fetch($"{path}/feat.ort");
-      var subwordsTask = Fetch($"{path}/subwords.lst");
+      var encoderTask = Platform.Fetch($"{path}/encoder.ort");
+      var predictorTask = Platform.Fetch($"{path}/predictor.ort");
+      var jointTask = Platform.Fetch($"{path}/joint.ort");
+      var featTask = Platform.Fetch($"{path}/feat.ort");
+      var subwordsTask = Platform.Fetch($"{path}/subwords.lst");
 
       var fetchAllTask = Task.WhenAll(new []{encoderTask, predictorTask, jointTask, featTask, subwordsTask});
       yield return new WaitUntil(() => fetchAllTask.IsCompleted);

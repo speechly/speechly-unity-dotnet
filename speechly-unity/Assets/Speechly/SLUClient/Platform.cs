@@ -1,5 +1,6 @@
 using System;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace Speechly.SLUClient {
 
@@ -26,6 +27,19 @@ namespace Speechly.SLUClient {
         }
       }
       return deviceId;
+    }
+
+    public static Task<byte[]> Fetch(string url) {
+      var req = UnityEngine.Networking.UnityWebRequest.Get(url);
+      var reqOp = req.SendWebRequest();
+      var tsc = new TaskCompletionSource<byte[]>();
+      reqOp.completed += asyncOp => tsc.TrySetResult(reqOp.webRequest.downloadHandler.data);
+
+      if (reqOp.isDone) {
+        tsc.TrySetResult(reqOp.webRequest.downloadHandler.data);
+      }
+
+      return tsc.Task;
     }
 
     public static string GetPersistentStoragePath()
