@@ -103,6 +103,31 @@ namespace Speechly.SLUClient {
       sampleRingBuffer = new float[frameSamples * historyFrames];
     }
 
+    public async Task Initialize(IDecoder decoder) {
+      this.decoder = decoder;
+      if (State < ClientState.Connecting) {
+        SetState(ClientState.Connecting);
+        try {
+          if (this.decoder != null) {
+            if (this.manualUpdate) {
+              this.decoder.OnMessage += QueueMessage;
+            } else {
+              this.decoder.OnMessage += OnMessage;
+            }
+            await this.decoder.Initialize();
+          }
+          SetState(ClientState.Preinitialized);
+          SetState(ClientState.Initializing);
+          SetState(ClientState.Connected);
+        } catch (Exception e) {
+          SetState(ClientState.Failed);
+          Logger.LogError(e.ToString());
+          throw;
+        }
+      }
+    }
+
+
     public void StartStream(string streamIdentifier, bool auto = false) {
       if (!IsAudioStreaming) {
         IsAudioStreaming = true;
@@ -135,39 +160,7 @@ namespace Speechly.SLUClient {
       }
     }
 
-    public async Task Shutdown() {
-      await StopStream();
-
-      if (this.decoder != null) {
-        await decoder.Shutdown();
-      }
-    }
-
-    public async Task Connect(IDecoder decoder) {
-      this.decoder = decoder;
-      if (State < ClientState.Connecting) {
-        SetState(ClientState.Connecting);
-        try {
-          if (this.decoder != null) {
-            if (this.manualUpdate) {
-              this.decoder.OnMessage += QueueMessage;
-            } else {
-              this.decoder.OnMessage += OnMessage;
-            }
-            await this.decoder.Initialize();
-          }
-          SetState(ClientState.Preinitialized);
-          SetState(ClientState.Initializing);
-          SetState(ClientState.Connected);
-        } catch (Exception e) {
-          SetState(ClientState.Failed);
-          Logger.LogError(e.ToString());
-          throw;
-        }
-      }
-    }
-
-    public async Task<string> StartContext(string appId = null) {
+    public Task<string> StartContext(string appId = null) {
       if (IsListening) {
         throw new Exception("Already listening.");
       }
@@ -189,13 +182,13 @@ namespace Speechly.SLUClient {
 
       SetState(ClientState.Starting);
       OnStartContext();
+      SetState(ClientState.Recording);
 
       try {
         if (this.decoder != null) {
-          contextId = await this.decoder.StartContext() ?? contextId;
+          return this.decoder.StartContext();
         }
-        SetState(ClientState.Recording);
-        return contextId;
+        return Task.FromResult(contextId);
       } catch (Exception e) {
         SetState(ClientState.Connected);
         Logger.LogError(e.ToString());
@@ -271,16 +264,17 @@ namespace Speechly.SLUClient {
           }
 
           if (IsListening) {
+            
             if (SamplesSent == 0) {
               // Start of the utterance - send history frames
               int sendHistory = Math.Min(streamFramePos, historyFrames - 1);
               int historyFrameIndex = (currentFrameNumber + historyFrames - sendHistory) % historyFrames;
               while (historyFrameIndex != currentFrameNumber) {
-                await SendAudio(sampleRingBuffer, historyFrameIndex * frameSamples, frameSamples);
+                SendAudio(sampleRingBuffer, historyFrameIndex * frameSamples, frameSamples);
                 historyFrameIndex = (historyFrameIndex + 1) % historyFrames;
               }
             }
-            await SendAudio(sampleRingBuffer, frameBase, subFrameSamples);
+            SendAudio(sampleRingBuffer, frameBase, subFrameSamples);
           }
 
           streamFramePos += 1;
@@ -313,7 +307,7 @@ namespace Speechly.SLUClient {
       }
     }
 
-    private async Task SendAudio(float[] floats, int start = 0, int length = -1) {
+    private void SendAudio(float[] floats, int start = 0, int length = -1) {
       SamplesSent += length;
 
       // Stream to file
@@ -322,7 +316,7 @@ namespace Speechly.SLUClient {
       }
 
       if (this.decoder != null) {
-        await this.decoder.SendAudio(floats, start, length);
+        this.decoder.SendAudio(floats, start, length);
       }
     }
 
@@ -342,7 +336,7 @@ namespace Speechly.SLUClient {
       outAudioStream.Write(buf, 0, length * 2);
     }
 
-    public async Task<string> StopContext() {
+    public Task<string> StopContext() {
       if (!IsListening) {
         throw new Exception("Already stopped listening.");
       }
@@ -357,13 +351,14 @@ namespace Speechly.SLUClient {
           outAudioStream.Close();
         }
 
-        if (this.decoder != null) {
-          contextId = await this.decoder.StopContext() ?? contextId;
-        }
-
         SetState(ClientState.Connected);
         OnStopContext();
-        return contextId;
+
+        if (this.decoder != null) {
+          return this.decoder.StopContext();
+        }
+
+        return Task.FromResult(contextId);
       } catch (Exception e) {
         SetState(ClientState.Connected);
         Logger.LogError(e.ToString());
@@ -469,6 +464,16 @@ namespace Speechly.SLUClient {
       }
 
       OnSegmentChange(segmentState);
+    }
+
+    public async Task Shutdown() {
+      SetState(ClientState.Disconnecting);
+      await StopStream();
+
+      if (this.decoder != null) {
+        await decoder.Shutdown();
+      }
+      SetState(ClientState.Disconnected);
     }
 
   }

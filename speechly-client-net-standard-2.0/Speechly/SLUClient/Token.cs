@@ -1,10 +1,7 @@
 ﻿using System.Threading.Tasks;
 using System.Net.Http;
-using System.Runtime.Serialization.Json;
 using System;
-using System.IO;
 using System.Text;
-using System.Diagnostics;
 
 namespace Speechly.SLUClient {
   public class AppTokenRequest

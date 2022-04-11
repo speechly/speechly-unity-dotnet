@@ -7,7 +7,7 @@ namespace Speechly.SLUClient {
     event ResponseReceivedDelegate OnMessage;
     Task Initialize();
     Task<string> StartContext();
-    Task SendAudio(float[] floats, int start = 0, int length = -1);
+    void SendAudio(float[] floats, int start = 0, int length = -1);
     Task<string> StopContext();
     Task Shutdown();
   }

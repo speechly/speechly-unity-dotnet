@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 namespace Speechly.SLUClient {
 
   public class Platform {
-    private static bool debug;
+    private static bool debug = false;
 
     public static string GetDeviceId(string seed = null) {
       string deviceId;
@@ -30,6 +30,7 @@ namespace Speechly.SLUClient {
     }
 
     public static Task<byte[]> Fetch(string url) {
+#if UNITY_EDITOR || UNITY_STANDALONE || UNITY_ANDROID || UNITY_IOS
       var req = UnityEngine.Networking.UnityWebRequest.Get(url);
       var reqOp = req.SendWebRequest();
       var tsc = new TaskCompletionSource<byte[]>();
@@ -40,6 +41,12 @@ namespace Speechly.SLUClient {
       }
 
       return tsc.Task;
+
+#else
+      using (var client = new System.Net.Http.HttpClient()) {
+        return client.GetByteArrayAsync(url);
+      }
+#endif
     }
 
     public static string GetPersistentStoragePath()
