@@ -66,6 +66,7 @@ namespace Speechly.SLUClient {
       try {
         // @TODO Find a way to deserialize only once
         var msgCommon = JSON.Parse(msgString, new MsgCommon());
+        OnMessage(msgCommon, msgString);
         switch (msgCommon.type) {
           case "started": {
             TaskCompletionSource<string> tcs;
@@ -80,7 +81,6 @@ namespace Speechly.SLUClient {
             break;
           }
         }
-        OnMessage(msgCommon, msgString);
       } catch {
         Logger.LogError($"Error while handling message with content: {msgString}");
         throw;

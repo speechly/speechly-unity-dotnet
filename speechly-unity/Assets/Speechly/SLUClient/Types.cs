@@ -14,22 +14,6 @@ namespace Speechly.SLUClient {
     }
   }
 
-  public enum ClientState {
-    Failed = 0,
-    NoBrowserSupport,
-    NoAudioConsent,
-    __UnrecoverableErrors,
-    Disconnected,
-    Disconnecting,
-    Connecting,
-    Preinitialized,
-    Initializing,
-    Connected,
-    Stopping,
-    Starting,
-    Recording,
-  }
-
 
   public interface IMsgCommonProps {
     string type { get; set; }

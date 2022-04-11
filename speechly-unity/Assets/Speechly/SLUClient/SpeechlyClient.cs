@@ -9,7 +9,6 @@ namespace Speechly.SLUClient {
 
   public class SpeechlyClient {
     public delegate void SegmentChangeDelegate(Segment segment);
-    public delegate void StateChangeDelegate(ClientState state); // @TODO Future: Split to IsMicReady, IsConnected, IsListening
     public delegate void TentativeTranscriptDelegate(MsgTentativeTranscript msg);
     public delegate void TranscriptDelegate(MsgTranscript msg);
     public delegate void TentativeEntityDelegate(MsgTentativeEntity msg);
@@ -26,26 +25,37 @@ namespace Speechly.SLUClient {
     public EntityDelegate OnEntity = (msg) => {};
     public IntentDelegate OnTentativeIntent = (msg) => {};
     public IntentDelegate OnIntent = (msg) => {};
-    public StateChangeDelegate OnStateChange = (ClientState state) => {};
     public StartStreamDelegate OnStartStream = () => {};
     public StopStreamDelegate OnStopStream = () => {};
     public StartContextDelegate OnStartContext = () => {};
     public StopContextDelegate OnStopContext = () => {};
 
+    // Returns true when StartStream has been called
     public bool IsAudioStreaming { get; private set; } = false;
+
+    /// Returns true when SLU Engine is ready for Start/StopContext calls
+    public bool IsReady {
+      get {
+        return this.decoder != null;
+      }
+    }
+
+    /// Returns true when StartContext is called and expecting StopContext next
     public bool IsListening { get; private set; } = false;
+
     public int SamplesSent { get; private set; } = 0;
-    public ClientState State { get; private set; } = ClientState.Disconnected;
-    // Optional message queue should messages be run in the main thread
     public EnergyTresholdVAD Vad { get; private set; } = null;
+
+    /// Utterance identifier
     public string AudioInputStreamIdentifier { get; private set; } = "utterance";
 
     /// 0-based local index of utterance within the stream
     public int UtteranceSerial { get; private set; } = -1;
 
-    // Current count of continuously processed samples (thru ProcessAudio) from start of stream
+    /// Current count of continuously processed samples (thru ProcessAudio) from start of stream
     public int StreamSamplePos { get; private set; } = 0;
 
+    /// Message queue used when manualUpdate is true. Delegates are fired with a call to Update() that should be run in the desired thread (main) thread.
     private ConcurrentQueue<SegmentMessage> messageQueue = new ConcurrentQueue<SegmentMessage>();
     private Dictionary<string, Dictionary<int, Segment>> activeContexts = new Dictionary<string, Dictionary<int, Segment>>();
     private bool manualUpdate;
@@ -104,23 +114,16 @@ namespace Speechly.SLUClient {
     }
 
     public async Task Initialize(IDecoder decoder) {
-      this.decoder = decoder;
-      if (State < ClientState.Connecting) {
-        SetState(ClientState.Connecting);
+      if (this.decoder == null) {
         try {
-          if (this.decoder != null) {
-            if (this.manualUpdate) {
-              this.decoder.OnMessage += QueueMessage;
-            } else {
-              this.decoder.OnMessage += OnMessage;
-            }
-            await this.decoder.Initialize();
+          if (this.manualUpdate) {
+            decoder.OnMessage += QueueMessage;
+          } else {
+            decoder.OnMessage += OnMessage;
           }
-          SetState(ClientState.Preinitialized);
-          SetState(ClientState.Initializing);
-          SetState(ClientState.Connected);
+          await decoder.Initialize();
+          this.decoder = decoder;
         } catch (Exception e) {
-          SetState(ClientState.Failed);
           Logger.LogError(e.ToString());
           throw;
         }
@@ -180,20 +183,19 @@ namespace Speechly.SLUClient {
         outAudioStream = new FileStream(Path.Combine(saveToFolder, $"{localBaseName}.raw"), FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
       }
 
-      SetState(ClientState.Starting);
       OnStartContext();
-      SetState(ClientState.Recording);
 
-      try {
-        if (this.decoder != null) {
+      if (this.decoder != null) {
+        try {
           return this.decoder.StartContext();
+        } catch (Exception e) {
+          IsListening = false;
+          Logger.LogError(e.ToString());
+          throw;
         }
-        return Task.FromResult(contextId);
-      } catch (Exception e) {
-        SetState(ClientState.Connected);
-        Logger.LogError(e.ToString());
-        throw;
       }
+      
+      return Task.FromResult(contextId);
     }
 
     public void ProcessAudioFile(string fileName) {
@@ -341,45 +343,34 @@ namespace Speechly.SLUClient {
         throw new Exception("Already stopped listening.");
       }
       IsListening = false;
-      SetState(ClientState.Stopping);
 
       string localBaseName = $"{AudioInputStreamIdentifier}_{UtteranceSerial.ToString().PadLeft(4, '0')}";
       string contextId = localBaseName;
 
-      try {
-        if (saveToFolder != null) {
-          outAudioStream.Close();
-        }
-
-        SetState(ClientState.Connected);
-        OnStopContext();
-
-        if (this.decoder != null) {
-          return this.decoder.StopContext();
-        }
-
-        return Task.FromResult(contextId);
-      } catch (Exception e) {
-        SetState(ClientState.Connected);
-        Logger.LogError(e.ToString());
-        throw;
+      if (saveToFolder != null) {
+        outAudioStream.Close();
       }
+
+      OnStopContext();
+
+      if (this.decoder != null) {
+        try {
+          return this.decoder.StopContext();
+        } catch (Exception e) {
+          Logger.LogError(e.ToString());
+          throw;
+        }
+      }
+
+      return Task.FromResult(contextId);
     }
 
-    /**
-     * Fire Speechly callbacks manually if you want them to run in main UI/Unity thread
-     */    
+    /// Fire Speechly callbacks manually if you want them to run in main UI/Unity thread
     public void Update() {
       SegmentMessage segmentUpdateProps;
       while (messageQueue.TryDequeue(out segmentUpdateProps)) {
         OnMessage(segmentUpdateProps.msgCommon, segmentUpdateProps.msgString);
       }
-    }
-
-    private void SetState(ClientState state) {
-      // Logger.Log($"{this.State} -> {state}");
-      this.State = state;
-      OnStateChange(state);
     }
 
     private void QueueMessage(MsgCommon msgCommon, string msgString) {
@@ -467,13 +458,12 @@ namespace Speechly.SLUClient {
     }
 
     public async Task Shutdown() {
-      SetState(ClientState.Disconnecting);
       StopStream();
 
       if (this.decoder != null) {
         await decoder.Shutdown();
       }
-      SetState(ClientState.Disconnected);
+      this.decoder = null;
     }
 
   }
