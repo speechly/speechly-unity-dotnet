@@ -158,12 +158,11 @@ public partial class MicToSpeechly : MonoBehaviour
         // Always captures full buffer length (MicSampleRate * MicBufferLengthMillis / 1000 samples), starting from offset
         clip.GetData(waveData, oldRingbufferPos);
         oldRingbufferPos = captureRingbufferPos;
-        task = SpeechlyClient.ProcessAudio(waveData, 0, samples);
-        yield return new WaitUntil(() => task.IsCompleted);
-      } else {
-        // Wait for a frame for new audio
-        yield return null;
+        SpeechlyClient.ProcessAudio(waveData, 0, samples);
       }
+
+      // Wait for a frame for new audio
+      yield return null;
     }
   }
 

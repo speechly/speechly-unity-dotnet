@@ -143,7 +143,7 @@ namespace Speechly.SLUClient {
       }
     }
 
-    public async Task StopStream(bool auto = false) {
+    public void StopStream(bool auto = false) {
       if (IsAudioStreaming) {
         if ((auto && streamAutoStarted) || !streamAutoStarted) {
           if (IsListening) {
@@ -151,7 +151,7 @@ namespace Speechly.SLUClient {
           }
 
           // Process remaining frame samples
-          await ProcessAudio(sampleRingBuffer, 0, frameSamplePos, true);
+          ProcessAudio(sampleRingBuffer, 0, frameSamplePos, true);
 
           IsAudioStreaming = false;
         
@@ -196,16 +196,16 @@ namespace Speechly.SLUClient {
       }
     }
 
-    public async Task ProcessAudioFile(string fileName) {
+    public void ProcessAudioFile(string fileName) {
       string outBaseName = Path.GetFileNameWithoutExtension(fileName);
       var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
       StartStream(outBaseName);
-      await ProcessAudio(fileStream);
-      await StopStream();
+      ProcessAudio(fileStream);
+      StopStream();
       fileStream.Close();
     }
 
-    public async Task ProcessAudio(Stream fileStream) {
+    public void ProcessAudio(Stream fileStream) {
       // @TODO Use a pre-allocated buf
       var bytes = new byte[frameSamples * 2];
       var floats = new float[frameSamples];
@@ -219,11 +219,11 @@ namespace Speechly.SLUClient {
         for (int i = floats.Length-1 ; i >= samples; i--) {
           floats[i] = 0;
         }
-        await ProcessAudio(floats, 0, samples);
+        ProcessAudio(floats, 0, samples);
       }
     }
 
-    public async Task ProcessAudio(float[] floats, int start = 0, int length = -1, bool forceSubFrameProcess = false) {
+    public void ProcessAudio(float[] floats, int start = 0, int length = -1, bool forceSubFrameProcess = false) {
       if (!IsAudioStreaming) {
         StartStream(AudioInputStreamIdentifier, auto: false);  // Assume no auto-start/stop if ProcessAudio call encountered before startContext call
       }
@@ -260,7 +260,7 @@ namespace Speechly.SLUClient {
           int subFrameSamples = forceSubFrameProcess ? frameSamplePos : frameSamples;
 
           if (!forceSubFrameProcess) {
-            await ProcessFrame(sampleRingBuffer, frameBase, subFrameSamples);
+            ProcessFrame(sampleRingBuffer, frameBase, subFrameSamples);
           }
 
           if (IsListening) {
@@ -284,9 +284,9 @@ namespace Speechly.SLUClient {
       }
     }
 
-    private async Task ProcessFrame(float[] floats, int start = 0, int length = -1) {
+    private void ProcessFrame(float[] floats, int start = 0, int length = -1) {
       AnalyzeAudioFrame(in floats, start, length);
-      await AutoControlListening();
+      AutoControlListening();
     }
 
     private void AnalyzeAudioFrame(in float[] waveData, int s, int frameSamples) {
@@ -295,14 +295,14 @@ namespace Speechly.SLUClient {
       }
     }
 
-    private async Task AutoControlListening() {
+    private void AutoControlListening() {
       if (this.Vad != null && this.Vad.Enabled && this.Vad.VADControlListening) {
         if (!IsListening && Vad.IsSignalDetected) {
-          await StartContext();
+          _ = StartContext();
         }
 
         if (IsListening && !Vad.IsSignalDetected) {
-          await StopContext();
+          _ = StopContext();
         }
       }
     }
@@ -468,7 +468,7 @@ namespace Speechly.SLUClient {
 
     public async Task Shutdown() {
       SetState(ClientState.Disconnecting);
-      await StopStream();
+      StopStream();
 
       if (this.decoder != null) {
         await decoder.Shutdown();

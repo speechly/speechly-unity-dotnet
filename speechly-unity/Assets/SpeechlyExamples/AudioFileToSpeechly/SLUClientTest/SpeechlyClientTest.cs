@@ -55,7 +55,7 @@ namespace Speechly.SLUClient {
       stopWatch.Restart();
       _ = client.StartContext();
 
-      await client.ProcessAudioFile(fileName);
+      client.ProcessAudioFile(fileName);
       await client.StopContext();
       var sluTime = stopWatch.ElapsedMilliseconds;
 
@@ -64,7 +64,7 @@ namespace Speechly.SLUClient {
       Logger.Log($"SLU time: {sluTime} ms");
     }
 
-    public static async Task SplitWithVAD(string fileName, string saveToFolder = null, string logUtteranceFolder = null) {
+    public static void SplitWithVAD(string fileName, string saveToFolder = null, string logUtteranceFolder = null) {
       Stopwatch stopWatch = new Stopwatch();
 
       EnergyTresholdVAD vad = new EnergyTresholdVAD();
@@ -109,7 +109,7 @@ namespace Speechly.SLUClient {
 
       stopWatch.Restart();
       // _ = client.StartContext();
-      await client.ProcessAudioFile(fileName);
+      client.ProcessAudioFile(fileName);
       // await client.StopContext();
       var processTime = stopWatch.ElapsedMilliseconds;
 
