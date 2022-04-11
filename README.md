@@ -43,15 +43,11 @@ public class AudioFileToSpeechly : MonoBehaviour
 
   async void Start()
   {
-    // Get your app id from https://api.speechly.com/dashboard
     client = new SpeechlyClient(
-      appId: "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1", // Basic speech-to-text configuration
-      config: new SpeechlyConfig {
-        deviceId = SystemInfo.deviceUniqueIdentifier
-      },
-      manualUpdate: true
+      manualUpdate: true,
+      debug: true
     );
-    
+
     // Set the desired callbacks.
     // OnSegmentChange fires on any change and keeps a record of all words, intents and entities until the end of utterance is signaled with `segment.isFinal`.
     // It's the recommended way to read SLU results.
@@ -60,8 +56,15 @@ public class AudioFileToSpeechly : MonoBehaviour
       Debug.Log(segment.ToString());
     };
 
-    // Connect should be only done once
-    await client.Connect();
+    // Get your app id from https://api.speechly.com/dashboard
+    decoder = new CloudDecoder(
+      appId: "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1", // Basic ASR
+      deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
+      debug: true
+    );
+
+    // Connect to CloudDecoder
+    await SpeechlyClient.Initialize(decoder);
 
     // Send test audio. Callback(s) will fire and log the results.
     await client.StartContext();
@@ -99,7 +102,7 @@ To diagnose problems with device builds, you can do the following:
 
 - First try running MicToSpeechlyScene.unity in the editor without errors.
 - Change to Android player, set MicToSpeechlyScene.unity as the main scene and do a `build and run` to deploy the build to on a device.
-- On terminal, do `adb logcat -s Unity:E` to follow Unity-related error logs from the device.
+- On terminal, do `adb logcat -s Unity:D` to follow Unity-related logs from the device.
 - Run the app on device. Keep `Hold to talk` button pressed and say "ONE, TWO, THREE". Then release the button.
 - You should see "ONE, TWO, THREE" displayed in the top-left corner of the screen. If not, see the terminal for errors.
 
