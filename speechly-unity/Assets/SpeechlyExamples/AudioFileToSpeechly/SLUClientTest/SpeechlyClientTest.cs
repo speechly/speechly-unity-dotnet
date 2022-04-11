@@ -41,6 +41,7 @@ namespace Speechly.SLUClient {
       client.OnIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
 
       stopWatch.Restart();
+      
       var decoder = new CloudDecoder(
         loginUrl: "https://staging.speechly.com/login",
         apiUrl: "wss://staging.speechly.com/ws/v1?sampleRate=16000",
@@ -48,7 +49,7 @@ namespace Speechly.SLUClient {
         deviceId: Platform.GetDeviceId()
       );
 
-      await client.Connect(decoder);
+      await client.Initialize(decoder);
       var connectTime = stopWatch.ElapsedMilliseconds;
 
       stopWatch.Restart();
