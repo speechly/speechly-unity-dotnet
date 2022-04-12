@@ -9,16 +9,16 @@ namespace Speechly.SLUClient {
 /// <summary>
 /// Create a new Speechly Spoken Language Understading (SLU) Client to process speech and provide the results of automatic speech recogition (ASR) and natural langugage understanding (NLU) using delegates.
 /// 
-/// ### Usage:
+/// #### Usage
 ///
 /// - Create a new SpeechlyClient instance.
 /// - Initialize a SLU decoder with <see cref="Initialize"/>.
-/// - Attack delegates like <see cref="OnSegmentChange"/> to listen to SLU results.
+/// - Attach delegates like <see cref="OnSegmentChange"/> to listen to SLU results.
 /// - Feed audio to process with <see cref="ProcessAudio"/>.
 /// - When you don't need SLU services any more call <see cref="Shutdown"/> to free resources.
 ///
 /// You can control when to start and stop process speech either manually with <see cref="StartContext"/> and <see cref="StopContext"/> or
-/// automatically by providing a voice activity detection (VAD) field to <see cref="SpeechlyClient"/>.
+/// automatically by providing a voice activity detection (VAD) field to SpeechlyClient constructor.
 /// </summary>
 
   public class SpeechlyClient {

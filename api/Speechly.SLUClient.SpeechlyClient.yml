@@ -53,7 +53,7 @@ items:
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
-  summary: "\nCreate a new Speechly Spoken Language Understading (SLU) Client to process speech and provide the results of automatic speech recogition (ASR) and natural langugage understanding (NLU) using delegates.\n\n### Usage:\n\n- Create a new SpeechlyClient instance.\n- Initialize a SLU decoder with <xref href=\"Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)\" data-throw-if-not-resolved=\"false\"></xref>.\n- Attack delegates like <xref href=\"Speechly.SLUClient.SpeechlyClient.OnSegmentChange\" data-throw-if-not-resolved=\"false\"></xref> to listen to SLU results.\n- Feed audio to process with <xref href=\"Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single%5b%5d%2cSystem.Int32%2cSystem.Int32%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref>.\n- When you don&apos;t need SLU services any more call <xref href=\"Speechly.SLUClient.SpeechlyClient.Shutdown\" data-throw-if-not-resolved=\"false\"></xref> to free resources.\n\nYou can control when to start and stop process speech either manually with <xref href=\"Speechly.SLUClient.SpeechlyClient.StartContext(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.SLUClient.SpeechlyClient.StopContext\" data-throw-if-not-resolved=\"false\"></xref> or\nautomatically by providing a voice activity detection (VAD) field to <xref href=\"Speechly.SLUClient.SpeechlyClient\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  summary: "\nCreate a new Speechly Spoken Language Understading (SLU) Client to process speech and provide the results of automatic speech recogition (ASR) and natural langugage understanding (NLU) using delegates.\n\n#### Usage\n\n- Create a new SpeechlyClient instance.\n- Initialize a SLU decoder with <xref href=\"Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)\" data-throw-if-not-resolved=\"false\"></xref>.\n- Attach delegates like <xref href=\"Speechly.SLUClient.SpeechlyClient.OnSegmentChange\" data-throw-if-not-resolved=\"false\"></xref> to listen to SLU results.\n- Feed audio to process with <xref href=\"Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single%5b%5d%2cSystem.Int32%2cSystem.Int32%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref>.\n- When you don&apos;t need SLU services any more call <xref href=\"Speechly.SLUClient.SpeechlyClient.Shutdown\" data-throw-if-not-resolved=\"false\"></xref> to free resources.\n\nYou can control when to start and stop process speech either manually with <xref href=\"Speechly.SLUClient.SpeechlyClient.StartContext(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.SLUClient.SpeechlyClient.StopContext\" data-throw-if-not-resolved=\"false\"></xref> or\nautomatically by providing a voice activity detection (VAD) field to SpeechlyClient constructor.\n"
   example: []
   syntax:
     content: 'public class SpeechlyClient : object'
@@ -1130,16 +1130,16 @@ references:
 - uid: Speechly.SLUClient.SpeechlyClient.StopContext
   commentId: M:Speechly.SLUClient.SpeechlyClient.StopContext
   isExternal: true
-- uid: Speechly.SLUClient.SpeechlyClient
-  commentId: T:Speechly.SLUClient.SpeechlyClient
-  name: SpeechlyClient
-  nameWithType: SpeechlyClient
-  fullName: Speechly.SLUClient.SpeechlyClient
 - uid: Speechly.SLUClient
   commentId: N:Speechly.SLUClient
   name: Speechly.SLUClient
   nameWithType: Speechly.SLUClient
   fullName: Speechly.SLUClient
+- uid: Speechly.SLUClient.SpeechlyClient
+  commentId: T:Speechly.SLUClient.SpeechlyClient
+  name: SpeechlyClient
+  nameWithType: SpeechlyClient
+  fullName: Speechly.SLUClient.SpeechlyClient
 - uid: Speechly.SLUClient.SpeechlyClient.SegmentChangeDelegate
   commentId: T:Speechly.SLUClient.SpeechlyClient.SegmentChangeDelegate
   parent: Speechly.SLUClient

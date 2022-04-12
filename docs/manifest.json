@@ -15,7 +15,7 @@
           "hash": "uLxNOJKweCqRAOCgcQVRWuSkWZZ3QVWMr+YqzhYHnbI="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -492,10 +492,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.SpeechlyClient.html",
-          "hash": "epN9jaFEXEe1daJ0ZBl5MqlfMTCUV/gLk/Useg57U8M="
+          "hash": "h5bCqFymk/UNkD22FByyMzB8Wd9ZCmBu2iUay0w/D0M="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -564,10 +564,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.html",
-          "hash": "yuz/+Sfmk/H08ehhAnkv4q1TXosK+XyHisXKDokxNVg="
+          "hash": "W5yMFHdq9ew/VFG9BHauibwNOZEou7WmqEHsyzNCPzE="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -591,10 +591,10 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "3/rVQCYw94pGpIZ5hHheJRsQbkd+VJEY8rM84Jz3u3Q="
+          "hash": "DHNfre4PdbgpnWlxQLecK150P5bSws6WWFUZq6uKTd4="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     }
   ],
@@ -611,13 +611,13 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 2,
-          "skipped_file_count": 0
+          "skipped_file_count": 2
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 46,
-          "skipped_file_count": 46
+          "skipped_file_count": 45
         },
         "TocDocumentProcessor": {
           "can_incremental": false,
