@@ -782,6 +782,7 @@ items:
       description: SLU decoder implementing IDecoder interface
     return:
       type: Task
+      description: Task that completes when the decoder is ready.
     content.vb: Public Function Initialize(decoder As IDecoder) As Task
   overload: Speechly.SLUClient.SpeechlyClient.Initialize*
   modifiers.csharp:
@@ -879,19 +880,21 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StartContext
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 211
+    startLine: 215
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
-  summary: "\nStart listening for user speech and feeding it to the SLU decoder.\n`OnContextStart` is triggered upon a call to StartContext. It&apos;s also triggered by automatic VAD activation.\n"
+  summary: "\nStart listening for user speech and feeding it to the SLU decoder.\n`OnContextStart` is triggered upon a call to StartContext. It&apos;s also triggered by automatic VAD activation.\n\nYou don&apos;t need to await this call if you don&apos;t need the utterance id.\n"
   example: []
   syntax:
     content: public Task<string> StartContext(string appId = null)
     parameters:
     - id: appId
       type: System.String
+      description: 'Cloud decoder only: The Speechly app id to connect to, if not the default. If specified, you must use project id based login with cloud decoder.'
     return:
       type: Task{System.String}
+      description: An unique utterance id.
     content.vb: Public Function StartContext(appId As String = Nothing) As Task(Of String)
   overload: Speechly.SLUClient.SpeechlyClient.StartContext*
   modifiers.csharp:
@@ -916,7 +919,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessAudioFile
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 246
+    startLine: 250
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -949,7 +952,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessAudio
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 277
+    startLine: 281
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -997,7 +1000,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessAudio
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 338
+    startLine: 342
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -1030,16 +1033,17 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StopContext
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 413
+    startLine: 420
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
-  summary: "\nStop listening for user speech.\n`OnContextStop` is triggered upon a call to StopContext. It&apos;s also triggered by automatic VAD deactivation.\n"
+  summary: "\nStop listening for user speech.\n`OnContextStop` is triggered upon a call to StopContext. It&apos;s also triggered by automatic VAD deactivation.\n\nYou don&apos;t need to await this call if you don&apos;t need the utterance id.\n"
   example: []
   syntax:
     content: public Task<string> StopContext()
     return:
       type: Task{System.String}
+      description: An unique utterance id.
     content.vb: Public Function StopContext As Task(Of String)
   overload: Speechly.SLUClient.SpeechlyClient.StopContext*
   modifiers.csharp:
@@ -1064,7 +1068,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Update
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 443
+    startLine: 450
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -1096,14 +1100,17 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Shutdown
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 534
+    startLine: 547
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
+  summary: "\nCloses any connections (e.g. cloud SLU) and frees resources.\n"
+  example: []
   syntax:
     content: public async Task Shutdown()
     return:
       type: Task
+      description: Task that completes with the shutdown.
     content.vb: Public Function Shutdown As Task
   overload: Speechly.SLUClient.SpeechlyClient.Shutdown*
   modifiers.csharp:

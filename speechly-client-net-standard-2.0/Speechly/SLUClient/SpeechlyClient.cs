@@ -146,7 +146,7 @@ namespace Speechly.SLUClient {
 /// The SLU delegates (OnSegmentChange, OnTranscript...) are only fired when SpeechlyClient is initialized with a SLU decoder.
 /// </summary>
 /// <param name="decoder">SLU decoder implementing IDecoder interface</param>
-
+/// <returns>Task that completes when the decoder is ready.</returns>
     public async Task Initialize(IDecoder decoder) {
       if (this.decoder == null) {
         try {
@@ -207,7 +207,11 @@ namespace Speechly.SLUClient {
 /// <summary>
 /// Start listening for user speech and feeding it to the SLU decoder.
 /// `OnContextStart` is triggered upon a call to StartContext. It's also triggered by automatic VAD activation.
+///
+/// You don't need to await this call if you don't need the utterance id.
 /// </summary>
+/// <param name="appId">Cloud decoder only: The Speechly app id to connect to, if not the default. If specified, you must use project id based login with cloud decoder.</param>
+/// <returns>An unique utterance id.</returns>
 
     public Task<string> StartContext(string appId = null) {
       if (IsListening) {
@@ -409,7 +413,10 @@ namespace Speechly.SLUClient {
 /// <summary>
 /// Stop listening for user speech.
 /// `OnContextStop` is triggered upon a call to StopContext. It's also triggered by automatic VAD deactivation.
+///
+/// You don't need to await this call if you don't need the utterance id.
 /// </summary>
+/// <returns>An unique utterance id.</returns>
 
     public Task<string> StopContext() {
       if (!IsListening) {
@@ -531,6 +538,12 @@ namespace Speechly.SLUClient {
 
       OnSegmentChange(segmentState);
     }
+
+
+/// <summary>
+/// Closes any connections (e.g. cloud SLU) and frees resources.
+/// </summary>
+/// <returns>Task that completes with the shutdown.</returns>
 
     public async Task Shutdown() {
       StopStream();
