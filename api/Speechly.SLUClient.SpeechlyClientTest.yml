@@ -1,0 +1,143 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.SpeechlyClientTest
+  commentId: T:Speechly.SLUClient.SpeechlyClientTest
+  id: SpeechlyClientTest
+  parent: Speechly.SLUClient
+  children:
+  - Speechly.SLUClient.SpeechlyClientTest.SplitWithVAD(System.String,System.String,System.String)
+  - Speechly.SLUClient.SpeechlyClientTest.TestCloudProcessing(System.String)
+  langs:
+  - csharp
+  - vb
+  name: SpeechlyClientTest
+  nameWithType: SpeechlyClientTest
+  fullName: Speechly.SLUClient.SpeechlyClientTest
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClientTest/SpeechlyClientTest.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SpeechlyClientTest
+    path: speechly-client-net-standard-2.0/Speechly/SLUClientTest/SpeechlyClientTest.cs
+    startLine: 9
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: 'public class SpeechlyClientTest : object'
+    content.vb: >-
+      Public Class SpeechlyClientTest
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.SLUClient.SpeechlyClientTest.TestCloudProcessing(System.String)
+  commentId: M:Speechly.SLUClient.SpeechlyClientTest.TestCloudProcessing(System.String)
+  id: TestCloudProcessing(System.String)
+  parent: Speechly.SLUClient.SpeechlyClientTest
+  langs:
+  - csharp
+  - vb
+  name: TestCloudProcessing(String)
+  nameWithType: SpeechlyClientTest.TestCloudProcessing(String)
+  fullName: Speechly.SLUClient.SpeechlyClientTest.TestCloudProcessing(System.String)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClientTest/SpeechlyClientTest.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: TestCloudProcessing
+    path: speechly-client-net-standard-2.0/Speechly/SLUClientTest/SpeechlyClientTest.cs
+    startLine: 10
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public static async Task TestCloudProcessing(string fileName)
+    parameters:
+    - id: fileName
+      type: System.String
+    return:
+      type: Task
+    content.vb: Public Shared Function TestCloudProcessing(fileName As String) As Task
+  overload: Speechly.SLUClient.SpeechlyClientTest.TestCloudProcessing*
+  modifiers.csharp:
+  - public
+  - static
+  - async
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Speechly.SLUClient.SpeechlyClientTest.SplitWithVAD(System.String,System.String,System.String)
+  commentId: M:Speechly.SLUClient.SpeechlyClientTest.SplitWithVAD(System.String,System.String,System.String)
+  id: SplitWithVAD(System.String,System.String,System.String)
+  parent: Speechly.SLUClient.SpeechlyClientTest
+  langs:
+  - csharp
+  - vb
+  name: SplitWithVAD(String, String, String)
+  nameWithType: SpeechlyClientTest.SplitWithVAD(String, String, String)
+  fullName: Speechly.SLUClient.SpeechlyClientTest.SplitWithVAD(System.String, System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClientTest/SpeechlyClientTest.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SplitWithVAD
+    path: speechly-client-net-standard-2.0/Speechly/SLUClientTest/SpeechlyClientTest.cs
+    startLine: 63
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public static void SplitWithVAD(string fileName, string saveToFolder = null, string logUtteranceFolder = null)
+    parameters:
+    - id: fileName
+      type: System.String
+    - id: saveToFolder
+      type: System.String
+    - id: logUtteranceFolder
+      type: System.String
+    content.vb: Public Shared Sub SplitWithVAD(fileName As String, saveToFolder As String = Nothing, logUtteranceFolder As String = Nothing)
+  overload: Speechly.SLUClient.SpeechlyClientTest.SplitWithVAD*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: Speechly.SLUClient.SpeechlyClientTest.TestCloudProcessing*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClientTest.TestCloudProcessing
+  name: TestCloudProcessing
+  nameWithType: SpeechlyClientTest.TestCloudProcessing
+  fullName: Speechly.SLUClient.SpeechlyClientTest.TestCloudProcessing
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Speechly.SLUClient.SpeechlyClientTest.SplitWithVAD*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClientTest.SplitWithVAD
+  name: SplitWithVAD
+  nameWithType: SpeechlyClientTest.SplitWithVAD
+  fullName: Speechly.SLUClient.SpeechlyClientTest.SplitWithVAD

@@ -20,7 +20,7 @@ Download [speechly-client.unitypackage](https://github.com/speechly/speechly-uni
 
 ## Unity usage
 
-Import `Speechly/` folder from `speechly-client.unitypackage` that contains code to use Speechly cloud API.
+Import `Speechly/` folder from [speechly-client.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage) that contains code to use Speechly cloud API.
 
 > If you want to skip straight to trying out a working sample scene, see [more code examples](#more-code-examples) below.
 
@@ -84,7 +84,7 @@ public class AudioFileToSpeechly : MonoBehaviour
 
 ### MicToSpeechly
 
-Import [SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/) and `Speechly/` folders from `speechly-client.unitypackage` to run a Unity sample scene that streams data from microphone to Speechly using [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/MicToSpeechly.cs) script running on a GameObject. App-specific logic is in `UseSpeechly.cs` which registers a callback and shows speech-to-text results in the UI.
+Import [SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/) and `Speechly/` folders from [speechly-client.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage) to run a Unity sample scene that streams data from microphone to Speechly using [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/MicToSpeechly.cs) script running on a GameObject. App-specific logic is in `UseSpeechly.cs` which registers a callback and shows speech-to-text results in the UI.
 
 ### VoiceCommands
 
@@ -117,6 +117,14 @@ To diagnose problems with device builds, you can do the following:
   <assembly fullname="System.Runtime.Serialization" preserve="all"/>
 </linker>
 ```
+
+### Command line usage with `dotnet`
+
+SpeechlyClient features can be run with prerecorded audio on the command line in `speechly-client-net-standard-2.0/` folder:
+
+- `dotnet run test` processes an example file, sends to Speechly cloud SLU and prints the received results in console.
+- `dotnet run vad` processes an example file, sends the utterances audio to files in `temp/` folder as 16 bit raw and creates an utterance timestamp `.tsv` (tab-separated values) for each audio file processed.
+- `dotnet run vad myaudiofiles/*.raw` processes a set of files with VAD.
 
 ## Developing and contributing
 

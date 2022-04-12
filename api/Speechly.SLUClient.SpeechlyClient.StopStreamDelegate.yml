@@ -1,0 +1,40 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.SpeechlyClient.StopStreamDelegate
+  commentId: T:Speechly.SLUClient.SpeechlyClient.StopStreamDelegate
+  id: SpeechlyClient.StopStreamDelegate
+  parent: Speechly.SLUClient
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: SpeechlyClient.StopStreamDelegate
+  nameWithType: SpeechlyClient.StopStreamDelegate
+  fullName: Speechly.SLUClient.SpeechlyClient.StopStreamDelegate
+  type: Delegate
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: StopStreamDelegate
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 31
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public delegate void StopStreamDelegate();
+    content.vb: Public Delegate Sub StopStreamDelegate
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient

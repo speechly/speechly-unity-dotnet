@@ -1,0 +1,52 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.EntityFormatter
+  commentId: T:Speechly.SLUClient.EntityFormatter
+  id: EntityFormatter
+  parent: Speechly.SLUClient
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: EntityFormatter
+  nameWithType: EntityFormatter
+  fullName: Speechly.SLUClient.EntityFormatter
+  type: Delegate
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: EntityFormatter
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 7
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public delegate string EntityFormatter(string words, string entityType);
+    parameters:
+    - id: words
+      type: System.String
+    - id: entityType
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Delegate Function EntityFormatter(words As String, entityType As String) As String
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

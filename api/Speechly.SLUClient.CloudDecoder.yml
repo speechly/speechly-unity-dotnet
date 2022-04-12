@@ -1,0 +1,677 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.CloudDecoder
+  commentId: T:Speechly.SLUClient.CloudDecoder
+  id: CloudDecoder
+  parent: Speechly.SLUClient
+  children:
+  - Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)
+  - Speechly.SLUClient.CloudDecoder.Initialize
+  - Speechly.SLUClient.CloudDecoder.OnMessage
+  - Speechly.SLUClient.CloudDecoder.SendAudio(System.Single[],System.Int32,System.Int32)
+  - Speechly.SLUClient.CloudDecoder.Shutdown
+  - Speechly.SLUClient.CloudDecoder.StartContext
+  - Speechly.SLUClient.CloudDecoder.StopContext
+  langs:
+  - csharp
+  - vb
+  name: CloudDecoder
+  nameWithType: CloudDecoder
+  fullName: Speechly.SLUClient.CloudDecoder
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: CloudDecoder
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+    startLine: 8
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: 'public class CloudDecoder : object, IDecoder'
+    content.vb: >-
+      Public Class CloudDecoder
+          Inherits Object
+          Implements IDecoder
+  inheritance:
+  - System.Object
+  implements:
+  - Speechly.SLUClient.IDecoder
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.SLUClient.CloudDecoder.OnMessage
+  commentId: E:Speechly.SLUClient.CloudDecoder.OnMessage
+  id: OnMessage
+  parent: Speechly.SLUClient.CloudDecoder
+  langs:
+  - csharp
+  - vb
+  name: OnMessage
+  nameWithType: CloudDecoder.OnMessage
+  fullName: Speechly.SLUClient.CloudDecoder.OnMessage
+  type: Event
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnMessage
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+    startLine: 9
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public event ResponseReceivedDelegate OnMessage
+    return:
+      type: Speechly.SLUClient.ResponseReceivedDelegate
+    content.vb: Public Event OnMessage As ResponseReceivedDelegate
+  implements:
+  - Speechly.SLUClient.IDecoder.OnMessage
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)
+  commentId: M:Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)
+  id: '#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)'
+  parent: Speechly.SLUClient.CloudDecoder
+  langs:
+  - csharp
+  - vb
+  name: CloudDecoder(String, String, String, String, String, Boolean)
+  nameWithType: CloudDecoder.CloudDecoder(String, String, String, String, String, Boolean)
+  fullName: Speechly.SLUClient.CloudDecoder.CloudDecoder(System.String, System.String, System.String, System.String, System.String, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: .ctor
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+    startLine: 21
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public CloudDecoder(string deviceId, string loginUrl = null, string apiUrl = null, string projectId = null, string appId = null, bool debug = false)
+    parameters:
+    - id: deviceId
+      type: System.String
+    - id: loginUrl
+      type: System.String
+    - id: apiUrl
+      type: System.String
+    - id: projectId
+      type: System.String
+    - id: appId
+      type: System.String
+    - id: debug
+      type: System.Boolean
+    content.vb: Public Sub New(deviceId As String, loginUrl As String = Nothing, apiUrl As String = Nothing, projectId As String = Nothing, appId As String = Nothing, debug As Boolean = False)
+  overload: Speechly.SLUClient.CloudDecoder.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.CloudDecoder.Initialize
+  commentId: M:Speechly.SLUClient.CloudDecoder.Initialize
+  id: Initialize
+  parent: Speechly.SLUClient.CloudDecoder
+  langs:
+  - csharp
+  - vb
+  name: Initialize()
+  nameWithType: CloudDecoder.Initialize()
+  fullName: Speechly.SLUClient.CloudDecoder.Initialize()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Initialize
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+    startLine: 37
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public async Task Initialize()
+    return:
+      type: Task
+    content.vb: Public Function Initialize As Task
+  overload: Speechly.SLUClient.CloudDecoder.Initialize*
+  implements:
+  - Speechly.SLUClient.IDecoder.Initialize
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.CloudDecoder.StartContext
+  commentId: M:Speechly.SLUClient.CloudDecoder.StartContext
+  id: StartContext
+  parent: Speechly.SLUClient.CloudDecoder
+  langs:
+  - csharp
+  - vb
+  name: StartContext()
+  nameWithType: CloudDecoder.StartContext()
+  fullName: Speechly.SLUClient.CloudDecoder.StartContext()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: StartContext
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+    startLine: 51
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public Task<string> StartContext()
+    return:
+      type: Task{System.String}
+    content.vb: Public Function StartContext As Task(Of String)
+  overload: Speechly.SLUClient.CloudDecoder.StartContext*
+  implements:
+  - Speechly.SLUClient.IDecoder.StartContext
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.CloudDecoder.SendAudio(System.Single[],System.Int32,System.Int32)
+  commentId: M:Speechly.SLUClient.CloudDecoder.SendAudio(System.Single[],System.Int32,System.Int32)
+  id: SendAudio(System.Single[],System.Int32,System.Int32)
+  parent: Speechly.SLUClient.CloudDecoder
+  langs:
+  - csharp
+  - vb
+  name: SendAudio(Single[], Int32, Int32)
+  nameWithType: CloudDecoder.SendAudio(Single[], Int32, Int32)
+  fullName: Speechly.SLUClient.CloudDecoder.SendAudio(System.Single[], System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SendAudio
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+    startLine: 89
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public void SendAudio(float[] floats, int start = 0, int length = null)
+    parameters:
+    - id: floats
+      type: System.Single[]
+    - id: start
+      type: System.Int32
+    - id: length
+      type: System.Int32
+    content.vb: Public Sub SendAudio(floats As Single(), start As Integer = 0, length As Integer = Nothing)
+  overload: Speechly.SLUClient.CloudDecoder.SendAudio*
+  implements:
+  - Speechly.SLUClient.IDecoder.SendAudio(System.Single[],System.Int32,System.Int32)
+  nameWithType.vb: CloudDecoder.SendAudio(Single(), Int32, Int32)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Speechly.SLUClient.CloudDecoder.SendAudio(System.Single(), System.Int32, System.Int32)
+  name.vb: SendAudio(Single(), Int32, Int32)
+- uid: Speechly.SLUClient.CloudDecoder.StopContext
+  commentId: M:Speechly.SLUClient.CloudDecoder.StopContext
+  id: StopContext
+  parent: Speechly.SLUClient.CloudDecoder
+  langs:
+  - csharp
+  - vb
+  name: StopContext()
+  nameWithType: CloudDecoder.StopContext()
+  fullName: Speechly.SLUClient.CloudDecoder.StopContext()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: StopContext
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+    startLine: 105
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public Task<string> StopContext()
+    return:
+      type: Task{System.String}
+    content.vb: Public Function StopContext As Task(Of String)
+  overload: Speechly.SLUClient.CloudDecoder.StopContext*
+  implements:
+  - Speechly.SLUClient.IDecoder.StopContext
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.CloudDecoder.Shutdown
+  commentId: M:Speechly.SLUClient.CloudDecoder.Shutdown
+  id: Shutdown
+  parent: Speechly.SLUClient.CloudDecoder
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: CloudDecoder.Shutdown()
+  fullName: Speechly.SLUClient.CloudDecoder.Shutdown()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Shutdown
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+    startLine: 112
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public async Task Shutdown()
+    return:
+      type: Task
+    content.vb: Public Function Shutdown As Task
+  overload: Speechly.SLUClient.CloudDecoder.Shutdown*
+  implements:
+  - Speechly.SLUClient.IDecoder.Shutdown
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: Speechly.SLUClient.IDecoder
+  commentId: T:Speechly.SLUClient.IDecoder
+  parent: Speechly.SLUClient
+  name: IDecoder
+  nameWithType: IDecoder
+  fullName: Speechly.SLUClient.IDecoder
+- uid: Speechly.SLUClient.IDecoder.OnMessage
+  commentId: E:Speechly.SLUClient.IDecoder.OnMessage
+  parent: Speechly.SLUClient.IDecoder
+  name: OnMessage
+  nameWithType: IDecoder.OnMessage
+  fullName: Speechly.SLUClient.IDecoder.OnMessage
+- uid: Speechly.SLUClient.ResponseReceivedDelegate
+  commentId: T:Speechly.SLUClient.ResponseReceivedDelegate
+  parent: Speechly.SLUClient
+  name: ResponseReceivedDelegate
+  nameWithType: ResponseReceivedDelegate
+  fullName: Speechly.SLUClient.ResponseReceivedDelegate
+- uid: Speechly.SLUClient.CloudDecoder.#ctor*
+  commentId: Overload:Speechly.SLUClient.CloudDecoder.#ctor
+  name: CloudDecoder
+  nameWithType: CloudDecoder.CloudDecoder
+  fullName: Speechly.SLUClient.CloudDecoder.CloudDecoder
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Speechly.SLUClient.CloudDecoder.Initialize*
+  commentId: Overload:Speechly.SLUClient.CloudDecoder.Initialize
+  name: Initialize
+  nameWithType: CloudDecoder.Initialize
+  fullName: Speechly.SLUClient.CloudDecoder.Initialize
+- uid: Speechly.SLUClient.IDecoder.Initialize
+  commentId: M:Speechly.SLUClient.IDecoder.Initialize
+  parent: Speechly.SLUClient.IDecoder
+  name: Initialize()
+  nameWithType: IDecoder.Initialize()
+  fullName: Speechly.SLUClient.IDecoder.Initialize()
+  spec.csharp:
+  - uid: Speechly.SLUClient.IDecoder.Initialize
+    name: Initialize
+    nameWithType: IDecoder.Initialize
+    fullName: Speechly.SLUClient.IDecoder.Initialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Speechly.SLUClient.IDecoder.Initialize
+    name: Initialize
+    nameWithType: IDecoder.Initialize
+    fullName: Speechly.SLUClient.IDecoder.Initialize
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Speechly.SLUClient.CloudDecoder.StartContext*
+  commentId: Overload:Speechly.SLUClient.CloudDecoder.StartContext
+  name: StartContext
+  nameWithType: CloudDecoder.StartContext
+  fullName: Speechly.SLUClient.CloudDecoder.StartContext
+- uid: Speechly.SLUClient.IDecoder.StartContext
+  commentId: M:Speechly.SLUClient.IDecoder.StartContext
+  parent: Speechly.SLUClient.IDecoder
+  name: StartContext()
+  nameWithType: IDecoder.StartContext()
+  fullName: Speechly.SLUClient.IDecoder.StartContext()
+  spec.csharp:
+  - uid: Speechly.SLUClient.IDecoder.StartContext
+    name: StartContext
+    nameWithType: IDecoder.StartContext
+    fullName: Speechly.SLUClient.IDecoder.StartContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Speechly.SLUClient.IDecoder.StartContext
+    name: StartContext
+    nameWithType: IDecoder.StartContext
+    fullName: Speechly.SLUClient.IDecoder.StartContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task{System.String}
+  commentId: '!:Task{System.String}'
+  definition: Task`1
+  name: Task<String>
+  nameWithType: Task<String>
+  fullName: Task<System.String>
+  nameWithType.vb: Task(Of String)
+  fullName.vb: Task(Of System.String)
+  name.vb: Task(Of String)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Speechly.SLUClient.CloudDecoder.SendAudio*
+  commentId: Overload:Speechly.SLUClient.CloudDecoder.SendAudio
+  name: SendAudio
+  nameWithType: CloudDecoder.SendAudio
+  fullName: Speechly.SLUClient.CloudDecoder.SendAudio
+- uid: Speechly.SLUClient.IDecoder.SendAudio(System.Single[],System.Int32,System.Int32)
+  commentId: M:Speechly.SLUClient.IDecoder.SendAudio(System.Single[],System.Int32,System.Int32)
+  parent: Speechly.SLUClient.IDecoder
+  isExternal: true
+  name: SendAudio(Single[], Int32, Int32)
+  nameWithType: IDecoder.SendAudio(Single[], Int32, Int32)
+  fullName: Speechly.SLUClient.IDecoder.SendAudio(System.Single[], System.Int32, System.Int32)
+  nameWithType.vb: IDecoder.SendAudio(Single(), Int32, Int32)
+  fullName.vb: Speechly.SLUClient.IDecoder.SendAudio(System.Single(), System.Int32, System.Int32)
+  name.vb: SendAudio(Single(), Int32, Int32)
+  spec.csharp:
+  - uid: Speechly.SLUClient.IDecoder.SendAudio(System.Single[],System.Int32,System.Int32)
+    name: SendAudio
+    nameWithType: IDecoder.SendAudio
+    fullName: Speechly.SLUClient.IDecoder.SendAudio
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Speechly.SLUClient.IDecoder.SendAudio(System.Single[],System.Int32,System.Int32)
+    name: SendAudio
+    nameWithType: IDecoder.SendAudio
+    fullName: Speechly.SLUClient.IDecoder.SendAudio
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Int32
+    name: Int32
+    nameWithType: Int32
+    fullName: System.Int32
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Single[]
+  isExternal: true
+  name: Single[]
+  nameWithType: Single[]
+  fullName: System.Single[]
+  nameWithType.vb: Single()
+  fullName.vb: System.Single()
+  name.vb: Single()
+  spec.csharp:
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Speechly.SLUClient.CloudDecoder.StopContext*
+  commentId: Overload:Speechly.SLUClient.CloudDecoder.StopContext
+  name: StopContext
+  nameWithType: CloudDecoder.StopContext
+  fullName: Speechly.SLUClient.CloudDecoder.StopContext
+- uid: Speechly.SLUClient.IDecoder.StopContext
+  commentId: M:Speechly.SLUClient.IDecoder.StopContext
+  parent: Speechly.SLUClient.IDecoder
+  name: StopContext()
+  nameWithType: IDecoder.StopContext()
+  fullName: Speechly.SLUClient.IDecoder.StopContext()
+  spec.csharp:
+  - uid: Speechly.SLUClient.IDecoder.StopContext
+    name: StopContext
+    nameWithType: IDecoder.StopContext
+    fullName: Speechly.SLUClient.IDecoder.StopContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Speechly.SLUClient.IDecoder.StopContext
+    name: StopContext
+    nameWithType: IDecoder.StopContext
+    fullName: Speechly.SLUClient.IDecoder.StopContext
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Speechly.SLUClient.CloudDecoder.Shutdown*
+  commentId: Overload:Speechly.SLUClient.CloudDecoder.Shutdown
+  name: Shutdown
+  nameWithType: CloudDecoder.Shutdown
+  fullName: Speechly.SLUClient.CloudDecoder.Shutdown
+- uid: Speechly.SLUClient.IDecoder.Shutdown
+  commentId: M:Speechly.SLUClient.IDecoder.Shutdown
+  parent: Speechly.SLUClient.IDecoder
+  name: Shutdown()
+  nameWithType: IDecoder.Shutdown()
+  fullName: Speechly.SLUClient.IDecoder.Shutdown()
+  spec.csharp:
+  - uid: Speechly.SLUClient.IDecoder.Shutdown
+    name: Shutdown
+    nameWithType: IDecoder.Shutdown
+    fullName: Speechly.SLUClient.IDecoder.Shutdown
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: Speechly.SLUClient.IDecoder.Shutdown
+    name: Shutdown
+    nameWithType: IDecoder.Shutdown
+    fullName: Speechly.SLUClient.IDecoder.Shutdown
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )

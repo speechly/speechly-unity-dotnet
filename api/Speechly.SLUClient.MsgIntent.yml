@@ -1,0 +1,82 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.MsgIntent
+  commentId: T:Speechly.SLUClient.MsgIntent
+  id: MsgIntent
+  parent: Speechly.SLUClient
+  children:
+  - Speechly.SLUClient.MsgIntent.data
+  langs:
+  - csharp
+  - vb
+  name: MsgIntent
+  nameWithType: MsgIntent
+  fullName: Speechly.SLUClient.MsgIntent
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: MsgIntent
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 78
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: 'public class MsgIntent : object'
+    content.vb: >-
+      Public Class MsgIntent
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.SLUClient.MsgIntent.data
+  commentId: F:Speechly.SLUClient.MsgIntent.data
+  id: data
+  parent: Speechly.SLUClient.MsgIntent
+  langs:
+  - csharp
+  - vb
+  name: data
+  nameWithType: MsgIntent.data
+  fullName: Speechly.SLUClient.MsgIntent.data
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: data
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 83
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public MsgIntent.Data data
+    return:
+      type: Speechly.SLUClient.MsgIntent.Data
+    content.vb: Public data As MsgIntent.Data
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: Speechly.SLUClient.MsgIntent.Data
+  commentId: T:Speechly.SLUClient.MsgIntent.Data
+  parent: Speechly.SLUClient
+  name: MsgIntent.Data
+  nameWithType: MsgIntent.Data
+  fullName: Speechly.SLUClient.MsgIntent.Data

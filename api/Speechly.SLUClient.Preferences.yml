@@ -1,0 +1,115 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.Preferences
+  commentId: T:Speechly.SLUClient.Preferences
+  id: Preferences
+  parent: Speechly.SLUClient
+  children:
+  - Speechly.SLUClient.Preferences.deviceId
+  - Speechly.SLUClient.Preferences.FileName
+  langs:
+  - csharp
+  - vb
+  name: Preferences
+  nameWithType: Preferences
+  fullName: Speechly.SLUClient.Preferences
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Preferences
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 118
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: 'public class Preferences : object'
+    content.vb: >-
+      Public Class Preferences
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.SLUClient.Preferences.FileName
+  commentId: F:Speechly.SLUClient.Preferences.FileName
+  id: FileName
+  parent: Speechly.SLUClient.Preferences
+  langs:
+  - csharp
+  - vb
+  name: FileName
+  nameWithType: Preferences.FileName
+  fullName: Speechly.SLUClient.Preferences.FileName
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: FileName
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 120
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public static string FileName
+    return:
+      type: System.String
+    content.vb: Public Shared FileName As String
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Speechly.SLUClient.Preferences.deviceId
+  commentId: F:Speechly.SLUClient.Preferences.deviceId
+  id: deviceId
+  parent: Speechly.SLUClient.Preferences
+  langs:
+  - csharp
+  - vb
+  name: deviceId
+  nameWithType: Preferences.deviceId
+  fullName: Speechly.SLUClient.Preferences.deviceId
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: deviceId
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 123
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public string deviceId
+    return:
+      type: System.String
+    content.vb: Public deviceId As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

@@ -1,0 +1,1445 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.SpeechlyClient
+  commentId: T:Speechly.SLUClient.SpeechlyClient
+  id: SpeechlyClient
+  parent: Speechly.SLUClient
+  children:
+  - Speechly.SLUClient.SpeechlyClient.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean,System.String,Speechly.SLUClient.EnergyTresholdVAD,System.Boolean)
+  - Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier
+  - Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)
+  - Speechly.SLUClient.SpeechlyClient.IsAudioStreaming
+  - Speechly.SLUClient.SpeechlyClient.IsListening
+  - Speechly.SLUClient.SpeechlyClient.IsReady
+  - Speechly.SLUClient.SpeechlyClient.OnEntity
+  - Speechly.SLUClient.SpeechlyClient.OnIntent
+  - Speechly.SLUClient.SpeechlyClient.OnSegmentChange
+  - Speechly.SLUClient.SpeechlyClient.OnStartContext
+  - Speechly.SLUClient.SpeechlyClient.OnStartStream
+  - Speechly.SLUClient.SpeechlyClient.OnStopContext
+  - Speechly.SLUClient.SpeechlyClient.OnStopStream
+  - Speechly.SLUClient.SpeechlyClient.OnTentativeEntity
+  - Speechly.SLUClient.SpeechlyClient.OnTentativeIntent
+  - Speechly.SLUClient.SpeechlyClient.OnTentativeTranscript
+  - Speechly.SLUClient.SpeechlyClient.OnTranscript
+  - Speechly.SLUClient.SpeechlyClient.ProcessAudio(Stream)
+  - Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)
+  - Speechly.SLUClient.SpeechlyClient.ProcessAudioFile(System.String)
+  - Speechly.SLUClient.SpeechlyClient.SamplesSent
+  - Speechly.SLUClient.SpeechlyClient.Shutdown
+  - Speechly.SLUClient.SpeechlyClient.StartContext(System.String)
+  - Speechly.SLUClient.SpeechlyClient.StartStream(System.String,System.Boolean)
+  - Speechly.SLUClient.SpeechlyClient.StopContext
+  - Speechly.SLUClient.SpeechlyClient.StopStream(System.Boolean)
+  - Speechly.SLUClient.SpeechlyClient.StreamSamplePos
+  - Speechly.SLUClient.SpeechlyClient.Update
+  - Speechly.SLUClient.SpeechlyClient.UtteranceSerial
+  - Speechly.SLUClient.SpeechlyClient.Vad
+  langs:
+  - csharp
+  - vb
+  name: SpeechlyClient
+  nameWithType: SpeechlyClient
+  fullName: Speechly.SLUClient.SpeechlyClient
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SpeechlyClient
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 23
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  summary: "\nCreate a new Speechly Spoken Language Understading (SLU) Client to process speech and provide the results of automatic speech recogition (ASR) and natural langugage understanding (NLU) using delegates.\n\n### Usage:\n\n- Create a new SpeechlyClient instance.\n- Initialize a SLU decoder with <xref href=\"Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)\" data-throw-if-not-resolved=\"false\"></xref>.\n- Attack delegates like <xref href=\"Speechly.SLUClient.SpeechlyClient.OnSegmentChange\" data-throw-if-not-resolved=\"false\"></xref> to listen to SLU results.\n- Feed audio to process with <xref href=\"Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single%5b%5d%2cSystem.Int32%2cSystem.Int32%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref>.\n- When you don&apos;t need SLU services any more call <xref href=\"Speechly.SLUClient.SpeechlyClient.Shutdown\" data-throw-if-not-resolved=\"false\"></xref> to free resources.\n\nYou can control when to start and stop process speech either manually with <xref href=\"Speechly.SLUClient.SpeechlyClient.StartContext(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.SLUClient.SpeechlyClient.StopContext\" data-throw-if-not-resolved=\"false\"></xref> or\nautomatically by providing a voice activity detection (VAD) field to <xref href=\"Speechly.SLUClient.SpeechlyClient\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: 'public class SpeechlyClient : object'
+    content.vb: >-
+      Public Class SpeechlyClient
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.SLUClient.SpeechlyClient.OnSegmentChange
+  commentId: F:Speechly.SLUClient.SpeechlyClient.OnSegmentChange
+  id: OnSegmentChange
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: OnSegmentChange
+  nameWithType: SpeechlyClient.OnSegmentChange
+  fullName: Speechly.SLUClient.SpeechlyClient.OnSegmentChange
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnSegmentChange
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 42
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  summary: "\nRead the combined results of automatic speech recoginition (ASR) and natural language detection (NLU).\n\nYou can control when to start and stop process speech either manually with <xref href=\"Speechly.SLUClient.SpeechlyClient.StartContext(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.SLUClient.SpeechlyClient.StopContext\" data-throw-if-not-resolved=\"false\"></xref> or\nautomatically by providing a voice activity detection (VAD) field to <xref href=\"Speechly.SLUClient.SpeechlyClient\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  example: []
+  syntax:
+    content: public SpeechlyClient.SegmentChangeDelegate OnSegmentChange
+    return:
+      type: Speechly.SLUClient.SpeechlyClient.SegmentChangeDelegate
+    content.vb: Public OnSegmentChange As SpeechlyClient.SegmentChangeDelegate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.OnTentativeTranscript
+  commentId: F:Speechly.SLUClient.SpeechlyClient.OnTentativeTranscript
+  id: OnTentativeTranscript
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: OnTentativeTranscript
+  nameWithType: SpeechlyClient.OnTentativeTranscript
+  fullName: Speechly.SLUClient.SpeechlyClient.OnTentativeTranscript
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnTentativeTranscript
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 43
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public SpeechlyClient.TentativeTranscriptDelegate OnTentativeTranscript
+    return:
+      type: Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate
+    content.vb: Public OnTentativeTranscript As SpeechlyClient.TentativeTranscriptDelegate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.OnTranscript
+  commentId: F:Speechly.SLUClient.SpeechlyClient.OnTranscript
+  id: OnTranscript
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: OnTranscript
+  nameWithType: SpeechlyClient.OnTranscript
+  fullName: Speechly.SLUClient.SpeechlyClient.OnTranscript
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnTranscript
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 44
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public SpeechlyClient.TranscriptDelegate OnTranscript
+    return:
+      type: Speechly.SLUClient.SpeechlyClient.TranscriptDelegate
+    content.vb: Public OnTranscript As SpeechlyClient.TranscriptDelegate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.OnTentativeEntity
+  commentId: F:Speechly.SLUClient.SpeechlyClient.OnTentativeEntity
+  id: OnTentativeEntity
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: OnTentativeEntity
+  nameWithType: SpeechlyClient.OnTentativeEntity
+  fullName: Speechly.SLUClient.SpeechlyClient.OnTentativeEntity
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnTentativeEntity
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 45
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public SpeechlyClient.TentativeEntityDelegate OnTentativeEntity
+    return:
+      type: Speechly.SLUClient.SpeechlyClient.TentativeEntityDelegate
+    content.vb: Public OnTentativeEntity As SpeechlyClient.TentativeEntityDelegate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.OnEntity
+  commentId: F:Speechly.SLUClient.SpeechlyClient.OnEntity
+  id: OnEntity
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: OnEntity
+  nameWithType: SpeechlyClient.OnEntity
+  fullName: Speechly.SLUClient.SpeechlyClient.OnEntity
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnEntity
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 46
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public SpeechlyClient.EntityDelegate OnEntity
+    return:
+      type: Speechly.SLUClient.SpeechlyClient.EntityDelegate
+    content.vb: Public OnEntity As SpeechlyClient.EntityDelegate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.OnTentativeIntent
+  commentId: F:Speechly.SLUClient.SpeechlyClient.OnTentativeIntent
+  id: OnTentativeIntent
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: OnTentativeIntent
+  nameWithType: SpeechlyClient.OnTentativeIntent
+  fullName: Speechly.SLUClient.SpeechlyClient.OnTentativeIntent
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnTentativeIntent
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 47
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public SpeechlyClient.IntentDelegate OnTentativeIntent
+    return:
+      type: Speechly.SLUClient.SpeechlyClient.IntentDelegate
+    content.vb: Public OnTentativeIntent As SpeechlyClient.IntentDelegate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.OnIntent
+  commentId: F:Speechly.SLUClient.SpeechlyClient.OnIntent
+  id: OnIntent
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: OnIntent
+  nameWithType: SpeechlyClient.OnIntent
+  fullName: Speechly.SLUClient.SpeechlyClient.OnIntent
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnIntent
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 48
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public SpeechlyClient.IntentDelegate OnIntent
+    return:
+      type: Speechly.SLUClient.SpeechlyClient.IntentDelegate
+    content.vb: Public OnIntent As SpeechlyClient.IntentDelegate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.OnStartStream
+  commentId: F:Speechly.SLUClient.SpeechlyClient.OnStartStream
+  id: OnStartStream
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: OnStartStream
+  nameWithType: SpeechlyClient.OnStartStream
+  fullName: Speechly.SLUClient.SpeechlyClient.OnStartStream
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnStartStream
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 49
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public SpeechlyClient.StartStreamDelegate OnStartStream
+    return:
+      type: Speechly.SLUClient.SpeechlyClient.StartStreamDelegate
+    content.vb: Public OnStartStream As SpeechlyClient.StartStreamDelegate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.OnStopStream
+  commentId: F:Speechly.SLUClient.SpeechlyClient.OnStopStream
+  id: OnStopStream
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: OnStopStream
+  nameWithType: SpeechlyClient.OnStopStream
+  fullName: Speechly.SLUClient.SpeechlyClient.OnStopStream
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnStopStream
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 50
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public SpeechlyClient.StopStreamDelegate OnStopStream
+    return:
+      type: Speechly.SLUClient.SpeechlyClient.StopStreamDelegate
+    content.vb: Public OnStopStream As SpeechlyClient.StopStreamDelegate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.OnStartContext
+  commentId: F:Speechly.SLUClient.SpeechlyClient.OnStartContext
+  id: OnStartContext
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: OnStartContext
+  nameWithType: SpeechlyClient.OnStartContext
+  fullName: Speechly.SLUClient.SpeechlyClient.OnStartContext
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnStartContext
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 51
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public SpeechlyClient.StartContextDelegate OnStartContext
+    return:
+      type: Speechly.SLUClient.SpeechlyClient.StartContextDelegate
+    content.vb: Public OnStartContext As SpeechlyClient.StartContextDelegate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.OnStopContext
+  commentId: F:Speechly.SLUClient.SpeechlyClient.OnStopContext
+  id: OnStopContext
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: OnStopContext
+  nameWithType: SpeechlyClient.OnStopContext
+  fullName: Speechly.SLUClient.SpeechlyClient.OnStopContext
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnStopContext
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 52
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public SpeechlyClient.StopContextDelegate OnStopContext
+    return:
+      type: Speechly.SLUClient.SpeechlyClient.StopContextDelegate
+    content.vb: Public OnStopContext As SpeechlyClient.StopContextDelegate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.IsAudioStreaming
+  commentId: P:Speechly.SLUClient.SpeechlyClient.IsAudioStreaming
+  id: IsAudioStreaming
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: IsAudioStreaming
+  nameWithType: SpeechlyClient.IsAudioStreaming
+  fullName: Speechly.SLUClient.SpeechlyClient.IsAudioStreaming
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: IsAudioStreaming
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 55
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public bool IsAudioStreaming { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsAudioStreaming As Boolean
+  overload: Speechly.SLUClient.SpeechlyClient.IsAudioStreaming*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.SLUClient.SpeechlyClient.IsReady
+  commentId: P:Speechly.SLUClient.SpeechlyClient.IsReady
+  id: IsReady
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: IsReady
+  nameWithType: SpeechlyClient.IsReady
+  fullName: Speechly.SLUClient.SpeechlyClient.IsReady
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: IsReady
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 58
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  example: []
+  syntax:
+    content: public bool IsReady { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsReady As Boolean
+  overload: Speechly.SLUClient.SpeechlyClient.IsReady*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.SLUClient.SpeechlyClient.IsListening
+  commentId: P:Speechly.SLUClient.SpeechlyClient.IsListening
+  id: IsListening
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: IsListening
+  nameWithType: SpeechlyClient.IsListening
+  fullName: Speechly.SLUClient.SpeechlyClient.IsListening
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: IsListening
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 65
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  example: []
+  syntax:
+    content: public bool IsListening { get; }
+    parameters: []
+    return:
+      type: System.Boolean
+    content.vb: Public ReadOnly Property IsListening As Boolean
+  overload: Speechly.SLUClient.SpeechlyClient.IsListening*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.SLUClient.SpeechlyClient.SamplesSent
+  commentId: P:Speechly.SLUClient.SpeechlyClient.SamplesSent
+  id: SamplesSent
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: SamplesSent
+  nameWithType: SpeechlyClient.SamplesSent
+  fullName: Speechly.SLUClient.SpeechlyClient.SamplesSent
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SamplesSent
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 67
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public int SamplesSent { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property SamplesSent As Integer
+  overload: Speechly.SLUClient.SpeechlyClient.SamplesSent*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.SLUClient.SpeechlyClient.Vad
+  commentId: P:Speechly.SLUClient.SpeechlyClient.Vad
+  id: Vad
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: Vad
+  nameWithType: SpeechlyClient.Vad
+  fullName: Speechly.SLUClient.SpeechlyClient.Vad
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Vad
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 68
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public EnergyTresholdVAD Vad { get; }
+    parameters: []
+    return:
+      type: Speechly.SLUClient.EnergyTresholdVAD
+    content.vb: Public ReadOnly Property Vad As EnergyTresholdVAD
+  overload: Speechly.SLUClient.SpeechlyClient.Vad*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier
+  commentId: P:Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier
+  id: AudioInputStreamIdentifier
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: AudioInputStreamIdentifier
+  nameWithType: SpeechlyClient.AudioInputStreamIdentifier
+  fullName: Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: AudioInputStreamIdentifier
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 71
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  example: []
+  syntax:
+    content: public string AudioInputStreamIdentifier { get; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public ReadOnly Property AudioInputStreamIdentifier As String
+  overload: Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.SLUClient.SpeechlyClient.UtteranceSerial
+  commentId: P:Speechly.SLUClient.SpeechlyClient.UtteranceSerial
+  id: UtteranceSerial
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: UtteranceSerial
+  nameWithType: SpeechlyClient.UtteranceSerial
+  fullName: Speechly.SLUClient.SpeechlyClient.UtteranceSerial
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: UtteranceSerial
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 74
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  example: []
+  syntax:
+    content: public int UtteranceSerial { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property UtteranceSerial As Integer
+  overload: Speechly.SLUClient.SpeechlyClient.UtteranceSerial*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.SLUClient.SpeechlyClient.StreamSamplePos
+  commentId: P:Speechly.SLUClient.SpeechlyClient.StreamSamplePos
+  id: StreamSamplePos
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: StreamSamplePos
+  nameWithType: SpeechlyClient.StreamSamplePos
+  fullName: Speechly.SLUClient.SpeechlyClient.StreamSamplePos
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: StreamSamplePos
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 77
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  example: []
+  syntax:
+    content: public int StreamSamplePos { get; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public ReadOnly Property StreamSamplePos As Integer
+  overload: Speechly.SLUClient.SpeechlyClient.StreamSamplePos*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.SLUClient.SpeechlyClient.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean,System.String,Speechly.SLUClient.EnergyTresholdVAD,System.Boolean)
+  commentId: M:Speechly.SLUClient.SpeechlyClient.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean,System.String,Speechly.SLUClient.EnergyTresholdVAD,System.Boolean)
+  id: '#ctor(System.Int32,System.Int32,System.Int32,System.Boolean,System.String,Speechly.SLUClient.EnergyTresholdVAD,System.Boolean)'
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: SpeechlyClient(Int32, Int32, Int32, Boolean, String, EnergyTresholdVAD, Boolean)
+  nameWithType: SpeechlyClient.SpeechlyClient(Int32, Int32, Int32, Boolean, String, EnergyTresholdVAD, Boolean)
+  fullName: Speechly.SLUClient.SpeechlyClient.SpeechlyClient(System.Int32, System.Int32, System.Int32, System.Boolean, System.String, Speechly.SLUClient.EnergyTresholdVAD, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: .ctor
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 114
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  summary: "\nCreate a new SpeechlyClient to process audio and fire delegates to provide SLU results.\n"
+  example: []
+  syntax:
+    content: public SpeechlyClient(int frameMillis = 30, int historyFrames = 5, int inputSampleRate = 16000, bool manualUpdate = false, string saveToFolder = null, EnergyTresholdVAD vad = null, bool debug = false)
+    parameters:
+    - id: frameMillis
+      type: System.Int32
+      description: 'Defines the size of the history as historyFrames*frameSamples (default: `30` ms). History is sent upon StartContext to capture the start of utterance which especially important with VAD, which activates with a constant delay.'
+    - id: historyFrames
+      type: System.Int32
+      description: 'Defines the size of the history as historyFrames * frameSamples (default: `5`)'
+    - id: inputSampleRate
+      type: System.Int32
+      description: 'Define the sample rate of incoming audio (default: `16000`)'
+    - id: manualUpdate
+      type: System.Boolean
+      description: 'Setting `manualUpdate = true` postpones SpeechlyClient&apos;s delegates (OnSegmentChange, OnTranscript...) until you manually run <xref href="Speechly.SLUClient.SpeechlyClient.Update" data-throw-if-not-resolved="false"></xref>. This enables you to call Unity API in SpeechlyClient&apos;s delegates, as Unity API should only be used in the main Unity thread. (Default: false)'
+    - id: saveToFolder
+      type: System.String
+      description: 'Defines a local folder to save utterance files as 16 bit, 16000 hZ mono raw. Null disables saving. (default: `null`)'
+    - id: vad
+      type: Speechly.SLUClient.EnergyTresholdVAD
+      description: 'Provide a voice activation detection (VAD) implementation to control automatic listening on/off. Null disables VAD. (default: `null`)'
+    - id: debug
+      type: System.Boolean
+      description: 'Enable debug prints thru <xref href="Speechly.SLUClient.Logger.Log" data-throw-if-not-resolved="false"></xref> delegate. (default: `false`)'
+    content.vb: Public Sub New(frameMillis As Integer = 30, historyFrames As Integer = 5, inputSampleRate As Integer = 16000, manualUpdate As Boolean = False, saveToFolder As String = Nothing, vad As EnergyTresholdVAD = Nothing, debug As Boolean = False)
+  overload: Speechly.SLUClient.SpeechlyClient.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)
+  commentId: M:Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)
+  id: Initialize(Speechly.SLUClient.IDecoder)
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: Initialize(IDecoder)
+  nameWithType: SpeechlyClient.Initialize(IDecoder)
+  fullName: Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Initialize
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 149
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  summary: "\nProvide a SLU decoder instance for the SpeechlyClient.\nThe SLU decoder provides the automatic speech recognition (ASR) and\nnatural language understanding (NLU) capabilities.\nThe SLU delegates (OnSegmentChange, OnTranscript...) are only fired when SpeechlyClient is initialized with a SLU decoder.\n"
+  example: []
+  syntax:
+    content: public async Task Initialize(IDecoder decoder)
+    parameters:
+    - id: decoder
+      type: Speechly.SLUClient.IDecoder
+      description: SLU decoder implementing IDecoder interface
+    return:
+      type: Task
+    content.vb: Public Function Initialize(decoder As IDecoder) As Task
+  overload: Speechly.SLUClient.SpeechlyClient.Initialize*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.StartStream(System.String,System.Boolean)
+  commentId: M:Speechly.SLUClient.SpeechlyClient.StartStream(System.String,System.Boolean)
+  id: StartStream(System.String,System.Boolean)
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: StartStream(String, Boolean)
+  nameWithType: SpeechlyClient.StartStream(String, Boolean)
+  fullName: Speechly.SLUClient.SpeechlyClient.StartStream(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: StartStream
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 170
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  summary: "\n`StartStream` should be called at start of a continuous audio stream. It resets the stream sample counters and history. For backwards compability, ProcessAudio and StartContext ensure it&apos;s been called.\n`OnStreamStart` delegate is triggered upon a call to StartStream.\n"
+  example: []
+  syntax:
+    content: public void StartStream(string streamIdentifier, bool auto = false)
+    parameters:
+    - id: streamIdentifier
+      type: System.String
+    - id: auto
+      type: System.Boolean
+    content.vb: Public Sub StartStream(streamIdentifier As String, auto As Boolean = False)
+  overload: Speechly.SLUClient.SpeechlyClient.StartStream*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.StopStream(System.Boolean)
+  commentId: M:Speechly.SLUClient.SpeechlyClient.StopStream(System.Boolean)
+  id: StopStream(System.Boolean)
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: StopStream(Boolean)
+  nameWithType: SpeechlyClient.StopStream(Boolean)
+  fullName: Speechly.SLUClient.SpeechlyClient.StopStream(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: StopStream
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 189
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  summary: "\n`StopStream` should be called at the end of a continuous audio stream.\n`OnStreamStop` delegate is triggered upon a call to StopStream.\n"
+  example: []
+  syntax:
+    content: public void StopStream(bool auto = false)
+    parameters:
+    - id: auto
+      type: System.Boolean
+    content.vb: Public Sub StopStream(auto As Boolean = False)
+  overload: Speechly.SLUClient.SpeechlyClient.StopStream*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.StartContext(System.String)
+  commentId: M:Speechly.SLUClient.SpeechlyClient.StartContext(System.String)
+  id: StartContext(System.String)
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: StartContext(String)
+  nameWithType: SpeechlyClient.StartContext(String)
+  fullName: Speechly.SLUClient.SpeechlyClient.StartContext(System.String)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: StartContext
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 211
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  summary: "\nStart listening for user speech and feeding it to the SLU decoder.\n`OnContextStart` is triggered upon a call to StartContext. It&apos;s also triggered by automatic VAD activation.\n"
+  example: []
+  syntax:
+    content: public Task<string> StartContext(string appId = null)
+    parameters:
+    - id: appId
+      type: System.String
+    return:
+      type: Task{System.String}
+    content.vb: Public Function StartContext(appId As String = Nothing) As Task(Of String)
+  overload: Speechly.SLUClient.SpeechlyClient.StartContext*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.ProcessAudioFile(System.String)
+  commentId: M:Speechly.SLUClient.SpeechlyClient.ProcessAudioFile(System.String)
+  id: ProcessAudioFile(System.String)
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: ProcessAudioFile(String)
+  nameWithType: SpeechlyClient.ProcessAudioFile(String)
+  fullName: Speechly.SLUClient.SpeechlyClient.ProcessAudioFile(System.String)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ProcessAudioFile
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 246
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public void ProcessAudioFile(string fileName)
+    parameters:
+    - id: fileName
+      type: System.String
+    content.vb: Public Sub ProcessAudioFile(fileName As String)
+  overload: Speechly.SLUClient.SpeechlyClient.ProcessAudioFile*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)
+  commentId: M:Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)
+  id: ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: ProcessAudio(Single[], Int32, Int32, Boolean)
+  nameWithType: SpeechlyClient.ProcessAudio(Single[], Int32, Int32, Boolean)
+  fullName: Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single[], System.Int32, System.Int32, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ProcessAudio
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 277
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  summary: "\nProcess speech audio samples from a microphone or other audio source.\n\nIt&apos;s recommended to constantly feed new audio as long as you want to use Speechly&apos;s SLU services.\n\nYou can control when to start and stop process speech either manually with <xref href=\"Speechly.SLUClient.SpeechlyClient.StartContext(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.SLUClient.SpeechlyClient.StopContext\" data-throw-if-not-resolved=\"false\"></xref> or\nautomatically by providing a voice activity detection (VAD) field to <xref href=\"Speechly.SLUClient.SpeechlyClient\" data-throw-if-not-resolved=\"false\"></xref>.\n\nThe audio processing pipeline is as follows:\n- INPUT: ProcessAudio()\n- Downsample audio to 16kHz if needed (controlled by inputSampleRate in constructor)\n- Add audio to history ringbuffer (controlled by HistoryFrames and FrameSamples in constructor)\n- Energy threshold calculation (enabled by EnergyTresholdVAD in constructor)\n- Automatic VAD Start/StopContext control (enabled by EnergyTresholdVAD.ControlListening = true)\n- OUTPUT: Send utterances to files (enabled by SaveToFolder = &quot;folder&quot; in the constructor)\n- OUTPUT: Send utterances to Speechly SLU decoder (passed with <xref href=\"Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)\" data-throw-if-not-resolved=\"false\"></xref>)\n"
+  example: []
+  syntax:
+    content: public void ProcessAudio(float[] floats, int start = 0, int length = null, bool forceSubFrameProcess = false)
+    parameters:
+    - id: floats
+      type: System.Single[]
+      description: Array of float containing samples to feed to the audio pipeline. Each sample needs to be in range -1f..1f.
+    - id: start
+      type: System.Int32
+      description: 'Start index of audio to process in samples (default: `0`).'
+    - id: length
+      type: System.Int32
+      description: 'Length of audio to process in samples or `-1` to process the whole array (default: `-1`).'
+    - id: forceSubFrameProcess
+      type: System.Boolean
+      description: '<xref href="Speechly.SLUClient.SpeechlyClient.StopStream(System.Boolean)" data-throw-if-not-resolved="false"></xref> internally uses this to force processing of last subframe at end of audio stream (default: `false`).'
+    content.vb: Public Sub ProcessAudio(floats As Single(), start As Integer = 0, length As Integer = Nothing, forceSubFrameProcess As Boolean = False)
+  overload: Speechly.SLUClient.SpeechlyClient.ProcessAudio*
+  nameWithType.vb: SpeechlyClient.ProcessAudio(Single(), Int32, Int32, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single(), System.Int32, System.Int32, System.Boolean)
+  name.vb: ProcessAudio(Single(), Int32, Int32, Boolean)
+- uid: Speechly.SLUClient.SpeechlyClient.ProcessAudio(Stream)
+  commentId: M:Speechly.SLUClient.SpeechlyClient.ProcessAudio(Stream)
+  id: ProcessAudio(Stream)
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: ProcessAudio(Stream)
+  nameWithType: SpeechlyClient.ProcessAudio(Stream)
+  fullName: Speechly.SLUClient.SpeechlyClient.ProcessAudio(Stream)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ProcessAudio
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 338
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public void ProcessAudio(Stream fileStream)
+    parameters:
+    - id: fileStream
+      type: Stream
+    content.vb: Public Sub ProcessAudio(fileStream As Stream)
+  overload: Speechly.SLUClient.SpeechlyClient.ProcessAudio*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.StopContext
+  commentId: M:Speechly.SLUClient.SpeechlyClient.StopContext
+  id: StopContext
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: StopContext()
+  nameWithType: SpeechlyClient.StopContext()
+  fullName: Speechly.SLUClient.SpeechlyClient.StopContext()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: StopContext
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 413
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  summary: "\nStop listening for user speech.\n`OnContextStop` is triggered upon a call to StopContext. It&apos;s also triggered by automatic VAD deactivation.\n"
+  example: []
+  syntax:
+    content: public Task<string> StopContext()
+    return:
+      type: Task{System.String}
+    content.vb: Public Function StopContext As Task(Of String)
+  overload: Speechly.SLUClient.SpeechlyClient.StopContext*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.Update
+  commentId: M:Speechly.SLUClient.SpeechlyClient.Update
+  id: Update
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: Update()
+  nameWithType: SpeechlyClient.Update()
+  fullName: Speechly.SLUClient.SpeechlyClient.Update()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Update
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 443
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  summary: "\nCall Update in your game loop to fire Speechly delegates manually if you want them to run in main UI/Unity thread.\n"
+  example: []
+  syntax:
+    content: public void Update()
+    content.vb: Public Sub Update
+  overload: Speechly.SLUClient.SpeechlyClient.Update*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.SpeechlyClient.Shutdown
+  commentId: M:Speechly.SLUClient.SpeechlyClient.Shutdown
+  id: Shutdown
+  parent: Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: Shutdown()
+  nameWithType: SpeechlyClient.Shutdown()
+  fullName: Speechly.SLUClient.SpeechlyClient.Shutdown()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Shutdown
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 534
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public async Task Shutdown()
+    return:
+      type: Task
+    content.vb: Public Function Shutdown As Task
+  overload: Speechly.SLUClient.SpeechlyClient.Shutdown*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)
+  commentId: M:Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)
+  isExternal: true
+- uid: Speechly.SLUClient.SpeechlyClient.OnSegmentChange
+  commentId: F:Speechly.SLUClient.SpeechlyClient.OnSegmentChange
+  isExternal: true
+- uid: Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)
+  commentId: M:Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)
+  isExternal: true
+- uid: Speechly.SLUClient.SpeechlyClient.Shutdown
+  commentId: M:Speechly.SLUClient.SpeechlyClient.Shutdown
+  isExternal: true
+- uid: Speechly.SLUClient.SpeechlyClient.StartContext(System.String)
+  commentId: M:Speechly.SLUClient.SpeechlyClient.StartContext(System.String)
+  isExternal: true
+- uid: Speechly.SLUClient.SpeechlyClient.StopContext
+  commentId: M:Speechly.SLUClient.SpeechlyClient.StopContext
+  isExternal: true
+- uid: Speechly.SLUClient.SpeechlyClient
+  commentId: T:Speechly.SLUClient.SpeechlyClient
+  name: SpeechlyClient
+  nameWithType: SpeechlyClient
+  fullName: Speechly.SLUClient.SpeechlyClient
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: Speechly.SLUClient.SpeechlyClient.SegmentChangeDelegate
+  commentId: T:Speechly.SLUClient.SpeechlyClient.SegmentChangeDelegate
+  parent: Speechly.SLUClient
+  name: SpeechlyClient.SegmentChangeDelegate
+  nameWithType: SpeechlyClient.SegmentChangeDelegate
+  fullName: Speechly.SLUClient.SpeechlyClient.SegmentChangeDelegate
+- uid: Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate
+  commentId: T:Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate
+  parent: Speechly.SLUClient
+  name: SpeechlyClient.TentativeTranscriptDelegate
+  nameWithType: SpeechlyClient.TentativeTranscriptDelegate
+  fullName: Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate
+- uid: Speechly.SLUClient.SpeechlyClient.TranscriptDelegate
+  commentId: T:Speechly.SLUClient.SpeechlyClient.TranscriptDelegate
+  parent: Speechly.SLUClient
+  name: SpeechlyClient.TranscriptDelegate
+  nameWithType: SpeechlyClient.TranscriptDelegate
+  fullName: Speechly.SLUClient.SpeechlyClient.TranscriptDelegate
+- uid: Speechly.SLUClient.SpeechlyClient.TentativeEntityDelegate
+  commentId: T:Speechly.SLUClient.SpeechlyClient.TentativeEntityDelegate
+  parent: Speechly.SLUClient
+  name: SpeechlyClient.TentativeEntityDelegate
+  nameWithType: SpeechlyClient.TentativeEntityDelegate
+  fullName: Speechly.SLUClient.SpeechlyClient.TentativeEntityDelegate
+- uid: Speechly.SLUClient.SpeechlyClient.EntityDelegate
+  commentId: T:Speechly.SLUClient.SpeechlyClient.EntityDelegate
+  parent: Speechly.SLUClient
+  name: SpeechlyClient.EntityDelegate
+  nameWithType: SpeechlyClient.EntityDelegate
+  fullName: Speechly.SLUClient.SpeechlyClient.EntityDelegate
+- uid: Speechly.SLUClient.SpeechlyClient.IntentDelegate
+  commentId: T:Speechly.SLUClient.SpeechlyClient.IntentDelegate
+  parent: Speechly.SLUClient
+  name: SpeechlyClient.IntentDelegate
+  nameWithType: SpeechlyClient.IntentDelegate
+  fullName: Speechly.SLUClient.SpeechlyClient.IntentDelegate
+- uid: Speechly.SLUClient.SpeechlyClient.StartStreamDelegate
+  commentId: T:Speechly.SLUClient.SpeechlyClient.StartStreamDelegate
+  parent: Speechly.SLUClient
+  name: SpeechlyClient.StartStreamDelegate
+  nameWithType: SpeechlyClient.StartStreamDelegate
+  fullName: Speechly.SLUClient.SpeechlyClient.StartStreamDelegate
+- uid: Speechly.SLUClient.SpeechlyClient.StopStreamDelegate
+  commentId: T:Speechly.SLUClient.SpeechlyClient.StopStreamDelegate
+  parent: Speechly.SLUClient
+  name: SpeechlyClient.StopStreamDelegate
+  nameWithType: SpeechlyClient.StopStreamDelegate
+  fullName: Speechly.SLUClient.SpeechlyClient.StopStreamDelegate
+- uid: Speechly.SLUClient.SpeechlyClient.StartContextDelegate
+  commentId: T:Speechly.SLUClient.SpeechlyClient.StartContextDelegate
+  parent: Speechly.SLUClient
+  name: SpeechlyClient.StartContextDelegate
+  nameWithType: SpeechlyClient.StartContextDelegate
+  fullName: Speechly.SLUClient.SpeechlyClient.StartContextDelegate
+- uid: Speechly.SLUClient.SpeechlyClient.StopContextDelegate
+  commentId: T:Speechly.SLUClient.SpeechlyClient.StopContextDelegate
+  parent: Speechly.SLUClient
+  name: SpeechlyClient.StopContextDelegate
+  nameWithType: SpeechlyClient.StopContextDelegate
+  fullName: Speechly.SLUClient.SpeechlyClient.StopContextDelegate
+- uid: Speechly.SLUClient.SpeechlyClient.IsAudioStreaming*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.IsAudioStreaming
+  name: IsAudioStreaming
+  nameWithType: SpeechlyClient.IsAudioStreaming
+  fullName: Speechly.SLUClient.SpeechlyClient.IsAudioStreaming
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Speechly.SLUClient.SpeechlyClient.IsReady*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.IsReady
+  name: IsReady
+  nameWithType: SpeechlyClient.IsReady
+  fullName: Speechly.SLUClient.SpeechlyClient.IsReady
+- uid: Speechly.SLUClient.SpeechlyClient.IsListening*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.IsListening
+  name: IsListening
+  nameWithType: SpeechlyClient.IsListening
+  fullName: Speechly.SLUClient.SpeechlyClient.IsListening
+- uid: Speechly.SLUClient.SpeechlyClient.SamplesSent*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.SamplesSent
+  name: SamplesSent
+  nameWithType: SpeechlyClient.SamplesSent
+  fullName: Speechly.SLUClient.SpeechlyClient.SamplesSent
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Speechly.SLUClient.SpeechlyClient.Vad*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.Vad
+  name: Vad
+  nameWithType: SpeechlyClient.Vad
+  fullName: Speechly.SLUClient.SpeechlyClient.Vad
+- uid: Speechly.SLUClient.EnergyTresholdVAD
+  commentId: T:Speechly.SLUClient.EnergyTresholdVAD
+  parent: Speechly.SLUClient
+  name: EnergyTresholdVAD
+  nameWithType: EnergyTresholdVAD
+  fullName: Speechly.SLUClient.EnergyTresholdVAD
+- uid: Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier
+  name: AudioInputStreamIdentifier
+  nameWithType: SpeechlyClient.AudioInputStreamIdentifier
+  fullName: Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Speechly.SLUClient.SpeechlyClient.UtteranceSerial*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.UtteranceSerial
+  name: UtteranceSerial
+  nameWithType: SpeechlyClient.UtteranceSerial
+  fullName: Speechly.SLUClient.SpeechlyClient.UtteranceSerial
+- uid: Speechly.SLUClient.SpeechlyClient.StreamSamplePos*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.StreamSamplePos
+  name: StreamSamplePos
+  nameWithType: SpeechlyClient.StreamSamplePos
+  fullName: Speechly.SLUClient.SpeechlyClient.StreamSamplePos
+- uid: Speechly.SLUClient.SpeechlyClient.Update
+  commentId: M:Speechly.SLUClient.SpeechlyClient.Update
+  isExternal: true
+- uid: Speechly.SLUClient.Logger.Log
+  commentId: F:Speechly.SLUClient.Logger.Log
+  isExternal: true
+- uid: Speechly.SLUClient.SpeechlyClient.#ctor*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.#ctor
+  name: SpeechlyClient
+  nameWithType: SpeechlyClient.SpeechlyClient
+  fullName: Speechly.SLUClient.SpeechlyClient.SpeechlyClient
+- uid: Speechly.SLUClient.SpeechlyClient.Initialize*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.Initialize
+  name: Initialize
+  nameWithType: SpeechlyClient.Initialize
+  fullName: Speechly.SLUClient.SpeechlyClient.Initialize
+- uid: Speechly.SLUClient.IDecoder
+  commentId: T:Speechly.SLUClient.IDecoder
+  parent: Speechly.SLUClient
+  name: IDecoder
+  nameWithType: IDecoder
+  fullName: Speechly.SLUClient.IDecoder
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Speechly.SLUClient.SpeechlyClient.StartStream*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.StartStream
+  name: StartStream
+  nameWithType: SpeechlyClient.StartStream
+  fullName: Speechly.SLUClient.SpeechlyClient.StartStream
+- uid: Speechly.SLUClient.SpeechlyClient.StopStream*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.StopStream
+  name: StopStream
+  nameWithType: SpeechlyClient.StopStream
+  fullName: Speechly.SLUClient.SpeechlyClient.StopStream
+- uid: Speechly.SLUClient.SpeechlyClient.StartContext*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.StartContext
+  name: StartContext
+  nameWithType: SpeechlyClient.StartContext
+  fullName: Speechly.SLUClient.SpeechlyClient.StartContext
+- uid: Task{System.String}
+  commentId: '!:Task{System.String}'
+  definition: Task`1
+  name: Task<String>
+  nameWithType: Task<String>
+  fullName: Task<System.String>
+  nameWithType.vb: Task(Of String)
+  fullName.vb: Task(Of System.String)
+  name.vb: Task(Of String)
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Speechly.SLUClient.SpeechlyClient.ProcessAudioFile*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.ProcessAudioFile
+  name: ProcessAudioFile
+  nameWithType: SpeechlyClient.ProcessAudioFile
+  fullName: Speechly.SLUClient.SpeechlyClient.ProcessAudioFile
+- uid: Speechly.SLUClient.SpeechlyClient.StopStream(System.Boolean)
+  commentId: M:Speechly.SLUClient.SpeechlyClient.StopStream(System.Boolean)
+  isExternal: true
+- uid: Speechly.SLUClient.SpeechlyClient.ProcessAudio*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.ProcessAudio
+  name: ProcessAudio
+  nameWithType: SpeechlyClient.ProcessAudio
+  fullName: Speechly.SLUClient.SpeechlyClient.ProcessAudio
+- uid: System.Single[]
+  isExternal: true
+  name: Single[]
+  nameWithType: Single[]
+  fullName: System.Single[]
+  nameWithType.vb: Single()
+  fullName.vb: System.Single()
+  name.vb: Single()
+  spec.csharp:
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Stream
+  isExternal: true
+  name: Stream
+  nameWithType: Stream
+  fullName: Stream
+- uid: Speechly.SLUClient.SpeechlyClient.StopContext*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.StopContext
+  name: StopContext
+  nameWithType: SpeechlyClient.StopContext
+  fullName: Speechly.SLUClient.SpeechlyClient.StopContext
+- uid: Speechly.SLUClient.SpeechlyClient.Update*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.Update
+  name: Update
+  nameWithType: SpeechlyClient.Update
+  fullName: Speechly.SLUClient.SpeechlyClient.Update
+- uid: Speechly.SLUClient.SpeechlyClient.Shutdown*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.Shutdown
+  name: Shutdown
+  nameWithType: SpeechlyClient.Shutdown
+  fullName: Speechly.SLUClient.SpeechlyClient.Shutdown

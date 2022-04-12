@@ -1,0 +1,49 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate
+  commentId: T:Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate
+  id: SpeechlyClient.TentativeTranscriptDelegate
+  parent: Speechly.SLUClient
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: SpeechlyClient.TentativeTranscriptDelegate
+  nameWithType: SpeechlyClient.TentativeTranscriptDelegate
+  fullName: Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate
+  type: Delegate
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: TentativeTranscriptDelegate
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    startLine: 25
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public delegate void TentativeTranscriptDelegate(MsgTentativeTranscript msg);
+    parameters:
+    - id: msg
+      type: Speechly.SLUClient.MsgTentativeTranscript
+    content.vb: Public Delegate Sub TentativeTranscriptDelegate(msg As MsgTentativeTranscript)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: Speechly.SLUClient.MsgTentativeTranscript
+  commentId: T:Speechly.SLUClient.MsgTentativeTranscript
+  parent: Speechly.SLUClient
+  name: MsgTentativeTranscript
+  nameWithType: MsgTentativeTranscript
+  fullName: Speechly.SLUClient.MsgTentativeTranscript

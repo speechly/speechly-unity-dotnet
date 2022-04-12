@@ -1,0 +1,223 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.ConfigTool
+  commentId: T:Speechly.SLUClient.ConfigTool
+  id: ConfigTool
+  parent: Speechly.SLUClient
+  children:
+  - Speechly.SLUClient.ConfigTool.ConfigPath
+  - Speechly.SLUClient.ConfigTool.deviceId
+  - Speechly.SLUClient.ConfigTool.RestoreOrCreate``1(System.String)
+  - Speechly.SLUClient.ConfigTool.Save``1(``0,System.String)
+  langs:
+  - csharp
+  - vb
+  name: ConfigTool
+  nameWithType: ConfigTool
+  fullName: Speechly.SLUClient.ConfigTool
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ConfigTool
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 93
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: 'public class ConfigTool : object'
+    content.vb: >-
+      Public Class ConfigTool
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.SLUClient.ConfigTool.ConfigPath
+  commentId: F:Speechly.SLUClient.ConfigTool.ConfigPath
+  id: ConfigPath
+  parent: Speechly.SLUClient.ConfigTool
+  langs:
+  - csharp
+  - vb
+  name: ConfigPath
+  nameWithType: ConfigTool.ConfigPath
+  fullName: Speechly.SLUClient.ConfigTool.ConfigPath
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ConfigPath
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 94
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public static string ConfigPath
+    return:
+      type: System.String
+    content.vb: Public Shared ConfigPath As String
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Speechly.SLUClient.ConfigTool.deviceId
+  commentId: F:Speechly.SLUClient.ConfigTool.deviceId
+  id: deviceId
+  parent: Speechly.SLUClient.ConfigTool
+  langs:
+  - csharp
+  - vb
+  name: deviceId
+  nameWithType: ConfigTool.deviceId
+  fullName: Speechly.SLUClient.ConfigTool.deviceId
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: deviceId
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 97
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public string deviceId
+    return:
+      type: System.String
+    content.vb: Public deviceId As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.ConfigTool.RestoreOrCreate``1(System.String)
+  commentId: M:Speechly.SLUClient.ConfigTool.RestoreOrCreate``1(System.String)
+  id: RestoreOrCreate``1(System.String)
+  parent: Speechly.SLUClient.ConfigTool
+  langs:
+  - csharp
+  - vb
+  name: RestoreOrCreate<T>(String)
+  nameWithType: ConfigTool.RestoreOrCreate<T>(String)
+  fullName: Speechly.SLUClient.ConfigTool.RestoreOrCreate<T>(System.String)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: RestoreOrCreate
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 99
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: >-
+      public static T RestoreOrCreate<T>(string ConfigFileName)
+          where T : class, new()
+    parameters:
+    - id: ConfigFileName
+      type: System.String
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Shared Function RestoreOrCreate(Of T As {Class, New})(ConfigFileName As String) As T
+  overload: Speechly.SLUClient.ConfigTool.RestoreOrCreate*
+  nameWithType.vb: ConfigTool.RestoreOrCreate(Of T)(String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Speechly.SLUClient.ConfigTool.RestoreOrCreate(Of T)(System.String)
+  name.vb: RestoreOrCreate(Of T)(String)
+- uid: Speechly.SLUClient.ConfigTool.Save``1(``0,System.String)
+  commentId: M:Speechly.SLUClient.ConfigTool.Save``1(``0,System.String)
+  id: Save``1(``0,System.String)
+  parent: Speechly.SLUClient.ConfigTool
+  langs:
+  - csharp
+  - vb
+  name: Save<T>(T, String)
+  nameWithType: ConfigTool.Save<T>(T, String)
+  fullName: Speechly.SLUClient.ConfigTool.Save<T>(T, System.String)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Save
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 110
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public static void Save<T>(T configData, string ConfigFileName)
+    parameters:
+    - id: configData
+      type: '{T}'
+    - id: ConfigFileName
+      type: System.String
+    typeParameters:
+    - id: T
+    content.vb: Public Shared Sub Save(Of T)(configData As T, ConfigFileName As String)
+  overload: Speechly.SLUClient.ConfigTool.Save*
+  nameWithType.vb: ConfigTool.Save(Of T)(T, String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Speechly.SLUClient.ConfigTool.Save(Of T)(T, System.String)
+  name.vb: Save(Of T)(T, String)
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Speechly.SLUClient.ConfigTool.RestoreOrCreate*
+  commentId: Overload:Speechly.SLUClient.ConfigTool.RestoreOrCreate
+  name: RestoreOrCreate
+  nameWithType: ConfigTool.RestoreOrCreate
+  fullName: Speechly.SLUClient.ConfigTool.RestoreOrCreate
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Speechly.SLUClient.ConfigTool.Save*
+  commentId: Overload:Speechly.SLUClient.ConfigTool.Save
+  name: Save
+  nameWithType: ConfigTool.Save
+  fullName: Speechly.SLUClient.ConfigTool.Save

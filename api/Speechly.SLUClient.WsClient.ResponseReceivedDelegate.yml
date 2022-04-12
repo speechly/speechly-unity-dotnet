@@ -1,0 +1,48 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.WsClient.ResponseReceivedDelegate
+  commentId: T:Speechly.SLUClient.WsClient.ResponseReceivedDelegate
+  id: WsClient.ResponseReceivedDelegate
+  parent: Speechly.SLUClient
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: WsClient.ResponseReceivedDelegate
+  nameWithType: WsClient.ResponseReceivedDelegate
+  fullName: Speechly.SLUClient.WsClient.ResponseReceivedDelegate
+  type: Delegate
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ResponseReceivedDelegate
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    startLine: 21
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public delegate void ResponseReceivedDelegate(MemoryStream inputStream);
+    parameters:
+    - id: inputStream
+      type: MemoryStream
+    content.vb: Public Delegate Sub ResponseReceivedDelegate(inputStream As MemoryStream)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: MemoryStream
+  isExternal: true
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: MemoryStream

@@ -1,0 +1,420 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.WsClient
+  commentId: T:Speechly.SLUClient.WsClient
+  id: WsClient
+  parent: Speechly.SLUClient
+  children:
+  - Speechly.SLUClient.WsClient.ConnectAsync(System.String,System.String)
+  - Speechly.SLUClient.WsClient.DisconnectAsync
+  - Speechly.SLUClient.WsClient.Dispose
+  - Speechly.SLUClient.WsClient.OnResponseReceived
+  - Speechly.SLUClient.WsClient.ReceiveBufferSize
+  - Speechly.SLUClient.WsClient.SendBytes(ArraySegment{System.Byte})
+  - Speechly.SLUClient.WsClient.SendText(System.String)
+  langs:
+  - csharp
+  - vb
+  name: WsClient
+  nameWithType: WsClient
+  fullName: Speechly.SLUClient.WsClient
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: WsClient
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    startLine: 19
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: 'public class WsClient : IDisposable'
+    content.vb: >-
+      Public Class WsClient
+          Inherits IDisposable
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.SLUClient.WsClient.OnResponseReceived
+  commentId: F:Speechly.SLUClient.WsClient.OnResponseReceived
+  id: OnResponseReceived
+  parent: Speechly.SLUClient.WsClient
+  langs:
+  - csharp
+  - vb
+  name: OnResponseReceived
+  nameWithType: WsClient.OnResponseReceived
+  fullName: Speechly.SLUClient.WsClient.OnResponseReceived
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnResponseReceived
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    startLine: 22
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public WsClient.ResponseReceivedDelegate OnResponseReceived
+    return:
+      type: Speechly.SLUClient.WsClient.ResponseReceivedDelegate
+    content.vb: Public OnResponseReceived As WsClient.ResponseReceivedDelegate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.WsClient.ReceiveBufferSize
+  commentId: P:Speechly.SLUClient.WsClient.ReceiveBufferSize
+  id: ReceiveBufferSize
+  parent: Speechly.SLUClient.WsClient
+  langs:
+  - csharp
+  - vb
+  name: ReceiveBufferSize
+  nameWithType: WsClient.ReceiveBufferSize
+  fullName: Speechly.SLUClient.WsClient.ReceiveBufferSize
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ReceiveBufferSize
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    startLine: 29
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public int ReceiveBufferSize { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property ReceiveBufferSize As Integer
+  overload: Speechly.SLUClient.WsClient.ReceiveBufferSize*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.WsClient.ConnectAsync(System.String,System.String)
+  commentId: M:Speechly.SLUClient.WsClient.ConnectAsync(System.String,System.String)
+  id: ConnectAsync(System.String,System.String)
+  parent: Speechly.SLUClient.WsClient
+  langs:
+  - csharp
+  - vb
+  name: ConnectAsync(String, String)
+  nameWithType: WsClient.ConnectAsync(String, String)
+  fullName: Speechly.SLUClient.WsClient.ConnectAsync(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ConnectAsync
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    startLine: 31
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public async Task ConnectAsync(string url, string authToken)
+    parameters:
+    - id: url
+      type: System.String
+    - id: authToken
+      type: System.String
+    return:
+      type: Task
+    content.vb: Public Function ConnectAsync(url As String, authToken As String) As Task
+  overload: Speechly.SLUClient.WsClient.ConnectAsync*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.WsClient.DisconnectAsync
+  commentId: M:Speechly.SLUClient.WsClient.DisconnectAsync
+  id: DisconnectAsync
+  parent: Speechly.SLUClient.WsClient
+  langs:
+  - csharp
+  - vb
+  name: DisconnectAsync()
+  nameWithType: WsClient.DisconnectAsync()
+  fullName: Speechly.SLUClient.WsClient.DisconnectAsync()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: DisconnectAsync
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    startLine: 48
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public async Task DisconnectAsync()
+    return:
+      type: Task
+    content.vb: Public Function DisconnectAsync As Task
+  overload: Speechly.SLUClient.WsClient.DisconnectAsync*
+  modifiers.csharp:
+  - public
+  - async
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.WsClient.SendText(System.String)
+  commentId: M:Speechly.SLUClient.WsClient.SendText(System.String)
+  id: SendText(System.String)
+  parent: Speechly.SLUClient.WsClient
+  langs:
+  - csharp
+  - vb
+  name: SendText(String)
+  nameWithType: WsClient.SendText(String)
+  fullName: Speechly.SLUClient.WsClient.SendText(System.String)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SendText
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    startLine: 66
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public void SendText(string text)
+    parameters:
+    - id: text
+      type: System.String
+    content.vb: Public Sub SendText(text As String)
+  overload: Speechly.SLUClient.WsClient.SendText*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.WsClient.SendBytes(ArraySegment{System.Byte})
+  commentId: M:Speechly.SLUClient.WsClient.SendBytes(ArraySegment{System.Byte})
+  id: SendBytes(ArraySegment{System.Byte})
+  parent: Speechly.SLUClient.WsClient
+  langs:
+  - csharp
+  - vb
+  name: SendBytes(ArraySegment<Byte>)
+  nameWithType: WsClient.SendBytes(ArraySegment<Byte>)
+  fullName: Speechly.SLUClient.WsClient.SendBytes(ArraySegment<System.Byte>)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SendBytes
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    startLine: 74
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public void SendBytes(ArraySegment<byte> byteArraySegment)
+    parameters:
+    - id: byteArraySegment
+      type: ArraySegment{System.Byte}
+    content.vb: Public Sub SendBytes(byteArraySegment As ArraySegment(Of Byte))
+  overload: Speechly.SLUClient.WsClient.SendBytes*
+  nameWithType.vb: WsClient.SendBytes(ArraySegment(Of Byte))
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Speechly.SLUClient.WsClient.SendBytes(ArraySegment(Of System.Byte))
+  name.vb: SendBytes(ArraySegment(Of Byte))
+- uid: Speechly.SLUClient.WsClient.Dispose
+  commentId: M:Speechly.SLUClient.WsClient.Dispose
+  id: Dispose
+  parent: Speechly.SLUClient.WsClient
+  langs:
+  - csharp
+  - vb
+  name: Dispose()
+  nameWithType: WsClient.Dispose()
+  fullName: Speechly.SLUClient.WsClient.Dispose()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Dispose
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    startLine: 134
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public void Dispose()
+    content.vb: Public Sub Dispose
+  overload: Speechly.SLUClient.WsClient.Dispose*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: Speechly.SLUClient.WsClient.ResponseReceivedDelegate
+  commentId: T:Speechly.SLUClient.WsClient.ResponseReceivedDelegate
+  parent: Speechly.SLUClient
+  name: WsClient.ResponseReceivedDelegate
+  nameWithType: WsClient.ResponseReceivedDelegate
+  fullName: Speechly.SLUClient.WsClient.ResponseReceivedDelegate
+- uid: Speechly.SLUClient.WsClient.ReceiveBufferSize*
+  commentId: Overload:Speechly.SLUClient.WsClient.ReceiveBufferSize
+  name: ReceiveBufferSize
+  nameWithType: WsClient.ReceiveBufferSize
+  fullName: Speechly.SLUClient.WsClient.ReceiveBufferSize
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Speechly.SLUClient.WsClient.ConnectAsync*
+  commentId: Overload:Speechly.SLUClient.WsClient.ConnectAsync
+  name: ConnectAsync
+  nameWithType: WsClient.ConnectAsync
+  fullName: Speechly.SLUClient.WsClient.ConnectAsync
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Task
+  isExternal: true
+  name: Task
+  nameWithType: Task
+  fullName: Task
+- uid: Speechly.SLUClient.WsClient.DisconnectAsync*
+  commentId: Overload:Speechly.SLUClient.WsClient.DisconnectAsync
+  name: DisconnectAsync
+  nameWithType: WsClient.DisconnectAsync
+  fullName: Speechly.SLUClient.WsClient.DisconnectAsync
+- uid: Speechly.SLUClient.WsClient.SendText*
+  commentId: Overload:Speechly.SLUClient.WsClient.SendText
+  name: SendText
+  nameWithType: WsClient.SendText
+  fullName: Speechly.SLUClient.WsClient.SendText
+- uid: Speechly.SLUClient.WsClient.SendBytes*
+  commentId: Overload:Speechly.SLUClient.WsClient.SendBytes
+  name: SendBytes
+  nameWithType: WsClient.SendBytes
+  fullName: Speechly.SLUClient.WsClient.SendBytes
+- uid: ArraySegment{System.Byte}
+  commentId: '!:ArraySegment{System.Byte}'
+  definition: ArraySegment`1
+  name: ArraySegment<Byte>
+  nameWithType: ArraySegment<Byte>
+  fullName: ArraySegment<System.Byte>
+  nameWithType.vb: ArraySegment(Of Byte)
+  fullName.vb: ArraySegment(Of System.Byte)
+  name.vb: ArraySegment(Of Byte)
+  spec.csharp:
+  - uid: ArraySegment`1
+    name: ArraySegment
+    nameWithType: ArraySegment
+    fullName: ArraySegment
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: ArraySegment`1
+    name: ArraySegment
+    nameWithType: ArraySegment
+    fullName: ArraySegment
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: ArraySegment`1
+  commentId: '!:ArraySegment`1'
+  isExternal: true
+  name: ArraySegment<>
+  nameWithType: ArraySegment<>
+  fullName: ArraySegment<>
+  nameWithType.vb: ArraySegment(Of )
+  fullName.vb: ArraySegment(Of )
+  name.vb: ArraySegment(Of )
+  spec.csharp:
+  - uid: ArraySegment`1
+    name: ArraySegment
+    nameWithType: ArraySegment
+    fullName: ArraySegment
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: ArraySegment`1
+    name: ArraySegment
+    nameWithType: ArraySegment
+    fullName: ArraySegment
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Speechly.SLUClient.WsClient.Dispose*
+  commentId: Overload:Speechly.SLUClient.WsClient.Dispose
+  name: Dispose
+  nameWithType: WsClient.Dispose
+  fullName: Speechly.SLUClient.WsClient.Dispose

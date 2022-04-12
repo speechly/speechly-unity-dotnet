@@ -1,0 +1,787 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.Segment
+  commentId: T:Speechly.SLUClient.Segment
+  id: Segment
+  parent: Speechly.SLUClient
+  children:
+  - Speechly.SLUClient.Segment.#ctor(System.String,System.Int32)
+  - Speechly.SLUClient.Segment.contextId
+  - Speechly.SLUClient.Segment.EndSegment
+  - Speechly.SLUClient.Segment.entities
+  - Speechly.SLUClient.Segment.id
+  - Speechly.SLUClient.Segment.intent
+  - Speechly.SLUClient.Segment.isFinal
+  - Speechly.SLUClient.Segment.ToString
+  - Speechly.SLUClient.Segment.ToString(Speechly.SLUClient.IntentFormatter,Speechly.SLUClient.EntityFormatter,System.String)
+  - Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity)
+  - Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity[])
+  - Speechly.SLUClient.Segment.UpdateIntent(System.String,System.Boolean)
+  - Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word)
+  - Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word[])
+  - Speechly.SLUClient.Segment.words
+  langs:
+  - csharp
+  - vb
+  name: Segment
+  nameWithType: Segment
+  fullName: Speechly.SLUClient.Segment
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Segment
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 9
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: 'public class Segment : object'
+    content.vb: >-
+      Public Class Segment
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.SLUClient.Segment.id
+  commentId: F:Speechly.SLUClient.Segment.id
+  id: id
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: id
+  nameWithType: Segment.id
+  fullName: Speechly.SLUClient.Segment.id
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: id
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 10
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public int id
+    return:
+      type: System.Int32
+    content.vb: Public id As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.Segment.contextId
+  commentId: F:Speechly.SLUClient.Segment.contextId
+  id: contextId
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: contextId
+  nameWithType: Segment.contextId
+  fullName: Speechly.SLUClient.Segment.contextId
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: contextId
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 11
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public string contextId
+    return:
+      type: System.String
+    content.vb: Public contextId As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.Segment.isFinal
+  commentId: F:Speechly.SLUClient.Segment.isFinal
+  id: isFinal
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: isFinal
+  nameWithType: Segment.isFinal
+  fullName: Speechly.SLUClient.Segment.isFinal
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: isFinal
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 12
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public bool isFinal
+    return:
+      type: System.Boolean
+    content.vb: Public isFinal As Boolean
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.Segment.words
+  commentId: F:Speechly.SLUClient.Segment.words
+  id: words
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: words
+  nameWithType: Segment.words
+  fullName: Speechly.SLUClient.Segment.words
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: words
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 13
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public Word[] words
+    return:
+      type: Speechly.SLUClient.Word[]
+    content.vb: Public words As Word()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.Segment.entities
+  commentId: F:Speechly.SLUClient.Segment.entities
+  id: entities
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: entities
+  nameWithType: Segment.entities
+  fullName: Speechly.SLUClient.Segment.entities
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: entities
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 14
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public Dictionary<string, Entity> entities
+    return:
+      type: Dictionary{System.String,Speechly.SLUClient.Entity}
+    content.vb: Public entities As Dictionary(Of String, Entity)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.Segment.intent
+  commentId: F:Speechly.SLUClient.Segment.intent
+  id: intent
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: intent
+  nameWithType: Segment.intent
+  fullName: Speechly.SLUClient.Segment.intent
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: intent
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 15
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public Intent intent
+    return:
+      type: Speechly.SLUClient.Intent
+    content.vb: Public intent As Intent
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.Segment.#ctor(System.String,System.Int32)
+  commentId: M:Speechly.SLUClient.Segment.#ctor(System.String,System.Int32)
+  id: '#ctor(System.String,System.Int32)'
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: Segment(String, Int32)
+  nameWithType: Segment.Segment(String, Int32)
+  fullName: Speechly.SLUClient.Segment.Segment(System.String, System.Int32)
+  type: Constructor
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: .ctor
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 17
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public Segment(string audio_context, int segment_id)
+    parameters:
+    - id: audio_context
+      type: System.String
+    - id: segment_id
+      type: System.Int32
+    content.vb: Public Sub New(audio_context As String, segment_id As Integer)
+  overload: Speechly.SLUClient.Segment.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.Segment.ToString
+  commentId: M:Speechly.SLUClient.Segment.ToString
+  id: ToString
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: ToString()
+  nameWithType: Segment.ToString()
+  fullName: Speechly.SLUClient.Segment.ToString()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ToString
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 22
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public override string ToString()
+    return:
+      type: System.String
+    content.vb: Public Overrides Function ToString As String
+  overload: Speechly.SLUClient.Segment.ToString*
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+- uid: Speechly.SLUClient.Segment.ToString(Speechly.SLUClient.IntentFormatter,Speechly.SLUClient.EntityFormatter,System.String)
+  commentId: M:Speechly.SLUClient.Segment.ToString(Speechly.SLUClient.IntentFormatter,Speechly.SLUClient.EntityFormatter,System.String)
+  id: ToString(Speechly.SLUClient.IntentFormatter,Speechly.SLUClient.EntityFormatter,System.String)
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: ToString(IntentFormatter, EntityFormatter, String)
+  nameWithType: Segment.ToString(IntentFormatter, EntityFormatter, String)
+  fullName: Speechly.SLUClient.Segment.ToString(Speechly.SLUClient.IntentFormatter, Speechly.SLUClient.EntityFormatter, System.String)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ToString
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 30
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public string ToString(IntentFormatter intentTag, EntityFormatter entityTag, string confirmationMark)
+    parameters:
+    - id: intentTag
+      type: Speechly.SLUClient.IntentFormatter
+    - id: entityTag
+      type: Speechly.SLUClient.EntityFormatter
+    - id: confirmationMark
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Function ToString(intentTag As IntentFormatter, entityTag As EntityFormatter, confirmationMark As String) As String
+  overload: Speechly.SLUClient.Segment.ToString*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word)
+  commentId: M:Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word)
+  id: UpdateTranscript(Speechly.SLUClient.Word)
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: UpdateTranscript(Word)
+  nameWithType: Segment.UpdateTranscript(Word)
+  fullName: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: UpdateTranscript
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 85
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public void UpdateTranscript(Word word)
+    parameters:
+    - id: word
+      type: Speechly.SLUClient.Word
+    content.vb: Public Sub UpdateTranscript(word As Word)
+  overload: Speechly.SLUClient.Segment.UpdateTranscript*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word[])
+  commentId: M:Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word[])
+  id: UpdateTranscript(Speechly.SLUClient.Word[])
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: UpdateTranscript(Word[])
+  nameWithType: Segment.UpdateTranscript(Word[])
+  fullName: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word[])
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: UpdateTranscript
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 94
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public void UpdateTranscript(Word[] words)
+    parameters:
+    - id: words
+      type: Speechly.SLUClient.Word[]
+    content.vb: Public Sub UpdateTranscript(words As Word())
+  overload: Speechly.SLUClient.Segment.UpdateTranscript*
+  nameWithType.vb: Segment.UpdateTranscript(Word())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word())
+  name.vb: UpdateTranscript(Word())
+- uid: Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity)
+  commentId: M:Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity)
+  id: UpdateEntity(Speechly.SLUClient.Entity)
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: UpdateEntity(Entity)
+  nameWithType: Segment.UpdateEntity(Entity)
+  fullName: Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: UpdateEntity
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 100
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public void UpdateEntity(Entity entity)
+    parameters:
+    - id: entity
+      type: Speechly.SLUClient.Entity
+    content.vb: Public Sub UpdateEntity(entity As Entity)
+  overload: Speechly.SLUClient.Segment.UpdateEntity*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity[])
+  commentId: M:Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity[])
+  id: UpdateEntity(Speechly.SLUClient.Entity[])
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: UpdateEntity(Entity[])
+  nameWithType: Segment.UpdateEntity(Entity[])
+  fullName: Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity[])
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: UpdateEntity
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 106
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public void UpdateEntity(Entity[] entities)
+    parameters:
+    - id: entities
+      type: Speechly.SLUClient.Entity[]
+    content.vb: Public Sub UpdateEntity(entities As Entity())
+  overload: Speechly.SLUClient.Segment.UpdateEntity*
+  nameWithType.vb: Segment.UpdateEntity(Entity())
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity())
+  name.vb: UpdateEntity(Entity())
+- uid: Speechly.SLUClient.Segment.UpdateIntent(System.String,System.Boolean)
+  commentId: M:Speechly.SLUClient.Segment.UpdateIntent(System.String,System.Boolean)
+  id: UpdateIntent(System.String,System.Boolean)
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: UpdateIntent(String, Boolean)
+  nameWithType: Segment.UpdateIntent(String, Boolean)
+  fullName: Speechly.SLUClient.Segment.UpdateIntent(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: UpdateIntent
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 112
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public void UpdateIntent(string intent, bool isFinal)
+    parameters:
+    - id: intent
+      type: System.String
+    - id: isFinal
+      type: System.Boolean
+    content.vb: Public Sub UpdateIntent(intent As String, isFinal As Boolean)
+  overload: Speechly.SLUClient.Segment.UpdateIntent*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.Segment.EndSegment
+  commentId: M:Speechly.SLUClient.Segment.EndSegment
+  id: EndSegment
+  parent: Speechly.SLUClient.Segment
+  langs:
+  - csharp
+  - vb
+  name: EndSegment()
+  nameWithType: Segment.EndSegment()
+  fullName: Speechly.SLUClient.Segment.EndSegment()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: EndSegment
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    startLine: 119
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public void EndSegment()
+    content.vb: Public Sub
+  overload: Speechly.SLUClient.Segment.EndSegment*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Speechly.SLUClient.Word[]
+  isExternal: true
+  name: Word[]
+  nameWithType: Word[]
+  fullName: Speechly.SLUClient.Word[]
+  nameWithType.vb: Word()
+  fullName.vb: Speechly.SLUClient.Word()
+  name.vb: Word()
+  spec.csharp:
+  - uid: Speechly.SLUClient.Word
+    name: Word
+    nameWithType: Word
+    fullName: Speechly.SLUClient.Word
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Speechly.SLUClient.Word
+    name: Word
+    nameWithType: Word
+    fullName: Speechly.SLUClient.Word
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Dictionary{System.String,Speechly.SLUClient.Entity}
+  commentId: '!:Dictionary{System.String,Speechly.SLUClient.Entity}'
+  definition: Dictionary`2
+  name: Dictionary<String, Entity>
+  nameWithType: Dictionary<String, Entity>
+  fullName: Dictionary<System.String, Speechly.SLUClient.Entity>
+  nameWithType.vb: Dictionary(Of String, Entity)
+  fullName.vb: Dictionary(Of System.String, Speechly.SLUClient.Entity)
+  name.vb: Dictionary(Of String, Entity)
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Speechly.SLUClient.Entity
+    name: Entity
+    nameWithType: Entity
+    fullName: Speechly.SLUClient.Entity
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: Speechly.SLUClient.Entity
+    name: Entity
+    nameWithType: Entity
+    fullName: Speechly.SLUClient.Entity
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Dictionary`2
+  commentId: '!:Dictionary`2'
+  isExternal: true
+  name: Dictionary<, >
+  nameWithType: Dictionary<, >
+  fullName: Dictionary<, >
+  nameWithType.vb: Dictionary(Of , )
+  fullName.vb: Dictionary(Of , )
+  name.vb: Dictionary(Of , )
+  spec.csharp:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Dictionary`2
+    name: Dictionary
+    nameWithType: Dictionary
+    fullName: Dictionary
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Speechly.SLUClient.Intent
+  commentId: T:Speechly.SLUClient.Intent
+  parent: Speechly.SLUClient
+  name: Intent
+  nameWithType: Intent
+  fullName: Speechly.SLUClient.Intent
+- uid: Speechly.SLUClient.Segment.#ctor*
+  commentId: Overload:Speechly.SLUClient.Segment.#ctor
+  name: Segment
+  nameWithType: Segment.Segment
+  fullName: Speechly.SLUClient.Segment.Segment
+- uid: Speechly.SLUClient.Segment.ToString*
+  commentId: Overload:Speechly.SLUClient.Segment.ToString
+  name: ToString
+  nameWithType: Segment.ToString
+  fullName: Speechly.SLUClient.Segment.ToString
+- uid: Speechly.SLUClient.IntentFormatter
+  commentId: T:Speechly.SLUClient.IntentFormatter
+  parent: Speechly.SLUClient
+  name: IntentFormatter
+  nameWithType: IntentFormatter
+  fullName: Speechly.SLUClient.IntentFormatter
+- uid: Speechly.SLUClient.EntityFormatter
+  commentId: T:Speechly.SLUClient.EntityFormatter
+  parent: Speechly.SLUClient
+  name: EntityFormatter
+  nameWithType: EntityFormatter
+  fullName: Speechly.SLUClient.EntityFormatter
+- uid: Speechly.SLUClient.Segment.UpdateTranscript*
+  commentId: Overload:Speechly.SLUClient.Segment.UpdateTranscript
+  name: UpdateTranscript
+  nameWithType: Segment.UpdateTranscript
+  fullName: Speechly.SLUClient.Segment.UpdateTranscript
+- uid: Speechly.SLUClient.Word
+  commentId: T:Speechly.SLUClient.Word
+  parent: Speechly.SLUClient
+  name: Word
+  nameWithType: Word
+  fullName: Speechly.SLUClient.Word
+- uid: Speechly.SLUClient.Segment.UpdateEntity*
+  commentId: Overload:Speechly.SLUClient.Segment.UpdateEntity
+  name: UpdateEntity
+  nameWithType: Segment.UpdateEntity
+  fullName: Speechly.SLUClient.Segment.UpdateEntity
+- uid: Speechly.SLUClient.Entity
+  commentId: T:Speechly.SLUClient.Entity
+  parent: Speechly.SLUClient
+  name: Entity
+  nameWithType: Entity
+  fullName: Speechly.SLUClient.Entity
+- uid: Speechly.SLUClient.Entity[]
+  isExternal: true
+  name: Entity[]
+  nameWithType: Entity[]
+  fullName: Speechly.SLUClient.Entity[]
+  nameWithType.vb: Entity()
+  fullName.vb: Speechly.SLUClient.Entity()
+  name.vb: Entity()
+  spec.csharp:
+  - uid: Speechly.SLUClient.Entity
+    name: Entity
+    nameWithType: Entity
+    fullName: Speechly.SLUClient.Entity
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Speechly.SLUClient.Entity
+    name: Entity
+    nameWithType: Entity
+    fullName: Speechly.SLUClient.Entity
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: Speechly.SLUClient.Segment.UpdateIntent*
+  commentId: Overload:Speechly.SLUClient.Segment.UpdateIntent
+  name: UpdateIntent
+  nameWithType: Segment.UpdateIntent
+  fullName: Speechly.SLUClient.Segment.UpdateIntent
+- uid: Speechly.SLUClient.Segment.EndSegment*
+  commentId: Overload:Speechly.SLUClient.Segment.EndSegment
+  name: EndSegment
+  nameWithType: Segment.EndSegment
+  fullName: Speechly.SLUClient.Segment.EndSegment

@@ -1,0 +1,210 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.MsgCommon
+  commentId: T:Speechly.SLUClient.MsgCommon
+  id: MsgCommon
+  parent: Speechly.SLUClient
+  children:
+  - Speechly.SLUClient.MsgCommon.audio_context
+  - Speechly.SLUClient.MsgCommon.segment_id
+  - Speechly.SLUClient.MsgCommon.type
+  langs:
+  - csharp
+  - vb
+  name: MsgCommon
+  nameWithType: MsgCommon
+  fullName: Speechly.SLUClient.MsgCommon
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: MsgCommon
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 87
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: 'public class MsgCommon : object, IMsgCommonProps'
+    content.vb: >-
+      Public Class MsgCommon
+          Inherits Object
+          Implements IMsgCommonProps
+  inheritance:
+  - System.Object
+  implements:
+  - Speechly.SLUClient.IMsgCommonProps
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.SLUClient.MsgCommon.type
+  commentId: P:Speechly.SLUClient.MsgCommon.type
+  id: type
+  parent: Speechly.SLUClient.MsgCommon
+  langs:
+  - csharp
+  - vb
+  name: type
+  nameWithType: MsgCommon.type
+  fullName: Speechly.SLUClient.MsgCommon.type
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: type
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 88
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public string type { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property type As String
+  overload: Speechly.SLUClient.MsgCommon.type*
+  implements:
+  - Speechly.SLUClient.IMsgCommonProps.type
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.MsgCommon.audio_context
+  commentId: P:Speechly.SLUClient.MsgCommon.audio_context
+  id: audio_context
+  parent: Speechly.SLUClient.MsgCommon
+  langs:
+  - csharp
+  - vb
+  name: audio_context
+  nameWithType: MsgCommon.audio_context
+  fullName: Speechly.SLUClient.MsgCommon.audio_context
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: audio_context
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 89
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public string audio_context { get; set; }
+    parameters: []
+    return:
+      type: System.String
+    content.vb: Public Property audio_context As String
+  overload: Speechly.SLUClient.MsgCommon.audio_context*
+  implements:
+  - Speechly.SLUClient.IMsgCommonProps.audio_context
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Speechly.SLUClient.MsgCommon.segment_id
+  commentId: P:Speechly.SLUClient.MsgCommon.segment_id
+  id: segment_id
+  parent: Speechly.SLUClient.MsgCommon
+  langs:
+  - csharp
+  - vb
+  name: segment_id
+  nameWithType: MsgCommon.segment_id
+  fullName: Speechly.SLUClient.MsgCommon.segment_id
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: segment_id
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 90
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public int segment_id { get; set; }
+    parameters: []
+    return:
+      type: System.Int32
+    content.vb: Public Property segment_id As Integer
+  overload: Speechly.SLUClient.MsgCommon.segment_id*
+  implements:
+  - Speechly.SLUClient.IMsgCommonProps.segment_id
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: Speechly.SLUClient.IMsgCommonProps
+  commentId: T:Speechly.SLUClient.IMsgCommonProps
+  parent: Speechly.SLUClient
+  name: IMsgCommonProps
+  nameWithType: IMsgCommonProps
+  fullName: Speechly.SLUClient.IMsgCommonProps
+- uid: Speechly.SLUClient.MsgCommon.type*
+  commentId: Overload:Speechly.SLUClient.MsgCommon.type
+  name: type
+  nameWithType: MsgCommon.type
+  fullName: Speechly.SLUClient.MsgCommon.type
+- uid: Speechly.SLUClient.IMsgCommonProps.type
+  commentId: P:Speechly.SLUClient.IMsgCommonProps.type
+  parent: Speechly.SLUClient.IMsgCommonProps
+  name: type
+  nameWithType: IMsgCommonProps.type
+  fullName: Speechly.SLUClient.IMsgCommonProps.type
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Speechly.SLUClient.MsgCommon.audio_context*
+  commentId: Overload:Speechly.SLUClient.MsgCommon.audio_context
+  name: audio_context
+  nameWithType: MsgCommon.audio_context
+  fullName: Speechly.SLUClient.MsgCommon.audio_context
+- uid: Speechly.SLUClient.IMsgCommonProps.audio_context
+  commentId: P:Speechly.SLUClient.IMsgCommonProps.audio_context
+  parent: Speechly.SLUClient.IMsgCommonProps
+  name: audio_context
+  nameWithType: IMsgCommonProps.audio_context
+  fullName: Speechly.SLUClient.IMsgCommonProps.audio_context
+- uid: Speechly.SLUClient.MsgCommon.segment_id*
+  commentId: Overload:Speechly.SLUClient.MsgCommon.segment_id
+  name: segment_id
+  nameWithType: MsgCommon.segment_id
+  fullName: Speechly.SLUClient.MsgCommon.segment_id
+- uid: Speechly.SLUClient.IMsgCommonProps.segment_id
+  commentId: P:Speechly.SLUClient.IMsgCommonProps.segment_id
+  parent: Speechly.SLUClient.IMsgCommonProps
+  name: segment_id
+  nameWithType: IMsgCommonProps.segment_id
+  fullName: Speechly.SLUClient.IMsgCommonProps.segment_id
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32

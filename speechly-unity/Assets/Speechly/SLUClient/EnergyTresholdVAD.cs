@@ -5,6 +5,15 @@ using UnityEngine;
 #endif
 
 namespace Speechly.SLUClient {
+/// <summary>
+/// Adaptive energy threshold voice activity detection (VAD) implementation.
+/// It can be used to enable hands-free operation of the SLU decoder.
+///
+/// When enough loud frames have been detected, VAD activates and calls StartContext automatically. When enough silent frames have been detected, the VAD deactivates after the sustain time and StopContext is called automatically. The background noise energy gradually adapts when VAD is not active.
+/// 
+/// Use its public field to configure minimum energy level, signal-to-noise ratio, minimum activation time and an activation/deactivation treshold (ratio of loud to silent frames).
+/// </summary>
+
   [System.Serializable]
    public class EnergyTresholdVAD {
     public bool Enabled = true;

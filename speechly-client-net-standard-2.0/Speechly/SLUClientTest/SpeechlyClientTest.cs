@@ -12,7 +12,6 @@ namespace Speechly.SLUClient {
       Stopwatch stopWatch = new Stopwatch();
 
       var client = new SpeechlyClient(
-        useCloudSpeechProcessing: true,
         debug: true
       );
 
