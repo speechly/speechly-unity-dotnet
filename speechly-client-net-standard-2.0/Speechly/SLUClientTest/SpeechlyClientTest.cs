@@ -74,7 +74,6 @@ namespace Speechly.SLUClient {
       }
 
       var client = new SpeechlyClient(
-        useCloudSpeechProcessing: false,
         saveToFolder: saveToFolder,
         vad: vad,
         debug: true
