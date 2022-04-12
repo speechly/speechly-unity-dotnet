@@ -1,0 +1,49 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.TentativeEntityDelegate
+  commentId: T:Speechly.Types.TentativeEntityDelegate
+  id: TentativeEntityDelegate
+  parent: Speechly.Types
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: TentativeEntityDelegate
+  nameWithType: TentativeEntityDelegate
+  fullName: Speechly.Types.TentativeEntityDelegate
+  type: Delegate
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: TentativeEntityDelegate
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 10
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public delegate void TentativeEntityDelegate(MsgTentativeEntity msg);
+    parameters:
+    - id: msg
+      type: Speechly.Types.MsgTentativeEntity
+    content.vb: Public Delegate Sub TentativeEntityDelegate(msg As MsgTentativeEntity)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: Speechly.Types.MsgTentativeEntity
+  commentId: T:Speechly.Types.MsgTentativeEntity
+  parent: Speechly.Types
+  name: MsgTentativeEntity
+  nameWithType: MsgTentativeEntity
+  fullName: Speechly.Types.MsgTentativeEntity

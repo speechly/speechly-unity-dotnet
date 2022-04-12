@@ -1,0 +1,54 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.SegmentChangeDelegate
+  commentId: T:Speechly.Types.SegmentChangeDelegate
+  id: SegmentChangeDelegate
+  parent: Speechly.Types
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: SegmentChangeDelegate
+  nameWithType: SegmentChangeDelegate
+  fullName: Speechly.Types.SegmentChangeDelegate
+  type: Delegate
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SegmentChangeDelegate
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 7
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public delegate void SegmentChangeDelegate(Segment segment);
+    parameters:
+    - id: segment
+      type: Speechly.SLUClient.Segment
+    content.vb: Public Delegate Sub SegmentChangeDelegate(segment As Segment)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: Speechly.SLUClient.Segment
+  commentId: T:Speechly.SLUClient.Segment
+  parent: Speechly.SLUClient
+  name: Segment
+  nameWithType: Segment
+  fullName: Speechly.SLUClient.Segment
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient

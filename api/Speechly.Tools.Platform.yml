@@ -1,0 +1,447 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Tools.Platform
+  commentId: T:Speechly.Tools.Platform
+  id: Platform
+  parent: Speechly.Tools
+  children:
+  - Speechly.Tools.Platform.ConfigPath
+  - Speechly.Tools.Platform.Fetch(System.String)
+  - Speechly.Tools.Platform.GetDeviceId(System.String)
+  - Speechly.Tools.Platform.GetPersistentStoragePath
+  - Speechly.Tools.Platform.GuidFromString(System.String)
+  - Speechly.Tools.Platform.RestoreOrCreateConfig``1(System.String)
+  - Speechly.Tools.Platform.SaveConfig``1(``0,System.String)
+  langs:
+  - csharp
+  - vb
+  name: Platform
+  nameWithType: Platform
+  fullName: Speechly.Tools.Platform
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Platform
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+    startLine: 8
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: 'public class Platform : object'
+    content.vb: >-
+      Public Class Platform
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Tools.Platform.ConfigPath
+  commentId: F:Speechly.Tools.Platform.ConfigPath
+  id: ConfigPath
+  parent: Speechly.Tools.Platform
+  langs:
+  - csharp
+  - vb
+  name: ConfigPath
+  nameWithType: Platform.ConfigPath
+  fullName: Speechly.Tools.Platform.ConfigPath
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ConfigPath
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+    startLine: 10
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public static string ConfigPath
+    return:
+      type: System.String
+    content.vb: Public Shared ConfigPath As String
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Speechly.Tools.Platform.GetDeviceId(System.String)
+  commentId: M:Speechly.Tools.Platform.GetDeviceId(System.String)
+  id: GetDeviceId(System.String)
+  parent: Speechly.Tools.Platform
+  langs:
+  - csharp
+  - vb
+  name: GetDeviceId(String)
+  nameWithType: Platform.GetDeviceId(String)
+  fullName: Speechly.Tools.Platform.GetDeviceId(System.String)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: GetDeviceId
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+    startLine: 12
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public static string GetDeviceId(string seed = null)
+    parameters:
+    - id: seed
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetDeviceId(seed As String = Nothing) As String
+  overload: Speechly.Tools.Platform.GetDeviceId*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Speechly.Tools.Platform.Fetch(System.String)
+  commentId: M:Speechly.Tools.Platform.Fetch(System.String)
+  id: Fetch(System.String)
+  parent: Speechly.Tools.Platform
+  langs:
+  - csharp
+  - vb
+  name: Fetch(String)
+  nameWithType: Platform.Fetch(String)
+  fullName: Speechly.Tools.Platform.Fetch(System.String)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Fetch
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+    startLine: 34
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public static Task<byte[]> Fetch(string url)
+    parameters:
+    - id: url
+      type: System.String
+    return:
+      type: Task{System.Byte[]}
+    content.vb: Public Shared Function Fetch(url As String) As Task(Of Byte())
+  overload: Speechly.Tools.Platform.Fetch*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Speechly.Tools.Platform.GetPersistentStoragePath
+  commentId: M:Speechly.Tools.Platform.GetPersistentStoragePath
+  id: GetPersistentStoragePath
+  parent: Speechly.Tools.Platform
+  langs:
+  - csharp
+  - vb
+  name: GetPersistentStoragePath()
+  nameWithType: Platform.GetPersistentStoragePath()
+  fullName: Speechly.Tools.Platform.GetPersistentStoragePath()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: GetPersistentStoragePath
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+    startLine: 54
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public static string GetPersistentStoragePath()
+    return:
+      type: System.String
+    content.vb: Public Shared Function GetPersistentStoragePath As String
+  overload: Speechly.Tools.Platform.GetPersistentStoragePath*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Speechly.Tools.Platform.GuidFromString(System.String)
+  commentId: M:Speechly.Tools.Platform.GuidFromString(System.String)
+  id: GuidFromString(System.String)
+  parent: Speechly.Tools.Platform
+  langs:
+  - csharp
+  - vb
+  name: GuidFromString(String)
+  nameWithType: Platform.GuidFromString(String)
+  fullName: Speechly.Tools.Platform.GuidFromString(System.String)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: GuidFromString
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+    startLine: 65
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public static string GuidFromString(string s)
+    parameters:
+    - id: s
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Shared Function GuidFromString(s As String) As String
+  overload: Speechly.Tools.Platform.GuidFromString*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Speechly.Tools.Platform.RestoreOrCreateConfig``1(System.String)
+  commentId: M:Speechly.Tools.Platform.RestoreOrCreateConfig``1(System.String)
+  id: RestoreOrCreateConfig``1(System.String)
+  parent: Speechly.Tools.Platform
+  langs:
+  - csharp
+  - vb
+  name: RestoreOrCreateConfig<T>(String)
+  nameWithType: Platform.RestoreOrCreateConfig<T>(String)
+  fullName: Speechly.Tools.Platform.RestoreOrCreateConfig<T>(System.String)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: RestoreOrCreateConfig
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+    startLine: 77
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: >-
+      public static T RestoreOrCreateConfig<T>(string ConfigFileName)
+          where T : class, new()
+    parameters:
+    - id: ConfigFileName
+      type: System.String
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Shared Function RestoreOrCreateConfig(Of T As {Class, New})(ConfigFileName As String) As T
+  overload: Speechly.Tools.Platform.RestoreOrCreateConfig*
+  nameWithType.vb: Platform.RestoreOrCreateConfig(Of T)(String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Speechly.Tools.Platform.RestoreOrCreateConfig(Of T)(System.String)
+  name.vb: RestoreOrCreateConfig(Of T)(String)
+- uid: Speechly.Tools.Platform.SaveConfig``1(``0,System.String)
+  commentId: M:Speechly.Tools.Platform.SaveConfig``1(``0,System.String)
+  id: SaveConfig``1(``0,System.String)
+  parent: Speechly.Tools.Platform
+  langs:
+  - csharp
+  - vb
+  name: SaveConfig<T>(T, String)
+  nameWithType: Platform.SaveConfig<T>(T, String)
+  fullName: Speechly.Tools.Platform.SaveConfig<T>(T, System.String)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SaveConfig
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+    startLine: 88
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public static void SaveConfig<T>(T configData, string ConfigFileName)
+    parameters:
+    - id: configData
+      type: '{T}'
+    - id: ConfigFileName
+      type: System.String
+    typeParameters:
+    - id: T
+    content.vb: Public Shared Sub SaveConfig(Of T)(configData As T, ConfigFileName As String)
+  overload: Speechly.Tools.Platform.SaveConfig*
+  nameWithType.vb: Platform.SaveConfig(Of T)(T, String)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Speechly.Tools.Platform.SaveConfig(Of T)(T, System.String)
+  name.vb: SaveConfig(Of T)(T, String)
+references:
+- uid: Speechly.Tools
+  commentId: N:Speechly.Tools
+  name: Speechly.Tools
+  nameWithType: Speechly.Tools
+  fullName: Speechly.Tools
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Speechly.Tools.Platform.GetDeviceId*
+  commentId: Overload:Speechly.Tools.Platform.GetDeviceId
+  name: GetDeviceId
+  nameWithType: Platform.GetDeviceId
+  fullName: Speechly.Tools.Platform.GetDeviceId
+- uid: Speechly.Tools.Platform.Fetch*
+  commentId: Overload:Speechly.Tools.Platform.Fetch
+  name: Fetch
+  nameWithType: Platform.Fetch
+  fullName: Speechly.Tools.Platform.Fetch
+- uid: Task{System.Byte[]}
+  commentId: '!:Task{System.Byte[]}'
+  definition: Task`1
+  name: Task<Byte[]>
+  nameWithType: Task<Byte[]>
+  fullName: Task<System.Byte[]>
+  nameWithType.vb: Task(Of Byte())
+  fullName.vb: Task(Of System.Byte())
+  name.vb: Task(Of Byte())
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Speechly.Tools.Platform.GetPersistentStoragePath*
+  commentId: Overload:Speechly.Tools.Platform.GetPersistentStoragePath
+  name: GetPersistentStoragePath
+  nameWithType: Platform.GetPersistentStoragePath
+  fullName: Speechly.Tools.Platform.GetPersistentStoragePath
+- uid: Speechly.Tools.Platform.GuidFromString*
+  commentId: Overload:Speechly.Tools.Platform.GuidFromString
+  name: GuidFromString
+  nameWithType: Platform.GuidFromString
+  fullName: Speechly.Tools.Platform.GuidFromString
+- uid: Speechly.Tools.Platform.RestoreOrCreateConfig*
+  commentId: Overload:Speechly.Tools.Platform.RestoreOrCreateConfig
+  name: RestoreOrCreateConfig
+  nameWithType: Platform.RestoreOrCreateConfig
+  fullName: Speechly.Tools.Platform.RestoreOrCreateConfig
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Speechly.Tools.Platform.SaveConfig*
+  commentId: Overload:Speechly.Tools.Platform.SaveConfig
+  name: SaveConfig
+  nameWithType: Platform.SaveConfig
+  fullName: Speechly.Tools.Platform.SaveConfig

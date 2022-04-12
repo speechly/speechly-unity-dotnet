@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
 using Speechly.SLUClient;
-using Logger = Speechly.SLUClient.Logger;
+using Logger = Speechly.Tools.Logger;
 
 public class SpeechlyTest : MonoBehaviour
 {

@@ -2,93 +2,81 @@
 - uid: Speechly.SLUClient
   name: Speechly.SLUClient
   items:
-  - uid: Speechly.SLUClient.AppTokenRequest
-    name: AppTokenRequest
-  - uid: Speechly.SLUClient.AudioTools
-    name: AudioTools
   - uid: Speechly.SLUClient.CloudDecoder
     name: CloudDecoder
-  - uid: Speechly.SLUClient.ConfigTool
-    name: ConfigTool
   - uid: Speechly.SLUClient.EnergyTresholdVAD
     name: EnergyTresholdVAD
-  - uid: Speechly.SLUClient.Entity
-    name: Entity
-  - uid: Speechly.SLUClient.EntityFormatter
-    name: EntityFormatter
   - uid: Speechly.SLUClient.IDecoder
     name: IDecoder
-  - uid: Speechly.SLUClient.IMsgCommonProps
-    name: IMsgCommonProps
-  - uid: Speechly.SLUClient.Intent
-    name: Intent
-  - uid: Speechly.SLUClient.IntentFormatter
-    name: IntentFormatter
-  - uid: Speechly.SLUClient.JSON
-    name: JSON
-  - uid: Speechly.SLUClient.Logger
-    name: Logger
-  - uid: Speechly.SLUClient.Logger.LoggerDelegate
-    name: Logger.LoggerDelegate
-  - uid: Speechly.SLUClient.MsgCommon
-    name: MsgCommon
-  - uid: Speechly.SLUClient.MsgEntity
-    name: MsgEntity
-  - uid: Speechly.SLUClient.MsgIntent
-    name: MsgIntent
-  - uid: Speechly.SLUClient.MsgIntent.Data
-    name: MsgIntent.Data
-  - uid: Speechly.SLUClient.MsgTentativeEntity
-    name: MsgTentativeEntity
-  - uid: Speechly.SLUClient.MsgTentativeEntity.Data
-    name: MsgTentativeEntity.Data
-  - uid: Speechly.SLUClient.MsgTentativeTranscript
-    name: MsgTentativeTranscript
-  - uid: Speechly.SLUClient.MsgTentativeTranscript.Data
-    name: MsgTentativeTranscript.Data
-  - uid: Speechly.SLUClient.MsgTranscript
-    name: MsgTranscript
-  - uid: Speechly.SLUClient.Platform
-    name: Platform
-  - uid: Speechly.SLUClient.Preferences
-    name: Preferences
-  - uid: Speechly.SLUClient.ProjectTokenRequest
-    name: ProjectTokenRequest
-  - uid: Speechly.SLUClient.ResponseReceivedDelegate
-    name: ResponseReceivedDelegate
   - uid: Speechly.SLUClient.Segment
     name: Segment
-  - uid: Speechly.SLUClient.SegmentMessage
-    name: SegmentMessage
   - uid: Speechly.SLUClient.SpeechlyClient
     name: SpeechlyClient
-  - uid: Speechly.SLUClient.SpeechlyClient.EntityDelegate
-    name: SpeechlyClient.EntityDelegate
-  - uid: Speechly.SLUClient.SpeechlyClient.IntentDelegate
-    name: SpeechlyClient.IntentDelegate
-  - uid: Speechly.SLUClient.SpeechlyClient.SegmentChangeDelegate
-    name: SpeechlyClient.SegmentChangeDelegate
-  - uid: Speechly.SLUClient.SpeechlyClient.StartContextDelegate
-    name: SpeechlyClient.StartContextDelegate
-  - uid: Speechly.SLUClient.SpeechlyClient.StartStreamDelegate
-    name: SpeechlyClient.StartStreamDelegate
-  - uid: Speechly.SLUClient.SpeechlyClient.StopContextDelegate
-    name: SpeechlyClient.StopContextDelegate
-  - uid: Speechly.SLUClient.SpeechlyClient.StopStreamDelegate
-    name: SpeechlyClient.StopStreamDelegate
-  - uid: Speechly.SLUClient.SpeechlyClient.TentativeEntityDelegate
-    name: SpeechlyClient.TentativeEntityDelegate
-  - uid: Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate
-    name: SpeechlyClient.TentativeTranscriptDelegate
-  - uid: Speechly.SLUClient.SpeechlyClient.TranscriptDelegate
-    name: SpeechlyClient.TranscriptDelegate
-  - uid: Speechly.SLUClient.SpeechlyClientTest
-    name: SpeechlyClientTest
-  - uid: Speechly.SLUClient.TokenResponse
-    name: TokenResponse
-  - uid: Speechly.SLUClient.Word
-    name: Word
-  - uid: Speechly.SLUClient.WsClient
+- uid: Speechly.Tools
+  name: Speechly.Tools
+  items:
+  - uid: Speechly.Tools.AudioTools
+    name: AudioTools
+  - uid: Speechly.Tools.JSON
+    name: JSON
+  - uid: Speechly.Tools.Logger
+    name: Logger
+  - uid: Speechly.Tools.Logger.LoggerDelegate
+    name: Logger.LoggerDelegate
+  - uid: Speechly.Tools.Platform
+    name: Platform
+  - uid: Speechly.Tools.WsClient
     name: WsClient
-  - uid: Speechly.SLUClient.WsClient.ResponseReceivedDelegate
+  - uid: Speechly.Tools.WsClient.ResponseReceivedDelegate
     name: WsClient.ResponseReceivedDelegate
+- uid: Speechly.Types
+  name: Speechly.Types
+  items:
+  - uid: Speechly.Types.BeautifyEntity
+    name: BeautifyEntity
+  - uid: Speechly.Types.BeautifyIntent
+    name: BeautifyIntent
+  - uid: Speechly.Types.Entity
+    name: Entity
+  - uid: Speechly.Types.EntityDelegate
+    name: EntityDelegate
+  - uid: Speechly.Types.Intent
+    name: Intent
+  - uid: Speechly.Types.IntentDelegate
+    name: IntentDelegate
+  - uid: Speechly.Types.MsgCommon
+    name: MsgCommon
+  - uid: Speechly.Types.MsgEntity
+    name: MsgEntity
+  - uid: Speechly.Types.MsgIntent
+    name: MsgIntent
+  - uid: Speechly.Types.MsgIntent.Data
+    name: MsgIntent.Data
+  - uid: Speechly.Types.MsgTentativeEntity
+    name: MsgTentativeEntity
+  - uid: Speechly.Types.MsgTentativeEntity.Data
+    name: MsgTentativeEntity.Data
+  - uid: Speechly.Types.MsgTentativeTranscript
+    name: MsgTentativeTranscript
+  - uid: Speechly.Types.MsgTentativeTranscript.Data
+    name: MsgTentativeTranscript.Data
+  - uid: Speechly.Types.MsgTranscript
+    name: MsgTranscript
+  - uid: Speechly.Types.SegmentChangeDelegate
+    name: SegmentChangeDelegate
+  - uid: Speechly.Types.StartContextDelegate
+    name: StartContextDelegate
+  - uid: Speechly.Types.StartStreamDelegate
+    name: StartStreamDelegate
+  - uid: Speechly.Types.StopContextDelegate
+    name: StopContextDelegate
+  - uid: Speechly.Types.StopStreamDelegate
+    name: StopStreamDelegate
+  - uid: Speechly.Types.TentativeEntityDelegate
+    name: TentativeEntityDelegate
+  - uid: Speechly.Types.TentativeTranscriptDelegate
+    name: TentativeTranscriptDelegate
+  - uid: Speechly.Types.TranscriptDelegate
+    name: TranscriptDelegate
+  - uid: Speechly.Types.Word
+    name: Word

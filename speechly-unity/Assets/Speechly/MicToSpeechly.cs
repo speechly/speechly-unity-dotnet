@@ -2,8 +2,9 @@
 using UnityEngine;
 
 using System;
-using System.Threading;
 using System.Threading.Tasks;
+using Speechly.Tools;
+using Logger = Speechly.Tools.Logger;
 
 namespace Speechly.SLUClient {
 

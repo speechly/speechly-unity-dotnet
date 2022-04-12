@@ -1,0 +1,82 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.MsgIntent
+  commentId: T:Speechly.Types.MsgIntent
+  id: MsgIntent
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.MsgIntent.data
+  langs:
+  - csharp
+  - vb
+  name: MsgIntent
+  nameWithType: MsgIntent
+  fullName: Speechly.Types.MsgIntent
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: MsgIntent
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 76
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: 'public class MsgIntent : object'
+    content.vb: >-
+      Public Class MsgIntent
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.MsgIntent.data
+  commentId: F:Speechly.Types.MsgIntent.data
+  id: data
+  parent: Speechly.Types.MsgIntent
+  langs:
+  - csharp
+  - vb
+  name: data
+  nameWithType: MsgIntent.data
+  fullName: Speechly.Types.MsgIntent.data
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: data
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 81
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public MsgIntent.Data data
+    return:
+      type: Speechly.Types.MsgIntent.Data
+    content.vb: Public data As MsgIntent.Data
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: Speechly.Types.MsgIntent.Data
+  commentId: T:Speechly.Types.MsgIntent.Data
+  parent: Speechly.Types
+  name: MsgIntent.Data
+  nameWithType: MsgIntent.Data
+  fullName: Speechly.Types.MsgIntent.Data

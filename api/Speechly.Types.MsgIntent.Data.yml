@@ -1,0 +1,81 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.MsgIntent.Data
+  commentId: T:Speechly.Types.MsgIntent.Data
+  id: MsgIntent.Data
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.MsgIntent.Data.intent
+  langs:
+  - csharp
+  - vb
+  name: MsgIntent.Data
+  nameWithType: MsgIntent.Data
+  fullName: Speechly.Types.MsgIntent.Data
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Data
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 77
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: 'public class Data : object'
+    content.vb: >-
+      Public Class Data
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.MsgIntent.Data.intent
+  commentId: F:Speechly.Types.MsgIntent.Data.intent
+  id: intent
+  parent: Speechly.Types.MsgIntent.Data
+  langs:
+  - csharp
+  - vb
+  name: intent
+  nameWithType: MsgIntent.Data.intent
+  fullName: Speechly.Types.MsgIntent.Data.intent
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: intent
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 78
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public string intent
+    return:
+      type: System.String
+    content.vb: Public intent As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

@@ -6,7 +6,7 @@ using System.Threading;
 using System.Threading.Tasks;
 using System.Text;
 
-namespace Speechly.SLUClient
+namespace Speechly.Tools
 {
   struct SendQueueItem {
     public ArraySegment<byte> payload;

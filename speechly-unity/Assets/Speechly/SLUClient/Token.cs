@@ -1,26 +1,11 @@
-﻿using System.Threading.Tasks;
+﻿using System.Runtime.Serialization;
+using System.Threading.Tasks;
 using System.Net.Http;
 using System;
 using System.Text;
+using Speechly.Tools;
 
 namespace Speechly.SLUClient {
-  public class AppTokenRequest
-  {
-      public string appId;
-      public string deviceId;
-  }
-
-  public class ProjectTokenRequest
-  {
-      public string projectId;
-      public string deviceId;
-  }
-
-
-  public class TokenResponse
-  {
-      public string access_token;
-  }
 
   class LoginToken {
     public async Task<string> FetchToken(
@@ -83,4 +68,31 @@ namespace Speechly.SLUClient {
       return tokenResponse.access_token;
     }
   }
+
+  [DataContract]
+  internal class AppTokenRequest
+  {
+      [DataMember]
+      public string appId;
+      [DataMember]
+      public string deviceId;
+  }
+
+  [DataContract]
+  internal class ProjectTokenRequest
+  {
+      [DataMember]
+      public string projectId;
+      [DataMember]
+      public string deviceId;
+  }
+
+
+  [DataContract]
+  internal class TokenResponse
+  {
+      [DataMember]
+      public string access_token;
+  }
+
 }

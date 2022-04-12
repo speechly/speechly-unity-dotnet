@@ -1,0 +1,40 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.StartStreamDelegate
+  commentId: T:Speechly.Types.StartStreamDelegate
+  id: StartStreamDelegate
+  parent: Speechly.Types
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: StartStreamDelegate
+  nameWithType: StartStreamDelegate
+  fullName: Speechly.Types.StartStreamDelegate
+  type: Delegate
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: StartStreamDelegate
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 13
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public delegate void StartStreamDelegate();
+    content.vb: Public Delegate Sub StartStreamDelegate
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types

@@ -1,0 +1,118 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Tools.Logger
+  commentId: T:Speechly.Tools.Logger
+  id: Logger
+  parent: Speechly.Tools
+  children:
+  - Speechly.Tools.Logger.Log
+  - Speechly.Tools.Logger.LogError
+  langs:
+  - csharp
+  - vb
+  name: Logger
+  nameWithType: Logger
+  fullName: Speechly.Tools.Logger
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Logger
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
+    startLine: 3
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: 'public class Logger : object'
+    content.vb: >-
+      Public Class Logger
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Tools.Logger.Log
+  commentId: F:Speechly.Tools.Logger.Log
+  id: Log
+  parent: Speechly.Tools.Logger
+  langs:
+  - csharp
+  - vb
+  name: Log
+  nameWithType: Logger.Log
+  fullName: Speechly.Tools.Logger.Log
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Log
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
+    startLine: 5
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public static Logger.LoggerDelegate Log
+    return:
+      type: Speechly.Tools.Logger.LoggerDelegate
+    content.vb: Public Shared Log As Logger.LoggerDelegate
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Speechly.Tools.Logger.LogError
+  commentId: F:Speechly.Tools.Logger.LogError
+  id: LogError
+  parent: Speechly.Tools.Logger
+  langs:
+  - csharp
+  - vb
+  name: LogError
+  nameWithType: Logger.LogError
+  fullName: Speechly.Tools.Logger.LogError
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: LogError
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
+    startLine: 10
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public static Logger.LoggerDelegate LogError
+    return:
+      type: Speechly.Tools.Logger.LoggerDelegate
+    content.vb: Public Shared LogError As Logger.LoggerDelegate
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+references:
+- uid: Speechly.Tools
+  commentId: N:Speechly.Tools
+  name: Speechly.Tools
+  nameWithType: Speechly.Tools
+  fullName: Speechly.Tools
+- uid: Speechly.Tools.Logger.LoggerDelegate
+  commentId: T:Speechly.Tools.Logger.LoggerDelegate
+  parent: Speechly.Tools
+  name: Logger.LoggerDelegate
+  nameWithType: Logger.LoggerDelegate
+  fullName: Speechly.Tools.Logger.LoggerDelegate

@@ -3,23 +3,21 @@ using System.Runtime.Serialization;
 using System.Text;
 using System.IO;
 
-namespace Speechly.SLUClient {
+namespace Speechly.Types {
 
-  public struct SegmentMessage {
-    public MsgCommon msgCommon;
-    public string msgString;
-    public SegmentMessage(MsgCommon msgCommon, string msgString) {
-      this.msgCommon = msgCommon;
-      this.msgString = msgString;
-    }
-  }
+  public delegate void SegmentChangeDelegate(Speechly.SLUClient.Segment segment);
+  public delegate void TentativeTranscriptDelegate(MsgTentativeTranscript msg);
+  public delegate void TranscriptDelegate(MsgTranscript msg);
+  public delegate void TentativeEntityDelegate(MsgTentativeEntity msg);
+  public delegate void EntityDelegate(MsgEntity msg);
+  public delegate void IntentDelegate(MsgIntent msg);
+  public delegate void StartStreamDelegate();
+  public delegate void StopStreamDelegate();
+  public delegate void StartContextDelegate();
+  public delegate void StopContextDelegate();
 
-
-  public interface IMsgCommonProps {
-    string type { get; set; }
-    string audio_context { get; set; }
-    int segment_id { get; set; }
-  }
+  public delegate string BeautifyIntent (string intent);
+  public delegate string BeautifyEntity (string entityValue, string entityType);
 
   [DataContract]
   public class Word {
@@ -85,39 +83,14 @@ namespace Speechly.SLUClient {
   }
 
 
-  public class MsgCommon: IMsgCommonProps {
+  public class MsgCommon {
     public string type { get; set; }
     public string audio_context { get; set; }
     public int segment_id { get; set; }
   }
 
-  public class ConfigTool {
-    public static string ConfigPath = "Speechly";
-
-    [DataMember(Name = "deviceId")]
-    public string deviceId = null;
-
-    public static T RestoreOrCreate<T>(string ConfigFileName) where T: class, new() {
-      string pathToFile = Path.Combine(Platform.GetPersistentStoragePath(), ConfigPath, ConfigFileName);
-      T config = new T();
-      try {
-        string jsonString = File.ReadAllText(pathToFile, Encoding.UTF8);
-        config = JSON.Parse(jsonString, config);
-      } catch (Exception) {
-      }
-      return config;
-    }
-
-    public static void Save<T>(T configData, string ConfigFileName) {
-      Directory.CreateDirectory(Path.Combine(Platform.GetPersistentStoragePath(), ConfigPath));
-
-      string pathToFile = Path.Combine(Platform.GetPersistentStoragePath(), ConfigPath, ConfigFileName);
-      File.WriteAllText(pathToFile, JSON.Stringify(configData), Encoding.UTF8);
-    }
-  }
-
   [DataContract]
-  public class Preferences {
+  internal class Preferences {
     public static string FileName = "SLUClientConfig.json";
 
     [DataMember(Name = "deviceId")]

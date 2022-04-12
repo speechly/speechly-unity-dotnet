@@ -32,7 +32,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: EnergyTresholdVAD
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/EnergyTresholdVAD.cs
-    startLine: 16
+    startLine: 17
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -69,7 +69,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Enabled
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/EnergyTresholdVAD.cs
-    startLine: 18
+    startLine: 19
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -100,7 +100,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: VADMinimumEnergy
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/EnergyTresholdVAD.cs
-    startLine: 24
+    startLine: 25
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -131,7 +131,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: VADSignalToNoise
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/EnergyTresholdVAD.cs
-    startLine: 30
+    startLine: 31
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -162,7 +162,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: VADFrames
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/EnergyTresholdVAD.cs
-    startLine: 36
+    startLine: 37
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -193,7 +193,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: VADActivation
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/EnergyTresholdVAD.cs
-    startLine: 42
+    startLine: 43
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -224,7 +224,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: VADRelease
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/EnergyTresholdVAD.cs
-    startLine: 48
+    startLine: 49
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -255,7 +255,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: VADSustainMillis
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/EnergyTresholdVAD.cs
-    startLine: 54
+    startLine: 55
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -286,7 +286,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: VADNoiseHalftimeMillis
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/EnergyTresholdVAD.cs
-    startLine: 60
+    startLine: 61
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -317,7 +317,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: VADControlListening
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/EnergyTresholdVAD.cs
-    startLine: 65
+    startLine: 66
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -348,7 +348,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Energy
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/EnergyTresholdVAD.cs
-    startLine: 67
+    startLine: 68
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -383,7 +383,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: BaselineEnergy
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/EnergyTresholdVAD.cs
-    startLine: 68
+    startLine: 69
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -418,7 +418,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: IsSignalDetected
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/EnergyTresholdVAD.cs
-    startLine: 69
+    startLine: 70
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -453,7 +453,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessFrame
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/EnergyTresholdVAD.cs
-    startLine: 74
+    startLine: 75
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient

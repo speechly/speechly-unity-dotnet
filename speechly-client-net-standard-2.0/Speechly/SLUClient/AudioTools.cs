@@ -1,6 +1,6 @@
 using System;
 
-namespace Speechly.SLUClient {
+namespace Speechly.Tools {
   public class AudioTools {
 
     public static void Downsample(in float[] src, ref float[] dest, int sourceIndex = 0, int sourceLength = -1, int destIndex = 0, int destLength = -1) {

@@ -77,55 +77,19 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
-      <h4><a class="xref" href="Speechly.SLUClient.AppTokenRequest.html">AppTokenRequest</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.AudioTools.html">AudioTools</a></h4>
-      <section></section>
       <h4><a class="xref" href="Speechly.SLUClient.CloudDecoder.html">CloudDecoder</a></h4>
       <section><p>Provides speech processing with Speechly's cloud SLU service.</p>
 <p>Internally handles authentication using https and audio streaming via secure websocket.
 Audio is streamed when listening is started with SpeechlyClient.StartContext().
 Streaming stops upon call to SpeechlyClient.StopContext().</p>
 </section>
-      <h4><a class="xref" href="Speechly.SLUClient.ConfigTool.html">ConfigTool</a></h4>
-      <section></section>
       <h4><a class="xref" href="Speechly.SLUClient.EnergyTresholdVAD.html">EnergyTresholdVAD</a></h4>
       <section><p>Adaptive energy threshold voice activity detection (VAD) implementation.
 It can be used to enable hands-free operation of the SLU decoder.</p>
 <p>When enough loud frames have been detected, VAD activates and calls StartContext automatically. When enough silent frames have been detected, the VAD deactivates after the sustain time and StopContext is called automatically. The background noise energy gradually adapts when VAD is not active.</p>
 <p>Use its public field to configure minimum energy level, signal-to-noise ratio, minimum activation time and an activation/deactivation treshold (ratio of loud to silent frames).</p>
 </section>
-      <h4><a class="xref" href="Speechly.SLUClient.Entity.html">Entity</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.Intent.html">Intent</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.JSON.html">JSON</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.Logger.html">Logger</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.MsgCommon.html">MsgCommon</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.MsgEntity.html">MsgEntity</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.MsgIntent.html">MsgIntent</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.MsgIntent.Data.html">MsgIntent.Data</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.MsgTentativeEntity.html">MsgTentativeEntity</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.MsgTentativeEntity.Data.html">MsgTentativeEntity.Data</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.MsgTentativeTranscript.html">MsgTentativeTranscript</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.MsgTentativeTranscript.Data.html">MsgTentativeTranscript.Data</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.MsgTranscript.html">MsgTranscript</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.Platform.html">Platform</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.Preferences.html">Preferences</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.ProjectTokenRequest.html">ProjectTokenRequest</a></h4>
+      <h4><a class="xref" href="Speechly.SLUClient.IDecoder.html">IDecoder</a></h4>
       <section></section>
       <h4><a class="xref" href="Speechly.SLUClient.Segment.html">Segment</a></h4>
       <section></section>
@@ -143,56 +107,6 @@ It can be used to enable hands-free operation of the SLU decoder.</p>
 <p>You can feed audio continuously, but control when to start and stop process speech with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StartContext_System_String_">StartContext(String)</a> and <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StopContext">StopContext()</a> or
 let voice activity detection (VAD) handle that automatically by passing <a class="xref" href="Speechly.SLUClient.EnergyTresholdVAD.html">EnergyTresholdVAD</a> to SpeechlyClient constructor.</p>
 </section>
-      <h4><a class="xref" href="Speechly.SLUClient.SpeechlyClientTest.html">SpeechlyClientTest</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.TokenResponse.html">TokenResponse</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.Word.html">Word</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.WsClient.html">WsClient</a></h4>
-      <section></section>
-    <h3 id="structs">Structs
-  </h3>
-      <h4><a class="xref" href="Speechly.SLUClient.SegmentMessage.html">SegmentMessage</a></h4>
-      <section></section>
-    <h3 id="interfaces">Interfaces
-  </h3>
-      <h4><a class="xref" href="Speechly.SLUClient.IDecoder.html">IDecoder</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.IMsgCommonProps.html">IMsgCommonProps</a></h4>
-      <section></section>
-    <h3 id="delegates">Delegates
-  </h3>
-      <h4><a class="xref" href="Speechly.SLUClient.EntityFormatter.html">EntityFormatter</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.IntentFormatter.html">IntentFormatter</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.Logger.LoggerDelegate.html">Logger.LoggerDelegate</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.ResponseReceivedDelegate.html">ResponseReceivedDelegate</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.SpeechlyClient.EntityDelegate.html">SpeechlyClient.EntityDelegate</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.SpeechlyClient.IntentDelegate.html">SpeechlyClient.IntentDelegate</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.SpeechlyClient.SegmentChangeDelegate.html">SpeechlyClient.SegmentChangeDelegate</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.SpeechlyClient.StartContextDelegate.html">SpeechlyClient.StartContextDelegate</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.SpeechlyClient.StartStreamDelegate.html">SpeechlyClient.StartStreamDelegate</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.SpeechlyClient.StopContextDelegate.html">SpeechlyClient.StopContextDelegate</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.SpeechlyClient.StopStreamDelegate.html">SpeechlyClient.StopStreamDelegate</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.SpeechlyClient.TentativeEntityDelegate.html">SpeechlyClient.TentativeEntityDelegate</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate.html">SpeechlyClient.TentativeTranscriptDelegate</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.SpeechlyClient.TranscriptDelegate.html">SpeechlyClient.TranscriptDelegate</a></h4>
-      <section></section>
-      <h4><a class="xref" href="Speechly.SLUClient.WsClient.ResponseReceivedDelegate.html">WsClient.ResponseReceivedDelegate</a></h4>
-      <section></section>
 </article>
           </div>
           

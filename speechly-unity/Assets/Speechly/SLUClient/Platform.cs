@@ -1,11 +1,14 @@
 using System;
 using System.Text;
 using System.Threading.Tasks;
+using Speechly.Types;
+using System.IO;
 
-namespace Speechly.SLUClient {
+namespace Speechly.Tools {
 
   public class Platform {
     private static bool debug = false;
+    public static string ConfigPath = "Speechly";
 
     public static string GetDeviceId(string seed = null) {
       string deviceId;
@@ -14,7 +17,7 @@ namespace Speechly.SLUClient {
         if (debug) Logger.Log($"Using manual deviceId: {deviceId}");
       } else {
         // Load settings
-        Preferences config = ConfigTool.RestoreOrCreate<Preferences>(Preferences.FileName);
+        Preferences config = Platform.RestoreOrCreateConfig<Preferences>(Preferences.FileName);
         // Restore or generate device id
         if (!String.IsNullOrEmpty(config.deviceId)) {
           deviceId = config.deviceId;
@@ -22,7 +25,7 @@ namespace Speechly.SLUClient {
         } else {
           deviceId = System.Guid.NewGuid().ToString();
           config.deviceId = deviceId;
-          ConfigTool.Save<Preferences>(config, Preferences.FileName);
+          Platform.SaveConfig<Preferences>(config, Preferences.FileName);
           if (debug) Logger.Log($"New deviceId: {deviceId}");
         }
       }
@@ -71,5 +74,24 @@ namespace Speechly.SLUClient {
         return new Guid(bytes).ToString();
       }
     }
+
+    public static T RestoreOrCreateConfig<T>(string ConfigFileName) where T: class, new() {
+      string pathToFile = Path.Combine(Platform.GetPersistentStoragePath(), ConfigPath, ConfigFileName);
+      T config = new T();
+      try {
+        string jsonString = File.ReadAllText(pathToFile, Encoding.UTF8);
+        config = JSON.Parse(jsonString, config);
+      } catch (Exception) {
+      }
+      return config;
+    }
+
+    public static void SaveConfig<T>(T configData, string ConfigFileName) {
+      Directory.CreateDirectory(Path.Combine(Platform.GetPersistentStoragePath(), ConfigPath));
+
+      string pathToFile = Path.Combine(Platform.GetPersistentStoragePath(), ConfigPath, ConfigFileName);
+      File.WriteAllText(pathToFile, JSON.Stringify(configData), Encoding.UTF8);
+    }
+
   }
 }

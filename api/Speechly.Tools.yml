@@ -1,0 +1,65 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Tools
+  commentId: N:Speechly.Tools
+  id: Speechly.Tools
+  children:
+  - Speechly.Tools.AudioTools
+  - Speechly.Tools.JSON
+  - Speechly.Tools.Logger
+  - Speechly.Tools.Logger.LoggerDelegate
+  - Speechly.Tools.Platform
+  - Speechly.Tools.WsClient
+  - Speechly.Tools.WsClient.ResponseReceivedDelegate
+  langs:
+  - csharp
+  - vb
+  name: Speechly.Tools
+  nameWithType: Speechly.Tools
+  fullName: Speechly.Tools
+  type: Namespace
+  assemblies:
+  - speechly-unity-net-standard-2.0
+references:
+- uid: Speechly.Tools.AudioTools
+  commentId: T:Speechly.Tools.AudioTools
+  name: AudioTools
+  nameWithType: AudioTools
+  fullName: Speechly.Tools.AudioTools
+- uid: Speechly.Tools.JSON
+  commentId: T:Speechly.Tools.JSON
+  name: JSON
+  nameWithType: JSON
+  fullName: Speechly.Tools.JSON
+- uid: Speechly.Tools.Logger
+  commentId: T:Speechly.Tools.Logger
+  name: Logger
+  nameWithType: Logger
+  fullName: Speechly.Tools.Logger
+- uid: Speechly.Tools.Logger.LoggerDelegate
+  commentId: T:Speechly.Tools.Logger.LoggerDelegate
+  parent: Speechly.Tools
+  name: Logger.LoggerDelegate
+  nameWithType: Logger.LoggerDelegate
+  fullName: Speechly.Tools.Logger.LoggerDelegate
+- uid: Speechly.Tools.Platform
+  commentId: T:Speechly.Tools.Platform
+  name: Platform
+  nameWithType: Platform
+  fullName: Speechly.Tools.Platform
+- uid: Speechly.Tools.WsClient
+  commentId: T:Speechly.Tools.WsClient
+  name: WsClient
+  nameWithType: WsClient
+  fullName: Speechly.Tools.WsClient
+- uid: Speechly.Tools.WsClient.ResponseReceivedDelegate
+  commentId: T:Speechly.Tools.WsClient.ResponseReceivedDelegate
+  parent: Speechly.Tools
+  name: WsClient.ResponseReceivedDelegate
+  nameWithType: WsClient.ResponseReceivedDelegate
+  fullName: Speechly.Tools.WsClient.ResponseReceivedDelegate
+- uid: Speechly.Tools
+  commentId: N:Speechly.Tools
+  name: Speechly.Tools
+  nameWithType: Speechly.Tools
+  fullName: Speechly.Tools

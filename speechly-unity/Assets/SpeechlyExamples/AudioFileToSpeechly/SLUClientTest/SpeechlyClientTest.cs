@@ -2,12 +2,12 @@ using System;
 using System.Text;
 using System.IO;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
+using Speechly.Tools;
 
 namespace Speechly.SLUClient {
-  public class SpeechlyClientTest {
+  internal class SpeechlyClientTest {
     public static async Task TestCloudProcessing(string fileName) {
       Stopwatch stopWatch = new Stopwatch();
 

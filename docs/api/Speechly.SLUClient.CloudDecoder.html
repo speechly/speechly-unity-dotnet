@@ -82,17 +82,14 @@ Streaming stops upon call to SpeechlyClient.StopContext().</p>
   <div class="inheritance">
     <h5>Inheritance</h5>
     <div class="level0"><span class="xref">System.Object</span></div>
-    <div class="level1"><span class="xref">CloudDecoder</span></div>
-  </div>
-  <div classs="implements">
-    <h5>Implements</h5>
-    <div><a class="xref" href="Speechly.SLUClient.IDecoder.html">IDecoder</a></div>
+    <div class="level1"><a class="xref" href="Speechly.SLUClient.IDecoder.html">IDecoder</a></div>
+    <div class="level2"><span class="xref">CloudDecoder</span></div>
   </div>
   <h6><strong>Namespace</strong>: <a class="xref" href="Speechly.SLUClient.html">Speechly.SLUClient</a></h6>
   <h6><strong>Assembly</strong>: speechly-unity-net-standard-2.0.dll</h6>
   <h5 id="Speechly_SLUClient_CloudDecoder_syntax">Syntax</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public class CloudDecoder : object, IDecoder</code></pre>
+    <pre><code class="lang-csharp hljs">public class CloudDecoder : IDecoder</code></pre>
   </div>
   <h3 id="constructors">Constructors
   </h3>
@@ -101,7 +98,7 @@ Streaming stops upon call to SpeechlyClient.StopContext().</p>
     <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_CloudDecoder__ctor_System_String_System_String_System_String_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.CloudDecoder.%23ctor(System.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs/#L39">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs/#L41">View Source</a>
   </span>
   <a id="Speechly_SLUClient_CloudDecoder__ctor_" data-uid="Speechly.SLUClient.CloudDecoder.#ctor*"></a>
   <h4 id="Speechly_SLUClient_CloudDecoder__ctor_System_String_System_String_System_String_System_String_System_String_System_Boolean_" data-uid="Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)">CloudDecoder(String, String, String, String, String, Boolean)</h4>
@@ -155,210 +152,11 @@ Streaming stops upon call to SpeechlyClient.StopContext().</p>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">debug</span></td>
-        <td><p>Enable debug prints thru <a class="xref" href="Speechly.SLUClient.Logger.html#Speechly_SLUClient_Logger_Log">Log</a> delegate. (default: <code>false</code>)</p>
+        <td><p>Enable debug prints thru <a class="xref" href="Speechly.Tools.Logger.html#Speechly_Tools_Logger_Log">Log</a> delegate. (default: <code>false</code>)</p>
 </td>
       </tr>
     </tbody>
   </table>
-  <h3 id="methods">Methods
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_CloudDecoder_Initialize.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.CloudDecoder.Initialize%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs/#L55">View Source</a>
-  </span>
-  <a id="Speechly_SLUClient_CloudDecoder_Initialize_" data-uid="Speechly.SLUClient.CloudDecoder.Initialize*"></a>
-  <h4 id="Speechly_SLUClient_CloudDecoder_Initialize" data-uid="Speechly.SLUClient.CloudDecoder.Initialize">Initialize()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public async Task Initialize()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_CloudDecoder_SendAudio_System_Single___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.CloudDecoder.SendAudio(System.Single%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs/#L107">View Source</a>
-  </span>
-  <a id="Speechly_SLUClient_CloudDecoder_SendAudio_" data-uid="Speechly.SLUClient.CloudDecoder.SendAudio*"></a>
-  <h4 id="Speechly_SLUClient_CloudDecoder_SendAudio_System_Single___System_Int32_System_Int32_" data-uid="Speechly.SLUClient.CloudDecoder.SendAudio(System.Single[],System.Int32,System.Int32)">SendAudio(Single[], Int32, Int32)</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void SendAudio(float[] floats, int start = 0, int length = null)</code></pre>
-  </div>
-  <h5 class="parameters">Parameters</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Name</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Single</span>[]</td>
-        <td><span class="parametername">floats</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">start</span></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">length</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_CloudDecoder_Shutdown.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.CloudDecoder.Shutdown%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs/#L130">View Source</a>
-  </span>
-  <a id="Speechly_SLUClient_CloudDecoder_Shutdown_" data-uid="Speechly.SLUClient.CloudDecoder.Shutdown*"></a>
-  <h4 id="Speechly_SLUClient_CloudDecoder_Shutdown" data-uid="Speechly.SLUClient.CloudDecoder.Shutdown">Shutdown()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public async Task Shutdown()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_CloudDecoder_StartContext.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.CloudDecoder.StartContext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs/#L69">View Source</a>
-  </span>
-  <a id="Speechly_SLUClient_CloudDecoder_StartContext_" data-uid="Speechly.SLUClient.CloudDecoder.StartContext*"></a>
-  <h4 id="Speechly_SLUClient_CloudDecoder_StartContext" data-uid="Speechly.SLUClient.CloudDecoder.StartContext">StartContext()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; StartContext()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_CloudDecoder_StopContext.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.CloudDecoder.StopContext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs/#L123">View Source</a>
-  </span>
-  <a id="Speechly_SLUClient_CloudDecoder_StopContext_" data-uid="Speechly.SLUClient.CloudDecoder.StopContext*"></a>
-  <h4 id="Speechly_SLUClient_CloudDecoder_StopContext" data-uid="Speechly.SLUClient.CloudDecoder.StopContext">StopContext()</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; StopContext()</code></pre>
-  </div>
-  <h5 class="returns">Returns</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">Task</span>&lt;<span class="xref">System.String</span>&gt;</td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="events">Events
-  </h3>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_CloudDecoder_OnMessage.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.CloudDecoder.OnMessage%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs/#L17">View Source</a>
-  </span>
-  <h4 id="Speechly_SLUClient_CloudDecoder_OnMessage" data-uid="Speechly.SLUClient.CloudDecoder.OnMessage">OnMessage</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public event ResponseReceivedDelegate OnMessage</code></pre>
-  </div>
-  <h5 class="eventType">Event Type</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Speechly.SLUClient.ResponseReceivedDelegate.html">ResponseReceivedDelegate</a></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <h3 id="implements">Implements</h3>
-  <div>
-      <a class="xref" href="Speechly.SLUClient.IDecoder.html">IDecoder</a>
-  </div>
 </article>
           </div>
           
@@ -370,7 +168,7 @@ Streaming stops upon call to SpeechlyClient.StopContext().</p>
                     <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_CloudDecoder.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.CloudDecoder%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs/#L16" class="contribution-link">View Source</a>
+                    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs/#L18" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

@@ -1,0 +1,82 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.MsgTentativeTranscript
+  commentId: T:Speechly.Types.MsgTentativeTranscript
+  id: MsgTentativeTranscript
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.MsgTentativeTranscript.data
+  langs:
+  - csharp
+  - vb
+  name: MsgTentativeTranscript
+  nameWithType: MsgTentativeTranscript
+  fullName: Speechly.Types.MsgTentativeTranscript
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: MsgTentativeTranscript
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 60
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: 'public class MsgTentativeTranscript : object'
+    content.vb: >-
+      Public Class MsgTentativeTranscript
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.MsgTentativeTranscript.data
+  commentId: F:Speechly.Types.MsgTentativeTranscript.data
+  id: data
+  parent: Speechly.Types.MsgTentativeTranscript
+  langs:
+  - csharp
+  - vb
+  name: data
+  nameWithType: MsgTentativeTranscript.data
+  fullName: Speechly.Types.MsgTentativeTranscript.data
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: data
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 65
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public MsgTentativeTranscript.Data data
+    return:
+      type: Speechly.Types.MsgTentativeTranscript.Data
+    content.vb: Public data As MsgTentativeTranscript.Data
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: Speechly.Types.MsgTentativeTranscript.Data
+  commentId: T:Speechly.Types.MsgTentativeTranscript.Data
+  parent: Speechly.Types
+  name: MsgTentativeTranscript.Data
+  nameWithType: MsgTentativeTranscript.Data
+  fullName: Speechly.Types.MsgTentativeTranscript.Data

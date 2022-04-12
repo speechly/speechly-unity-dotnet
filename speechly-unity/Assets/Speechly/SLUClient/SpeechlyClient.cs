@@ -3,6 +3,8 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
+using Speechly.Types;
+using Speechly.Tools;
 
 namespace Speechly.SLUClient {
 
@@ -23,16 +25,6 @@ namespace Speechly.SLUClient {
 /// </summary>
 
   public class SpeechlyClient {
-    public delegate void SegmentChangeDelegate(Segment segment);
-    public delegate void TentativeTranscriptDelegate(MsgTentativeTranscript msg);
-    public delegate void TranscriptDelegate(MsgTranscript msg);
-    public delegate void TentativeEntityDelegate(MsgTentativeEntity msg);
-    public delegate void EntityDelegate(MsgEntity msg);
-    public delegate void IntentDelegate(MsgIntent msg);
-    public delegate void StartStreamDelegate();
-    public delegate void StopStreamDelegate();
-    public delegate void StartContextDelegate();
-    public delegate void StopContextDelegate();
 
 /// <summary>
 /// Read the combined results of automatic speech recoginition (ASR) and natural language detection (NLU).
@@ -266,14 +258,13 @@ namespace Speechly.SLUClient {
 /// You can control when to start and stop process speech either manually with <see cref="StartContext"/> and <see cref="StopContext"/> or
 /// automatically by providing a voice activity detection (VAD) field to <see cref="SpeechlyClient"/>.
 /// 
-/// The audio processing pipeline is as follows:
-/// - INPUT: ProcessAudio()
-/// - Downsample audio to 16kHz if needed (controlled by inputSampleRate in constructor)
-/// - Add audio to history ringbuffer (controlled by HistoryFrames and FrameSamples in constructor)
-/// - Energy threshold calculation (enabled by EnergyTresholdVAD in constructor)
-/// - Automatic VAD Start/StopContext control (enabled by EnergyTresholdVAD.ControlListening = true)
-/// - OUTPUT: Send utterances to files (enabled by SaveToFolder = "folder" in the constructor)
-/// - OUTPUT: Send utterances to Speechly SLU decoder (passed with <see cref="Initialize"/>)
+/// The audio is handled as follows:
+/// - Downsample to 16kHz if needed
+/// - Add to history ringbuffer
+/// - Calculate energy (VAD)
+/// - Automatic Start/StopContext (VAD)
+/// - Send utterance audio to a file
+/// - Send utterance audio to Speechly SLU decoder
 /// </summary>
 /// <param name="floats">Array of float containing samples to feed to the audio pipeline. Each sample needs to be in range -1f..1f.</param>
 /// <param name="start">Start index of audio to process in samples (default: `0`).</param>
@@ -555,5 +546,14 @@ namespace Speechly.SLUClient {
       this.decoder = null;
     }
 
+  }
+}
+
+internal struct SegmentMessage {
+  public MsgCommon msgCommon;
+  public string msgString;
+  public SegmentMessage(MsgCommon msgCommon, string msgString) {
+    this.msgCommon = msgCommon;
+    this.msgString = msgString;
   }
 }

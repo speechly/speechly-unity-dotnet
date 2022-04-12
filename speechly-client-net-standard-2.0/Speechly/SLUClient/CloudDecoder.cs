@@ -3,6 +3,8 @@ using System.IO;
 using System.Collections.Concurrent;
 using System.Threading.Tasks;
 using System.Text;
+using Speechly.Types;
+using Speechly.Tools;
 
 namespace Speechly.SLUClient {
 /// <summary>
@@ -14,7 +16,7 @@ namespace Speechly.SLUClient {
 /// </summary>
 
   public class CloudDecoder: IDecoder {
-    public event ResponseReceivedDelegate OnMessage = (MsgCommon msgCommon, string msgString) => {};
+    override internal event ResponseReceivedDelegate OnMessage = (MsgCommon msgCommon, string msgString) => {};
     private string loginUrl = "https://api.speechly.com/login";
     private string apiUrl = "wss://api.speechly.com/ws/v1?sampleRate=16000";
     private string projectId = null;
@@ -52,7 +54,7 @@ namespace Speechly.SLUClient {
       this.debug = debug;
     }
 
-    public async Task Initialize() {
+    override internal async Task Initialize() {
       if (debug) Logger.Log("Initializing and connecting Cloud SLU...");
       var tokenFetcher = new LoginToken();
       string token = await tokenFetcher.FetchToken(loginUrl, projectId, appId, deviceId);
@@ -66,7 +68,7 @@ namespace Speechly.SLUClient {
       if (debug) Logger.Log("Cloud SLU ready");
     }
 
-    public Task<string> StartContext() {
+    override internal Task<string> StartContext() {
       var tcs = new TaskCompletionSource<string>();
       startContextTCS.Enqueue(tcs);
       if (appId != null) {
@@ -104,7 +106,7 @@ namespace Speechly.SLUClient {
       }
     }
 
-    public void SendAudio(float[] floats, int start = 0, int length = -1) {
+    override internal void SendAudio(float[] floats, int start = 0, int length = -1) {
       if (length < 0) length = floats.Length;
       int end = start + length;
       // @TODO Use a pre-allocated buf
@@ -120,14 +122,14 @@ namespace Speechly.SLUClient {
       wsClient.SendBytes(new ArraySegment<byte>(buf));
     }
 
-    public Task<string> StopContext() {
+    override internal Task<string> StopContext() {
       var tcs = new TaskCompletionSource<string>();
       stopContextTCS.Enqueue(tcs);
       wsClient.SendText($"{{\"event\": \"stop\"}}");
       return tcs.Task;
     }
 
-    public async Task Shutdown() {
+    override internal async Task Shutdown() {
       if (debug) Logger.Log("Cloud SLU shutting down...");
       await wsClient.DisconnectAsync();
       if (debug) Logger.Log("Shutdown completed.");

@@ -1,11 +1,9 @@
 using System;
 using System.Text;
-using System.Collections;
 using System.Collections.Generic;
+using Speechly.Types;
 
 namespace Speechly.SLUClient {
-  public delegate string IntentFormatter (string intent);
-  public delegate string EntityFormatter (string words, string entityType);
 
   public class Segment {
     public int id;
@@ -29,8 +27,8 @@ namespace Speechly.SLUClient {
     }
 
     public string ToString(
-        IntentFormatter intentTag,
-        EntityFormatter entityTag,
+        BeautifyIntent intentTag,
+        BeautifyEntity entityTag,
         string confirmationMark
       ) {
       var sb = new StringBuilder();

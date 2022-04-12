@@ -7,94 +7,6 @@ references:
   commentId: N:Speechly.SLUClient
   fullName: Speechly.SLUClient
   nameWithType: Speechly.SLUClient
-- uid: Speechly.SLUClient.AppTokenRequest
-  name: AppTokenRequest
-  href: api/Speechly.SLUClient.AppTokenRequest.html
-  commentId: T:Speechly.SLUClient.AppTokenRequest
-  fullName: Speechly.SLUClient.AppTokenRequest
-  nameWithType: AppTokenRequest
-- uid: Speechly.SLUClient.AppTokenRequest.appId
-  name: appId
-  href: api/Speechly.SLUClient.AppTokenRequest.html#Speechly_SLUClient_AppTokenRequest_appId
-  commentId: F:Speechly.SLUClient.AppTokenRequest.appId
-  fullName: Speechly.SLUClient.AppTokenRequest.appId
-  nameWithType: AppTokenRequest.appId
-- uid: Speechly.SLUClient.AppTokenRequest.deviceId
-  name: deviceId
-  href: api/Speechly.SLUClient.AppTokenRequest.html#Speechly_SLUClient_AppTokenRequest_deviceId
-  commentId: F:Speechly.SLUClient.AppTokenRequest.deviceId
-  fullName: Speechly.SLUClient.AppTokenRequest.deviceId
-  nameWithType: AppTokenRequest.deviceId
-- uid: Speechly.SLUClient.AudioTools
-  name: AudioTools
-  href: api/Speechly.SLUClient.AudioTools.html
-  commentId: T:Speechly.SLUClient.AudioTools
-  fullName: Speechly.SLUClient.AudioTools
-  nameWithType: AudioTools
-- uid: Speechly.SLUClient.AudioTools.ConvertInt16ToFloat(System.Byte[]@,System.Single[]@,System.Int32,System.Int32,System.Int32)
-  name: ConvertInt16ToFloat(in Byte[], ref Single[], Int32, Int32, Int32)
-  href: api/Speechly.SLUClient.AudioTools.html#Speechly_SLUClient_AudioTools_ConvertInt16ToFloat_System_Byte____System_Single____System_Int32_System_Int32_System_Int32_
-  commentId: M:Speechly.SLUClient.AudioTools.ConvertInt16ToFloat(System.Byte[]@,System.Single[]@,System.Int32,System.Int32,System.Int32)
-  name.vb: ConvertInt16ToFloat(ByRef Byte(), ByRef Single(), Int32, Int32, Int32)
-  fullName: Speechly.SLUClient.AudioTools.ConvertInt16ToFloat(in System.Byte[], ref System.Single[], System.Int32, System.Int32, System.Int32)
-  fullName.vb: Speechly.SLUClient.AudioTools.ConvertInt16ToFloat(ByRef System.Byte(), ByRef System.Single(), System.Int32, System.Int32, System.Int32)
-  nameWithType: AudioTools.ConvertInt16ToFloat(in Byte[], ref Single[], Int32, Int32, Int32)
-  nameWithType.vb: AudioTools.ConvertInt16ToFloat(ByRef Byte(), ByRef Single(), Int32, Int32, Int32)
-- uid: Speechly.SLUClient.AudioTools.ConvertInt16ToFloat*
-  name: ConvertInt16ToFloat
-  href: api/Speechly.SLUClient.AudioTools.html#Speechly_SLUClient_AudioTools_ConvertInt16ToFloat_
-  commentId: Overload:Speechly.SLUClient.AudioTools.ConvertInt16ToFloat
-  isSpec: "True"
-  fullName: Speechly.SLUClient.AudioTools.ConvertInt16ToFloat
-  nameWithType: AudioTools.ConvertInt16ToFloat
-- uid: Speechly.SLUClient.AudioTools.Downsample(System.Single[]@,System.Single[]@,System.Int32,System.Int32,System.Int32,System.Int32)
-  name: Downsample(in Single[], ref Single[], Int32, Int32, Int32, Int32)
-  href: api/Speechly.SLUClient.AudioTools.html#Speechly_SLUClient_AudioTools_Downsample_System_Single____System_Single____System_Int32_System_Int32_System_Int32_System_Int32_
-  commentId: M:Speechly.SLUClient.AudioTools.Downsample(System.Single[]@,System.Single[]@,System.Int32,System.Int32,System.Int32,System.Int32)
-  name.vb: Downsample(ByRef Single(), ByRef Single(), Int32, Int32, Int32, Int32)
-  fullName: Speechly.SLUClient.AudioTools.Downsample(in System.Single[], ref System.Single[], System.Int32, System.Int32, System.Int32, System.Int32)
-  fullName.vb: Speechly.SLUClient.AudioTools.Downsample(ByRef System.Single(), ByRef System.Single(), System.Int32, System.Int32, System.Int32, System.Int32)
-  nameWithType: AudioTools.Downsample(in Single[], ref Single[], Int32, Int32, Int32, Int32)
-  nameWithType.vb: AudioTools.Downsample(ByRef Single(), ByRef Single(), Int32, Int32, Int32, Int32)
-- uid: Speechly.SLUClient.AudioTools.Downsample*
-  name: Downsample
-  href: api/Speechly.SLUClient.AudioTools.html#Speechly_SLUClient_AudioTools_Downsample_
-  commentId: Overload:Speechly.SLUClient.AudioTools.Downsample
-  isSpec: "True"
-  fullName: Speechly.SLUClient.AudioTools.Downsample
-  nameWithType: AudioTools.Downsample
-- uid: Speechly.SLUClient.AudioTools.GetAudioPeak(System.Single[]@,System.Int32,System.Int32)
-  name: GetAudioPeak(in Single[], Int32, Int32)
-  href: api/Speechly.SLUClient.AudioTools.html#Speechly_SLUClient_AudioTools_GetAudioPeak_System_Single____System_Int32_System_Int32_
-  commentId: M:Speechly.SLUClient.AudioTools.GetAudioPeak(System.Single[]@,System.Int32,System.Int32)
-  name.vb: GetAudioPeak(ByRef Single(), Int32, Int32)
-  fullName: Speechly.SLUClient.AudioTools.GetAudioPeak(in System.Single[], System.Int32, System.Int32)
-  fullName.vb: Speechly.SLUClient.AudioTools.GetAudioPeak(ByRef System.Single(), System.Int32, System.Int32)
-  nameWithType: AudioTools.GetAudioPeak(in Single[], Int32, Int32)
-  nameWithType.vb: AudioTools.GetAudioPeak(ByRef Single(), Int32, Int32)
-- uid: Speechly.SLUClient.AudioTools.GetAudioPeak*
-  name: GetAudioPeak
-  href: api/Speechly.SLUClient.AudioTools.html#Speechly_SLUClient_AudioTools_GetAudioPeak_
-  commentId: Overload:Speechly.SLUClient.AudioTools.GetAudioPeak
-  isSpec: "True"
-  fullName: Speechly.SLUClient.AudioTools.GetAudioPeak
-  nameWithType: AudioTools.GetAudioPeak
-- uid: Speechly.SLUClient.AudioTools.GetEnergy(System.Single[]@,System.Int32,System.Int32)
-  name: GetEnergy(in Single[], Int32, Int32)
-  href: api/Speechly.SLUClient.AudioTools.html#Speechly_SLUClient_AudioTools_GetEnergy_System_Single____System_Int32_System_Int32_
-  commentId: M:Speechly.SLUClient.AudioTools.GetEnergy(System.Single[]@,System.Int32,System.Int32)
-  name.vb: GetEnergy(ByRef Single(), Int32, Int32)
-  fullName: Speechly.SLUClient.AudioTools.GetEnergy(in System.Single[], System.Int32, System.Int32)
-  fullName.vb: Speechly.SLUClient.AudioTools.GetEnergy(ByRef System.Single(), System.Int32, System.Int32)
-  nameWithType: AudioTools.GetEnergy(in Single[], Int32, Int32)
-  nameWithType.vb: AudioTools.GetEnergy(ByRef Single(), Int32, Int32)
-- uid: Speechly.SLUClient.AudioTools.GetEnergy*
-  name: GetEnergy
-  href: api/Speechly.SLUClient.AudioTools.html#Speechly_SLUClient_AudioTools_GetEnergy_
-  commentId: Overload:Speechly.SLUClient.AudioTools.GetEnergy
-  isSpec: "True"
-  fullName: Speechly.SLUClient.AudioTools.GetEnergy
-  nameWithType: AudioTools.GetEnergy
 - uid: Speechly.SLUClient.CloudDecoder
   name: CloudDecoder
   href: api/Speechly.SLUClient.CloudDecoder.html
@@ -114,130 +26,6 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.CloudDecoder.CloudDecoder
   nameWithType: CloudDecoder.CloudDecoder
-- uid: Speechly.SLUClient.CloudDecoder.Initialize
-  name: Initialize()
-  href: api/Speechly.SLUClient.CloudDecoder.html#Speechly_SLUClient_CloudDecoder_Initialize
-  commentId: M:Speechly.SLUClient.CloudDecoder.Initialize
-  fullName: Speechly.SLUClient.CloudDecoder.Initialize()
-  nameWithType: CloudDecoder.Initialize()
-- uid: Speechly.SLUClient.CloudDecoder.Initialize*
-  name: Initialize
-  href: api/Speechly.SLUClient.CloudDecoder.html#Speechly_SLUClient_CloudDecoder_Initialize_
-  commentId: Overload:Speechly.SLUClient.CloudDecoder.Initialize
-  isSpec: "True"
-  fullName: Speechly.SLUClient.CloudDecoder.Initialize
-  nameWithType: CloudDecoder.Initialize
-- uid: Speechly.SLUClient.CloudDecoder.OnMessage
-  name: OnMessage
-  href: api/Speechly.SLUClient.CloudDecoder.html#Speechly_SLUClient_CloudDecoder_OnMessage
-  commentId: E:Speechly.SLUClient.CloudDecoder.OnMessage
-  fullName: Speechly.SLUClient.CloudDecoder.OnMessage
-  nameWithType: CloudDecoder.OnMessage
-- uid: Speechly.SLUClient.CloudDecoder.SendAudio(System.Single[],System.Int32,System.Int32)
-  name: SendAudio(Single[], Int32, Int32)
-  href: api/Speechly.SLUClient.CloudDecoder.html#Speechly_SLUClient_CloudDecoder_SendAudio_System_Single___System_Int32_System_Int32_
-  commentId: M:Speechly.SLUClient.CloudDecoder.SendAudio(System.Single[],System.Int32,System.Int32)
-  name.vb: SendAudio(Single(), Int32, Int32)
-  fullName: Speechly.SLUClient.CloudDecoder.SendAudio(System.Single[], System.Int32, System.Int32)
-  fullName.vb: Speechly.SLUClient.CloudDecoder.SendAudio(System.Single(), System.Int32, System.Int32)
-  nameWithType: CloudDecoder.SendAudio(Single[], Int32, Int32)
-  nameWithType.vb: CloudDecoder.SendAudio(Single(), Int32, Int32)
-- uid: Speechly.SLUClient.CloudDecoder.SendAudio*
-  name: SendAudio
-  href: api/Speechly.SLUClient.CloudDecoder.html#Speechly_SLUClient_CloudDecoder_SendAudio_
-  commentId: Overload:Speechly.SLUClient.CloudDecoder.SendAudio
-  isSpec: "True"
-  fullName: Speechly.SLUClient.CloudDecoder.SendAudio
-  nameWithType: CloudDecoder.SendAudio
-- uid: Speechly.SLUClient.CloudDecoder.Shutdown
-  name: Shutdown()
-  href: api/Speechly.SLUClient.CloudDecoder.html#Speechly_SLUClient_CloudDecoder_Shutdown
-  commentId: M:Speechly.SLUClient.CloudDecoder.Shutdown
-  fullName: Speechly.SLUClient.CloudDecoder.Shutdown()
-  nameWithType: CloudDecoder.Shutdown()
-- uid: Speechly.SLUClient.CloudDecoder.Shutdown*
-  name: Shutdown
-  href: api/Speechly.SLUClient.CloudDecoder.html#Speechly_SLUClient_CloudDecoder_Shutdown_
-  commentId: Overload:Speechly.SLUClient.CloudDecoder.Shutdown
-  isSpec: "True"
-  fullName: Speechly.SLUClient.CloudDecoder.Shutdown
-  nameWithType: CloudDecoder.Shutdown
-- uid: Speechly.SLUClient.CloudDecoder.StartContext
-  name: StartContext()
-  href: api/Speechly.SLUClient.CloudDecoder.html#Speechly_SLUClient_CloudDecoder_StartContext
-  commentId: M:Speechly.SLUClient.CloudDecoder.StartContext
-  fullName: Speechly.SLUClient.CloudDecoder.StartContext()
-  nameWithType: CloudDecoder.StartContext()
-- uid: Speechly.SLUClient.CloudDecoder.StartContext*
-  name: StartContext
-  href: api/Speechly.SLUClient.CloudDecoder.html#Speechly_SLUClient_CloudDecoder_StartContext_
-  commentId: Overload:Speechly.SLUClient.CloudDecoder.StartContext
-  isSpec: "True"
-  fullName: Speechly.SLUClient.CloudDecoder.StartContext
-  nameWithType: CloudDecoder.StartContext
-- uid: Speechly.SLUClient.CloudDecoder.StopContext
-  name: StopContext()
-  href: api/Speechly.SLUClient.CloudDecoder.html#Speechly_SLUClient_CloudDecoder_StopContext
-  commentId: M:Speechly.SLUClient.CloudDecoder.StopContext
-  fullName: Speechly.SLUClient.CloudDecoder.StopContext()
-  nameWithType: CloudDecoder.StopContext()
-- uid: Speechly.SLUClient.CloudDecoder.StopContext*
-  name: StopContext
-  href: api/Speechly.SLUClient.CloudDecoder.html#Speechly_SLUClient_CloudDecoder_StopContext_
-  commentId: Overload:Speechly.SLUClient.CloudDecoder.StopContext
-  isSpec: "True"
-  fullName: Speechly.SLUClient.CloudDecoder.StopContext
-  nameWithType: CloudDecoder.StopContext
-- uid: Speechly.SLUClient.ConfigTool
-  name: ConfigTool
-  href: api/Speechly.SLUClient.ConfigTool.html
-  commentId: T:Speechly.SLUClient.ConfigTool
-  fullName: Speechly.SLUClient.ConfigTool
-  nameWithType: ConfigTool
-- uid: Speechly.SLUClient.ConfigTool.ConfigPath
-  name: ConfigPath
-  href: api/Speechly.SLUClient.ConfigTool.html#Speechly_SLUClient_ConfigTool_ConfigPath
-  commentId: F:Speechly.SLUClient.ConfigTool.ConfigPath
-  fullName: Speechly.SLUClient.ConfigTool.ConfigPath
-  nameWithType: ConfigTool.ConfigPath
-- uid: Speechly.SLUClient.ConfigTool.deviceId
-  name: deviceId
-  href: api/Speechly.SLUClient.ConfigTool.html#Speechly_SLUClient_ConfigTool_deviceId
-  commentId: F:Speechly.SLUClient.ConfigTool.deviceId
-  fullName: Speechly.SLUClient.ConfigTool.deviceId
-  nameWithType: ConfigTool.deviceId
-- uid: Speechly.SLUClient.ConfigTool.RestoreOrCreate*
-  name: RestoreOrCreate
-  href: api/Speechly.SLUClient.ConfigTool.html#Speechly_SLUClient_ConfigTool_RestoreOrCreate_
-  commentId: Overload:Speechly.SLUClient.ConfigTool.RestoreOrCreate
-  isSpec: "True"
-  fullName: Speechly.SLUClient.ConfigTool.RestoreOrCreate
-  nameWithType: ConfigTool.RestoreOrCreate
-- uid: Speechly.SLUClient.ConfigTool.RestoreOrCreate``1(System.String)
-  name: RestoreOrCreate<T>(String)
-  href: api/Speechly.SLUClient.ConfigTool.html#Speechly_SLUClient_ConfigTool_RestoreOrCreate__1_System_String_
-  commentId: M:Speechly.SLUClient.ConfigTool.RestoreOrCreate``1(System.String)
-  name.vb: RestoreOrCreate(Of T)(String)
-  fullName: Speechly.SLUClient.ConfigTool.RestoreOrCreate<T>(System.String)
-  fullName.vb: Speechly.SLUClient.ConfigTool.RestoreOrCreate(Of T)(System.String)
-  nameWithType: ConfigTool.RestoreOrCreate<T>(String)
-  nameWithType.vb: ConfigTool.RestoreOrCreate(Of T)(String)
-- uid: Speechly.SLUClient.ConfigTool.Save*
-  name: Save
-  href: api/Speechly.SLUClient.ConfigTool.html#Speechly_SLUClient_ConfigTool_Save_
-  commentId: Overload:Speechly.SLUClient.ConfigTool.Save
-  isSpec: "True"
-  fullName: Speechly.SLUClient.ConfigTool.Save
-  nameWithType: ConfigTool.Save
-- uid: Speechly.SLUClient.ConfigTool.Save``1(``0,System.String)
-  name: Save<T>(T, String)
-  href: api/Speechly.SLUClient.ConfigTool.html#Speechly_SLUClient_ConfigTool_Save__1___0_System_String_
-  commentId: M:Speechly.SLUClient.ConfigTool.Save``1(``0,System.String)
-  name.vb: Save(Of T)(T, String)
-  fullName: Speechly.SLUClient.ConfigTool.Save<T>(T, System.String)
-  fullName.vb: Speechly.SLUClient.ConfigTool.Save(Of T)(T, System.String)
-  nameWithType: ConfigTool.Save<T>(T, String)
-  nameWithType.vb: ConfigTool.Save(Of T)(T, String)
 - uid: Speechly.SLUClient.EnergyTresholdVAD
   name: EnergyTresholdVAD
   href: api/Speechly.SLUClient.EnergyTresholdVAD.html
@@ -353,538 +141,12 @@ references:
   commentId: F:Speechly.SLUClient.EnergyTresholdVAD.VADSustainMillis
   fullName: Speechly.SLUClient.EnergyTresholdVAD.VADSustainMillis
   nameWithType: EnergyTresholdVAD.VADSustainMillis
-- uid: Speechly.SLUClient.Entity
-  name: Entity
-  href: api/Speechly.SLUClient.Entity.html
-  commentId: T:Speechly.SLUClient.Entity
-  fullName: Speechly.SLUClient.Entity
-  nameWithType: Entity
-- uid: Speechly.SLUClient.Entity.endPosition
-  name: endPosition
-  href: api/Speechly.SLUClient.Entity.html#Speechly_SLUClient_Entity_endPosition
-  commentId: F:Speechly.SLUClient.Entity.endPosition
-  fullName: Speechly.SLUClient.Entity.endPosition
-  nameWithType: Entity.endPosition
-- uid: Speechly.SLUClient.Entity.isFinal
-  name: isFinal
-  href: api/Speechly.SLUClient.Entity.html#Speechly_SLUClient_Entity_isFinal
-  commentId: F:Speechly.SLUClient.Entity.isFinal
-  fullName: Speechly.SLUClient.Entity.isFinal
-  nameWithType: Entity.isFinal
-- uid: Speechly.SLUClient.Entity.startPosition
-  name: startPosition
-  href: api/Speechly.SLUClient.Entity.html#Speechly_SLUClient_Entity_startPosition
-  commentId: F:Speechly.SLUClient.Entity.startPosition
-  fullName: Speechly.SLUClient.Entity.startPosition
-  nameWithType: Entity.startPosition
-- uid: Speechly.SLUClient.Entity.type
-  name: type
-  href: api/Speechly.SLUClient.Entity.html#Speechly_SLUClient_Entity_type
-  commentId: F:Speechly.SLUClient.Entity.type
-  fullName: Speechly.SLUClient.Entity.type
-  nameWithType: Entity.type
-- uid: Speechly.SLUClient.Entity.value
-  name: value
-  href: api/Speechly.SLUClient.Entity.html#Speechly_SLUClient_Entity_value
-  commentId: F:Speechly.SLUClient.Entity.value
-  fullName: Speechly.SLUClient.Entity.value
-  nameWithType: Entity.value
-- uid: Speechly.SLUClient.EntityFormatter
-  name: EntityFormatter
-  href: api/Speechly.SLUClient.EntityFormatter.html
-  commentId: T:Speechly.SLUClient.EntityFormatter
-  fullName: Speechly.SLUClient.EntityFormatter
-  nameWithType: EntityFormatter
 - uid: Speechly.SLUClient.IDecoder
   name: IDecoder
   href: api/Speechly.SLUClient.IDecoder.html
   commentId: T:Speechly.SLUClient.IDecoder
   fullName: Speechly.SLUClient.IDecoder
   nameWithType: IDecoder
-- uid: Speechly.SLUClient.IDecoder.Initialize
-  name: Initialize()
-  href: api/Speechly.SLUClient.IDecoder.html#Speechly_SLUClient_IDecoder_Initialize
-  commentId: M:Speechly.SLUClient.IDecoder.Initialize
-  fullName: Speechly.SLUClient.IDecoder.Initialize()
-  nameWithType: IDecoder.Initialize()
-- uid: Speechly.SLUClient.IDecoder.Initialize*
-  name: Initialize
-  href: api/Speechly.SLUClient.IDecoder.html#Speechly_SLUClient_IDecoder_Initialize_
-  commentId: Overload:Speechly.SLUClient.IDecoder.Initialize
-  isSpec: "True"
-  fullName: Speechly.SLUClient.IDecoder.Initialize
-  nameWithType: IDecoder.Initialize
-- uid: Speechly.SLUClient.IDecoder.OnMessage
-  name: OnMessage
-  href: api/Speechly.SLUClient.IDecoder.html#Speechly_SLUClient_IDecoder_OnMessage
-  commentId: E:Speechly.SLUClient.IDecoder.OnMessage
-  fullName: Speechly.SLUClient.IDecoder.OnMessage
-  nameWithType: IDecoder.OnMessage
-- uid: Speechly.SLUClient.IDecoder.SendAudio(System.Single[],System.Int32,System.Int32)
-  name: SendAudio(Single[], Int32, Int32)
-  href: api/Speechly.SLUClient.IDecoder.html#Speechly_SLUClient_IDecoder_SendAudio_System_Single___System_Int32_System_Int32_
-  commentId: M:Speechly.SLUClient.IDecoder.SendAudio(System.Single[],System.Int32,System.Int32)
-  name.vb: SendAudio(Single(), Int32, Int32)
-  fullName: Speechly.SLUClient.IDecoder.SendAudio(System.Single[], System.Int32, System.Int32)
-  fullName.vb: Speechly.SLUClient.IDecoder.SendAudio(System.Single(), System.Int32, System.Int32)
-  nameWithType: IDecoder.SendAudio(Single[], Int32, Int32)
-  nameWithType.vb: IDecoder.SendAudio(Single(), Int32, Int32)
-- uid: Speechly.SLUClient.IDecoder.SendAudio*
-  name: SendAudio
-  href: api/Speechly.SLUClient.IDecoder.html#Speechly_SLUClient_IDecoder_SendAudio_
-  commentId: Overload:Speechly.SLUClient.IDecoder.SendAudio
-  isSpec: "True"
-  fullName: Speechly.SLUClient.IDecoder.SendAudio
-  nameWithType: IDecoder.SendAudio
-- uid: Speechly.SLUClient.IDecoder.Shutdown
-  name: Shutdown()
-  href: api/Speechly.SLUClient.IDecoder.html#Speechly_SLUClient_IDecoder_Shutdown
-  commentId: M:Speechly.SLUClient.IDecoder.Shutdown
-  fullName: Speechly.SLUClient.IDecoder.Shutdown()
-  nameWithType: IDecoder.Shutdown()
-- uid: Speechly.SLUClient.IDecoder.Shutdown*
-  name: Shutdown
-  href: api/Speechly.SLUClient.IDecoder.html#Speechly_SLUClient_IDecoder_Shutdown_
-  commentId: Overload:Speechly.SLUClient.IDecoder.Shutdown
-  isSpec: "True"
-  fullName: Speechly.SLUClient.IDecoder.Shutdown
-  nameWithType: IDecoder.Shutdown
-- uid: Speechly.SLUClient.IDecoder.StartContext
-  name: StartContext()
-  href: api/Speechly.SLUClient.IDecoder.html#Speechly_SLUClient_IDecoder_StartContext
-  commentId: M:Speechly.SLUClient.IDecoder.StartContext
-  fullName: Speechly.SLUClient.IDecoder.StartContext()
-  nameWithType: IDecoder.StartContext()
-- uid: Speechly.SLUClient.IDecoder.StartContext*
-  name: StartContext
-  href: api/Speechly.SLUClient.IDecoder.html#Speechly_SLUClient_IDecoder_StartContext_
-  commentId: Overload:Speechly.SLUClient.IDecoder.StartContext
-  isSpec: "True"
-  fullName: Speechly.SLUClient.IDecoder.StartContext
-  nameWithType: IDecoder.StartContext
-- uid: Speechly.SLUClient.IDecoder.StopContext
-  name: StopContext()
-  href: api/Speechly.SLUClient.IDecoder.html#Speechly_SLUClient_IDecoder_StopContext
-  commentId: M:Speechly.SLUClient.IDecoder.StopContext
-  fullName: Speechly.SLUClient.IDecoder.StopContext()
-  nameWithType: IDecoder.StopContext()
-- uid: Speechly.SLUClient.IDecoder.StopContext*
-  name: StopContext
-  href: api/Speechly.SLUClient.IDecoder.html#Speechly_SLUClient_IDecoder_StopContext_
-  commentId: Overload:Speechly.SLUClient.IDecoder.StopContext
-  isSpec: "True"
-  fullName: Speechly.SLUClient.IDecoder.StopContext
-  nameWithType: IDecoder.StopContext
-- uid: Speechly.SLUClient.IMsgCommonProps
-  name: IMsgCommonProps
-  href: api/Speechly.SLUClient.IMsgCommonProps.html
-  commentId: T:Speechly.SLUClient.IMsgCommonProps
-  fullName: Speechly.SLUClient.IMsgCommonProps
-  nameWithType: IMsgCommonProps
-- uid: Speechly.SLUClient.IMsgCommonProps.audio_context
-  name: audio_context
-  href: api/Speechly.SLUClient.IMsgCommonProps.html#Speechly_SLUClient_IMsgCommonProps_audio_context
-  commentId: P:Speechly.SLUClient.IMsgCommonProps.audio_context
-  fullName: Speechly.SLUClient.IMsgCommonProps.audio_context
-  nameWithType: IMsgCommonProps.audio_context
-- uid: Speechly.SLUClient.IMsgCommonProps.audio_context*
-  name: audio_context
-  href: api/Speechly.SLUClient.IMsgCommonProps.html#Speechly_SLUClient_IMsgCommonProps_audio_context_
-  commentId: Overload:Speechly.SLUClient.IMsgCommonProps.audio_context
-  isSpec: "True"
-  fullName: Speechly.SLUClient.IMsgCommonProps.audio_context
-  nameWithType: IMsgCommonProps.audio_context
-- uid: Speechly.SLUClient.IMsgCommonProps.segment_id
-  name: segment_id
-  href: api/Speechly.SLUClient.IMsgCommonProps.html#Speechly_SLUClient_IMsgCommonProps_segment_id
-  commentId: P:Speechly.SLUClient.IMsgCommonProps.segment_id
-  fullName: Speechly.SLUClient.IMsgCommonProps.segment_id
-  nameWithType: IMsgCommonProps.segment_id
-- uid: Speechly.SLUClient.IMsgCommonProps.segment_id*
-  name: segment_id
-  href: api/Speechly.SLUClient.IMsgCommonProps.html#Speechly_SLUClient_IMsgCommonProps_segment_id_
-  commentId: Overload:Speechly.SLUClient.IMsgCommonProps.segment_id
-  isSpec: "True"
-  fullName: Speechly.SLUClient.IMsgCommonProps.segment_id
-  nameWithType: IMsgCommonProps.segment_id
-- uid: Speechly.SLUClient.IMsgCommonProps.type
-  name: type
-  href: api/Speechly.SLUClient.IMsgCommonProps.html#Speechly_SLUClient_IMsgCommonProps_type
-  commentId: P:Speechly.SLUClient.IMsgCommonProps.type
-  fullName: Speechly.SLUClient.IMsgCommonProps.type
-  nameWithType: IMsgCommonProps.type
-- uid: Speechly.SLUClient.IMsgCommonProps.type*
-  name: type
-  href: api/Speechly.SLUClient.IMsgCommonProps.html#Speechly_SLUClient_IMsgCommonProps_type_
-  commentId: Overload:Speechly.SLUClient.IMsgCommonProps.type
-  isSpec: "True"
-  fullName: Speechly.SLUClient.IMsgCommonProps.type
-  nameWithType: IMsgCommonProps.type
-- uid: Speechly.SLUClient.Intent
-  name: Intent
-  href: api/Speechly.SLUClient.Intent.html
-  commentId: T:Speechly.SLUClient.Intent
-  fullName: Speechly.SLUClient.Intent
-  nameWithType: Intent
-- uid: Speechly.SLUClient.Intent.intent
-  name: intent
-  href: api/Speechly.SLUClient.Intent.html#Speechly_SLUClient_Intent_intent
-  commentId: F:Speechly.SLUClient.Intent.intent
-  fullName: Speechly.SLUClient.Intent.intent
-  nameWithType: Intent.intent
-- uid: Speechly.SLUClient.Intent.isFinal
-  name: isFinal
-  href: api/Speechly.SLUClient.Intent.html#Speechly_SLUClient_Intent_isFinal
-  commentId: F:Speechly.SLUClient.Intent.isFinal
-  fullName: Speechly.SLUClient.Intent.isFinal
-  nameWithType: Intent.isFinal
-- uid: Speechly.SLUClient.IntentFormatter
-  name: IntentFormatter
-  href: api/Speechly.SLUClient.IntentFormatter.html
-  commentId: T:Speechly.SLUClient.IntentFormatter
-  fullName: Speechly.SLUClient.IntentFormatter
-  nameWithType: IntentFormatter
-- uid: Speechly.SLUClient.JSON
-  name: JSON
-  href: api/Speechly.SLUClient.JSON.html
-  commentId: T:Speechly.SLUClient.JSON
-  fullName: Speechly.SLUClient.JSON
-  nameWithType: JSON
-- uid: Speechly.SLUClient.JSON.Parse*
-  name: Parse
-  href: api/Speechly.SLUClient.JSON.html#Speechly_SLUClient_JSON_Parse_
-  commentId: Overload:Speechly.SLUClient.JSON.Parse
-  isSpec: "True"
-  fullName: Speechly.SLUClient.JSON.Parse
-  nameWithType: JSON.Parse
-- uid: Speechly.SLUClient.JSON.Parse``1(System.String,``0)
-  name: Parse<T>(String, T)
-  href: api/Speechly.SLUClient.JSON.html#Speechly_SLUClient_JSON_Parse__1_System_String___0_
-  commentId: M:Speechly.SLUClient.JSON.Parse``1(System.String,``0)
-  name.vb: Parse(Of T)(String, T)
-  fullName: Speechly.SLUClient.JSON.Parse<T>(System.String, T)
-  fullName.vb: Speechly.SLUClient.JSON.Parse(Of T)(System.String, T)
-  nameWithType: JSON.Parse<T>(String, T)
-  nameWithType.vb: JSON.Parse(Of T)(String, T)
-- uid: Speechly.SLUClient.JSON.ParseFromStream*
-  name: ParseFromStream
-  href: api/Speechly.SLUClient.JSON.html#Speechly_SLUClient_JSON_ParseFromStream_
-  commentId: Overload:Speechly.SLUClient.JSON.ParseFromStream
-  isSpec: "True"
-  fullName: Speechly.SLUClient.JSON.ParseFromStream
-  nameWithType: JSON.ParseFromStream
-- uid: Speechly.SLUClient.JSON.ParseFromStream``1(Stream,``0)
-  name: ParseFromStream<T>(Stream, T)
-  href: api/Speechly.SLUClient.JSON.html#Speechly_SLUClient_JSON_ParseFromStream__1_Stream___0_
-  commentId: M:Speechly.SLUClient.JSON.ParseFromStream``1(Stream,``0)
-  name.vb: ParseFromStream(Of T)(Stream, T)
-  fullName: Speechly.SLUClient.JSON.ParseFromStream<T>(Stream, T)
-  fullName.vb: Speechly.SLUClient.JSON.ParseFromStream(Of T)(Stream, T)
-  nameWithType: JSON.ParseFromStream<T>(Stream, T)
-  nameWithType.vb: JSON.ParseFromStream(Of T)(Stream, T)
-- uid: Speechly.SLUClient.JSON.Stringify*
-  name: Stringify
-  href: api/Speechly.SLUClient.JSON.html#Speechly_SLUClient_JSON_Stringify_
-  commentId: Overload:Speechly.SLUClient.JSON.Stringify
-  isSpec: "True"
-  fullName: Speechly.SLUClient.JSON.Stringify
-  nameWithType: JSON.Stringify
-- uid: Speechly.SLUClient.JSON.Stringify``1(``0)
-  name: Stringify<T>(T)
-  href: api/Speechly.SLUClient.JSON.html#Speechly_SLUClient_JSON_Stringify__1___0_
-  commentId: M:Speechly.SLUClient.JSON.Stringify``1(``0)
-  name.vb: Stringify(Of T)(T)
-  fullName: Speechly.SLUClient.JSON.Stringify<T>(T)
-  fullName.vb: Speechly.SLUClient.JSON.Stringify(Of T)(T)
-  nameWithType: JSON.Stringify<T>(T)
-  nameWithType.vb: JSON.Stringify(Of T)(T)
-- uid: Speechly.SLUClient.JSON.StringifyToStream*
-  name: StringifyToStream
-  href: api/Speechly.SLUClient.JSON.html#Speechly_SLUClient_JSON_StringifyToStream_
-  commentId: Overload:Speechly.SLUClient.JSON.StringifyToStream
-  isSpec: "True"
-  fullName: Speechly.SLUClient.JSON.StringifyToStream
-  nameWithType: JSON.StringifyToStream
-- uid: Speechly.SLUClient.JSON.StringifyToStream``1(``0)
-  name: StringifyToStream<T>(T)
-  href: api/Speechly.SLUClient.JSON.html#Speechly_SLUClient_JSON_StringifyToStream__1___0_
-  commentId: M:Speechly.SLUClient.JSON.StringifyToStream``1(``0)
-  name.vb: StringifyToStream(Of T)(T)
-  fullName: Speechly.SLUClient.JSON.StringifyToStream<T>(T)
-  fullName.vb: Speechly.SLUClient.JSON.StringifyToStream(Of T)(T)
-  nameWithType: JSON.StringifyToStream<T>(T)
-  nameWithType.vb: JSON.StringifyToStream(Of T)(T)
-- uid: Speechly.SLUClient.Logger
-  name: Logger
-  href: api/Speechly.SLUClient.Logger.html
-  commentId: T:Speechly.SLUClient.Logger
-  fullName: Speechly.SLUClient.Logger
-  nameWithType: Logger
-- uid: Speechly.SLUClient.Logger.Log
-  name: Log
-  href: api/Speechly.SLUClient.Logger.html#Speechly_SLUClient_Logger_Log
-  commentId: F:Speechly.SLUClient.Logger.Log
-  fullName: Speechly.SLUClient.Logger.Log
-  nameWithType: Logger.Log
-- uid: Speechly.SLUClient.Logger.LogError
-  name: LogError
-  href: api/Speechly.SLUClient.Logger.html#Speechly_SLUClient_Logger_LogError
-  commentId: F:Speechly.SLUClient.Logger.LogError
-  fullName: Speechly.SLUClient.Logger.LogError
-  nameWithType: Logger.LogError
-- uid: Speechly.SLUClient.Logger.LoggerDelegate
-  name: Logger.LoggerDelegate
-  href: api/Speechly.SLUClient.Logger.LoggerDelegate.html
-  commentId: T:Speechly.SLUClient.Logger.LoggerDelegate
-  fullName: Speechly.SLUClient.Logger.LoggerDelegate
-  nameWithType: Logger.LoggerDelegate
-- uid: Speechly.SLUClient.MsgCommon
-  name: MsgCommon
-  href: api/Speechly.SLUClient.MsgCommon.html
-  commentId: T:Speechly.SLUClient.MsgCommon
-  fullName: Speechly.SLUClient.MsgCommon
-  nameWithType: MsgCommon
-- uid: Speechly.SLUClient.MsgCommon.audio_context
-  name: audio_context
-  href: api/Speechly.SLUClient.MsgCommon.html#Speechly_SLUClient_MsgCommon_audio_context
-  commentId: P:Speechly.SLUClient.MsgCommon.audio_context
-  fullName: Speechly.SLUClient.MsgCommon.audio_context
-  nameWithType: MsgCommon.audio_context
-- uid: Speechly.SLUClient.MsgCommon.audio_context*
-  name: audio_context
-  href: api/Speechly.SLUClient.MsgCommon.html#Speechly_SLUClient_MsgCommon_audio_context_
-  commentId: Overload:Speechly.SLUClient.MsgCommon.audio_context
-  isSpec: "True"
-  fullName: Speechly.SLUClient.MsgCommon.audio_context
-  nameWithType: MsgCommon.audio_context
-- uid: Speechly.SLUClient.MsgCommon.segment_id
-  name: segment_id
-  href: api/Speechly.SLUClient.MsgCommon.html#Speechly_SLUClient_MsgCommon_segment_id
-  commentId: P:Speechly.SLUClient.MsgCommon.segment_id
-  fullName: Speechly.SLUClient.MsgCommon.segment_id
-  nameWithType: MsgCommon.segment_id
-- uid: Speechly.SLUClient.MsgCommon.segment_id*
-  name: segment_id
-  href: api/Speechly.SLUClient.MsgCommon.html#Speechly_SLUClient_MsgCommon_segment_id_
-  commentId: Overload:Speechly.SLUClient.MsgCommon.segment_id
-  isSpec: "True"
-  fullName: Speechly.SLUClient.MsgCommon.segment_id
-  nameWithType: MsgCommon.segment_id
-- uid: Speechly.SLUClient.MsgCommon.type
-  name: type
-  href: api/Speechly.SLUClient.MsgCommon.html#Speechly_SLUClient_MsgCommon_type
-  commentId: P:Speechly.SLUClient.MsgCommon.type
-  fullName: Speechly.SLUClient.MsgCommon.type
-  nameWithType: MsgCommon.type
-- uid: Speechly.SLUClient.MsgCommon.type*
-  name: type
-  href: api/Speechly.SLUClient.MsgCommon.html#Speechly_SLUClient_MsgCommon_type_
-  commentId: Overload:Speechly.SLUClient.MsgCommon.type
-  isSpec: "True"
-  fullName: Speechly.SLUClient.MsgCommon.type
-  nameWithType: MsgCommon.type
-- uid: Speechly.SLUClient.MsgEntity
-  name: MsgEntity
-  href: api/Speechly.SLUClient.MsgEntity.html
-  commentId: T:Speechly.SLUClient.MsgEntity
-  fullName: Speechly.SLUClient.MsgEntity
-  nameWithType: MsgEntity
-- uid: Speechly.SLUClient.MsgEntity.data
-  name: data
-  href: api/Speechly.SLUClient.MsgEntity.html#Speechly_SLUClient_MsgEntity_data
-  commentId: F:Speechly.SLUClient.MsgEntity.data
-  fullName: Speechly.SLUClient.MsgEntity.data
-  nameWithType: MsgEntity.data
-- uid: Speechly.SLUClient.MsgIntent
-  name: MsgIntent
-  href: api/Speechly.SLUClient.MsgIntent.html
-  commentId: T:Speechly.SLUClient.MsgIntent
-  fullName: Speechly.SLUClient.MsgIntent
-  nameWithType: MsgIntent
-- uid: Speechly.SLUClient.MsgIntent.data
-  name: data
-  href: api/Speechly.SLUClient.MsgIntent.html#Speechly_SLUClient_MsgIntent_data
-  commentId: F:Speechly.SLUClient.MsgIntent.data
-  fullName: Speechly.SLUClient.MsgIntent.data
-  nameWithType: MsgIntent.data
-- uid: Speechly.SLUClient.MsgIntent.Data
-  name: MsgIntent.Data
-  href: api/Speechly.SLUClient.MsgIntent.Data.html
-  commentId: T:Speechly.SLUClient.MsgIntent.Data
-  fullName: Speechly.SLUClient.MsgIntent.Data
-  nameWithType: MsgIntent.Data
-- uid: Speechly.SLUClient.MsgIntent.Data.intent
-  name: intent
-  href: api/Speechly.SLUClient.MsgIntent.Data.html#Speechly_SLUClient_MsgIntent_Data_intent
-  commentId: F:Speechly.SLUClient.MsgIntent.Data.intent
-  fullName: Speechly.SLUClient.MsgIntent.Data.intent
-  nameWithType: MsgIntent.Data.intent
-- uid: Speechly.SLUClient.MsgTentativeEntity
-  name: MsgTentativeEntity
-  href: api/Speechly.SLUClient.MsgTentativeEntity.html
-  commentId: T:Speechly.SLUClient.MsgTentativeEntity
-  fullName: Speechly.SLUClient.MsgTentativeEntity
-  nameWithType: MsgTentativeEntity
-- uid: Speechly.SLUClient.MsgTentativeEntity.data
-  name: data
-  href: api/Speechly.SLUClient.MsgTentativeEntity.html#Speechly_SLUClient_MsgTentativeEntity_data
-  commentId: F:Speechly.SLUClient.MsgTentativeEntity.data
-  fullName: Speechly.SLUClient.MsgTentativeEntity.data
-  nameWithType: MsgTentativeEntity.data
-- uid: Speechly.SLUClient.MsgTentativeEntity.Data
-  name: MsgTentativeEntity.Data
-  href: api/Speechly.SLUClient.MsgTentativeEntity.Data.html
-  commentId: T:Speechly.SLUClient.MsgTentativeEntity.Data
-  fullName: Speechly.SLUClient.MsgTentativeEntity.Data
-  nameWithType: MsgTentativeEntity.Data
-- uid: Speechly.SLUClient.MsgTentativeEntity.Data.entities
-  name: entities
-  href: api/Speechly.SLUClient.MsgTentativeEntity.Data.html#Speechly_SLUClient_MsgTentativeEntity_Data_entities
-  commentId: F:Speechly.SLUClient.MsgTentativeEntity.Data.entities
-  fullName: Speechly.SLUClient.MsgTentativeEntity.Data.entities
-  nameWithType: MsgTentativeEntity.Data.entities
-- uid: Speechly.SLUClient.MsgTentativeTranscript
-  name: MsgTentativeTranscript
-  href: api/Speechly.SLUClient.MsgTentativeTranscript.html
-  commentId: T:Speechly.SLUClient.MsgTentativeTranscript
-  fullName: Speechly.SLUClient.MsgTentativeTranscript
-  nameWithType: MsgTentativeTranscript
-- uid: Speechly.SLUClient.MsgTentativeTranscript.data
-  name: data
-  href: api/Speechly.SLUClient.MsgTentativeTranscript.html#Speechly_SLUClient_MsgTentativeTranscript_data
-  commentId: F:Speechly.SLUClient.MsgTentativeTranscript.data
-  fullName: Speechly.SLUClient.MsgTentativeTranscript.data
-  nameWithType: MsgTentativeTranscript.data
-- uid: Speechly.SLUClient.MsgTentativeTranscript.Data
-  name: MsgTentativeTranscript.Data
-  href: api/Speechly.SLUClient.MsgTentativeTranscript.Data.html
-  commentId: T:Speechly.SLUClient.MsgTentativeTranscript.Data
-  fullName: Speechly.SLUClient.MsgTentativeTranscript.Data
-  nameWithType: MsgTentativeTranscript.Data
-- uid: Speechly.SLUClient.MsgTentativeTranscript.Data.transcript
-  name: transcript
-  href: api/Speechly.SLUClient.MsgTentativeTranscript.Data.html#Speechly_SLUClient_MsgTentativeTranscript_Data_transcript
-  commentId: F:Speechly.SLUClient.MsgTentativeTranscript.Data.transcript
-  fullName: Speechly.SLUClient.MsgTentativeTranscript.Data.transcript
-  nameWithType: MsgTentativeTranscript.Data.transcript
-- uid: Speechly.SLUClient.MsgTentativeTranscript.Data.words
-  name: words
-  href: api/Speechly.SLUClient.MsgTentativeTranscript.Data.html#Speechly_SLUClient_MsgTentativeTranscript_Data_words
-  commentId: F:Speechly.SLUClient.MsgTentativeTranscript.Data.words
-  fullName: Speechly.SLUClient.MsgTentativeTranscript.Data.words
-  nameWithType: MsgTentativeTranscript.Data.words
-- uid: Speechly.SLUClient.MsgTranscript
-  name: MsgTranscript
-  href: api/Speechly.SLUClient.MsgTranscript.html
-  commentId: T:Speechly.SLUClient.MsgTranscript
-  fullName: Speechly.SLUClient.MsgTranscript
-  nameWithType: MsgTranscript
-- uid: Speechly.SLUClient.MsgTranscript.data
-  name: data
-  href: api/Speechly.SLUClient.MsgTranscript.html#Speechly_SLUClient_MsgTranscript_data
-  commentId: F:Speechly.SLUClient.MsgTranscript.data
-  fullName: Speechly.SLUClient.MsgTranscript.data
-  nameWithType: MsgTranscript.data
-- uid: Speechly.SLUClient.Platform
-  name: Platform
-  href: api/Speechly.SLUClient.Platform.html
-  commentId: T:Speechly.SLUClient.Platform
-  fullName: Speechly.SLUClient.Platform
-  nameWithType: Platform
-- uid: Speechly.SLUClient.Platform.Fetch(System.String)
-  name: Fetch(String)
-  href: api/Speechly.SLUClient.Platform.html#Speechly_SLUClient_Platform_Fetch_System_String_
-  commentId: M:Speechly.SLUClient.Platform.Fetch(System.String)
-  fullName: Speechly.SLUClient.Platform.Fetch(System.String)
-  nameWithType: Platform.Fetch(String)
-- uid: Speechly.SLUClient.Platform.Fetch*
-  name: Fetch
-  href: api/Speechly.SLUClient.Platform.html#Speechly_SLUClient_Platform_Fetch_
-  commentId: Overload:Speechly.SLUClient.Platform.Fetch
-  isSpec: "True"
-  fullName: Speechly.SLUClient.Platform.Fetch
-  nameWithType: Platform.Fetch
-- uid: Speechly.SLUClient.Platform.GetDeviceId(System.String)
-  name: GetDeviceId(String)
-  href: api/Speechly.SLUClient.Platform.html#Speechly_SLUClient_Platform_GetDeviceId_System_String_
-  commentId: M:Speechly.SLUClient.Platform.GetDeviceId(System.String)
-  fullName: Speechly.SLUClient.Platform.GetDeviceId(System.String)
-  nameWithType: Platform.GetDeviceId(String)
-- uid: Speechly.SLUClient.Platform.GetDeviceId*
-  name: GetDeviceId
-  href: api/Speechly.SLUClient.Platform.html#Speechly_SLUClient_Platform_GetDeviceId_
-  commentId: Overload:Speechly.SLUClient.Platform.GetDeviceId
-  isSpec: "True"
-  fullName: Speechly.SLUClient.Platform.GetDeviceId
-  nameWithType: Platform.GetDeviceId
-- uid: Speechly.SLUClient.Platform.GetPersistentStoragePath
-  name: GetPersistentStoragePath()
-  href: api/Speechly.SLUClient.Platform.html#Speechly_SLUClient_Platform_GetPersistentStoragePath
-  commentId: M:Speechly.SLUClient.Platform.GetPersistentStoragePath
-  fullName: Speechly.SLUClient.Platform.GetPersistentStoragePath()
-  nameWithType: Platform.GetPersistentStoragePath()
-- uid: Speechly.SLUClient.Platform.GetPersistentStoragePath*
-  name: GetPersistentStoragePath
-  href: api/Speechly.SLUClient.Platform.html#Speechly_SLUClient_Platform_GetPersistentStoragePath_
-  commentId: Overload:Speechly.SLUClient.Platform.GetPersistentStoragePath
-  isSpec: "True"
-  fullName: Speechly.SLUClient.Platform.GetPersistentStoragePath
-  nameWithType: Platform.GetPersistentStoragePath
-- uid: Speechly.SLUClient.Platform.GuidFromString(System.String)
-  name: GuidFromString(String)
-  href: api/Speechly.SLUClient.Platform.html#Speechly_SLUClient_Platform_GuidFromString_System_String_
-  commentId: M:Speechly.SLUClient.Platform.GuidFromString(System.String)
-  fullName: Speechly.SLUClient.Platform.GuidFromString(System.String)
-  nameWithType: Platform.GuidFromString(String)
-- uid: Speechly.SLUClient.Platform.GuidFromString*
-  name: GuidFromString
-  href: api/Speechly.SLUClient.Platform.html#Speechly_SLUClient_Platform_GuidFromString_
-  commentId: Overload:Speechly.SLUClient.Platform.GuidFromString
-  isSpec: "True"
-  fullName: Speechly.SLUClient.Platform.GuidFromString
-  nameWithType: Platform.GuidFromString
-- uid: Speechly.SLUClient.Preferences
-  name: Preferences
-  href: api/Speechly.SLUClient.Preferences.html
-  commentId: T:Speechly.SLUClient.Preferences
-  fullName: Speechly.SLUClient.Preferences
-  nameWithType: Preferences
-- uid: Speechly.SLUClient.Preferences.deviceId
-  name: deviceId
-  href: api/Speechly.SLUClient.Preferences.html#Speechly_SLUClient_Preferences_deviceId
-  commentId: F:Speechly.SLUClient.Preferences.deviceId
-  fullName: Speechly.SLUClient.Preferences.deviceId
-  nameWithType: Preferences.deviceId
-- uid: Speechly.SLUClient.Preferences.FileName
-  name: FileName
-  href: api/Speechly.SLUClient.Preferences.html#Speechly_SLUClient_Preferences_FileName
-  commentId: F:Speechly.SLUClient.Preferences.FileName
-  fullName: Speechly.SLUClient.Preferences.FileName
-  nameWithType: Preferences.FileName
-- uid: Speechly.SLUClient.ProjectTokenRequest
-  name: ProjectTokenRequest
-  href: api/Speechly.SLUClient.ProjectTokenRequest.html
-  commentId: T:Speechly.SLUClient.ProjectTokenRequest
-  fullName: Speechly.SLUClient.ProjectTokenRequest
-  nameWithType: ProjectTokenRequest
-- uid: Speechly.SLUClient.ProjectTokenRequest.deviceId
-  name: deviceId
-  href: api/Speechly.SLUClient.ProjectTokenRequest.html#Speechly_SLUClient_ProjectTokenRequest_deviceId
-  commentId: F:Speechly.SLUClient.ProjectTokenRequest.deviceId
-  fullName: Speechly.SLUClient.ProjectTokenRequest.deviceId
-  nameWithType: ProjectTokenRequest.deviceId
-- uid: Speechly.SLUClient.ProjectTokenRequest.projectId
-  name: projectId
-  href: api/Speechly.SLUClient.ProjectTokenRequest.html#Speechly_SLUClient_ProjectTokenRequest_projectId
-  commentId: F:Speechly.SLUClient.ProjectTokenRequest.projectId
-  fullName: Speechly.SLUClient.ProjectTokenRequest.projectId
-  nameWithType: ProjectTokenRequest.projectId
-- uid: Speechly.SLUClient.ResponseReceivedDelegate
-  name: ResponseReceivedDelegate
-  href: api/Speechly.SLUClient.ResponseReceivedDelegate.html
-  commentId: T:Speechly.SLUClient.ResponseReceivedDelegate
-  fullName: Speechly.SLUClient.ResponseReceivedDelegate
-  nameWithType: ResponseReceivedDelegate
 - uid: Speechly.SLUClient.Segment
   name: Segment
   href: api/Speechly.SLUClient.Segment.html
@@ -953,12 +215,12 @@ references:
   commentId: M:Speechly.SLUClient.Segment.ToString
   fullName: Speechly.SLUClient.Segment.ToString()
   nameWithType: Segment.ToString()
-- uid: Speechly.SLUClient.Segment.ToString(Speechly.SLUClient.IntentFormatter,Speechly.SLUClient.EntityFormatter,System.String)
-  name: ToString(IntentFormatter, EntityFormatter, String)
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_ToString_Speechly_SLUClient_IntentFormatter_Speechly_SLUClient_EntityFormatter_System_String_
-  commentId: M:Speechly.SLUClient.Segment.ToString(Speechly.SLUClient.IntentFormatter,Speechly.SLUClient.EntityFormatter,System.String)
-  fullName: Speechly.SLUClient.Segment.ToString(Speechly.SLUClient.IntentFormatter, Speechly.SLUClient.EntityFormatter, System.String)
-  nameWithType: Segment.ToString(IntentFormatter, EntityFormatter, String)
+- uid: Speechly.SLUClient.Segment.ToString(Speechly.Types.BeautifyIntent,Speechly.Types.BeautifyEntity,System.String)
+  name: ToString(BeautifyIntent, BeautifyEntity, String)
+  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_ToString_Speechly_Types_BeautifyIntent_Speechly_Types_BeautifyEntity_System_String_
+  commentId: M:Speechly.SLUClient.Segment.ToString(Speechly.Types.BeautifyIntent,Speechly.Types.BeautifyEntity,System.String)
+  fullName: Speechly.SLUClient.Segment.ToString(Speechly.Types.BeautifyIntent, Speechly.Types.BeautifyEntity, System.String)
+  nameWithType: Segment.ToString(BeautifyIntent, BeautifyEntity, String)
 - uid: Speechly.SLUClient.Segment.ToString*
   name: ToString
   href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_ToString_
@@ -966,19 +228,19 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.Segment.ToString
   nameWithType: Segment.ToString
-- uid: Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity)
+- uid: Speechly.SLUClient.Segment.UpdateEntity(Speechly.Types.Entity)
   name: UpdateEntity(Entity)
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateEntity_Speechly_SLUClient_Entity_
-  commentId: M:Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity)
-  fullName: Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity)
+  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateEntity_Speechly_Types_Entity_
+  commentId: M:Speechly.SLUClient.Segment.UpdateEntity(Speechly.Types.Entity)
+  fullName: Speechly.SLUClient.Segment.UpdateEntity(Speechly.Types.Entity)
   nameWithType: Segment.UpdateEntity(Entity)
-- uid: Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity[])
+- uid: Speechly.SLUClient.Segment.UpdateEntity(Speechly.Types.Entity[])
   name: UpdateEntity(Entity[])
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateEntity_Speechly_SLUClient_Entity___
-  commentId: M:Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity[])
+  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateEntity_Speechly_Types_Entity___
+  commentId: M:Speechly.SLUClient.Segment.UpdateEntity(Speechly.Types.Entity[])
   name.vb: UpdateEntity(Entity())
-  fullName: Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity[])
-  fullName.vb: Speechly.SLUClient.Segment.UpdateEntity(Speechly.SLUClient.Entity())
+  fullName: Speechly.SLUClient.Segment.UpdateEntity(Speechly.Types.Entity[])
+  fullName.vb: Speechly.SLUClient.Segment.UpdateEntity(Speechly.Types.Entity())
   nameWithType: Segment.UpdateEntity(Entity[])
   nameWithType.vb: Segment.UpdateEntity(Entity())
 - uid: Speechly.SLUClient.Segment.UpdateEntity*
@@ -1001,19 +263,19 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.Segment.UpdateIntent
   nameWithType: Segment.UpdateIntent
-- uid: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word)
+- uid: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.Types.Word)
   name: UpdateTranscript(Word)
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateTranscript_Speechly_SLUClient_Word_
-  commentId: M:Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word)
-  fullName: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word)
+  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateTranscript_Speechly_Types_Word_
+  commentId: M:Speechly.SLUClient.Segment.UpdateTranscript(Speechly.Types.Word)
+  fullName: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.Types.Word)
   nameWithType: Segment.UpdateTranscript(Word)
-- uid: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word[])
+- uid: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.Types.Word[])
   name: UpdateTranscript(Word[])
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateTranscript_Speechly_SLUClient_Word___
-  commentId: M:Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word[])
+  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateTranscript_Speechly_Types_Word___
+  commentId: M:Speechly.SLUClient.Segment.UpdateTranscript(Speechly.Types.Word[])
   name.vb: UpdateTranscript(Word())
-  fullName: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word[])
-  fullName.vb: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.SLUClient.Word())
+  fullName: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.Types.Word[])
+  fullName.vb: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.Types.Word())
   nameWithType: Segment.UpdateTranscript(Word[])
   nameWithType.vb: Segment.UpdateTranscript(Word())
 - uid: Speechly.SLUClient.Segment.UpdateTranscript*
@@ -1029,37 +291,6 @@ references:
   commentId: F:Speechly.SLUClient.Segment.words
   fullName: Speechly.SLUClient.Segment.words
   nameWithType: Segment.words
-- uid: Speechly.SLUClient.SegmentMessage
-  name: SegmentMessage
-  href: api/Speechly.SLUClient.SegmentMessage.html
-  commentId: T:Speechly.SLUClient.SegmentMessage
-  fullName: Speechly.SLUClient.SegmentMessage
-  nameWithType: SegmentMessage
-- uid: Speechly.SLUClient.SegmentMessage.#ctor(Speechly.SLUClient.MsgCommon,System.String)
-  name: SegmentMessage(MsgCommon, String)
-  href: api/Speechly.SLUClient.SegmentMessage.html#Speechly_SLUClient_SegmentMessage__ctor_Speechly_SLUClient_MsgCommon_System_String_
-  commentId: M:Speechly.SLUClient.SegmentMessage.#ctor(Speechly.SLUClient.MsgCommon,System.String)
-  fullName: Speechly.SLUClient.SegmentMessage.SegmentMessage(Speechly.SLUClient.MsgCommon, System.String)
-  nameWithType: SegmentMessage.SegmentMessage(MsgCommon, String)
-- uid: Speechly.SLUClient.SegmentMessage.#ctor*
-  name: SegmentMessage
-  href: api/Speechly.SLUClient.SegmentMessage.html#Speechly_SLUClient_SegmentMessage__ctor_
-  commentId: Overload:Speechly.SLUClient.SegmentMessage.#ctor
-  isSpec: "True"
-  fullName: Speechly.SLUClient.SegmentMessage.SegmentMessage
-  nameWithType: SegmentMessage.SegmentMessage
-- uid: Speechly.SLUClient.SegmentMessage.msgCommon
-  name: msgCommon
-  href: api/Speechly.SLUClient.SegmentMessage.html#Speechly_SLUClient_SegmentMessage_msgCommon
-  commentId: F:Speechly.SLUClient.SegmentMessage.msgCommon
-  fullName: Speechly.SLUClient.SegmentMessage.msgCommon
-  nameWithType: SegmentMessage.msgCommon
-- uid: Speechly.SLUClient.SegmentMessage.msgString
-  name: msgString
-  href: api/Speechly.SLUClient.SegmentMessage.html#Speechly_SLUClient_SegmentMessage_msgString
-  commentId: F:Speechly.SLUClient.SegmentMessage.msgString
-  fullName: Speechly.SLUClient.SegmentMessage.msgString
-  nameWithType: SegmentMessage.msgString
 - uid: Speechly.SLUClient.SpeechlyClient
   name: SpeechlyClient
   href: api/Speechly.SLUClient.SpeechlyClient.html
@@ -1092,12 +323,6 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier
   nameWithType: SpeechlyClient.AudioInputStreamIdentifier
-- uid: Speechly.SLUClient.SpeechlyClient.EntityDelegate
-  name: SpeechlyClient.EntityDelegate
-  href: api/Speechly.SLUClient.SpeechlyClient.EntityDelegate.html
-  commentId: T:Speechly.SLUClient.SpeechlyClient.EntityDelegate
-  fullName: Speechly.SLUClient.SpeechlyClient.EntityDelegate
-  nameWithType: SpeechlyClient.EntityDelegate
 - uid: Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)
   name: Initialize(IDecoder)
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_
@@ -1111,12 +336,6 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.Initialize
   nameWithType: SpeechlyClient.Initialize
-- uid: Speechly.SLUClient.SpeechlyClient.IntentDelegate
-  name: SpeechlyClient.IntentDelegate
-  href: api/Speechly.SLUClient.SpeechlyClient.IntentDelegate.html
-  commentId: T:Speechly.SLUClient.SpeechlyClient.IntentDelegate
-  fullName: Speechly.SLUClient.SpeechlyClient.IntentDelegate
-  nameWithType: SpeechlyClient.IntentDelegate
 - uid: Speechly.SLUClient.SpeechlyClient.IsAudioStreaming
   name: IsAudioStreaming
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_IsAudioStreaming
@@ -1270,12 +489,6 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.SamplesSent
   nameWithType: SpeechlyClient.SamplesSent
-- uid: Speechly.SLUClient.SpeechlyClient.SegmentChangeDelegate
-  name: SpeechlyClient.SegmentChangeDelegate
-  href: api/Speechly.SLUClient.SpeechlyClient.SegmentChangeDelegate.html
-  commentId: T:Speechly.SLUClient.SpeechlyClient.SegmentChangeDelegate
-  fullName: Speechly.SLUClient.SpeechlyClient.SegmentChangeDelegate
-  nameWithType: SpeechlyClient.SegmentChangeDelegate
 - uid: Speechly.SLUClient.SpeechlyClient.Shutdown
   name: Shutdown()
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Shutdown
@@ -1302,12 +515,6 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.StartContext
   nameWithType: SpeechlyClient.StartContext
-- uid: Speechly.SLUClient.SpeechlyClient.StartContextDelegate
-  name: SpeechlyClient.StartContextDelegate
-  href: api/Speechly.SLUClient.SpeechlyClient.StartContextDelegate.html
-  commentId: T:Speechly.SLUClient.SpeechlyClient.StartContextDelegate
-  fullName: Speechly.SLUClient.SpeechlyClient.StartContextDelegate
-  nameWithType: SpeechlyClient.StartContextDelegate
 - uid: Speechly.SLUClient.SpeechlyClient.StartStream(System.String,System.Boolean)
   name: StartStream(String, Boolean)
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StartStream_System_String_System_Boolean_
@@ -1321,12 +528,6 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.StartStream
   nameWithType: SpeechlyClient.StartStream
-- uid: Speechly.SLUClient.SpeechlyClient.StartStreamDelegate
-  name: SpeechlyClient.StartStreamDelegate
-  href: api/Speechly.SLUClient.SpeechlyClient.StartStreamDelegate.html
-  commentId: T:Speechly.SLUClient.SpeechlyClient.StartStreamDelegate
-  fullName: Speechly.SLUClient.SpeechlyClient.StartStreamDelegate
-  nameWithType: SpeechlyClient.StartStreamDelegate
 - uid: Speechly.SLUClient.SpeechlyClient.StopContext
   name: StopContext()
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StopContext
@@ -1340,12 +541,6 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.StopContext
   nameWithType: SpeechlyClient.StopContext
-- uid: Speechly.SLUClient.SpeechlyClient.StopContextDelegate
-  name: SpeechlyClient.StopContextDelegate
-  href: api/Speechly.SLUClient.SpeechlyClient.StopContextDelegate.html
-  commentId: T:Speechly.SLUClient.SpeechlyClient.StopContextDelegate
-  fullName: Speechly.SLUClient.SpeechlyClient.StopContextDelegate
-  nameWithType: SpeechlyClient.StopContextDelegate
 - uid: Speechly.SLUClient.SpeechlyClient.StopStream(System.Boolean)
   name: StopStream(Boolean)
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StopStream_System_Boolean_
@@ -1359,12 +554,6 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.StopStream
   nameWithType: SpeechlyClient.StopStream
-- uid: Speechly.SLUClient.SpeechlyClient.StopStreamDelegate
-  name: SpeechlyClient.StopStreamDelegate
-  href: api/Speechly.SLUClient.SpeechlyClient.StopStreamDelegate.html
-  commentId: T:Speechly.SLUClient.SpeechlyClient.StopStreamDelegate
-  fullName: Speechly.SLUClient.SpeechlyClient.StopStreamDelegate
-  nameWithType: SpeechlyClient.StopStreamDelegate
 - uid: Speechly.SLUClient.SpeechlyClient.StreamSamplePos
   name: StreamSamplePos
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StreamSamplePos
@@ -1378,24 +567,6 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.StreamSamplePos
   nameWithType: SpeechlyClient.StreamSamplePos
-- uid: Speechly.SLUClient.SpeechlyClient.TentativeEntityDelegate
-  name: SpeechlyClient.TentativeEntityDelegate
-  href: api/Speechly.SLUClient.SpeechlyClient.TentativeEntityDelegate.html
-  commentId: T:Speechly.SLUClient.SpeechlyClient.TentativeEntityDelegate
-  fullName: Speechly.SLUClient.SpeechlyClient.TentativeEntityDelegate
-  nameWithType: SpeechlyClient.TentativeEntityDelegate
-- uid: Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate
-  name: SpeechlyClient.TentativeTranscriptDelegate
-  href: api/Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate.html
-  commentId: T:Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate
-  fullName: Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate
-  nameWithType: SpeechlyClient.TentativeTranscriptDelegate
-- uid: Speechly.SLUClient.SpeechlyClient.TranscriptDelegate
-  name: SpeechlyClient.TranscriptDelegate
-  href: api/Speechly.SLUClient.SpeechlyClient.TranscriptDelegate.html
-  commentId: T:Speechly.SLUClient.SpeechlyClient.TranscriptDelegate
-  fullName: Speechly.SLUClient.SpeechlyClient.TranscriptDelegate
-  nameWithType: SpeechlyClient.TranscriptDelegate
 - uid: Speechly.SLUClient.SpeechlyClient.Update
   name: Update()
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Update
@@ -1435,182 +606,683 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.Vad
   nameWithType: SpeechlyClient.Vad
-- uid: Speechly.SLUClient.SpeechlyClientTest
-  name: SpeechlyClientTest
-  href: api/Speechly.SLUClient.SpeechlyClientTest.html
-  commentId: T:Speechly.SLUClient.SpeechlyClientTest
-  fullName: Speechly.SLUClient.SpeechlyClientTest
-  nameWithType: SpeechlyClientTest
-- uid: Speechly.SLUClient.SpeechlyClientTest.SplitWithVAD(System.String,System.String,System.String)
-  name: SplitWithVAD(String, String, String)
-  href: api/Speechly.SLUClient.SpeechlyClientTest.html#Speechly_SLUClient_SpeechlyClientTest_SplitWithVAD_System_String_System_String_System_String_
-  commentId: M:Speechly.SLUClient.SpeechlyClientTest.SplitWithVAD(System.String,System.String,System.String)
-  fullName: Speechly.SLUClient.SpeechlyClientTest.SplitWithVAD(System.String, System.String, System.String)
-  nameWithType: SpeechlyClientTest.SplitWithVAD(String, String, String)
-- uid: Speechly.SLUClient.SpeechlyClientTest.SplitWithVAD*
-  name: SplitWithVAD
-  href: api/Speechly.SLUClient.SpeechlyClientTest.html#Speechly_SLUClient_SpeechlyClientTest_SplitWithVAD_
-  commentId: Overload:Speechly.SLUClient.SpeechlyClientTest.SplitWithVAD
+- uid: Speechly.Tools
+  name: Speechly.Tools
+  href: api/Speechly.Tools.html
+  commentId: N:Speechly.Tools
+  fullName: Speechly.Tools
+  nameWithType: Speechly.Tools
+- uid: Speechly.Tools.AudioTools
+  name: AudioTools
+  href: api/Speechly.Tools.AudioTools.html
+  commentId: T:Speechly.Tools.AudioTools
+  fullName: Speechly.Tools.AudioTools
+  nameWithType: AudioTools
+- uid: Speechly.Tools.AudioTools.ConvertInt16ToFloat(System.Byte[]@,System.Single[]@,System.Int32,System.Int32,System.Int32)
+  name: ConvertInt16ToFloat(in Byte[], ref Single[], Int32, Int32, Int32)
+  href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_ConvertInt16ToFloat_System_Byte____System_Single____System_Int32_System_Int32_System_Int32_
+  commentId: M:Speechly.Tools.AudioTools.ConvertInt16ToFloat(System.Byte[]@,System.Single[]@,System.Int32,System.Int32,System.Int32)
+  name.vb: ConvertInt16ToFloat(ByRef Byte(), ByRef Single(), Int32, Int32, Int32)
+  fullName: Speechly.Tools.AudioTools.ConvertInt16ToFloat(in System.Byte[], ref System.Single[], System.Int32, System.Int32, System.Int32)
+  fullName.vb: Speechly.Tools.AudioTools.ConvertInt16ToFloat(ByRef System.Byte(), ByRef System.Single(), System.Int32, System.Int32, System.Int32)
+  nameWithType: AudioTools.ConvertInt16ToFloat(in Byte[], ref Single[], Int32, Int32, Int32)
+  nameWithType.vb: AudioTools.ConvertInt16ToFloat(ByRef Byte(), ByRef Single(), Int32, Int32, Int32)
+- uid: Speechly.Tools.AudioTools.ConvertInt16ToFloat*
+  name: ConvertInt16ToFloat
+  href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_ConvertInt16ToFloat_
+  commentId: Overload:Speechly.Tools.AudioTools.ConvertInt16ToFloat
   isSpec: "True"
-  fullName: Speechly.SLUClient.SpeechlyClientTest.SplitWithVAD
-  nameWithType: SpeechlyClientTest.SplitWithVAD
-- uid: Speechly.SLUClient.SpeechlyClientTest.TestCloudProcessing(System.String)
-  name: TestCloudProcessing(String)
-  href: api/Speechly.SLUClient.SpeechlyClientTest.html#Speechly_SLUClient_SpeechlyClientTest_TestCloudProcessing_System_String_
-  commentId: M:Speechly.SLUClient.SpeechlyClientTest.TestCloudProcessing(System.String)
-  fullName: Speechly.SLUClient.SpeechlyClientTest.TestCloudProcessing(System.String)
-  nameWithType: SpeechlyClientTest.TestCloudProcessing(String)
-- uid: Speechly.SLUClient.SpeechlyClientTest.TestCloudProcessing*
-  name: TestCloudProcessing
-  href: api/Speechly.SLUClient.SpeechlyClientTest.html#Speechly_SLUClient_SpeechlyClientTest_TestCloudProcessing_
-  commentId: Overload:Speechly.SLUClient.SpeechlyClientTest.TestCloudProcessing
+  fullName: Speechly.Tools.AudioTools.ConvertInt16ToFloat
+  nameWithType: AudioTools.ConvertInt16ToFloat
+- uid: Speechly.Tools.AudioTools.Downsample(System.Single[]@,System.Single[]@,System.Int32,System.Int32,System.Int32,System.Int32)
+  name: Downsample(in Single[], ref Single[], Int32, Int32, Int32, Int32)
+  href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_Downsample_System_Single____System_Single____System_Int32_System_Int32_System_Int32_System_Int32_
+  commentId: M:Speechly.Tools.AudioTools.Downsample(System.Single[]@,System.Single[]@,System.Int32,System.Int32,System.Int32,System.Int32)
+  name.vb: Downsample(ByRef Single(), ByRef Single(), Int32, Int32, Int32, Int32)
+  fullName: Speechly.Tools.AudioTools.Downsample(in System.Single[], ref System.Single[], System.Int32, System.Int32, System.Int32, System.Int32)
+  fullName.vb: Speechly.Tools.AudioTools.Downsample(ByRef System.Single(), ByRef System.Single(), System.Int32, System.Int32, System.Int32, System.Int32)
+  nameWithType: AudioTools.Downsample(in Single[], ref Single[], Int32, Int32, Int32, Int32)
+  nameWithType.vb: AudioTools.Downsample(ByRef Single(), ByRef Single(), Int32, Int32, Int32, Int32)
+- uid: Speechly.Tools.AudioTools.Downsample*
+  name: Downsample
+  href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_Downsample_
+  commentId: Overload:Speechly.Tools.AudioTools.Downsample
   isSpec: "True"
-  fullName: Speechly.SLUClient.SpeechlyClientTest.TestCloudProcessing
-  nameWithType: SpeechlyClientTest.TestCloudProcessing
-- uid: Speechly.SLUClient.TokenResponse
-  name: TokenResponse
-  href: api/Speechly.SLUClient.TokenResponse.html
-  commentId: T:Speechly.SLUClient.TokenResponse
-  fullName: Speechly.SLUClient.TokenResponse
-  nameWithType: TokenResponse
-- uid: Speechly.SLUClient.TokenResponse.access_token
-  name: access_token
-  href: api/Speechly.SLUClient.TokenResponse.html#Speechly_SLUClient_TokenResponse_access_token
-  commentId: F:Speechly.SLUClient.TokenResponse.access_token
-  fullName: Speechly.SLUClient.TokenResponse.access_token
-  nameWithType: TokenResponse.access_token
-- uid: Speechly.SLUClient.Word
-  name: Word
-  href: api/Speechly.SLUClient.Word.html
-  commentId: T:Speechly.SLUClient.Word
-  fullName: Speechly.SLUClient.Word
-  nameWithType: Word
-- uid: Speechly.SLUClient.Word.endTimestamp
-  name: endTimestamp
-  href: api/Speechly.SLUClient.Word.html#Speechly_SLUClient_Word_endTimestamp
-  commentId: F:Speechly.SLUClient.Word.endTimestamp
-  fullName: Speechly.SLUClient.Word.endTimestamp
-  nameWithType: Word.endTimestamp
-- uid: Speechly.SLUClient.Word.index
-  name: index
-  href: api/Speechly.SLUClient.Word.html#Speechly_SLUClient_Word_index
-  commentId: F:Speechly.SLUClient.Word.index
-  fullName: Speechly.SLUClient.Word.index
-  nameWithType: Word.index
-- uid: Speechly.SLUClient.Word.isFinal
-  name: isFinal
-  href: api/Speechly.SLUClient.Word.html#Speechly_SLUClient_Word_isFinal
-  commentId: F:Speechly.SLUClient.Word.isFinal
-  fullName: Speechly.SLUClient.Word.isFinal
-  nameWithType: Word.isFinal
-- uid: Speechly.SLUClient.Word.startTimestamp
-  name: startTimestamp
-  href: api/Speechly.SLUClient.Word.html#Speechly_SLUClient_Word_startTimestamp
-  commentId: F:Speechly.SLUClient.Word.startTimestamp
-  fullName: Speechly.SLUClient.Word.startTimestamp
-  nameWithType: Word.startTimestamp
-- uid: Speechly.SLUClient.Word.word
-  name: word
-  href: api/Speechly.SLUClient.Word.html#Speechly_SLUClient_Word_word
-  commentId: F:Speechly.SLUClient.Word.word
-  fullName: Speechly.SLUClient.Word.word
-  nameWithType: Word.word
-- uid: Speechly.SLUClient.WsClient
+  fullName: Speechly.Tools.AudioTools.Downsample
+  nameWithType: AudioTools.Downsample
+- uid: Speechly.Tools.AudioTools.GetAudioPeak(System.Single[]@,System.Int32,System.Int32)
+  name: GetAudioPeak(in Single[], Int32, Int32)
+  href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_GetAudioPeak_System_Single____System_Int32_System_Int32_
+  commentId: M:Speechly.Tools.AudioTools.GetAudioPeak(System.Single[]@,System.Int32,System.Int32)
+  name.vb: GetAudioPeak(ByRef Single(), Int32, Int32)
+  fullName: Speechly.Tools.AudioTools.GetAudioPeak(in System.Single[], System.Int32, System.Int32)
+  fullName.vb: Speechly.Tools.AudioTools.GetAudioPeak(ByRef System.Single(), System.Int32, System.Int32)
+  nameWithType: AudioTools.GetAudioPeak(in Single[], Int32, Int32)
+  nameWithType.vb: AudioTools.GetAudioPeak(ByRef Single(), Int32, Int32)
+- uid: Speechly.Tools.AudioTools.GetAudioPeak*
+  name: GetAudioPeak
+  href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_GetAudioPeak_
+  commentId: Overload:Speechly.Tools.AudioTools.GetAudioPeak
+  isSpec: "True"
+  fullName: Speechly.Tools.AudioTools.GetAudioPeak
+  nameWithType: AudioTools.GetAudioPeak
+- uid: Speechly.Tools.AudioTools.GetEnergy(System.Single[]@,System.Int32,System.Int32)
+  name: GetEnergy(in Single[], Int32, Int32)
+  href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_GetEnergy_System_Single____System_Int32_System_Int32_
+  commentId: M:Speechly.Tools.AudioTools.GetEnergy(System.Single[]@,System.Int32,System.Int32)
+  name.vb: GetEnergy(ByRef Single(), Int32, Int32)
+  fullName: Speechly.Tools.AudioTools.GetEnergy(in System.Single[], System.Int32, System.Int32)
+  fullName.vb: Speechly.Tools.AudioTools.GetEnergy(ByRef System.Single(), System.Int32, System.Int32)
+  nameWithType: AudioTools.GetEnergy(in Single[], Int32, Int32)
+  nameWithType.vb: AudioTools.GetEnergy(ByRef Single(), Int32, Int32)
+- uid: Speechly.Tools.AudioTools.GetEnergy*
+  name: GetEnergy
+  href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_GetEnergy_
+  commentId: Overload:Speechly.Tools.AudioTools.GetEnergy
+  isSpec: "True"
+  fullName: Speechly.Tools.AudioTools.GetEnergy
+  nameWithType: AudioTools.GetEnergy
+- uid: Speechly.Tools.JSON
+  name: JSON
+  href: api/Speechly.Tools.JSON.html
+  commentId: T:Speechly.Tools.JSON
+  fullName: Speechly.Tools.JSON
+  nameWithType: JSON
+- uid: Speechly.Tools.JSON.Parse*
+  name: Parse
+  href: api/Speechly.Tools.JSON.html#Speechly_Tools_JSON_Parse_
+  commentId: Overload:Speechly.Tools.JSON.Parse
+  isSpec: "True"
+  fullName: Speechly.Tools.JSON.Parse
+  nameWithType: JSON.Parse
+- uid: Speechly.Tools.JSON.Parse``1(System.String,``0)
+  name: Parse<T>(String, T)
+  href: api/Speechly.Tools.JSON.html#Speechly_Tools_JSON_Parse__1_System_String___0_
+  commentId: M:Speechly.Tools.JSON.Parse``1(System.String,``0)
+  name.vb: Parse(Of T)(String, T)
+  fullName: Speechly.Tools.JSON.Parse<T>(System.String, T)
+  fullName.vb: Speechly.Tools.JSON.Parse(Of T)(System.String, T)
+  nameWithType: JSON.Parse<T>(String, T)
+  nameWithType.vb: JSON.Parse(Of T)(String, T)
+- uid: Speechly.Tools.JSON.ParseFromStream*
+  name: ParseFromStream
+  href: api/Speechly.Tools.JSON.html#Speechly_Tools_JSON_ParseFromStream_
+  commentId: Overload:Speechly.Tools.JSON.ParseFromStream
+  isSpec: "True"
+  fullName: Speechly.Tools.JSON.ParseFromStream
+  nameWithType: JSON.ParseFromStream
+- uid: Speechly.Tools.JSON.ParseFromStream``1(Stream,``0)
+  name: ParseFromStream<T>(Stream, T)
+  href: api/Speechly.Tools.JSON.html#Speechly_Tools_JSON_ParseFromStream__1_Stream___0_
+  commentId: M:Speechly.Tools.JSON.ParseFromStream``1(Stream,``0)
+  name.vb: ParseFromStream(Of T)(Stream, T)
+  fullName: Speechly.Tools.JSON.ParseFromStream<T>(Stream, T)
+  fullName.vb: Speechly.Tools.JSON.ParseFromStream(Of T)(Stream, T)
+  nameWithType: JSON.ParseFromStream<T>(Stream, T)
+  nameWithType.vb: JSON.ParseFromStream(Of T)(Stream, T)
+- uid: Speechly.Tools.JSON.Stringify*
+  name: Stringify
+  href: api/Speechly.Tools.JSON.html#Speechly_Tools_JSON_Stringify_
+  commentId: Overload:Speechly.Tools.JSON.Stringify
+  isSpec: "True"
+  fullName: Speechly.Tools.JSON.Stringify
+  nameWithType: JSON.Stringify
+- uid: Speechly.Tools.JSON.Stringify``1(``0)
+  name: Stringify<T>(T)
+  href: api/Speechly.Tools.JSON.html#Speechly_Tools_JSON_Stringify__1___0_
+  commentId: M:Speechly.Tools.JSON.Stringify``1(``0)
+  name.vb: Stringify(Of T)(T)
+  fullName: Speechly.Tools.JSON.Stringify<T>(T)
+  fullName.vb: Speechly.Tools.JSON.Stringify(Of T)(T)
+  nameWithType: JSON.Stringify<T>(T)
+  nameWithType.vb: JSON.Stringify(Of T)(T)
+- uid: Speechly.Tools.JSON.StringifyToStream*
+  name: StringifyToStream
+  href: api/Speechly.Tools.JSON.html#Speechly_Tools_JSON_StringifyToStream_
+  commentId: Overload:Speechly.Tools.JSON.StringifyToStream
+  isSpec: "True"
+  fullName: Speechly.Tools.JSON.StringifyToStream
+  nameWithType: JSON.StringifyToStream
+- uid: Speechly.Tools.JSON.StringifyToStream``1(``0)
+  name: StringifyToStream<T>(T)
+  href: api/Speechly.Tools.JSON.html#Speechly_Tools_JSON_StringifyToStream__1___0_
+  commentId: M:Speechly.Tools.JSON.StringifyToStream``1(``0)
+  name.vb: StringifyToStream(Of T)(T)
+  fullName: Speechly.Tools.JSON.StringifyToStream<T>(T)
+  fullName.vb: Speechly.Tools.JSON.StringifyToStream(Of T)(T)
+  nameWithType: JSON.StringifyToStream<T>(T)
+  nameWithType.vb: JSON.StringifyToStream(Of T)(T)
+- uid: Speechly.Tools.Logger
+  name: Logger
+  href: api/Speechly.Tools.Logger.html
+  commentId: T:Speechly.Tools.Logger
+  fullName: Speechly.Tools.Logger
+  nameWithType: Logger
+- uid: Speechly.Tools.Logger.Log
+  name: Log
+  href: api/Speechly.Tools.Logger.html#Speechly_Tools_Logger_Log
+  commentId: F:Speechly.Tools.Logger.Log
+  fullName: Speechly.Tools.Logger.Log
+  nameWithType: Logger.Log
+- uid: Speechly.Tools.Logger.LogError
+  name: LogError
+  href: api/Speechly.Tools.Logger.html#Speechly_Tools_Logger_LogError
+  commentId: F:Speechly.Tools.Logger.LogError
+  fullName: Speechly.Tools.Logger.LogError
+  nameWithType: Logger.LogError
+- uid: Speechly.Tools.Logger.LoggerDelegate
+  name: Logger.LoggerDelegate
+  href: api/Speechly.Tools.Logger.LoggerDelegate.html
+  commentId: T:Speechly.Tools.Logger.LoggerDelegate
+  fullName: Speechly.Tools.Logger.LoggerDelegate
+  nameWithType: Logger.LoggerDelegate
+- uid: Speechly.Tools.Platform
+  name: Platform
+  href: api/Speechly.Tools.Platform.html
+  commentId: T:Speechly.Tools.Platform
+  fullName: Speechly.Tools.Platform
+  nameWithType: Platform
+- uid: Speechly.Tools.Platform.ConfigPath
+  name: ConfigPath
+  href: api/Speechly.Tools.Platform.html#Speechly_Tools_Platform_ConfigPath
+  commentId: F:Speechly.Tools.Platform.ConfigPath
+  fullName: Speechly.Tools.Platform.ConfigPath
+  nameWithType: Platform.ConfigPath
+- uid: Speechly.Tools.Platform.Fetch(System.String)
+  name: Fetch(String)
+  href: api/Speechly.Tools.Platform.html#Speechly_Tools_Platform_Fetch_System_String_
+  commentId: M:Speechly.Tools.Platform.Fetch(System.String)
+  fullName: Speechly.Tools.Platform.Fetch(System.String)
+  nameWithType: Platform.Fetch(String)
+- uid: Speechly.Tools.Platform.Fetch*
+  name: Fetch
+  href: api/Speechly.Tools.Platform.html#Speechly_Tools_Platform_Fetch_
+  commentId: Overload:Speechly.Tools.Platform.Fetch
+  isSpec: "True"
+  fullName: Speechly.Tools.Platform.Fetch
+  nameWithType: Platform.Fetch
+- uid: Speechly.Tools.Platform.GetDeviceId(System.String)
+  name: GetDeviceId(String)
+  href: api/Speechly.Tools.Platform.html#Speechly_Tools_Platform_GetDeviceId_System_String_
+  commentId: M:Speechly.Tools.Platform.GetDeviceId(System.String)
+  fullName: Speechly.Tools.Platform.GetDeviceId(System.String)
+  nameWithType: Platform.GetDeviceId(String)
+- uid: Speechly.Tools.Platform.GetDeviceId*
+  name: GetDeviceId
+  href: api/Speechly.Tools.Platform.html#Speechly_Tools_Platform_GetDeviceId_
+  commentId: Overload:Speechly.Tools.Platform.GetDeviceId
+  isSpec: "True"
+  fullName: Speechly.Tools.Platform.GetDeviceId
+  nameWithType: Platform.GetDeviceId
+- uid: Speechly.Tools.Platform.GetPersistentStoragePath
+  name: GetPersistentStoragePath()
+  href: api/Speechly.Tools.Platform.html#Speechly_Tools_Platform_GetPersistentStoragePath
+  commentId: M:Speechly.Tools.Platform.GetPersistentStoragePath
+  fullName: Speechly.Tools.Platform.GetPersistentStoragePath()
+  nameWithType: Platform.GetPersistentStoragePath()
+- uid: Speechly.Tools.Platform.GetPersistentStoragePath*
+  name: GetPersistentStoragePath
+  href: api/Speechly.Tools.Platform.html#Speechly_Tools_Platform_GetPersistentStoragePath_
+  commentId: Overload:Speechly.Tools.Platform.GetPersistentStoragePath
+  isSpec: "True"
+  fullName: Speechly.Tools.Platform.GetPersistentStoragePath
+  nameWithType: Platform.GetPersistentStoragePath
+- uid: Speechly.Tools.Platform.GuidFromString(System.String)
+  name: GuidFromString(String)
+  href: api/Speechly.Tools.Platform.html#Speechly_Tools_Platform_GuidFromString_System_String_
+  commentId: M:Speechly.Tools.Platform.GuidFromString(System.String)
+  fullName: Speechly.Tools.Platform.GuidFromString(System.String)
+  nameWithType: Platform.GuidFromString(String)
+- uid: Speechly.Tools.Platform.GuidFromString*
+  name: GuidFromString
+  href: api/Speechly.Tools.Platform.html#Speechly_Tools_Platform_GuidFromString_
+  commentId: Overload:Speechly.Tools.Platform.GuidFromString
+  isSpec: "True"
+  fullName: Speechly.Tools.Platform.GuidFromString
+  nameWithType: Platform.GuidFromString
+- uid: Speechly.Tools.Platform.RestoreOrCreateConfig*
+  name: RestoreOrCreateConfig
+  href: api/Speechly.Tools.Platform.html#Speechly_Tools_Platform_RestoreOrCreateConfig_
+  commentId: Overload:Speechly.Tools.Platform.RestoreOrCreateConfig
+  isSpec: "True"
+  fullName: Speechly.Tools.Platform.RestoreOrCreateConfig
+  nameWithType: Platform.RestoreOrCreateConfig
+- uid: Speechly.Tools.Platform.RestoreOrCreateConfig``1(System.String)
+  name: RestoreOrCreateConfig<T>(String)
+  href: api/Speechly.Tools.Platform.html#Speechly_Tools_Platform_RestoreOrCreateConfig__1_System_String_
+  commentId: M:Speechly.Tools.Platform.RestoreOrCreateConfig``1(System.String)
+  name.vb: RestoreOrCreateConfig(Of T)(String)
+  fullName: Speechly.Tools.Platform.RestoreOrCreateConfig<T>(System.String)
+  fullName.vb: Speechly.Tools.Platform.RestoreOrCreateConfig(Of T)(System.String)
+  nameWithType: Platform.RestoreOrCreateConfig<T>(String)
+  nameWithType.vb: Platform.RestoreOrCreateConfig(Of T)(String)
+- uid: Speechly.Tools.Platform.SaveConfig*
+  name: SaveConfig
+  href: api/Speechly.Tools.Platform.html#Speechly_Tools_Platform_SaveConfig_
+  commentId: Overload:Speechly.Tools.Platform.SaveConfig
+  isSpec: "True"
+  fullName: Speechly.Tools.Platform.SaveConfig
+  nameWithType: Platform.SaveConfig
+- uid: Speechly.Tools.Platform.SaveConfig``1(``0,System.String)
+  name: SaveConfig<T>(T, String)
+  href: api/Speechly.Tools.Platform.html#Speechly_Tools_Platform_SaveConfig__1___0_System_String_
+  commentId: M:Speechly.Tools.Platform.SaveConfig``1(``0,System.String)
+  name.vb: SaveConfig(Of T)(T, String)
+  fullName: Speechly.Tools.Platform.SaveConfig<T>(T, System.String)
+  fullName.vb: Speechly.Tools.Platform.SaveConfig(Of T)(T, System.String)
+  nameWithType: Platform.SaveConfig<T>(T, String)
+  nameWithType.vb: Platform.SaveConfig(Of T)(T, String)
+- uid: Speechly.Tools.WsClient
   name: WsClient
-  href: api/Speechly.SLUClient.WsClient.html
-  commentId: T:Speechly.SLUClient.WsClient
-  fullName: Speechly.SLUClient.WsClient
+  href: api/Speechly.Tools.WsClient.html
+  commentId: T:Speechly.Tools.WsClient
+  fullName: Speechly.Tools.WsClient
   nameWithType: WsClient
-- uid: Speechly.SLUClient.WsClient.ConnectAsync(System.String,System.String)
+- uid: Speechly.Tools.WsClient.ConnectAsync(System.String,System.String)
   name: ConnectAsync(String, String)
-  href: api/Speechly.SLUClient.WsClient.html#Speechly_SLUClient_WsClient_ConnectAsync_System_String_System_String_
-  commentId: M:Speechly.SLUClient.WsClient.ConnectAsync(System.String,System.String)
-  fullName: Speechly.SLUClient.WsClient.ConnectAsync(System.String, System.String)
+  href: api/Speechly.Tools.WsClient.html#Speechly_Tools_WsClient_ConnectAsync_System_String_System_String_
+  commentId: M:Speechly.Tools.WsClient.ConnectAsync(System.String,System.String)
+  fullName: Speechly.Tools.WsClient.ConnectAsync(System.String, System.String)
   nameWithType: WsClient.ConnectAsync(String, String)
-- uid: Speechly.SLUClient.WsClient.ConnectAsync*
+- uid: Speechly.Tools.WsClient.ConnectAsync*
   name: ConnectAsync
-  href: api/Speechly.SLUClient.WsClient.html#Speechly_SLUClient_WsClient_ConnectAsync_
-  commentId: Overload:Speechly.SLUClient.WsClient.ConnectAsync
+  href: api/Speechly.Tools.WsClient.html#Speechly_Tools_WsClient_ConnectAsync_
+  commentId: Overload:Speechly.Tools.WsClient.ConnectAsync
   isSpec: "True"
-  fullName: Speechly.SLUClient.WsClient.ConnectAsync
+  fullName: Speechly.Tools.WsClient.ConnectAsync
   nameWithType: WsClient.ConnectAsync
-- uid: Speechly.SLUClient.WsClient.DisconnectAsync
+- uid: Speechly.Tools.WsClient.DisconnectAsync
   name: DisconnectAsync()
-  href: api/Speechly.SLUClient.WsClient.html#Speechly_SLUClient_WsClient_DisconnectAsync
-  commentId: M:Speechly.SLUClient.WsClient.DisconnectAsync
-  fullName: Speechly.SLUClient.WsClient.DisconnectAsync()
+  href: api/Speechly.Tools.WsClient.html#Speechly_Tools_WsClient_DisconnectAsync
+  commentId: M:Speechly.Tools.WsClient.DisconnectAsync
+  fullName: Speechly.Tools.WsClient.DisconnectAsync()
   nameWithType: WsClient.DisconnectAsync()
-- uid: Speechly.SLUClient.WsClient.DisconnectAsync*
+- uid: Speechly.Tools.WsClient.DisconnectAsync*
   name: DisconnectAsync
-  href: api/Speechly.SLUClient.WsClient.html#Speechly_SLUClient_WsClient_DisconnectAsync_
-  commentId: Overload:Speechly.SLUClient.WsClient.DisconnectAsync
+  href: api/Speechly.Tools.WsClient.html#Speechly_Tools_WsClient_DisconnectAsync_
+  commentId: Overload:Speechly.Tools.WsClient.DisconnectAsync
   isSpec: "True"
-  fullName: Speechly.SLUClient.WsClient.DisconnectAsync
+  fullName: Speechly.Tools.WsClient.DisconnectAsync
   nameWithType: WsClient.DisconnectAsync
-- uid: Speechly.SLUClient.WsClient.Dispose
+- uid: Speechly.Tools.WsClient.Dispose
   name: Dispose()
-  href: api/Speechly.SLUClient.WsClient.html#Speechly_SLUClient_WsClient_Dispose
-  commentId: M:Speechly.SLUClient.WsClient.Dispose
-  fullName: Speechly.SLUClient.WsClient.Dispose()
+  href: api/Speechly.Tools.WsClient.html#Speechly_Tools_WsClient_Dispose
+  commentId: M:Speechly.Tools.WsClient.Dispose
+  fullName: Speechly.Tools.WsClient.Dispose()
   nameWithType: WsClient.Dispose()
-- uid: Speechly.SLUClient.WsClient.Dispose*
+- uid: Speechly.Tools.WsClient.Dispose*
   name: Dispose
-  href: api/Speechly.SLUClient.WsClient.html#Speechly_SLUClient_WsClient_Dispose_
-  commentId: Overload:Speechly.SLUClient.WsClient.Dispose
+  href: api/Speechly.Tools.WsClient.html#Speechly_Tools_WsClient_Dispose_
+  commentId: Overload:Speechly.Tools.WsClient.Dispose
   isSpec: "True"
-  fullName: Speechly.SLUClient.WsClient.Dispose
+  fullName: Speechly.Tools.WsClient.Dispose
   nameWithType: WsClient.Dispose
-- uid: Speechly.SLUClient.WsClient.OnResponseReceived
+- uid: Speechly.Tools.WsClient.OnResponseReceived
   name: OnResponseReceived
-  href: api/Speechly.SLUClient.WsClient.html#Speechly_SLUClient_WsClient_OnResponseReceived
-  commentId: F:Speechly.SLUClient.WsClient.OnResponseReceived
-  fullName: Speechly.SLUClient.WsClient.OnResponseReceived
+  href: api/Speechly.Tools.WsClient.html#Speechly_Tools_WsClient_OnResponseReceived
+  commentId: F:Speechly.Tools.WsClient.OnResponseReceived
+  fullName: Speechly.Tools.WsClient.OnResponseReceived
   nameWithType: WsClient.OnResponseReceived
-- uid: Speechly.SLUClient.WsClient.ReceiveBufferSize
+- uid: Speechly.Tools.WsClient.ReceiveBufferSize
   name: ReceiveBufferSize
-  href: api/Speechly.SLUClient.WsClient.html#Speechly_SLUClient_WsClient_ReceiveBufferSize
-  commentId: P:Speechly.SLUClient.WsClient.ReceiveBufferSize
-  fullName: Speechly.SLUClient.WsClient.ReceiveBufferSize
+  href: api/Speechly.Tools.WsClient.html#Speechly_Tools_WsClient_ReceiveBufferSize
+  commentId: P:Speechly.Tools.WsClient.ReceiveBufferSize
+  fullName: Speechly.Tools.WsClient.ReceiveBufferSize
   nameWithType: WsClient.ReceiveBufferSize
-- uid: Speechly.SLUClient.WsClient.ReceiveBufferSize*
+- uid: Speechly.Tools.WsClient.ReceiveBufferSize*
   name: ReceiveBufferSize
-  href: api/Speechly.SLUClient.WsClient.html#Speechly_SLUClient_WsClient_ReceiveBufferSize_
-  commentId: Overload:Speechly.SLUClient.WsClient.ReceiveBufferSize
+  href: api/Speechly.Tools.WsClient.html#Speechly_Tools_WsClient_ReceiveBufferSize_
+  commentId: Overload:Speechly.Tools.WsClient.ReceiveBufferSize
   isSpec: "True"
-  fullName: Speechly.SLUClient.WsClient.ReceiveBufferSize
+  fullName: Speechly.Tools.WsClient.ReceiveBufferSize
   nameWithType: WsClient.ReceiveBufferSize
-- uid: Speechly.SLUClient.WsClient.ResponseReceivedDelegate
+- uid: Speechly.Tools.WsClient.ResponseReceivedDelegate
   name: WsClient.ResponseReceivedDelegate
-  href: api/Speechly.SLUClient.WsClient.ResponseReceivedDelegate.html
-  commentId: T:Speechly.SLUClient.WsClient.ResponseReceivedDelegate
-  fullName: Speechly.SLUClient.WsClient.ResponseReceivedDelegate
+  href: api/Speechly.Tools.WsClient.ResponseReceivedDelegate.html
+  commentId: T:Speechly.Tools.WsClient.ResponseReceivedDelegate
+  fullName: Speechly.Tools.WsClient.ResponseReceivedDelegate
   nameWithType: WsClient.ResponseReceivedDelegate
-- uid: Speechly.SLUClient.WsClient.SendBytes(ArraySegment{System.Byte})
+- uid: Speechly.Tools.WsClient.SendBytes(ArraySegment{System.Byte})
   name: SendBytes(ArraySegment<Byte>)
-  href: api/Speechly.SLUClient.WsClient.html#Speechly_SLUClient_WsClient_SendBytes_ArraySegment_System_Byte__
-  commentId: M:Speechly.SLUClient.WsClient.SendBytes(ArraySegment{System.Byte})
+  href: api/Speechly.Tools.WsClient.html#Speechly_Tools_WsClient_SendBytes_ArraySegment_System_Byte__
+  commentId: M:Speechly.Tools.WsClient.SendBytes(ArraySegment{System.Byte})
   name.vb: SendBytes(ArraySegment(Of Byte))
-  fullName: Speechly.SLUClient.WsClient.SendBytes(ArraySegment<System.Byte>)
-  fullName.vb: Speechly.SLUClient.WsClient.SendBytes(ArraySegment(Of System.Byte))
+  fullName: Speechly.Tools.WsClient.SendBytes(ArraySegment<System.Byte>)
+  fullName.vb: Speechly.Tools.WsClient.SendBytes(ArraySegment(Of System.Byte))
   nameWithType: WsClient.SendBytes(ArraySegment<Byte>)
   nameWithType.vb: WsClient.SendBytes(ArraySegment(Of Byte))
-- uid: Speechly.SLUClient.WsClient.SendBytes*
+- uid: Speechly.Tools.WsClient.SendBytes*
   name: SendBytes
-  href: api/Speechly.SLUClient.WsClient.html#Speechly_SLUClient_WsClient_SendBytes_
-  commentId: Overload:Speechly.SLUClient.WsClient.SendBytes
+  href: api/Speechly.Tools.WsClient.html#Speechly_Tools_WsClient_SendBytes_
+  commentId: Overload:Speechly.Tools.WsClient.SendBytes
   isSpec: "True"
-  fullName: Speechly.SLUClient.WsClient.SendBytes
+  fullName: Speechly.Tools.WsClient.SendBytes
   nameWithType: WsClient.SendBytes
-- uid: Speechly.SLUClient.WsClient.SendText(System.String)
+- uid: Speechly.Tools.WsClient.SendText(System.String)
   name: SendText(String)
-  href: api/Speechly.SLUClient.WsClient.html#Speechly_SLUClient_WsClient_SendText_System_String_
-  commentId: M:Speechly.SLUClient.WsClient.SendText(System.String)
-  fullName: Speechly.SLUClient.WsClient.SendText(System.String)
+  href: api/Speechly.Tools.WsClient.html#Speechly_Tools_WsClient_SendText_System_String_
+  commentId: M:Speechly.Tools.WsClient.SendText(System.String)
+  fullName: Speechly.Tools.WsClient.SendText(System.String)
   nameWithType: WsClient.SendText(String)
-- uid: Speechly.SLUClient.WsClient.SendText*
+- uid: Speechly.Tools.WsClient.SendText*
   name: SendText
-  href: api/Speechly.SLUClient.WsClient.html#Speechly_SLUClient_WsClient_SendText_
-  commentId: Overload:Speechly.SLUClient.WsClient.SendText
+  href: api/Speechly.Tools.WsClient.html#Speechly_Tools_WsClient_SendText_
+  commentId: Overload:Speechly.Tools.WsClient.SendText
   isSpec: "True"
-  fullName: Speechly.SLUClient.WsClient.SendText
+  fullName: Speechly.Tools.WsClient.SendText
   nameWithType: WsClient.SendText
+- uid: Speechly.Types
+  name: Speechly.Types
+  href: api/Speechly.Types.html
+  commentId: N:Speechly.Types
+  fullName: Speechly.Types
+  nameWithType: Speechly.Types
+- uid: Speechly.Types.BeautifyEntity
+  name: BeautifyEntity
+  href: api/Speechly.Types.BeautifyEntity.html
+  commentId: T:Speechly.Types.BeautifyEntity
+  fullName: Speechly.Types.BeautifyEntity
+  nameWithType: BeautifyEntity
+- uid: Speechly.Types.BeautifyIntent
+  name: BeautifyIntent
+  href: api/Speechly.Types.BeautifyIntent.html
+  commentId: T:Speechly.Types.BeautifyIntent
+  fullName: Speechly.Types.BeautifyIntent
+  nameWithType: BeautifyIntent
+- uid: Speechly.Types.Entity
+  name: Entity
+  href: api/Speechly.Types.Entity.html
+  commentId: T:Speechly.Types.Entity
+  fullName: Speechly.Types.Entity
+  nameWithType: Entity
+- uid: Speechly.Types.Entity.endPosition
+  name: endPosition
+  href: api/Speechly.Types.Entity.html#Speechly_Types_Entity_endPosition
+  commentId: F:Speechly.Types.Entity.endPosition
+  fullName: Speechly.Types.Entity.endPosition
+  nameWithType: Entity.endPosition
+- uid: Speechly.Types.Entity.isFinal
+  name: isFinal
+  href: api/Speechly.Types.Entity.html#Speechly_Types_Entity_isFinal
+  commentId: F:Speechly.Types.Entity.isFinal
+  fullName: Speechly.Types.Entity.isFinal
+  nameWithType: Entity.isFinal
+- uid: Speechly.Types.Entity.startPosition
+  name: startPosition
+  href: api/Speechly.Types.Entity.html#Speechly_Types_Entity_startPosition
+  commentId: F:Speechly.Types.Entity.startPosition
+  fullName: Speechly.Types.Entity.startPosition
+  nameWithType: Entity.startPosition
+- uid: Speechly.Types.Entity.type
+  name: type
+  href: api/Speechly.Types.Entity.html#Speechly_Types_Entity_type
+  commentId: F:Speechly.Types.Entity.type
+  fullName: Speechly.Types.Entity.type
+  nameWithType: Entity.type
+- uid: Speechly.Types.Entity.value
+  name: value
+  href: api/Speechly.Types.Entity.html#Speechly_Types_Entity_value
+  commentId: F:Speechly.Types.Entity.value
+  fullName: Speechly.Types.Entity.value
+  nameWithType: Entity.value
+- uid: Speechly.Types.EntityDelegate
+  name: EntityDelegate
+  href: api/Speechly.Types.EntityDelegate.html
+  commentId: T:Speechly.Types.EntityDelegate
+  fullName: Speechly.Types.EntityDelegate
+  nameWithType: EntityDelegate
+- uid: Speechly.Types.Intent
+  name: Intent
+  href: api/Speechly.Types.Intent.html
+  commentId: T:Speechly.Types.Intent
+  fullName: Speechly.Types.Intent
+  nameWithType: Intent
+- uid: Speechly.Types.Intent.intent
+  name: intent
+  href: api/Speechly.Types.Intent.html#Speechly_Types_Intent_intent
+  commentId: F:Speechly.Types.Intent.intent
+  fullName: Speechly.Types.Intent.intent
+  nameWithType: Intent.intent
+- uid: Speechly.Types.Intent.isFinal
+  name: isFinal
+  href: api/Speechly.Types.Intent.html#Speechly_Types_Intent_isFinal
+  commentId: F:Speechly.Types.Intent.isFinal
+  fullName: Speechly.Types.Intent.isFinal
+  nameWithType: Intent.isFinal
+- uid: Speechly.Types.IntentDelegate
+  name: IntentDelegate
+  href: api/Speechly.Types.IntentDelegate.html
+  commentId: T:Speechly.Types.IntentDelegate
+  fullName: Speechly.Types.IntentDelegate
+  nameWithType: IntentDelegate
+- uid: Speechly.Types.MsgCommon
+  name: MsgCommon
+  href: api/Speechly.Types.MsgCommon.html
+  commentId: T:Speechly.Types.MsgCommon
+  fullName: Speechly.Types.MsgCommon
+  nameWithType: MsgCommon
+- uid: Speechly.Types.MsgCommon.audio_context
+  name: audio_context
+  href: api/Speechly.Types.MsgCommon.html#Speechly_Types_MsgCommon_audio_context
+  commentId: P:Speechly.Types.MsgCommon.audio_context
+  fullName: Speechly.Types.MsgCommon.audio_context
+  nameWithType: MsgCommon.audio_context
+- uid: Speechly.Types.MsgCommon.audio_context*
+  name: audio_context
+  href: api/Speechly.Types.MsgCommon.html#Speechly_Types_MsgCommon_audio_context_
+  commentId: Overload:Speechly.Types.MsgCommon.audio_context
+  isSpec: "True"
+  fullName: Speechly.Types.MsgCommon.audio_context
+  nameWithType: MsgCommon.audio_context
+- uid: Speechly.Types.MsgCommon.segment_id
+  name: segment_id
+  href: api/Speechly.Types.MsgCommon.html#Speechly_Types_MsgCommon_segment_id
+  commentId: P:Speechly.Types.MsgCommon.segment_id
+  fullName: Speechly.Types.MsgCommon.segment_id
+  nameWithType: MsgCommon.segment_id
+- uid: Speechly.Types.MsgCommon.segment_id*
+  name: segment_id
+  href: api/Speechly.Types.MsgCommon.html#Speechly_Types_MsgCommon_segment_id_
+  commentId: Overload:Speechly.Types.MsgCommon.segment_id
+  isSpec: "True"
+  fullName: Speechly.Types.MsgCommon.segment_id
+  nameWithType: MsgCommon.segment_id
+- uid: Speechly.Types.MsgCommon.type
+  name: type
+  href: api/Speechly.Types.MsgCommon.html#Speechly_Types_MsgCommon_type
+  commentId: P:Speechly.Types.MsgCommon.type
+  fullName: Speechly.Types.MsgCommon.type
+  nameWithType: MsgCommon.type
+- uid: Speechly.Types.MsgCommon.type*
+  name: type
+  href: api/Speechly.Types.MsgCommon.html#Speechly_Types_MsgCommon_type_
+  commentId: Overload:Speechly.Types.MsgCommon.type
+  isSpec: "True"
+  fullName: Speechly.Types.MsgCommon.type
+  nameWithType: MsgCommon.type
+- uid: Speechly.Types.MsgEntity
+  name: MsgEntity
+  href: api/Speechly.Types.MsgEntity.html
+  commentId: T:Speechly.Types.MsgEntity
+  fullName: Speechly.Types.MsgEntity
+  nameWithType: MsgEntity
+- uid: Speechly.Types.MsgEntity.data
+  name: data
+  href: api/Speechly.Types.MsgEntity.html#Speechly_Types_MsgEntity_data
+  commentId: F:Speechly.Types.MsgEntity.data
+  fullName: Speechly.Types.MsgEntity.data
+  nameWithType: MsgEntity.data
+- uid: Speechly.Types.MsgIntent
+  name: MsgIntent
+  href: api/Speechly.Types.MsgIntent.html
+  commentId: T:Speechly.Types.MsgIntent
+  fullName: Speechly.Types.MsgIntent
+  nameWithType: MsgIntent
+- uid: Speechly.Types.MsgIntent.data
+  name: data
+  href: api/Speechly.Types.MsgIntent.html#Speechly_Types_MsgIntent_data
+  commentId: F:Speechly.Types.MsgIntent.data
+  fullName: Speechly.Types.MsgIntent.data
+  nameWithType: MsgIntent.data
+- uid: Speechly.Types.MsgIntent.Data
+  name: MsgIntent.Data
+  href: api/Speechly.Types.MsgIntent.Data.html
+  commentId: T:Speechly.Types.MsgIntent.Data
+  fullName: Speechly.Types.MsgIntent.Data
+  nameWithType: MsgIntent.Data
+- uid: Speechly.Types.MsgIntent.Data.intent
+  name: intent
+  href: api/Speechly.Types.MsgIntent.Data.html#Speechly_Types_MsgIntent_Data_intent
+  commentId: F:Speechly.Types.MsgIntent.Data.intent
+  fullName: Speechly.Types.MsgIntent.Data.intent
+  nameWithType: MsgIntent.Data.intent
+- uid: Speechly.Types.MsgTentativeEntity
+  name: MsgTentativeEntity
+  href: api/Speechly.Types.MsgTentativeEntity.html
+  commentId: T:Speechly.Types.MsgTentativeEntity
+  fullName: Speechly.Types.MsgTentativeEntity
+  nameWithType: MsgTentativeEntity
+- uid: Speechly.Types.MsgTentativeEntity.data
+  name: data
+  href: api/Speechly.Types.MsgTentativeEntity.html#Speechly_Types_MsgTentativeEntity_data
+  commentId: F:Speechly.Types.MsgTentativeEntity.data
+  fullName: Speechly.Types.MsgTentativeEntity.data
+  nameWithType: MsgTentativeEntity.data
+- uid: Speechly.Types.MsgTentativeEntity.Data
+  name: MsgTentativeEntity.Data
+  href: api/Speechly.Types.MsgTentativeEntity.Data.html
+  commentId: T:Speechly.Types.MsgTentativeEntity.Data
+  fullName: Speechly.Types.MsgTentativeEntity.Data
+  nameWithType: MsgTentativeEntity.Data
+- uid: Speechly.Types.MsgTentativeEntity.Data.entities
+  name: entities
+  href: api/Speechly.Types.MsgTentativeEntity.Data.html#Speechly_Types_MsgTentativeEntity_Data_entities
+  commentId: F:Speechly.Types.MsgTentativeEntity.Data.entities
+  fullName: Speechly.Types.MsgTentativeEntity.Data.entities
+  nameWithType: MsgTentativeEntity.Data.entities
+- uid: Speechly.Types.MsgTentativeTranscript
+  name: MsgTentativeTranscript
+  href: api/Speechly.Types.MsgTentativeTranscript.html
+  commentId: T:Speechly.Types.MsgTentativeTranscript
+  fullName: Speechly.Types.MsgTentativeTranscript
+  nameWithType: MsgTentativeTranscript
+- uid: Speechly.Types.MsgTentativeTranscript.data
+  name: data
+  href: api/Speechly.Types.MsgTentativeTranscript.html#Speechly_Types_MsgTentativeTranscript_data
+  commentId: F:Speechly.Types.MsgTentativeTranscript.data
+  fullName: Speechly.Types.MsgTentativeTranscript.data
+  nameWithType: MsgTentativeTranscript.data
+- uid: Speechly.Types.MsgTentativeTranscript.Data
+  name: MsgTentativeTranscript.Data
+  href: api/Speechly.Types.MsgTentativeTranscript.Data.html
+  commentId: T:Speechly.Types.MsgTentativeTranscript.Data
+  fullName: Speechly.Types.MsgTentativeTranscript.Data
+  nameWithType: MsgTentativeTranscript.Data
+- uid: Speechly.Types.MsgTentativeTranscript.Data.transcript
+  name: transcript
+  href: api/Speechly.Types.MsgTentativeTranscript.Data.html#Speechly_Types_MsgTentativeTranscript_Data_transcript
+  commentId: F:Speechly.Types.MsgTentativeTranscript.Data.transcript
+  fullName: Speechly.Types.MsgTentativeTranscript.Data.transcript
+  nameWithType: MsgTentativeTranscript.Data.transcript
+- uid: Speechly.Types.MsgTentativeTranscript.Data.words
+  name: words
+  href: api/Speechly.Types.MsgTentativeTranscript.Data.html#Speechly_Types_MsgTentativeTranscript_Data_words
+  commentId: F:Speechly.Types.MsgTentativeTranscript.Data.words
+  fullName: Speechly.Types.MsgTentativeTranscript.Data.words
+  nameWithType: MsgTentativeTranscript.Data.words
+- uid: Speechly.Types.MsgTranscript
+  name: MsgTranscript
+  href: api/Speechly.Types.MsgTranscript.html
+  commentId: T:Speechly.Types.MsgTranscript
+  fullName: Speechly.Types.MsgTranscript
+  nameWithType: MsgTranscript
+- uid: Speechly.Types.MsgTranscript.data
+  name: data
+  href: api/Speechly.Types.MsgTranscript.html#Speechly_Types_MsgTranscript_data
+  commentId: F:Speechly.Types.MsgTranscript.data
+  fullName: Speechly.Types.MsgTranscript.data
+  nameWithType: MsgTranscript.data
+- uid: Speechly.Types.SegmentChangeDelegate
+  name: SegmentChangeDelegate
+  href: api/Speechly.Types.SegmentChangeDelegate.html
+  commentId: T:Speechly.Types.SegmentChangeDelegate
+  fullName: Speechly.Types.SegmentChangeDelegate
+  nameWithType: SegmentChangeDelegate
+- uid: Speechly.Types.StartContextDelegate
+  name: StartContextDelegate
+  href: api/Speechly.Types.StartContextDelegate.html
+  commentId: T:Speechly.Types.StartContextDelegate
+  fullName: Speechly.Types.StartContextDelegate
+  nameWithType: StartContextDelegate
+- uid: Speechly.Types.StartStreamDelegate
+  name: StartStreamDelegate
+  href: api/Speechly.Types.StartStreamDelegate.html
+  commentId: T:Speechly.Types.StartStreamDelegate
+  fullName: Speechly.Types.StartStreamDelegate
+  nameWithType: StartStreamDelegate
+- uid: Speechly.Types.StopContextDelegate
+  name: StopContextDelegate
+  href: api/Speechly.Types.StopContextDelegate.html
+  commentId: T:Speechly.Types.StopContextDelegate
+  fullName: Speechly.Types.StopContextDelegate
+  nameWithType: StopContextDelegate
+- uid: Speechly.Types.StopStreamDelegate
+  name: StopStreamDelegate
+  href: api/Speechly.Types.StopStreamDelegate.html
+  commentId: T:Speechly.Types.StopStreamDelegate
+  fullName: Speechly.Types.StopStreamDelegate
+  nameWithType: StopStreamDelegate
+- uid: Speechly.Types.TentativeEntityDelegate
+  name: TentativeEntityDelegate
+  href: api/Speechly.Types.TentativeEntityDelegate.html
+  commentId: T:Speechly.Types.TentativeEntityDelegate
+  fullName: Speechly.Types.TentativeEntityDelegate
+  nameWithType: TentativeEntityDelegate
+- uid: Speechly.Types.TentativeTranscriptDelegate
+  name: TentativeTranscriptDelegate
+  href: api/Speechly.Types.TentativeTranscriptDelegate.html
+  commentId: T:Speechly.Types.TentativeTranscriptDelegate
+  fullName: Speechly.Types.TentativeTranscriptDelegate
+  nameWithType: TentativeTranscriptDelegate
+- uid: Speechly.Types.TranscriptDelegate
+  name: TranscriptDelegate
+  href: api/Speechly.Types.TranscriptDelegate.html
+  commentId: T:Speechly.Types.TranscriptDelegate
+  fullName: Speechly.Types.TranscriptDelegate
+  nameWithType: TranscriptDelegate
+- uid: Speechly.Types.Word
+  name: Word
+  href: api/Speechly.Types.Word.html
+  commentId: T:Speechly.Types.Word
+  fullName: Speechly.Types.Word
+  nameWithType: Word
+- uid: Speechly.Types.Word.endTimestamp
+  name: endTimestamp
+  href: api/Speechly.Types.Word.html#Speechly_Types_Word_endTimestamp
+  commentId: F:Speechly.Types.Word.endTimestamp
+  fullName: Speechly.Types.Word.endTimestamp
+  nameWithType: Word.endTimestamp
+- uid: Speechly.Types.Word.index
+  name: index
+  href: api/Speechly.Types.Word.html#Speechly_Types_Word_index
+  commentId: F:Speechly.Types.Word.index
+  fullName: Speechly.Types.Word.index
+  nameWithType: Word.index
+- uid: Speechly.Types.Word.isFinal
+  name: isFinal
+  href: api/Speechly.Types.Word.html#Speechly_Types_Word_isFinal
+  commentId: F:Speechly.Types.Word.isFinal
+  fullName: Speechly.Types.Word.isFinal
+  nameWithType: Word.isFinal
+- uid: Speechly.Types.Word.startTimestamp
+  name: startTimestamp
+  href: api/Speechly.Types.Word.html#Speechly_Types_Word_startTimestamp
+  commentId: F:Speechly.Types.Word.startTimestamp
+  fullName: Speechly.Types.Word.startTimestamp
+  nameWithType: Word.startTimestamp
+- uid: Speechly.Types.Word.word
+  name: word
+  href: api/Speechly.Types.Word.html#Speechly_Types_Word_word
+  commentId: F:Speechly.Types.Word.word
+  fullName: Speechly.Types.Word.word
+  nameWithType: Word.word

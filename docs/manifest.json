@@ -20,47 +20,11 @@
     },
     {
       "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.AppTokenRequest.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.AppTokenRequest.html",
-          "hash": "DmDEmU7rJKUyQVRLTiK4aZxhd9iZq+Xe2QMKE4eH5N4="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.AudioTools.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.AudioTools.html",
-          "hash": "K8R54ZX7QkuGiLzl5dZWcJ7SZbZFS2s+0Zpufuapkgg="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
       "source_relative_path": "api/Speechly.SLUClient.CloudDecoder.yml",
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.CloudDecoder.html",
-          "hash": "U9jyFzh5jsCwAH8SWphlbBVDvz9XehTR/8CuvYf9ric="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.ConfigTool.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.ConfigTool.html",
-          "hash": "JlAnQZpcUefnbP4xHu2S72kr+hi2WOGYPnU5FUcZPUQ="
+          "hash": "D0Pw7RwvehgVkNtgy/zfbS83+Tg3jSd4yN9QUk/uO5g="
         }
       },
       "is_incremental": true,
@@ -72,31 +36,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.EnergyTresholdVAD.html",
-          "hash": "VWt95dgqU+ZCVr8qHw6woaHnlK+ocF/xTIt9DWNBJVY="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.Entity.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.Entity.html",
-          "hash": "yPVchWT0TVvZQWkIqq49LfgQEyUaRPDX/figZsSrhaw="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.EntityFormatter.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.EntityFormatter.html",
-          "hash": "SNJIG1OH8OqKDuZ4PYpWMyRiMMB5X4M10D6r3KkM1Pw="
+          "hash": "i5GguilcANbHAkBNRYSrMbzBAD0ZvsttR8/bZExO/r8="
         }
       },
       "is_incremental": true,
@@ -108,235 +48,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.IDecoder.html",
-          "hash": "9xzKqnICaKXqnoKtK5s9VE9P/FImW2HYokA5PTQHa8U="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.IMsgCommonProps.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.IMsgCommonProps.html",
-          "hash": "axUuAdAHDWIURYIZ3fs7DTauXj44U1vo74PMOEDZcVM="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.Intent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.Intent.html",
-          "hash": "6m8FC8HFLamZnk/d/g3GiKECHkUIf6llqroW/gzLYpc="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.IntentFormatter.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.IntentFormatter.html",
-          "hash": "7aBGKWqR2zYHtqGNDAo8BOQBd+UgohRACrmPCnJlMvM="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.JSON.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.JSON.html",
-          "hash": "SHA+APFqWWsv1xl3qILwT5bI/xUvGuSeAz5PHb3+DO0="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.Logger.LoggerDelegate.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.Logger.LoggerDelegate.html",
-          "hash": "1DxkM22/GMonRvXaLGDjpwnkg+LaKCASpz4H4dE32bw="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.Logger.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.Logger.html",
-          "hash": "pg5TfQZVjHnB37MashD+A6/6jo0O/MU/d+K2yK1lXO0="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.MsgCommon.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.MsgCommon.html",
-          "hash": "nD+ODid9oftnlz2Hj8sq1HlvaNkEkQfOQSU5zmk3cew="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.MsgEntity.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.MsgEntity.html",
-          "hash": "SJ2r1OTLNYyzKp3oQSsfN5pDuN5mvOdUtltCC4DAcyk="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.MsgIntent.Data.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.MsgIntent.Data.html",
-          "hash": "pMbxiP9xHxxGzNmvLqQ9aVfC+ICFDlt4cKgh+QSjqH8="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.MsgIntent.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.MsgIntent.html",
-          "hash": "TYGbW4ThK4FdDxM1kaPACbw14FRw0CbA+8cSgZAnFtQ="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.MsgTentativeEntity.Data.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.MsgTentativeEntity.Data.html",
-          "hash": "XvnWG3j8ePyLznnBvkHBJEw9Q+ZZMRGZVk9SnnrjWVw="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.MsgTentativeEntity.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.MsgTentativeEntity.html",
-          "hash": "IMHe8QcvqbTtj2STG4JeT3WMM3pMqwxPQRGbXz3Bj4E="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.MsgTentativeTranscript.Data.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.MsgTentativeTranscript.Data.html",
-          "hash": "gceGfx5M7C0MTy2HNinxQhvmoYiRRbzJU6iix8kzROg="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.MsgTentativeTranscript.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.MsgTentativeTranscript.html",
-          "hash": "N6t1QbOtWDn8pRDUMgxtjKm2H2UOX/HKjL+SCqTVhvg="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.MsgTranscript.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.MsgTranscript.html",
-          "hash": "qGhnRX/iE9CNi8yk75FU5ppMASoT00uFOl8IzwFxY8c="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.Platform.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.Platform.html",
-          "hash": "S9WK2hazAe1USmAdbGz+a/To7Rx0kJbN7I1ZQQR2tKs="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.Preferences.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.Preferences.html",
-          "hash": "hjw8cvpY0JTex6d67f+EhJcSoQ1RztGG8cyBNW9uxHY="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.ProjectTokenRequest.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.ProjectTokenRequest.html",
-          "hash": "+/iS95JZEVml8IOyYz1TuMOuocl8ZCR3Ioraf3pO1aw="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.ResponseReceivedDelegate.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.ResponseReceivedDelegate.html",
-          "hash": "FIULp6E5ThiCEZwhQICTK51D3VCjpHlgizYWNqP+QMs="
+          "hash": "K0HJ1RDmhgURLKoIssRBwkFirscxdhMItqgk51xRYCM="
         }
       },
       "is_incremental": true,
@@ -348,139 +60,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.Segment.html",
-          "hash": "7eXn93WYnSV1S0mwA7kb7iDOEvIDgINPBPHfuOio5jE="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.SegmentMessage.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.SegmentMessage.html",
-          "hash": "gX1/VUzpuYv15Qd4KooSZ9L+Y4a/i41x6UbbRBAnDxQ="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.SpeechlyClient.EntityDelegate.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.SpeechlyClient.EntityDelegate.html",
-          "hash": "g3aTr1RVYCkzp69Pfhq//k8OL5mslDMeqzsI+jcLTN8="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.SpeechlyClient.IntentDelegate.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.SpeechlyClient.IntentDelegate.html",
-          "hash": "zW/hsOdDA8hHCwQk/xFt4j/vYtyAVpO+btCju+j8Fqg="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.SpeechlyClient.SegmentChangeDelegate.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.SpeechlyClient.SegmentChangeDelegate.html",
-          "hash": "WGMHHnzf7OyKG6Aow9Er80UvRii+j7ppMhS5jaM95X4="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.SpeechlyClient.StartContextDelegate.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.SpeechlyClient.StartContextDelegate.html",
-          "hash": "nwzSTMKN4P7s30m2Mgx4dj7TSWQJym0uG4cjT4xWR4Y="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.SpeechlyClient.StartStreamDelegate.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.SpeechlyClient.StartStreamDelegate.html",
-          "hash": "wnjN6Qxw3+ese784c245FF739wbUoQE9XeYDkbKl1vQ="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.SpeechlyClient.StopContextDelegate.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.SpeechlyClient.StopContextDelegate.html",
-          "hash": "Fk/pfBhq6cWi/pKUtWxMEEDocjMO4bs2YZ/lS9UkfEM="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.SpeechlyClient.StopStreamDelegate.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.SpeechlyClient.StopStreamDelegate.html",
-          "hash": "qn6kvOClhRcJaxYqZXzJ6Z/PjldDsfqQCIYjzf1U7Fo="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.SpeechlyClient.TentativeEntityDelegate.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.SpeechlyClient.TentativeEntityDelegate.html",
-          "hash": "oKPLWffl4L4iAwnL+K5NprC6zaMvsGj38jzEoMH75PI="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.SpeechlyClient.TentativeTranscriptDelegate.html",
-          "hash": "jel/U35xURGIDZnpAvFbn7jvhAuxP50C08IWYocWcWY="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.SpeechlyClient.TranscriptDelegate.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.SpeechlyClient.TranscriptDelegate.html",
-          "hash": "wRlyaHL7qv7Pz8RPlOQn2HxX6uBm7UH0zknqEnN0mCk="
+          "hash": "SfRjsadciEQEKVL46/2WhmVMuom0JMQm9S03GbKdYVg="
         }
       },
       "is_incremental": true,
@@ -492,70 +72,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.SpeechlyClient.html",
-          "hash": "PlzakSLrUe4EXSBzy3stCTZuYOqG83EMNo0YohjRC+U="
+          "hash": "Xsjc1XpVZ3Q06w5NQ5btNvg0qjZxGfi7z5qC+ZVUTMo="
         }
       },
       "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.SpeechlyClientTest.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.SpeechlyClientTest.html",
-          "hash": "ugOos6rpD0bux8RfHQNM7NL8Yz9+Otys1/d9ZczTGcE="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.TokenResponse.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.TokenResponse.html",
-          "hash": "5uDO2Nt2TmfOH0yi5lo5f+xDxE6qOXzb2QCwvYnuVvM="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.Word.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.Word.html",
-          "hash": "RNSD1SLb2XAv+q3p/pN4gVUD4OAylnSbRiB7fEt+Dl8="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.WsClient.ResponseReceivedDelegate.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.WsClient.ResponseReceivedDelegate.html",
-          "hash": "F0kPS8WKNb/N8/IyFZ0PV+lAKIhdY3+2d/62bHHDnQg="
-        }
-      },
-      "is_incremental": true,
-      "version": ""
-    },
-    {
-      "type": "ManagedReference",
-      "source_relative_path": "api/Speechly.SLUClient.WsClient.yml",
-      "output": {
-        ".html": {
-          "relative_path": "api/Speechly.SLUClient.WsClient.html",
-          "hash": "F8KOyJlZOKR6cDpePAmR96u/utvigcuchUx1UWpBLNA="
-        }
-      },
-      "is_incremental": true,
       "version": ""
     },
     {
@@ -564,10 +84,406 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.html",
-          "hash": "PWih6njGF2b9Stg2qXWrfl3ILX07Hnni0hiRf6U0te0="
+          "hash": "jhM2FREdmvPOsOWycGjJOV4Nn5tAIQdPOr0VhYllG/A="
         }
       },
       "is_incremental": false,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Tools.AudioTools.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Tools.AudioTools.html",
+          "hash": "/EJRJvsm4tBucGu5W5Fzln+zR1nWCHjwfgvGOcvWI3c="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Tools.JSON.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Tools.JSON.html",
+          "hash": "a8bxIDKP6eqgHEQhhWKdP4u7oQA2B5uLjmdGRjOS18U="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Tools.Logger.LoggerDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Tools.Logger.LoggerDelegate.html",
+          "hash": "BtyKp3ou5sAHsYq9xb/uAWGCB5bvYjvkcq86gb1v2Tg="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Tools.Logger.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Tools.Logger.html",
+          "hash": "H9pgurLx68vJpjwjasP8eQ3aG/IDZ+PQLhLOUZh95t0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Tools.Platform.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Tools.Platform.html",
+          "hash": "3kvssSysqM0Wi6gPF9/FkTKcxhkb3OPOKKWMrmtT7DA="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Tools.WsClient.ResponseReceivedDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Tools.WsClient.ResponseReceivedDelegate.html",
+          "hash": "Y8EDXtHi+4qATAZdpyEqtOPX6ehDhZK8lorIZplK2Bs="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Tools.WsClient.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Tools.WsClient.html",
+          "hash": "26h/zEA3UNyquG4zpyMivu2x+rWlfcjbOSKUU2Ty2HY="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Tools.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Tools.html",
+          "hash": "Qv17G7nn+uktVFupT8tHwJUaqfnW1Sj43lT88VrMZVA="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.BeautifyEntity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.BeautifyEntity.html",
+          "hash": "boHUXuR5izH3zqSvG4Ec/ANTfDQcW3ylyRkaYYVHE4g="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.BeautifyIntent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.BeautifyIntent.html",
+          "hash": "3n7diCGlAa+U0oqmBS/Jq/nHval4G2sNa069hU+jnrE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.Entity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.Entity.html",
+          "hash": "1hcIssOWMuLIYFKLJdRcVMhhsAyDX2J5SwsErYsiIOU="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.EntityDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.EntityDelegate.html",
+          "hash": "SDplwNP4/Zuzcuq+g3ovtTs0Pag5IdOcPOZM9IM6jNs="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.Intent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.Intent.html",
+          "hash": "YLQG7YxwKOz/1LphEYoQTxTBzUgwMovJ6eu+qhXuV20="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.IntentDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.IntentDelegate.html",
+          "hash": "xgWxuoX6N+WgeRyNr30lfQUFebpZabyOZBcQMWczSlQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.MsgCommon.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.MsgCommon.html",
+          "hash": "8PNOqGCRhWuhheT9lHT1wBcqaH6RiBEZivTpn/ZFP9c="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.MsgEntity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.MsgEntity.html",
+          "hash": "93VX3iM9CyG+SSKXodd/iSg3I9wraGs7/RxvyO730hM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.MsgIntent.Data.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.MsgIntent.Data.html",
+          "hash": "6HIhFrgPGOjFHR863Ewy3XeB9KIy2d5LMr+zdQeiyzM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.MsgIntent.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.MsgIntent.html",
+          "hash": "CQFmcs9frsZL50SjPaA8SiCdOQYWgPD5dO2BoOMdcB8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.MsgTentativeEntity.Data.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.MsgTentativeEntity.Data.html",
+          "hash": "z5jVBvqMxWXjx2CCAlkKJkTXDJ2H53zZIh8812oLg8c="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.MsgTentativeEntity.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.MsgTentativeEntity.html",
+          "hash": "dmkMhl0iJMgCo5NdodvIBLZZbMdua9nK9N4aCDrXqxQ="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.MsgTentativeTranscript.Data.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.MsgTentativeTranscript.Data.html",
+          "hash": "VgG+T07/gxmSibYu0oGQD1ldcmzKPhXx1HA96vMPpus="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.MsgTentativeTranscript.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.MsgTentativeTranscript.html",
+          "hash": "ECxZSEtIHhWiZEjJmrzTK/8qw9jlWb3pY0+4ZP+QyY8="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.MsgTranscript.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.MsgTranscript.html",
+          "hash": "RGW6FTqesOjB8CRT9dDAAzpmhk8jHj8OIALtZ/+Mvbs="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.SegmentChangeDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.SegmentChangeDelegate.html",
+          "hash": "ZqYmAQAKLWODKvcXhQIVCujM90TF7gVYgwfTu+fyppo="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.StartContextDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.StartContextDelegate.html",
+          "hash": "yV91I1oiPOpknvwt4SA9kyv/Hl9hAQb8+VthW80TPds="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.StartStreamDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.StartStreamDelegate.html",
+          "hash": "QmrUTuf88rIoWhI6Hs/A0TY2y9U6dsUtC1Y5cxLsrfM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.StopContextDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.StopContextDelegate.html",
+          "hash": "Z4qrXE32qtdlM502nAvdXyuU6a/SKwhgAG2VGYQiAjE="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.StopStreamDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.StopStreamDelegate.html",
+          "hash": "XxsnJVQkfL9aDk6TMBkDj2cylUQ91Tp00gNaARnMWrk="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.TentativeEntityDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.TentativeEntityDelegate.html",
+          "hash": "YrjQXfRjcyqR6ekS47vXajT3Fu9Ssf64IrMkIZH8YeI="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.TentativeTranscriptDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.TentativeTranscriptDelegate.html",
+          "hash": "ZqChfwpPFhdI5KAVq+NZwulNw+Groxw9Uuk7EPMbp20="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.TranscriptDelegate.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.TranscriptDelegate.html",
+          "hash": "xgVqXY+XInJFMXiek+evkT0ZgTmI3ixup54AcjbLmV0="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.Word.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.Word.html",
+          "hash": "tIzyfDt0ybYKycVNMdqhfylqyKgyaCpdrQ1z0PA2x8E="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.Types.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.Types.html",
+          "hash": "ZpO8kXhOyHyytwcdUFtiI2JdwFLdqZya1aPB43H9uq0="
+        }
+      },
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -576,7 +492,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "iwqA/9jkuBwBh9ysw/tFPjUosx0DfqW7CVpOXTMwJO4="
+          "hash": "KoYKF+4Kca9RVwcCCPYN7PLdcVxP+T3i9Ck8nhY8/wo="
         }
       },
       "is_incremental": false,
@@ -616,8 +532,8 @@
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 46,
-          "skipped_file_count": 44
+          "total_file_count": 39,
+          "skipped_file_count": 38
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

@@ -1,0 +1,269 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Tools.JSON
+  commentId: T:Speechly.Tools.JSON
+  id: JSON
+  parent: Speechly.Tools
+  children:
+  - Speechly.Tools.JSON.Parse``1(System.String,``0)
+  - Speechly.Tools.JSON.ParseFromStream``1(Stream,``0)
+  - Speechly.Tools.JSON.Stringify``1(``0)
+  - Speechly.Tools.JSON.StringifyToStream``1(``0)
+  langs:
+  - csharp
+  - vb
+  name: JSON
+  nameWithType: JSON
+  fullName: Speechly.Tools.JSON
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: JSON
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+    startLine: 5
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: 'public class JSON : object'
+    content.vb: >-
+      Public Class JSON
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Tools.JSON.StringifyToStream``1(``0)
+  commentId: M:Speechly.Tools.JSON.StringifyToStream``1(``0)
+  id: StringifyToStream``1(``0)
+  parent: Speechly.Tools.JSON
+  langs:
+  - csharp
+  - vb
+  name: StringifyToStream<T>(T)
+  nameWithType: JSON.StringifyToStream<T>(T)
+  fullName: Speechly.Tools.JSON.StringifyToStream<T>(T)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: StringifyToStream
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+    startLine: 6
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public static MemoryStream StringifyToStream<T>(T obj)
+    parameters:
+    - id: obj
+      type: '{T}'
+    typeParameters:
+    - id: T
+    return:
+      type: MemoryStream
+    content.vb: Public Shared Function StringifyToStream(Of T)(obj As T) As MemoryStream
+  overload: Speechly.Tools.JSON.StringifyToStream*
+  nameWithType.vb: JSON.StringifyToStream(Of T)(T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Speechly.Tools.JSON.StringifyToStream(Of T)(T)
+  name.vb: StringifyToStream(Of T)(T)
+- uid: Speechly.Tools.JSON.Stringify``1(``0)
+  commentId: M:Speechly.Tools.JSON.Stringify``1(``0)
+  id: Stringify``1(``0)
+  parent: Speechly.Tools.JSON
+  langs:
+  - csharp
+  - vb
+  name: Stringify<T>(T)
+  nameWithType: JSON.Stringify<T>(T)
+  fullName: Speechly.Tools.JSON.Stringify<T>(T)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Stringify
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+    startLine: 13
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public static string Stringify<T>(T obj)
+    parameters:
+    - id: obj
+      type: '{T}'
+    typeParameters:
+    - id: T
+    return:
+      type: System.String
+    content.vb: Public Shared Function Stringify(Of T)(obj As T) As String
+  overload: Speechly.Tools.JSON.Stringify*
+  nameWithType.vb: JSON.Stringify(Of T)(T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Speechly.Tools.JSON.Stringify(Of T)(T)
+  name.vb: Stringify(Of T)(T)
+- uid: Speechly.Tools.JSON.ParseFromStream``1(Stream,``0)
+  commentId: M:Speechly.Tools.JSON.ParseFromStream``1(Stream,``0)
+  id: ParseFromStream``1(Stream,``0)
+  parent: Speechly.Tools.JSON
+  langs:
+  - csharp
+  - vb
+  name: ParseFromStream<T>(Stream, T)
+  nameWithType: JSON.ParseFromStream<T>(Stream, T)
+  fullName: Speechly.Tools.JSON.ParseFromStream<T>(Stream, T)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ParseFromStream
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+    startLine: 20
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: >-
+      public static T ParseFromStream<T>(Stream stream, T obj)
+          where T : class
+    parameters:
+    - id: stream
+      type: Stream
+    - id: obj
+      type: '{T}'
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Shared Function ParseFromStream(Of T As Class)(stream As Stream, obj As T) As T
+  overload: Speechly.Tools.JSON.ParseFromStream*
+  nameWithType.vb: JSON.ParseFromStream(Of T)(Stream, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Speechly.Tools.JSON.ParseFromStream(Of T)(Stream, T)
+  name.vb: ParseFromStream(Of T)(Stream, T)
+- uid: Speechly.Tools.JSON.Parse``1(System.String,``0)
+  commentId: M:Speechly.Tools.JSON.Parse``1(System.String,``0)
+  id: Parse``1(System.String,``0)
+  parent: Speechly.Tools.JSON
+  langs:
+  - csharp
+  - vb
+  name: Parse<T>(String, T)
+  nameWithType: JSON.Parse<T>(String, T)
+  fullName: Speechly.Tools.JSON.Parse<T>(System.String, T)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Parse
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+    startLine: 27
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: >-
+      public static T Parse<T>(string json, T obj)
+          where T : class
+    parameters:
+    - id: json
+      type: System.String
+    - id: obj
+      type: '{T}'
+    typeParameters:
+    - id: T
+    return:
+      type: '{T}'
+    content.vb: Public Shared Function Parse(Of T As Class)(json As String, obj As T) As T
+  overload: Speechly.Tools.JSON.Parse*
+  nameWithType.vb: JSON.Parse(Of T)(String, T)
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: Speechly.Tools.JSON.Parse(Of T)(System.String, T)
+  name.vb: Parse(Of T)(String, T)
+references:
+- uid: Speechly.Tools
+  commentId: N:Speechly.Tools
+  name: Speechly.Tools
+  nameWithType: Speechly.Tools
+  fullName: Speechly.Tools
+- uid: Speechly.Tools.JSON.StringifyToStream*
+  commentId: Overload:Speechly.Tools.JSON.StringifyToStream
+  name: StringifyToStream
+  nameWithType: JSON.StringifyToStream
+  fullName: Speechly.Tools.JSON.StringifyToStream
+- uid: '{T}'
+  commentId: '!:T'
+  definition: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: MemoryStream
+  isExternal: true
+  name: MemoryStream
+  nameWithType: MemoryStream
+  fullName: MemoryStream
+- uid: T
+  name: T
+  nameWithType: T
+  fullName: T
+- uid: Speechly.Tools.JSON.Stringify*
+  commentId: Overload:Speechly.Tools.JSON.Stringify
+  name: Stringify
+  nameWithType: JSON.Stringify
+  fullName: Speechly.Tools.JSON.Stringify
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Speechly.Tools.JSON.ParseFromStream*
+  commentId: Overload:Speechly.Tools.JSON.ParseFromStream
+  name: ParseFromStream
+  nameWithType: JSON.ParseFromStream
+  fullName: Speechly.Tools.JSON.ParseFromStream
+- uid: Stream
+  isExternal: true
+  name: Stream
+  nameWithType: Stream
+  fullName: Stream
+- uid: Speechly.Tools.JSON.Parse*
+  commentId: Overload:Speechly.Tools.JSON.Parse
+  name: Parse
+  nameWithType: JSON.Parse
+  fullName: Speechly.Tools.JSON.Parse
