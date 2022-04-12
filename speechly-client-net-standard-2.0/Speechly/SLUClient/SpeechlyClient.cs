@@ -12,13 +12,14 @@ namespace Speechly.SLUClient {
 /// #### Usage
 ///
 /// - Create a new SpeechlyClient instance.
-/// - Initialize a SLU decoder with <see cref="Initialize"/>.
-/// - Attach delegates like <see cref="OnSegmentChange"/> to listen to SLU results.
+/// - Create an SLU decoder (<see cref="CloudDecoder"/>) and pass it to `SpeechClient`'s <see cref="Initialize"/>.
+/// - Attach delegates like <see cref="OnSegmentChange"/> to listen to and handle the SLU results.
 /// - Feed audio to process with <see cref="ProcessAudio"/>.
+/// - (delegates are firing up as speech is processed)
 /// - When you don't need SLU services any more call <see cref="Shutdown"/> to free resources.
 ///
-/// You can control when to start and stop process speech either manually with <see cref="StartContext"/> and <see cref="StopContext"/> or
-/// automatically by providing a voice activity detection (VAD) field to SpeechlyClient constructor.
+/// You can feed audio continuously, but control when to start and stop process speech with <see cref="StartContext"/> and <see cref="StopContext"/> or
+/// let voice activity detection (VAD) handle that automatically by passing <see cref="EnergyTresholdVAD"/> to SpeechlyClient constructor.
 /// </summary>
 
   public class SpeechlyClient {
@@ -104,9 +105,9 @@ namespace Speechly.SLUClient {
 /// <summary>
 /// Create a new SpeechlyClient to process audio and fire delegates to provide SLU results.
 /// </summary>
-/// <param name="vad">Provide a voice activation detection (VAD) implementation to control automatic listening on/off. Null disables VAD. (default: `null`)</param>
-/// <param name="historyFrames">Defines the size of the history as historyFrames * frameSamples (default: `5`)</param>
-/// <param name="frameMillis">Defines the size of the history as historyFrames*frameSamples (default: `30` ms). History is sent upon StartContext to capture the start of utterance which especially important with VAD, which activates with a constant delay.</param>
+/// <param name="vad"><see cref="EnergyTresholdVAD"/> instance to control automatic listening on/off. Null disables VAD. (default: `null`)</param>
+/// <param name="historyFrames">Count of the audio history frames (default: `5`). Total history duration will be historyFrames * frameSamples.</param>
+/// <param name="frameMillis">Size of one audio frame (default: `30` ms). Total history duration will be historyFrames*frameSamples. History is sent upon StartContext to capture the start of utterance which especially important with VAD, which activates with a constant delay.</param>
 /// <param name="manualUpdate">Setting `manualUpdate = true` postpones SpeechlyClient's delegates (OnSegmentChange, OnTranscript...) until you manually run <see cref="Update"/>. This enables you to call Unity API in SpeechlyClient's delegates, as Unity API should only be used in the main Unity thread. (Default: false)</param>
 /// <param name="saveToFolder">Defines a local folder to save utterance files as 16 bit, 16000 hZ mono raw. Null disables saving. (default: `null`)</param>
 /// <param name="inputSampleRate">Define the sample rate of incoming audio (default: `16000`)</param>
@@ -140,12 +141,12 @@ namespace Speechly.SLUClient {
     }
 
 /// <summary>
-/// Provide a SLU decoder instance for the SpeechlyClient.
+/// SLU decoder instance to use like <see cref="CloudDecoder"/>.
+///
 /// The SLU decoder provides the automatic speech recognition (ASR) and
-/// natural language understanding (NLU) capabilities.
-/// The SLU delegates (OnSegmentChange, OnTranscript...) are only fired when SpeechlyClient is initialized with a SLU decoder.
+/// natural language understanding (NLU) capabilities via SLU delegates (OnSegmentChange, OnTranscript...).
 /// </summary>
-/// <param name="decoder">SLU decoder implementing IDecoder interface</param>
+/// <param name="decoder">SLU decoder implementing IDecoder interface like <see cref="CloudDecoder"/>.</param>
 /// <returns>Task that completes when the decoder is ready.</returns>
     public async Task Initialize(IDecoder decoder) {
       if (this.decoder == null) {

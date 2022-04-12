@@ -82,7 +82,11 @@
       <h4><a class="xref" href="Speechly.SLUClient.AudioTools.html">AudioTools</a></h4>
       <section></section>
       <h4><a class="xref" href="Speechly.SLUClient.CloudDecoder.html">CloudDecoder</a></h4>
-      <section></section>
+      <section><p>Provides speech processing with Speechly's cloud SLU service.</p>
+<p>Internally handles authentication using https and audio streaming via secure websocket.
+Audio is streamed when listening is started with SpeechlyClient.StartContext().
+Streaming stops upon call to SpeechlyClient.StopContext().</p>
+</section>
       <h4><a class="xref" href="Speechly.SLUClient.ConfigTool.html">ConfigTool</a></h4>
       <section></section>
       <h4><a class="xref" href="Speechly.SLUClient.EnergyTresholdVAD.html">EnergyTresholdVAD</a></h4>
@@ -130,13 +134,14 @@ It can be used to enable hands-free operation of the SLU decoder.</p>
 <h4 id="usage">Usage</h4>
 <ul>
 <li>Create a new SpeechlyClient instance.</li>
-<li>Initialize a SLU decoder with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_">Initialize(IDecoder)</a>.</li>
-<li>Attach delegates like <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_OnSegmentChange">OnSegmentChange</a> to listen to SLU results.</li>
+<li>Create an SLU decoder (<a class="xref" href="Speechly.SLUClient.CloudDecoder.html">CloudDecoder</a>) and pass it to <code>SpeechClient</code>'s <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_">Initialize(IDecoder)</a>.</li>
+<li>Attach delegates like <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_OnSegmentChange">OnSegmentChange</a> to listen to and handle the SLU results.</li>
 <li>Feed audio to process with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_ProcessAudio_System_Single___System_Int32_System_Int32_System_Boolean_">ProcessAudio(Single[], Int32, Int32, Boolean)</a>.</li>
+<li>(delegates are firing up as speech is processed)</li>
 <li>When you don't need SLU services any more call <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Shutdown">Shutdown()</a> to free resources.</li>
 </ul>
-<p>You can control when to start and stop process speech either manually with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StartContext_System_String_">StartContext(String)</a> and <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StopContext">StopContext()</a> or
-automatically by providing a voice activity detection (VAD) field to SpeechlyClient constructor.</p>
+<p>You can feed audio continuously, but control when to start and stop process speech with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StartContext_System_String_">StartContext(String)</a> and <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StopContext">StopContext()</a> or
+let voice activity detection (VAD) handle that automatically by passing <a class="xref" href="Speechly.SLUClient.EnergyTresholdVAD.html">EnergyTresholdVAD</a> to SpeechlyClient constructor.</p>
 </section>
       <h4><a class="xref" href="Speechly.SLUClient.SpeechlyClientTest.html">SpeechlyClientTest</a></h4>
       <section></section>

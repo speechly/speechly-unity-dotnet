@@ -49,11 +49,11 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SpeechlyClient
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 23
+    startLine: 24
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
-  summary: "\nCreate a new Speechly Spoken Language Understading (SLU) Client to process speech and provide the results of automatic speech recogition (ASR) and natural langugage understanding (NLU) using delegates.\n\n#### Usage\n\n- Create a new SpeechlyClient instance.\n- Initialize a SLU decoder with <xref href=\"Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)\" data-throw-if-not-resolved=\"false\"></xref>.\n- Attach delegates like <xref href=\"Speechly.SLUClient.SpeechlyClient.OnSegmentChange\" data-throw-if-not-resolved=\"false\"></xref> to listen to SLU results.\n- Feed audio to process with <xref href=\"Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single%5b%5d%2cSystem.Int32%2cSystem.Int32%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref>.\n- When you don&apos;t need SLU services any more call <xref href=\"Speechly.SLUClient.SpeechlyClient.Shutdown\" data-throw-if-not-resolved=\"false\"></xref> to free resources.\n\nYou can control when to start and stop process speech either manually with <xref href=\"Speechly.SLUClient.SpeechlyClient.StartContext(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.SLUClient.SpeechlyClient.StopContext\" data-throw-if-not-resolved=\"false\"></xref> or\nautomatically by providing a voice activity detection (VAD) field to SpeechlyClient constructor.\n"
+  summary: "\nCreate a new Speechly Spoken Language Understading (SLU) Client to process speech and provide the results of automatic speech recogition (ASR) and natural langugage understanding (NLU) using delegates.\n\n#### Usage\n\n- Create a new SpeechlyClient instance.\n- Create an SLU decoder (<xref href=\"Speechly.SLUClient.CloudDecoder\" data-throw-if-not-resolved=\"false\"></xref>) and pass it to `SpeechClient`&apos;s <xref href=\"Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)\" data-throw-if-not-resolved=\"false\"></xref>.\n- Attach delegates like <xref href=\"Speechly.SLUClient.SpeechlyClient.OnSegmentChange\" data-throw-if-not-resolved=\"false\"></xref> to listen to and handle the SLU results.\n- Feed audio to process with <xref href=\"Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single%5b%5d%2cSystem.Int32%2cSystem.Int32%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref>.\n- (delegates are firing up as speech is processed)\n- When you don&apos;t need SLU services any more call <xref href=\"Speechly.SLUClient.SpeechlyClient.Shutdown\" data-throw-if-not-resolved=\"false\"></xref> to free resources.\n\nYou can feed audio continuously, but control when to start and stop process speech with <xref href=\"Speechly.SLUClient.SpeechlyClient.StartContext(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.SLUClient.SpeechlyClient.StopContext\" data-throw-if-not-resolved=\"false\"></xref> or\nlet voice activity detection (VAD) handle that automatically by passing <xref href=\"Speechly.SLUClient.EnergyTresholdVAD\" data-throw-if-not-resolved=\"false\"></xref> to SpeechlyClient constructor.\n"
   example: []
   syntax:
     content: 'public class SpeechlyClient : object'
@@ -86,7 +86,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnSegmentChange
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 42
+    startLine: 43
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -119,7 +119,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnTentativeTranscript
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 43
+    startLine: 44
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -150,7 +150,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnTranscript
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 44
+    startLine: 45
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -181,7 +181,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnTentativeEntity
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 45
+    startLine: 46
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -212,7 +212,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnEntity
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 46
+    startLine: 47
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -243,7 +243,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnTentativeIntent
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 47
+    startLine: 48
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -274,7 +274,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnIntent
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 48
+    startLine: 49
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -305,7 +305,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnStartStream
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 49
+    startLine: 50
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -336,7 +336,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnStopStream
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 50
+    startLine: 51
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -367,7 +367,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnStartContext
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 51
+    startLine: 52
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -398,7 +398,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnStopContext
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 52
+    startLine: 53
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -429,7 +429,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: IsAudioStreaming
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 55
+    startLine: 56
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -464,7 +464,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: IsReady
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 58
+    startLine: 59
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -500,7 +500,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: IsListening
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 65
+    startLine: 66
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -536,7 +536,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SamplesSent
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 67
+    startLine: 68
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -571,7 +571,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Vad
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 68
+    startLine: 69
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -606,7 +606,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: AudioInputStreamIdentifier
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 71
+    startLine: 72
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -642,7 +642,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: UtteranceSerial
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 74
+    startLine: 75
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -678,7 +678,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StreamSamplePos
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 77
+    startLine: 78
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -714,7 +714,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: .ctor
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 114
+    startLine: 115
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -725,10 +725,10 @@ items:
     parameters:
     - id: frameMillis
       type: System.Int32
-      description: 'Defines the size of the history as historyFrames*frameSamples (default: `30` ms). History is sent upon StartContext to capture the start of utterance which especially important with VAD, which activates with a constant delay.'
+      description: 'Size of one audio frame (default: `30` ms). Total history duration will be historyFrames*frameSamples. History is sent upon StartContext to capture the start of utterance which especially important with VAD, which activates with a constant delay.'
     - id: historyFrames
       type: System.Int32
-      description: 'Defines the size of the history as historyFrames * frameSamples (default: `5`)'
+      description: 'Count of the audio history frames (default: `5`). Total history duration will be historyFrames * frameSamples.'
     - id: inputSampleRate
       type: System.Int32
       description: 'Define the sample rate of incoming audio (default: `16000`)'
@@ -740,7 +740,7 @@ items:
       description: 'Defines a local folder to save utterance files as 16 bit, 16000 hZ mono raw. Null disables saving. (default: `null`)'
     - id: vad
       type: Speechly.SLUClient.EnergyTresholdVAD
-      description: 'Provide a voice activation detection (VAD) implementation to control automatic listening on/off. Null disables VAD. (default: `null`)'
+      description: '<xref href="Speechly.SLUClient.EnergyTresholdVAD" data-throw-if-not-resolved="false"></xref> instance to control automatic listening on/off. Null disables VAD. (default: `null`)'
     - id: debug
       type: System.Boolean
       description: 'Enable debug prints thru <xref href="Speechly.SLUClient.Logger.Log" data-throw-if-not-resolved="false"></xref> delegate. (default: `false`)'
@@ -768,18 +768,18 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Initialize
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 149
+    startLine: 150
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
-  summary: "\nProvide a SLU decoder instance for the SpeechlyClient.\nThe SLU decoder provides the automatic speech recognition (ASR) and\nnatural language understanding (NLU) capabilities.\nThe SLU delegates (OnSegmentChange, OnTranscript...) are only fired when SpeechlyClient is initialized with a SLU decoder.\n"
+  summary: "\nSLU decoder instance to use like <xref href=\"Speechly.SLUClient.CloudDecoder\" data-throw-if-not-resolved=\"false\"></xref>.\n\nThe SLU decoder provides the automatic speech recognition (ASR) and\nnatural language understanding (NLU) capabilities via SLU delegates (OnSegmentChange, OnTranscript...).\n"
   example: []
   syntax:
     content: public async Task Initialize(IDecoder decoder)
     parameters:
     - id: decoder
       type: Speechly.SLUClient.IDecoder
-      description: SLU decoder implementing IDecoder interface
+      description: SLU decoder implementing IDecoder interface like <xref href="Speechly.SLUClient.CloudDecoder" data-throw-if-not-resolved="false"></xref>.
     return:
       type: Task
       description: Task that completes when the decoder is ready.
@@ -808,7 +808,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StartStream
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 170
+    startLine: 171
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -845,7 +845,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StopStream
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 189
+    startLine: 190
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -880,7 +880,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StartContext
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 215
+    startLine: 216
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -919,7 +919,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessAudioFile
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 250
+    startLine: 251
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -952,7 +952,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessAudio
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 281
+    startLine: 282
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -1000,7 +1000,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessAudio
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 342
+    startLine: 343
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -1033,7 +1033,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StopContext
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 420
+    startLine: 421
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -1068,7 +1068,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Update
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 450
+    startLine: 451
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -1100,7 +1100,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Shutdown
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 547
+    startLine: 548
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -1119,6 +1119,11 @@ items:
   modifiers.vb:
   - Public
 references:
+- uid: Speechly.SLUClient.CloudDecoder
+  commentId: T:Speechly.SLUClient.CloudDecoder
+  name: CloudDecoder
+  nameWithType: CloudDecoder
+  fullName: Speechly.SLUClient.CloudDecoder
 - uid: Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)
   commentId: M:Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)
   isExternal: true
@@ -1137,6 +1142,12 @@ references:
 - uid: Speechly.SLUClient.SpeechlyClient.StopContext
   commentId: M:Speechly.SLUClient.SpeechlyClient.StopContext
   isExternal: true
+- uid: Speechly.SLUClient.EnergyTresholdVAD
+  commentId: T:Speechly.SLUClient.EnergyTresholdVAD
+  parent: Speechly.SLUClient
+  name: EnergyTresholdVAD
+  nameWithType: EnergyTresholdVAD
+  fullName: Speechly.SLUClient.EnergyTresholdVAD
 - uid: Speechly.SLUClient
   commentId: N:Speechly.SLUClient
   name: Speechly.SLUClient
@@ -1242,12 +1253,6 @@ references:
   name: Vad
   nameWithType: SpeechlyClient.Vad
   fullName: Speechly.SLUClient.SpeechlyClient.Vad
-- uid: Speechly.SLUClient.EnergyTresholdVAD
-  commentId: T:Speechly.SLUClient.EnergyTresholdVAD
-  parent: Speechly.SLUClient
-  name: EnergyTresholdVAD
-  nameWithType: EnergyTresholdVAD
-  fullName: Speechly.SLUClient.EnergyTresholdVAD
 - uid: Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier*
   commentId: Overload:Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier
   name: AudioInputStreamIdentifier

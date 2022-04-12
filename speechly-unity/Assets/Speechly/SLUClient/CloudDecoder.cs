@@ -5,6 +5,13 @@ using System.Threading.Tasks;
 using System.Text;
 
 namespace Speechly.SLUClient {
+/// <summary>
+/// Provides speech processing with Speechly's cloud SLU service.
+///
+/// Internally handles authentication using https and audio streaming via secure websocket.
+/// Audio is streamed when listening is started with SpeechlyClient.StartContext().
+/// Streaming stops upon call to SpeechlyClient.StopContext().
+/// </summary>
 
   public class CloudDecoder: IDecoder {
     public event ResponseReceivedDelegate OnMessage = (MsgCommon msgCommon, string msgString) => {};
@@ -19,18 +26,28 @@ namespace Speechly.SLUClient {
     private ConcurrentQueue<TaskCompletionSource<string>> startContextTCS = new ConcurrentQueue<TaskCompletionSource<string>>();
     private ConcurrentQueue<TaskCompletionSource<string>> stopContextTCS = new ConcurrentQueue<TaskCompletionSource<string>>();
 
+/// <summary>
+/// Initialize speech processing with Speechly's cloud SLU service.
+/// </summary>
+/// <param name="deviceId">An unique string id for the device.</param>
+/// <param name="loginUrl">Authentication service url (default: Speechly's production env's url)</param>
+/// <param name="apiUrl">SLU API url (default: Speechly's production env's url)</param>
+/// <param name="projectId">Your Speechly app id for authentication. Only provide either app id or project id, not both (default: `null`).</param>
+/// <param name="appId">Your Speechly project id for authentication. Only provide either app id or project id, not both (default: `null`).</param>
+/// <param name="debug">Enable debug prints thru <see cref="Logger.Log"/> delegate. (default: `false`)</param>
+
     public CloudDecoder(
       string deviceId,
       string loginUrl = null,
       string apiUrl = null,
-      string projectId = null,
       string appId = null,
+      string projectId = null,
       bool debug = false
     ) {
       if (loginUrl != null) this.loginUrl = loginUrl;
       if (apiUrl != null) this.apiUrl = apiUrl;
-      if (projectId != null) this.projectId = projectId;
       if (appId != null) this.appId = appId;
+      if (projectId != null) this.projectId = projectId;
       this.deviceId = deviceId;
       this.debug = debug;
     }

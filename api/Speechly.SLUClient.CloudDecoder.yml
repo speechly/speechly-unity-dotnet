@@ -26,10 +26,12 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: CloudDecoder
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
-    startLine: 8
+    startLine: 15
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
+  summary: "\nProvides speech processing with Speechly&apos;s cloud SLU service.\n\nInternally handles authentication using https and audio streaming via secure websocket.\nAudio is streamed when listening is started with SpeechlyClient.StartContext().\nStreaming stops upon call to SpeechlyClient.StopContext().\n"
+  example: []
   syntax:
     content: 'public class CloudDecoder : object, IDecoder'
     content.vb: >-
@@ -64,7 +66,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnMessage
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
-    startLine: 9
+    startLine: 16
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -97,26 +99,34 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: .ctor
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
-    startLine: 21
+    startLine: 38
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
+  summary: "\nInitialize speech processing with Speechly&apos;s cloud SLU service.\n"
+  example: []
   syntax:
-    content: public CloudDecoder(string deviceId, string loginUrl = null, string apiUrl = null, string projectId = null, string appId = null, bool debug = false)
+    content: public CloudDecoder(string deviceId, string loginUrl = null, string apiUrl = null, string appId = null, string projectId = null, bool debug = false)
     parameters:
     - id: deviceId
       type: System.String
+      description: An unique string id for the device.
     - id: loginUrl
       type: System.String
+      description: 'Authentication service url (default: Speechly&apos;s production env&apos;s url)'
     - id: apiUrl
       type: System.String
-    - id: projectId
-      type: System.String
+      description: 'SLU API url (default: Speechly&apos;s production env&apos;s url)'
     - id: appId
       type: System.String
+      description: 'Your Speechly project id for authentication. Only provide either app id or project id, not both (default: `null`).'
+    - id: projectId
+      type: System.String
+      description: 'Your Speechly app id for authentication. Only provide either app id or project id, not both (default: `null`).'
     - id: debug
       type: System.Boolean
-    content.vb: Public Sub New(deviceId As String, loginUrl As String = Nothing, apiUrl As String = Nothing, projectId As String = Nothing, appId As String = Nothing, debug As Boolean = False)
+      description: 'Enable debug prints thru <xref href="Speechly.SLUClient.Logger.Log" data-throw-if-not-resolved="false"></xref> delegate. (default: `false`)'
+    content.vb: Public Sub New(deviceId As String, loginUrl As String = Nothing, apiUrl As String = Nothing, appId As String = Nothing, projectId As String = Nothing, debug As Boolean = False)
   overload: Speechly.SLUClient.CloudDecoder.#ctor*
   modifiers.csharp:
   - public
@@ -140,7 +150,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Initialize
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
-    startLine: 37
+    startLine: 54
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -175,7 +185,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StartContext
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
-    startLine: 51
+    startLine: 68
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -209,7 +219,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SendAudio
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
-    startLine: 89
+    startLine: 106
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -251,7 +261,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StopContext
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
-    startLine: 105
+    startLine: 122
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -285,7 +295,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Shutdown
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
-    startLine: 112
+    startLine: 129
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
@@ -326,6 +336,9 @@ references:
   name: ResponseReceivedDelegate
   nameWithType: ResponseReceivedDelegate
   fullName: Speechly.SLUClient.ResponseReceivedDelegate
+- uid: Speechly.SLUClient.Logger.Log
+  commentId: F:Speechly.SLUClient.Logger.Log
+  isExternal: true
 - uid: Speechly.SLUClient.CloudDecoder.#ctor*
   commentId: Overload:Speechly.SLUClient.CloudDecoder.#ctor
   name: CloudDecoder

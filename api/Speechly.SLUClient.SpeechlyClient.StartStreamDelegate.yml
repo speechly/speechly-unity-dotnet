@@ -19,7 +19,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StartStreamDelegate
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 30
+    startLine: 31
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
