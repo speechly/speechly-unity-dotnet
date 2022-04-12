@@ -172,19 +172,6 @@ references:
   commentId: F:Speechly.SLUClient.Segment.contextId
   fullName: Speechly.SLUClient.Segment.contextId
   nameWithType: Segment.contextId
-- uid: Speechly.SLUClient.Segment.EndSegment
-  name: EndSegment()
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_EndSegment
-  commentId: M:Speechly.SLUClient.Segment.EndSegment
-  fullName: Speechly.SLUClient.Segment.EndSegment()
-  nameWithType: Segment.EndSegment()
-- uid: Speechly.SLUClient.Segment.EndSegment*
-  name: EndSegment
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_EndSegment_
-  commentId: Overload:Speechly.SLUClient.Segment.EndSegment
-  isSpec: "True"
-  fullName: Speechly.SLUClient.Segment.EndSegment
-  nameWithType: Segment.EndSegment
 - uid: Speechly.SLUClient.Segment.entities
   name: entities
   href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_entities
@@ -228,63 +215,6 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.Segment.ToString
   nameWithType: Segment.ToString
-- uid: Speechly.SLUClient.Segment.UpdateEntity(Speechly.Types.Entity)
-  name: UpdateEntity(Entity)
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateEntity_Speechly_Types_Entity_
-  commentId: M:Speechly.SLUClient.Segment.UpdateEntity(Speechly.Types.Entity)
-  fullName: Speechly.SLUClient.Segment.UpdateEntity(Speechly.Types.Entity)
-  nameWithType: Segment.UpdateEntity(Entity)
-- uid: Speechly.SLUClient.Segment.UpdateEntity(Speechly.Types.Entity[])
-  name: UpdateEntity(Entity[])
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateEntity_Speechly_Types_Entity___
-  commentId: M:Speechly.SLUClient.Segment.UpdateEntity(Speechly.Types.Entity[])
-  name.vb: UpdateEntity(Entity())
-  fullName: Speechly.SLUClient.Segment.UpdateEntity(Speechly.Types.Entity[])
-  fullName.vb: Speechly.SLUClient.Segment.UpdateEntity(Speechly.Types.Entity())
-  nameWithType: Segment.UpdateEntity(Entity[])
-  nameWithType.vb: Segment.UpdateEntity(Entity())
-- uid: Speechly.SLUClient.Segment.UpdateEntity*
-  name: UpdateEntity
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateEntity_
-  commentId: Overload:Speechly.SLUClient.Segment.UpdateEntity
-  isSpec: "True"
-  fullName: Speechly.SLUClient.Segment.UpdateEntity
-  nameWithType: Segment.UpdateEntity
-- uid: Speechly.SLUClient.Segment.UpdateIntent(System.String,System.Boolean)
-  name: UpdateIntent(String, Boolean)
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateIntent_System_String_System_Boolean_
-  commentId: M:Speechly.SLUClient.Segment.UpdateIntent(System.String,System.Boolean)
-  fullName: Speechly.SLUClient.Segment.UpdateIntent(System.String, System.Boolean)
-  nameWithType: Segment.UpdateIntent(String, Boolean)
-- uid: Speechly.SLUClient.Segment.UpdateIntent*
-  name: UpdateIntent
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateIntent_
-  commentId: Overload:Speechly.SLUClient.Segment.UpdateIntent
-  isSpec: "True"
-  fullName: Speechly.SLUClient.Segment.UpdateIntent
-  nameWithType: Segment.UpdateIntent
-- uid: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.Types.Word)
-  name: UpdateTranscript(Word)
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateTranscript_Speechly_Types_Word_
-  commentId: M:Speechly.SLUClient.Segment.UpdateTranscript(Speechly.Types.Word)
-  fullName: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.Types.Word)
-  nameWithType: Segment.UpdateTranscript(Word)
-- uid: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.Types.Word[])
-  name: UpdateTranscript(Word[])
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateTranscript_Speechly_Types_Word___
-  commentId: M:Speechly.SLUClient.Segment.UpdateTranscript(Speechly.Types.Word[])
-  name.vb: UpdateTranscript(Word())
-  fullName: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.Types.Word[])
-  fullName.vb: Speechly.SLUClient.Segment.UpdateTranscript(Speechly.Types.Word())
-  nameWithType: Segment.UpdateTranscript(Word[])
-  nameWithType.vb: Segment.UpdateTranscript(Word())
-- uid: Speechly.SLUClient.Segment.UpdateTranscript*
-  name: UpdateTranscript
-  href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_UpdateTranscript_
-  commentId: Overload:Speechly.SLUClient.Segment.UpdateTranscript
-  isSpec: "True"
-  fullName: Speechly.SLUClient.Segment.UpdateTranscript
-  nameWithType: Segment.UpdateTranscript
 - uid: Speechly.SLUClient.Segment.words
   name: words
   href: api/Speechly.SLUClient.Segment.html#Speechly_SLUClient_Segment_words

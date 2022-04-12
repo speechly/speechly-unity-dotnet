@@ -60,10 +60,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.Segment.html",
-          "hash": "SfRjsadciEQEKVL46/2WhmVMuom0JMQm9S03GbKdYVg="
+          "hash": "Ce8bP9m2V0ofWBOrYPKdfGUlwIMVTnFAMIpt4dl5oSc="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -75,7 +75,7 @@
           "hash": "Xsjc1XpVZ3Q06w5NQ5btNvg0qjZxGfi7z5qC+ZVUTMo="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -84,7 +84,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.html",
-          "hash": "jhM2FREdmvPOsOWycGjJOV4Nn5tAIQdPOr0VhYllG/A="
+          "hash": "BCeIZeNNRVD1IbNH01xUYG3uxlCvKIGeQG9z2Kec+5U="
         }
       },
       "is_incremental": false,
@@ -375,7 +375,7 @@
           "hash": "ZqYmAQAKLWODKvcXhQIVCujM90TF7gVYgwfTu+fyppo="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
@@ -483,7 +483,7 @@
           "hash": "ZpO8kXhOyHyytwcdUFtiI2JdwFLdqZya1aPB43H9uq0="
         }
       },
-      "is_incremental": true,
+      "is_incremental": false,
       "version": ""
     },
     {
