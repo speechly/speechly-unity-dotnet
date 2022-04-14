@@ -1258,9 +1258,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 885213177}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 1
+  m_MaxValue: 0.5
   m_WholeNumbers: 0
-  m_Value: 0.402
+  m_Value: 0.05
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -2882,14 +2882,16 @@ MonoBehaviour:
   AppId: f44486fe-d248-404f-b4bc-44ebe257b93f
   CaptureDeviceName: 
   MicSampleRate: 16000
-  CalcAudioPeaks: 1
-  VADUseEnergyGate: 0
   FrameMillis: 30
   HistoryFrames: 5
-  VADEnergyTreshold: 0.005
-  VADSignalToNoise: 2
-  VADActivationRatio: 0.7
-  VADReleaseRatio: 0.2
-  VADSustainMillis: 3000
-  DebugVAD: 0
+  Vad:
+    Enabled: 1
+    VADMinimumEnergy: 0.005
+    VADSignalToNoise: 2
+    VADFrames: 5
+    VADActivation: 0.7
+    VADRelease: 0.2
+    VADSustainMillis: 3000
+    VADNoiseHalftimeMillis: 400
+    VADControlListening: 0
   DebugPrint: 0

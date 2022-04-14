@@ -1,0 +1,48 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.IDecoder
+  commentId: T:Speechly.SLUClient.IDecoder
+  id: IDecoder
+  parent: Speechly.SLUClient
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: IDecoder
+  nameWithType: IDecoder
+  fullName: Speechly.SLUClient.IDecoder
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/IDecoder.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: IDecoder
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/IDecoder.cs
+    startLine: 6
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  syntax:
+    content: 'public abstract class IDecoder : object'
+    content.vb: >-
+      Public MustInherit Class IDecoder
+          Inherits Object
+  inheritance:
+  - System.Object
+  derivedClasses:
+  - Speechly.SLUClient.CloudDecoder
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient

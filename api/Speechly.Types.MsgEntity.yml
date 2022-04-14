@@ -1,0 +1,82 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.MsgEntity
+  commentId: T:Speechly.Types.MsgEntity
+  id: MsgEntity
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.MsgEntity.data
+  langs:
+  - csharp
+  - vb
+  name: MsgEntity
+  nameWithType: MsgEntity
+  fullName: Speechly.Types.MsgEntity
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: MsgEntity
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 56
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: 'public class MsgEntity : object'
+    content.vb: >-
+      Public Class MsgEntity
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.MsgEntity.data
+  commentId: F:Speechly.Types.MsgEntity.data
+  id: data
+  parent: Speechly.Types.MsgEntity
+  langs:
+  - csharp
+  - vb
+  name: data
+  nameWithType: MsgEntity.data
+  fullName: Speechly.Types.MsgEntity.data
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: data
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 57
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public Entity data
+    return:
+      type: Speechly.Types.Entity
+    content.vb: Public data As Entity
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: Speechly.Types.Entity
+  commentId: T:Speechly.Types.Entity
+  parent: Speechly.Types
+  name: Entity
+  nameWithType: Entity
+  fullName: Speechly.Types.Entity

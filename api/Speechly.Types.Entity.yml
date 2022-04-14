@@ -1,0 +1,219 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.Entity
+  commentId: T:Speechly.Types.Entity
+  id: Entity
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.Entity.endPosition
+  - Speechly.Types.Entity.isFinal
+  - Speechly.Types.Entity.startPosition
+  - Speechly.Types.Entity.type
+  - Speechly.Types.Entity.value
+  langs:
+  - csharp
+  - vb
+  name: Entity
+  nameWithType: Entity
+  fullName: Speechly.Types.Entity
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Entity
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 34
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: 'public class Entity : object'
+    content.vb: >-
+      Public Class Entity
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.Entity.type
+  commentId: F:Speechly.Types.Entity.type
+  id: type
+  parent: Speechly.Types.Entity
+  langs:
+  - csharp
+  - vb
+  name: type
+  nameWithType: Entity.type
+  fullName: Speechly.Types.Entity.type
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: type
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 37
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public string type
+    return:
+      type: System.String
+    content.vb: Public type As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.Entity.value
+  commentId: F:Speechly.Types.Entity.value
+  id: value
+  parent: Speechly.Types.Entity
+  langs:
+  - csharp
+  - vb
+  name: value
+  nameWithType: Entity.value
+  fullName: Speechly.Types.Entity.value
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: value
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 39
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public string value
+    return:
+      type: System.String
+    content.vb: Public value As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.Entity.startPosition
+  commentId: F:Speechly.Types.Entity.startPosition
+  id: startPosition
+  parent: Speechly.Types.Entity
+  langs:
+  - csharp
+  - vb
+  name: startPosition
+  nameWithType: Entity.startPosition
+  fullName: Speechly.Types.Entity.startPosition
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: startPosition
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 41
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public int startPosition
+    return:
+      type: System.Int32
+    content.vb: Public startPosition As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.Entity.endPosition
+  commentId: F:Speechly.Types.Entity.endPosition
+  id: endPosition
+  parent: Speechly.Types.Entity
+  langs:
+  - csharp
+  - vb
+  name: endPosition
+  nameWithType: Entity.endPosition
+  fullName: Speechly.Types.Entity.endPosition
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: endPosition
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 43
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public int endPosition
+    return:
+      type: System.Int32
+    content.vb: Public endPosition As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.Entity.isFinal
+  commentId: F:Speechly.Types.Entity.isFinal
+  id: isFinal
+  parent: Speechly.Types.Entity
+  langs:
+  - csharp
+  - vb
+  name: isFinal
+  nameWithType: Entity.isFinal
+  fullName: Speechly.Types.Entity.isFinal
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: isFinal
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 44
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public bool isFinal
+    return:
+      type: System.Boolean
+    content.vb: Public isFinal As Boolean
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

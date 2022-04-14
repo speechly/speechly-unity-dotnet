@@ -1,0 +1,137 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.MsgTentativeTranscript.Data
+  commentId: T:Speechly.Types.MsgTentativeTranscript.Data
+  id: MsgTentativeTranscript.Data
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.MsgTentativeTranscript.Data.transcript
+  - Speechly.Types.MsgTentativeTranscript.Data.words
+  langs:
+  - csharp
+  - vb
+  name: MsgTentativeTranscript.Data
+  nameWithType: MsgTentativeTranscript.Data
+  fullName: Speechly.Types.MsgTentativeTranscript.Data
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Data
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 61
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: 'public class Data : object'
+    content.vb: >-
+      Public Class Data
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.MsgTentativeTranscript.Data.transcript
+  commentId: F:Speechly.Types.MsgTentativeTranscript.Data.transcript
+  id: transcript
+  parent: Speechly.Types.MsgTentativeTranscript.Data
+  langs:
+  - csharp
+  - vb
+  name: transcript
+  nameWithType: MsgTentativeTranscript.Data.transcript
+  fullName: Speechly.Types.MsgTentativeTranscript.Data.transcript
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: transcript
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 62
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public string transcript
+    return:
+      type: System.String
+    content.vb: Public transcript As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.MsgTentativeTranscript.Data.words
+  commentId: F:Speechly.Types.MsgTentativeTranscript.Data.words
+  id: words
+  parent: Speechly.Types.MsgTentativeTranscript.Data
+  langs:
+  - csharp
+  - vb
+  name: words
+  nameWithType: MsgTentativeTranscript.Data.words
+  fullName: Speechly.Types.MsgTentativeTranscript.Data.words
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: words
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 63
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public Word[] words
+    return:
+      type: Speechly.Types.Word[]
+    content.vb: Public words As Word()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Speechly.Types.Word[]
+  isExternal: true
+  name: Word[]
+  nameWithType: Word[]
+  fullName: Speechly.Types.Word[]
+  nameWithType.vb: Word()
+  fullName.vb: Speechly.Types.Word()
+  name.vb: Word()
+  spec.csharp:
+  - uid: Speechly.Types.Word
+    name: Word
+    nameWithType: Word
+    fullName: Speechly.Types.Word
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Speechly.Types.Word
+    name: Word
+    nameWithType: Word
+    fullName: Speechly.Types.Word
+  - name: ()
+    nameWithType: ()
+    fullName: ()

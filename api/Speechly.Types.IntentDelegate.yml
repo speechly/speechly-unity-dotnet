@@ -1,0 +1,49 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.IntentDelegate
+  commentId: T:Speechly.Types.IntentDelegate
+  id: IntentDelegate
+  parent: Speechly.Types
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: IntentDelegate
+  nameWithType: IntentDelegate
+  fullName: Speechly.Types.IntentDelegate
+  type: Delegate
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: IntentDelegate
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 12
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public delegate void IntentDelegate(MsgIntent msg);
+    parameters:
+    - id: msg
+      type: Speechly.Types.MsgIntent
+    content.vb: Public Delegate Sub IntentDelegate(msg As MsgIntent)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: Speechly.Types.MsgIntent
+  commentId: T:Speechly.Types.MsgIntent
+  parent: Speechly.Types
+  name: MsgIntent
+  nameWithType: MsgIntent
+  fullName: Speechly.Types.MsgIntent

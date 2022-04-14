@@ -1,0 +1,148 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Namespace Speechly.SLUClient
+   </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Namespace Speechly.SLUClient
+   ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="../styles/docfx.vendor.css">
+    <link rel="stylesheet" href="../styles/docfx.css">
+    <link rel="stylesheet" href="../styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="toc.html">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="../index.html">
+                <img id="logo" class="svg" src="../logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        
+        <div class="sidenav hide-when-search">
+          <a class="btn toc-toggle collapse" data-toggle="collapse" href="#sidetoggle" aria-expanded="false" aria-controls="sidetoggle">Show / Hide Table of Contents</a>
+          <div class="sidetoggle collapse" id="sidetoggle">
+            <div id="sidetoc"></div>
+          </div>
+        </div>
+        <div class="article row grid-right">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="Speechly.SLUClient">
+  
+  <h1 id="Speechly_SLUClient" data-uid="Speechly.SLUClient" class="text-break">Namespace Speechly.SLUClient
+  </h1>
+  <div class="markdown level0 summary"></div>
+  <div class="markdown level0 conceptual"></div>
+  <div class="markdown level0 remarks"></div>
+    <h3 id="classes">Classes
+  </h3>
+      <h4><a class="xref" href="Speechly.SLUClient.CloudDecoder.html">CloudDecoder</a></h4>
+      <section><p>Provides speech processing with Speechly's cloud SLU service.</p>
+<p>Internally handles authentication using https and audio streaming via secure websocket.
+Audio is streamed when listening is started with SpeechlyClient.StartContext().
+Streaming stops upon call to SpeechlyClient.StopContext().</p>
+</section>
+      <h4><a class="xref" href="Speechly.SLUClient.EnergyTresholdVAD.html">EnergyTresholdVAD</a></h4>
+      <section><p>Adaptive energy threshold voice activity detection (VAD) implementation.
+It can be used to enable hands-free operation of the SLU decoder.</p>
+<p>When enough loud frames have been detected, VAD activates and calls StartContext automatically. When enough silent frames have been detected, the VAD deactivates after the sustain time and StopContext is called automatically. The background noise energy gradually adapts when VAD is not active.</p>
+<p>Use its public field to configure minimum energy level, signal-to-noise ratio, minimum activation time and an activation/deactivation treshold (ratio of loud to silent frames).</p>
+</section>
+      <h4><a class="xref" href="Speechly.SLUClient.IDecoder.html">IDecoder</a></h4>
+      <section></section>
+      <h4><a class="xref" href="Speechly.SLUClient.Segment.html">Segment</a></h4>
+      <section><p>A high level API for automatic speech recognition (ASR) and natural language understanding (NLU) results.
+Results will accumulate in Segment for the duration of the an utterance.</p>
+</section>
+      <h4><a class="xref" href="Speechly.SLUClient.SpeechlyClient.html">SpeechlyClient</a></h4>
+      <section><p>Create a new Speechly Spoken Language Understading (SLU) Client to process speech and provide the results of automatic speech recogition (ASR) and natural langugage understanding (NLU) using delegates.</p>
+<h4 id="usage">Usage</h4>
+<ul>
+<li>Create a new SpeechlyClient instance.</li>
+<li>Create an SLU decoder (<a class="xref" href="Speechly.SLUClient.CloudDecoder.html">CloudDecoder</a>) and pass it to <code>SpeechlyClient</code>'s <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_">Initialize(IDecoder)</a>.</li>
+<li>Attach delegates like <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_OnSegmentChange">OnSegmentChange</a> to listen to and handle the SLU results.</li>
+<li>Feed audio to process with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_ProcessAudio_System_Single___System_Int32_System_Int32_System_Boolean_">ProcessAudio(Single[], Int32, Int32, Boolean)</a>.</li>
+<li>(delegates are firing up as speech is processed)</li>
+<li>When you don't need SLU services any more call <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Shutdown">Shutdown()</a> to free resources.</li>
+</ul>
+<p>You can feed audio continuously, but control when to start and stop process speech with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StartContext_System_String_">StartContext(String)</a> and <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StopContext">StopContext()</a> or
+let voice activity detection (VAD) handle that automatically by passing <a class="xref" href="Speechly.SLUClient.EnergyTresholdVAD.html">EnergyTresholdVAD</a> to SpeechlyClient constructor.</p>
+</section>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="../styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="../styles/docfx.js"></script>
+    <script type="text/javascript" src="../styles/main.js"></script>
+  </body>
+</html>

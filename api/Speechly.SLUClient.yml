@@ -1,0 +1,54 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  id: Speechly.SLUClient
+  children:
+  - Speechly.SLUClient.CloudDecoder
+  - Speechly.SLUClient.EnergyTresholdVAD
+  - Speechly.SLUClient.IDecoder
+  - Speechly.SLUClient.Segment
+  - Speechly.SLUClient.SpeechlyClient
+  langs:
+  - csharp
+  - vb
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+  type: Namespace
+  assemblies:
+  - speechly-unity-net-standard-2.0
+references:
+- uid: Speechly.SLUClient.CloudDecoder
+  commentId: T:Speechly.SLUClient.CloudDecoder
+  name: CloudDecoder
+  nameWithType: CloudDecoder
+  fullName: Speechly.SLUClient.CloudDecoder
+- uid: Speechly.SLUClient.EnergyTresholdVAD
+  commentId: T:Speechly.SLUClient.EnergyTresholdVAD
+  parent: Speechly.SLUClient
+  name: EnergyTresholdVAD
+  nameWithType: EnergyTresholdVAD
+  fullName: Speechly.SLUClient.EnergyTresholdVAD
+- uid: Speechly.SLUClient.IDecoder
+  commentId: T:Speechly.SLUClient.IDecoder
+  parent: Speechly.SLUClient
+  name: IDecoder
+  nameWithType: IDecoder
+  fullName: Speechly.SLUClient.IDecoder
+- uid: Speechly.SLUClient.Segment
+  commentId: T:Speechly.SLUClient.Segment
+  parent: Speechly.SLUClient
+  name: Segment
+  nameWithType: Segment
+  fullName: Speechly.SLUClient.Segment
+- uid: Speechly.SLUClient.SpeechlyClient
+  commentId: T:Speechly.SLUClient.SpeechlyClient
+  name: SpeechlyClient
+  nameWithType: SpeechlyClient
+  fullName: Speechly.SLUClient.SpeechlyClient
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient

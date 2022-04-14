@@ -1,0 +1,52 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.BeautifyEntity
+  commentId: T:Speechly.Types.BeautifyEntity
+  id: BeautifyEntity
+  parent: Speechly.Types
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: BeautifyEntity
+  nameWithType: BeautifyEntity
+  fullName: Speechly.Types.BeautifyEntity
+  type: Delegate
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: BeautifyEntity
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 19
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public delegate string BeautifyEntity(string entityValue, string entityType);
+    parameters:
+    - id: entityValue
+      type: System.String
+    - id: entityType
+      type: System.String
+    return:
+      type: System.String
+    content.vb: Public Delegate Function BeautifyEntity(entityValue As String, entityType As String) As String
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String

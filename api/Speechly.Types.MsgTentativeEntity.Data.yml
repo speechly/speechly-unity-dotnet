@@ -1,0 +1,100 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.MsgTentativeEntity.Data
+  commentId: T:Speechly.Types.MsgTentativeEntity.Data
+  id: MsgTentativeEntity.Data
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.MsgTentativeEntity.Data.entities
+  langs:
+  - csharp
+  - vb
+  name: MsgTentativeEntity.Data
+  nameWithType: MsgTentativeEntity.Data
+  fullName: Speechly.Types.MsgTentativeEntity.Data
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Data
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 69
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: 'public class Data : object'
+    content.vb: >-
+      Public Class Data
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.MsgTentativeEntity.Data.entities
+  commentId: F:Speechly.Types.MsgTentativeEntity.Data.entities
+  id: entities
+  parent: Speechly.Types.MsgTentativeEntity.Data
+  langs:
+  - csharp
+  - vb
+  name: entities
+  nameWithType: MsgTentativeEntity.Data.entities
+  fullName: Speechly.Types.MsgTentativeEntity.Data.entities
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: entities
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 70
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public Entity[] entities
+    return:
+      type: Speechly.Types.Entity[]
+    content.vb: Public entities As Entity()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: Speechly.Types.Entity[]
+  isExternal: true
+  name: Entity[]
+  nameWithType: Entity[]
+  fullName: Speechly.Types.Entity[]
+  nameWithType.vb: Entity()
+  fullName.vb: Speechly.Types.Entity()
+  name.vb: Entity()
+  spec.csharp:
+  - uid: Speechly.Types.Entity
+    name: Entity
+    nameWithType: Entity
+    fullName: Speechly.Types.Entity
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Speechly.Types.Entity
+    name: Entity
+    nameWithType: Entity
+    fullName: Speechly.Types.Entity
+  - name: ()
+    nameWithType: ()
+    fullName: ()

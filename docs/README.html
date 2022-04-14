@@ -1,0 +1,225 @@
+﻿<!DOCTYPE html>
+<!--[if IE]><![endif]-->
+<html>
+  
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+    <title>Speechly Client for Unity and .NET Standard 2.0 API </title>
+    <meta name="viewport" content="width=device-width">
+    <meta name="title" content="Speechly Client for Unity and .NET Standard 2.0 API ">
+    <meta name="generator" content="docfx 2.59.2.0">
+    
+    <link rel="shortcut icon" href="favicon.ico">
+    <link rel="stylesheet" href="styles/docfx.vendor.css">
+    <link rel="stylesheet" href="styles/docfx.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <meta property="docfx:navrel" content="">
+    <meta property="docfx:tocrel" content="">
+    
+    
+    
+  </head>
+  <body data-spy="scroll" data-target="#affix" data-offset="120">
+    <div id="wrapper">
+      <header>
+        
+        <nav id="autocollapse" class="navbar navbar-inverse ng-scope" role="navigation">
+          <div class="container">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navbar">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+              </button>
+              
+              <a class="navbar-brand" href="index.html">
+                <img id="logo" class="svg" src="logo.svg" alt="">
+              </a>
+            </div>
+            <div class="collapse navbar-collapse" id="navbar">
+              <form class="navbar-form navbar-right" role="search" id="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" id="search-query" placeholder="Search" autocomplete="off">
+                </div>
+              </form>
+            </div>
+          </div>
+        </nav>
+        
+        <div class="subnav navbar navbar-default">
+          <div class="container hide-when-search" id="breadcrumb">
+            <ul class="breadcrumb">
+              <li></li>
+            </ul>
+          </div>
+        </div>
+      </header>
+      <div role="main" class="container body-content hide-when-search">
+        <div class="article row grid">
+          <div class="col-md-10">
+            <article class="content wrap" id="_content" data-uid="">
+<h1 id="speechly-client-for-unity-and-net-standard-20-api">Speechly Client for Unity and .NET Standard 2.0 API</h1>
+
+<p><a href="https://www.speechly.com/?utm_source=github&amp;utm_medium=react-client&amp;utm_campaign=text">Speechly</a> is an API for building voice features into games, XR, applications and web sites. This client library streams audio from a Unity or .NET app to Speechly cloud API and provides a C# API for receiving real-time speech-to-text transcription and natural language understanding results.</p>
+<p>Download <a href="https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage">speechly-client.unitypackage</a> to get the latest Speechly Unity client library and example scenes bundled up for Unity.</p>
+<h2 id="requirements">Requirements</h2>
+<ul>
+<li>A C# development environment conforming to .NET Standard 2.0 API
+<ul>
+<li>Unity 2018.1 or later (tested with 2019.4.36f1 and 2021.2.12f1)</li>
+<li>Microsoft .NET Core 3 or later (tested with .NET 6.0.200)</li>
+</ul>
+</li>
+</ul>
+<h2 id="contents-of-this-repository">Contents of this repository</h2>
+<ul>
+<li><a href="speechly-client-net-standard-2.0/">speechly-client-net-standard-2.0/</a> contains the Speechly client library code and a sample .NET console app.</li>
+<li><a href="speechly-unity/Assets/Speechly/">speechly-unity/Assets/Speechly/</a> folder contains the same basic .NET Speechly client code plus Unity-specific <code>MicToSpeechly.cs</code> microphone code and Unity sample projects:
+<ul>
+<li><a href="speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/">speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/</a></li>
+<li><a href="speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/">speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/</a></li>
+<li><a href="speechly-unity/Assets/SpeechlyExamples/VoiceCommands/">speechly-unity/Assets/SpeechlyExamples/VoiceCommands/</a></li>
+</ul>
+</li>
+</ul>
+<h2 id="getting-started-with-unity">Getting Started with Unity</h2>
+<p>Import <code>Speechly/</code> folder from <a href="https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage">speechly-client.unitypackage</a> that contains code to use Speechly cloud API.</p>
+<blockquote>
+<p>If you want to skip straight to trying out a working sample scene, see <a href="#more-code-examples">more code examples</a> below.</p>
+</blockquote>
+<h3 id="unity-example">Unity example</h3>
+<p>The following code example streams a pre-recorded raw audio file (16 bit mono, 16000 samples/sec) to Speechly via the websocket API and logs speech and language recognition results to console.</p>
+<p>Constructing SpeechlyClient requires an <code>appId</code> (or <code>projectId</code>) from <a href="https://api.speechly.com/dashboard/">Speechly Dashboard</a> that determines which intents and keywords (entities) should be returned in addition to basic speech-to-text (ASR).</p>
+<p>Setting <code>manualUpdate: true</code> postpones SpeechlyClient's callbacks (OnSegmentChange, OnTranscript...) until you manually run <code>SpeechlyClient.Update()</code>. This enables you to call Unity API in SpeechlyClient's callbacks, as Unity API should only be used in the main Unity thread.</p>
+<pre><code>using UnityEngine;
+using Speechly.SLUClient;
+ 
+public class AudioFileToSpeechly : MonoBehaviour
+{
+
+  SpeechlyClient client;
+
+  async void Start()
+  {
+    client = new SpeechlyClient(
+      manualUpdate: true,
+      debug: true
+    );
+
+    // Set the desired callbacks.
+    // OnSegmentChange fires on any change and keeps a record of all words, intents and entities until the end of utterance is signaled with `segment.isFinal`.
+    // It's the recommended way to read SLU results.
+    
+    client.OnSegmentChange = (segment) =&gt; {
+      Debug.Log(segment.ToString());
+    };
+
+    // Get your app id from https://api.speechly.com/dashboard
+    decoder = new CloudDecoder(
+      appId: &quot;ef84e8ba-c5a7-46c2-856e-8b853e2c77b1&quot;, // Basic ASR
+      deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
+      debug: true
+    );
+
+    // Connect to CloudDecoder
+    await SpeechlyClient.Initialize(decoder);
+
+    // Send test audio. Callback(s) will fire and log the results.
+    await client.StartContext();
+    client.ProcessAudioFile(&quot;Assets/Speechly/00_chinese_restaurant.raw&quot;);
+    await client.StopContext();
+  }
+
+  void Update()
+  {
+    // Manually fire Speechly callbacks in main thread instead of websocket thread
+    client.Update();
+  }
+}
+</code></pre>
+<h2 id="more-code-examples">More code examples</h2>
+<h3 id="mictospeechly">MicToSpeechly</h3>
+<p>Import <a href="speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/">SpeechlyExamples/MicToSpeechly/</a> and <code>Speechly/</code> folders from <a href="https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage">speechly-client.unitypackage</a> to run a Unity sample scene that streams data from microphone to Speechly using <a href="https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/MicToSpeechly.cs">MicToSpeechly.cs</a> script running on a GameObject. App-specific logic is in <code>UseSpeechly.cs</code> which registers a callback and shows speech-to-text results in the UI.</p>
+<h3 id="voicecommands">VoiceCommands</h3>
+<p>Import <a href="speechly-unity/Assets/SpeechlyExamples/VoiceCommands/">SpeechlyExamples/VoiceCommands/</a> and <code>Speechly/</code> folders from <code>speechly-client.unitypackage</code> to run a Unity sample scene that showcases a point-and-talk interface: target an object and hold the mouse button to issue speech commands like &quot;make it big and red&quot; or &quot;delete&quot;. Again, app-specific logic is in <code>UseSpeechly.cs</code> which registers a callback to respond to detected intents and keywords (entities).</p>
+<h2 id="api-documentation">API Documentation</h2>
+<ul>
+<li><a href="https://speechly.github.io/speechly-unity-dotnet/">API documentation (DocFX generated)</a></li>
+</ul>
+<h2 id="os-x-notes">OS X notes</h2>
+<p>To enable microphone input on OS X, set <code>Player Settings &gt; Settings for PC, Mac &amp; Linux Standalone &gt; Other Settings &gt; Microphone Usage Description</code>, to for example, &quot;Voice input is automatically processed by Speechly.com&quot;.</p>
+<h2 id="android-notes">Android notes</h2>
+<h3 id="device-testing">Device testing</h3>
+<p>To diagnose problems with device builds, you can do the following:</p>
+<ul>
+<li>First try running MicToSpeechlyScene.unity in the editor without errors.</li>
+<li>Change to Android player, set MicToSpeechlyScene.unity as the main scene and do a <code>build and run</code> to deploy the build to on a device.</li>
+<li>On terminal, do <code>adb logcat -s Unity:D</code> to follow Unity-related logs from the device.</li>
+<li>Run the app on device. Keep <code>Hold to talk</code> button pressed and say &quot;ONE, TWO, THREE&quot;. Then release the button.</li>
+<li>You should see &quot;ONE, TWO, THREE&quot; displayed in the top-left corner of the screen. If not, see the terminal for errors.</li>
+</ul>
+<h3 id="android-troubleshooting">Android troubleshooting</h3>
+<ul>
+<li><code>Exception: Could not open microphone</code> and green VU meter won't move. Cause: There's no implementation in place to wait for permission prompt to complete so mic permission is not given on the first run and Microphone.Start() fails. Fix: Implement platform specific permission check, or, restart app after granting the permission.</li>
+<li><code>WebException: Error: NameResolutionFailure</code> and transcript won't change when button held and app is spoken to. Cause: Production builds restric access to internet. Fix: With Android target active, go Player settings and find &quot;Internet Access&quot; and change it to &quot;required&quot;.</li>
+<li>IL2CPP build fails with <code>NullReferenceException</code> at <code>System.Runtime.Serialization.Json.JsonFormatWriterInterpreter.TryWritePrimitive</code>. Cause: System.Runtime.Serialization.dll uses reflection to access some methods. Fix: To prevent Unity managed code linker from stripping away these methods add the file <code>link.xml</code> with the following content:</li>
+</ul>
+<pre><code>&lt;linker&gt;
+  &lt;assembly fullname=&quot;System.Runtime.Serialization&quot; preserve=&quot;all&quot;/&gt;
+&lt;/linker&gt;
+</code></pre>
+<h2 id="developing-and-contributing">Developing and contributing</h2>
+<p>We are happy to receive community contributions! For small fixes, feel free to file a pull request. For bigger changes or new features start by filing an issue.</p>
+<ul>
+<li><code>./link-speechly-sources.sh</code> shell script will create hard links from <code>speechly-client-net-standard-2.0/Speechly/</code> to <code>speechly-unity/Assets/Speechly/</code> so shared .NET code in <code>SLUClient</code> is in sync. Please run the script after checking out the repo and before making any changes. If you can't use the script please ensure that the files are identical manually before opening a PR.</li>
+<li><code>./build-docs.sh</code> generates public API documentation using DocFX from triple-slash <code>///</code> comments with C# XML documentation tags.</li>
+</ul>
+<h3 id="command-line-usage-with-dotnet">Command line usage with <code>dotnet</code></h3>
+<p>SpeechlyClient features can be run with prerecorded audio on the command line in <code>speechly-client-net-standard-2.0/</code> folder:</p>
+<ul>
+<li><code>dotnet run test</code> processes an example file, sends to Speechly cloud SLU and prints the received results in console.</li>
+<li><code>dotnet run vad</code> processes an example file, sends the utterances audio to files in <code>temp/</code> folder as 16 bit raw and creates an utterance timestamp <code>.tsv</code> (tab-separated values) for each audio file processed.</li>
+<li><code>dotnet run vad myaudiofiles/*.raw</code> processes a set of files with VAD.</li>
+</ul>
+</article>
+          </div>
+          
+          <div class="hidden-sm col-md-2" role="complementary">
+            <div class="sideaffix">
+              <div class="contribution">
+                <ul class="nav">
+                  <li>
+                    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                  </li>
+                </ul>
+              </div>
+              <nav class="bs-docs-sidebar hidden-print hidden-xs hidden-sm affix" id="affix">
+                <h5>In This Article</h5>
+                <div></div>
+              </nav>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <footer>
+        <div class="grad-bottom"></div>
+        <div class="footer">
+          <div class="container">
+            <span class="pull-right">
+              <a href="#top">Back to top</a>
+            </span>
+            
+            <span>Generated by <strong>DocFX</strong></span>
+          </div>
+        </div>
+      </footer>
+    </div>
+    
+    <script type="text/javascript" src="styles/docfx.vendor.js"></script>
+    <script type="text/javascript" src="styles/docfx.js"></script>
+    <script type="text/javascript" src="styles/main.js"></script>
+  </body>
+</html>

@@ -2,26 +2,22 @@ using System;
 using System.Text;
 using System.IO;
 using System.Threading.Tasks;
-using System.Collections.Generic;
 using System.Linq;
 using System.Diagnostics;
+using Speechly.Tools;
 
 namespace Speechly.SLUClient {
-  public class SpeechlyClientTest {
-    public static async Task test(string fileName) {
-      Stopwatch sw = new Stopwatch();
+  internal class SpeechlyClientTest {
+    public static async Task TestCloudProcessing(string fileName) {
+      Stopwatch stopWatch = new Stopwatch();
 
       var client = new SpeechlyClient(
-        loginUrl: "https://staging.speechly.com/login",
-        apiUrl: "wss://staging.speechly.com/ws/v1?sampleRate=16000",
-        appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e" // Restaurant booking configuration
+        debug: true
       );
 
       client.OnSegmentChange = (segment) => {
         Logger.Log(segment.ToString());
       };
-
-      client.OnStateChange += (clientState) => Logger.Log($"ClientState: {clientState}");
       
       client.OnTentativeTranscript = (msg) => {
         StringBuilder sb = new StringBuilder();
@@ -41,19 +37,80 @@ namespace Speechly.SLUClient {
       client.OnEntity = (msg) => Logger.Log($"Final entity '{msg.data.type}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
       client.OnIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
 
-      sw.Restart();
-      await client.Connect();
-      var connectTime = sw.ElapsedMilliseconds;
+      stopWatch.Restart();
+      
+      var decoder = new CloudDecoder(
+        apiUrl: "https://staging.speechly.com",
+        appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e", // Restaurant booking configuration
+        deviceId: Platform.GetDeviceId()
+      );
 
-      sw.Restart();
-      await client.StartContext();
-      await client.SendAudioFile(fileName);
+      await client.Initialize(decoder);
+      var connectTime = stopWatch.ElapsedMilliseconds;
+
+      stopWatch.Restart();
+      _ = client.StartContext();
+
+      client.ProcessAudioFile(fileName);
       await client.StopContext();
-      var sluTime = sw.ElapsedMilliseconds;
+      var sluTime = stopWatch.ElapsedMilliseconds;
 
       Logger.Log($"==== STATS ====");
       Logger.Log($"Connect time: {connectTime} ms");
       Logger.Log($"SLU time: {sluTime} ms");
     }
+
+    public static void SplitWithVAD(string fileName, string saveToFolder = null, string logUtteranceFolder = null) {
+      Stopwatch stopWatch = new Stopwatch();
+
+      EnergyTresholdVAD vad = new EnergyTresholdVAD();
+
+      StreamWriter logUtteranceStream = null;
+      int utteranceStartSamplePos = 0;
+
+      if (logUtteranceFolder != null) {
+        Directory.CreateDirectory(logUtteranceFolder);
+      }
+
+      var client = new SpeechlyClient(
+        saveToFolder: saveToFolder,
+        vad: vad,
+        debug: true
+      );
+
+      client.OnStartStream = () => {
+        Logger.Log("client.OnStartStream");
+        if (logUtteranceFolder != null) {
+          logUtteranceStream = new StreamWriter(Path.Combine(logUtteranceFolder, $"{client.AudioInputStreamIdentifier}.tsv"), false);
+        }
+      };
+
+      client.OnStopStream = () => {
+        Logger.Log("client.OnStopStream");
+        logUtteranceStream.Close();
+        logUtteranceStream = null;
+      };
+
+      client.OnStartContext = () => {
+        Logger.Log($"client.OnStartContext {client.StreamSamplePos}");
+        utteranceStartSamplePos = client.StreamSamplePos;
+      };
+
+      client.OnStopContext = () => {
+        Logger.Log("client.OnStopContext");
+        string serialString = client.UtteranceSerial.ToString().PadLeft(4, '0');
+        logUtteranceStream.WriteLine($"{client.AudioInputStreamIdentifier}\t{serialString}\t{utteranceStartSamplePos}\t{client.SamplesSent}");
+      };
+
+      stopWatch.Restart();
+      // _ = client.StartContext();
+      client.ProcessAudioFile(fileName);
+      // await client.StopContext();
+      var processTime = stopWatch.ElapsedMilliseconds;
+
+      Logger.Log($"==== STATS ====");
+      Logger.Log($"Process time: {processTime} ms");
+    }
+
   }
 }

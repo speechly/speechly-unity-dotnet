@@ -1,0 +1,49 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.TranscriptDelegate
+  commentId: T:Speechly.Types.TranscriptDelegate
+  id: TranscriptDelegate
+  parent: Speechly.Types
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: TranscriptDelegate
+  nameWithType: TranscriptDelegate
+  fullName: Speechly.Types.TranscriptDelegate
+  type: Delegate
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: TranscriptDelegate
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 9
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public delegate void TranscriptDelegate(MsgTranscript msg);
+    parameters:
+    - id: msg
+      type: Speechly.Types.MsgTranscript
+    content.vb: Public Delegate Sub TranscriptDelegate(msg As MsgTranscript)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: Speechly.Types.MsgTranscript
+  commentId: T:Speechly.Types.MsgTranscript
+  parent: Speechly.Types
+  name: MsgTranscript
+  nameWithType: MsgTranscript
+  fullName: Speechly.Types.MsgTranscript

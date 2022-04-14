@@ -63,15 +63,15 @@ namespace Speechly.Demo.VoiceCommands
       };
     }
 
-    async void Update()
+    void Update()
     {
-      SliderAudioPeak.value = MicToSpeechly.Instance.Peak;
+      SliderAudioPeak.value = MicToSpeechly.Instance.SpeechlyClient.Vad.Energy;
 
       if (Input.GetMouseButtonDown(0)) {
         TranscriptText.text = "LISTENING...";
 
-        if (!speechlyClient.IsListening) {
-          await speechlyClient.StartContext();
+        if (!speechlyClient.IsActive) {
+          _ = speechlyClient.StartContext();
         }
 
         RaycastHit hit;
@@ -94,8 +94,8 @@ namespace Speechly.Demo.VoiceCommands
           var outline = selection.gameObject.GetComponent<Outline>();
           if (outline != null) outline.enabled = false;
         }
-        if (speechlyClient.IsListening) {
-          await speechlyClient.StopContext();
+        if (speechlyClient.IsActive) {
+          _ = speechlyClient.StopContext();
         }
       }
     }

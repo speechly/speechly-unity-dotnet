@@ -1,0 +1,120 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.CloudDecoder
+  commentId: T:Speechly.SLUClient.CloudDecoder
+  id: CloudDecoder
+  parent: Speechly.SLUClient
+  children:
+  - Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: CloudDecoder
+  nameWithType: CloudDecoder
+  fullName: Speechly.SLUClient.CloudDecoder
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: CloudDecoder
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+    startLine: 17
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  summary: "\nProvides speech processing with Speechly&apos;s cloud SLU service.\n\nInternally handles authentication using https and audio streaming via secure websocket.\nAudio is streamed when listening is started with SpeechlyClient.StartContext().\nStreaming stops upon call to SpeechlyClient.StopContext().\n"
+  example: []
+  syntax:
+    content: 'public class CloudDecoder : IDecoder'
+    content.vb: >-
+      Public Class CloudDecoder
+          Inherits IDecoder
+  inheritance:
+  - System.Object
+  - Speechly.SLUClient.IDecoder
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.Boolean)
+  commentId: M:Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.Boolean)
+  id: '#ctor(System.String,System.String,System.String,System.String,System.Boolean)'
+  parent: Speechly.SLUClient.CloudDecoder
+  langs:
+  - csharp
+  - vb
+  name: CloudDecoder(String, String, String, String, Boolean)
+  nameWithType: CloudDecoder.CloudDecoder(String, String, String, String, Boolean)
+  fullName: Speechly.SLUClient.CloudDecoder.CloudDecoder(System.String, System.String, System.String, System.String, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: .ctor
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+    startLine: 39
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.SLUClient
+  summary: "\nInitialize speech processing with Speechly&apos;s cloud SLU service.\n"
+  example: []
+  syntax:
+    content: public CloudDecoder(string deviceId, string apiUrl = null, string appId = null, string projectId = null, bool debug = false)
+    parameters:
+    - id: deviceId
+      type: System.String
+      description: An unique string id for the device.
+    - id: apiUrl
+      type: System.String
+      description: 'Speechly SLU API url (default: `https://api.speechly.com`)'
+    - id: appId
+      type: System.String
+      description: 'Speechly project id for authentication. Only provide either app id or project id, not both (default: `null`).'
+    - id: projectId
+      type: System.String
+      description: 'Speechly app id for authentication. Only provide either app id or project id, not both (default: `null`).'
+    - id: debug
+      type: System.Boolean
+      description: 'Enable debug prints thru <xref href="Speechly.Tools.Logger.Log" data-throw-if-not-resolved="false"></xref> delegate. (default: `false`)'
+    content.vb: Public Sub New(deviceId As String, apiUrl As String = Nothing, appId As String = Nothing, projectId As String = Nothing, debug As Boolean = False)
+  overload: Speechly.SLUClient.CloudDecoder.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: Speechly.SLUClient.IDecoder
+  commentId: T:Speechly.SLUClient.IDecoder
+  parent: Speechly.SLUClient
+  name: IDecoder
+  nameWithType: IDecoder
+  fullName: Speechly.SLUClient.IDecoder
+- uid: Speechly.Tools.Logger.Log
+  commentId: F:Speechly.Tools.Logger.Log
+  isExternal: true
+- uid: Speechly.SLUClient.CloudDecoder.#ctor*
+  commentId: Overload:Speechly.SLUClient.CloudDecoder.#ctor
+  name: CloudDecoder
+  nameWithType: CloudDecoder.CloudDecoder
+  fullName: Speechly.SLUClient.CloudDecoder.CloudDecoder
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

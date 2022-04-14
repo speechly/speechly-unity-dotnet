@@ -1,33 +1,23 @@
 using System;
 using System.Runtime.Serialization;
-using System.Runtime.Serialization.Json;
 using System.Text;
 using System.IO;
 
-namespace Speechly.SLUClient {
+namespace Speechly.Types {
 
-  public enum ClientState {
-    Failed = 0,
-    NoBrowserSupport,
-    NoAudioConsent,
-    __UnrecoverableErrors,
-    Disconnected,
-    Disconnecting,
-    Connecting,
-    Preinitialized,
-    Initializing,
-    Connected,
-    Stopping,
-    Starting,
-    Recording,
-  }
+  public delegate void SegmentChangeDelegate(Speechly.SLUClient.Segment segment);
+  public delegate void TentativeTranscriptDelegate(MsgTentativeTranscript msg);
+  public delegate void TranscriptDelegate(MsgTranscript msg);
+  public delegate void TentativeEntityDelegate(MsgTentativeEntity msg);
+  public delegate void EntityDelegate(MsgEntity msg);
+  public delegate void IntentDelegate(MsgIntent msg);
+  public delegate void StartStreamDelegate();
+  public delegate void StopStreamDelegate();
+  public delegate void StartContextDelegate();
+  public delegate void StopContextDelegate();
 
-
-  public interface IMsgCommonProps {
-    string type { get; set; }
-    string audio_context { get; set; }
-    int segment_id { get; set; }
-  }
+  public delegate string BeautifyIntent (string intent);
+  public delegate string BeautifyEntity (string entityValue, string entityType);
 
   [DataContract]
   public class Word {
@@ -93,64 +83,18 @@ namespace Speechly.SLUClient {
   }
 
 
-  public class MsgCommon: IMsgCommonProps {
+  public class MsgCommon {
     public string type { get; set; }
     public string audio_context { get; set; }
     public int segment_id { get; set; }
   }
 
-  public class Platform {
-    public static string GetPersistentStoragePath()
-    {
-#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX || UNITY_EDITOR_WIN || UNITY_STANDALONE_WIN || UNITY_ANDROID || UNITY_IOS
-      return UnityEngine.Application.persistentDataPath;
-#else
-      return System.Environment.GetFolderPath(System.Environment.SpecialFolder.ApplicationData);
-#endif
-    }
-
-    // Parse string and return a valid Guid, attempting to retain the original string if it's a valid Guid.
-    // return D-type Guid string: 00000000-0000-0000-0000-000000000000
-    public static string GuidFromString(string s) {
-      try {
-        // Attempt to parse string as Guid as-is
-        return new Guid(s).ToString();
-      } catch {
-        // Guid will be created from the string bytes
-        var bytes = Encoding.UTF8.GetBytes(s);
-        Array.Resize<byte>(ref bytes, 16);
-        return new Guid(bytes).ToString();
-      }
-    }
-  }
-
   [DataContract]
-  public class SpeechlyConfig {
-    public static string ConfigPath = "Speechly";
-    public static string ConfigFileName = "SLUClientConfig.json";
+  internal class Preferences {
+    public static string FileName = "SLUClientConfig.json";
 
     [DataMember(Name = "deviceId")]
     public string deviceId = null;
-
-    public static SpeechlyConfig RestoreOrCreate() {
-      string basePath = Platform.GetPersistentStoragePath();
-      string pathToFile = Path.Combine(basePath, ConfigPath, ConfigFileName);
-      SpeechlyConfig config = new SpeechlyConfig();
-      try {
-        string jsonString = File.ReadAllText(pathToFile, Encoding.UTF8);
-        config = JSON.Parse(jsonString, config);
-      } catch (Exception) {
-      }
-      return config;
-    }
-
-    public void Save() {
-      string basePath = Platform.GetPersistentStoragePath();
-      Directory.CreateDirectory(Path.Combine(basePath, ConfigPath));
-
-      string pathToFile = Path.Combine(basePath, ConfigPath, ConfigFileName);
-      File.WriteAllText(pathToFile, JSON.Stringify(this), Encoding.UTF8);
-    }
   }
 
 }

@@ -1,12 +1,14 @@
 using System;
 using System.Text;
-using System.Collections;
 using System.Collections.Generic;
+using Speechly.Types;
 
 namespace Speechly.SLUClient {
-  public delegate string IntentFormatter (string intent);
-  public delegate string EntityFormatter (string words, string entityType);
 
+/// <summary>
+/// A high level API for automatic speech recognition (ASR) and natural language understanding (NLU) results.
+/// Results will accumulate in Segment for the duration of the an utterance.
+/// </summary>
   public class Segment {
     public int id;
     public string contextId;
@@ -29,8 +31,8 @@ namespace Speechly.SLUClient {
     }
 
     public string ToString(
-        IntentFormatter intentTag,
-        EntityFormatter entityTag,
+        BeautifyIntent intentTag,
+        BeautifyEntity entityTag,
         string confirmationMark
       ) {
       var sb = new StringBuilder();
@@ -83,7 +85,7 @@ namespace Speechly.SLUClient {
       return sb.ToString();
     }
 
-    public void UpdateTranscript(Word word) {
+    internal void UpdateTranscript(Word word) {
       lock(this) {
         if (word.index >= words.Length) {
           Array.Resize(ref words, word.index + 1);
@@ -92,32 +94,32 @@ namespace Speechly.SLUClient {
       }
     }
 
-    public void UpdateTranscript(Word[] words) {
+    internal void UpdateTranscript(Word[] words) {
       lock(this) {
         foreach(Word w in words) UpdateTranscript(w);
       }
     }
 
-    public void UpdateEntity(Entity entity) {
+    internal void UpdateEntity(Entity entity) {
       lock(this) {
         entities[EntityMapKey(entity)] = entity;
       }
     }
 
-    public void UpdateEntity(Entity[] entities) {
+    internal void UpdateEntity(Entity[] entities) {
       lock(this) {
         foreach(Entity entity in entities) UpdateEntity(entity);
       }
     }
 
-    public void UpdateIntent(string intent, bool isFinal) {
+    internal void UpdateIntent(string intent, bool isFinal) {
       lock(this) {
         this.intent.intent = intent;
         this.intent.isFinal = isFinal;
       }
     }
 
-    public void EndSegment() {
+    internal void EndSegment() {
       lock(this) {
         // Filter away any entities which were not finalized.
         foreach (KeyValuePair<string, Entity> entity in entities) {

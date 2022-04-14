@@ -2,7 +2,7 @@ using System.Runtime.Serialization.Json;
 using System.Text;
 using System.IO;
 
-namespace Speechly.SLUClient {
+namespace Speechly.Tools {
   public class JSON {
     public static MemoryStream StringifyToStream<T>(T obj) {  
       var stream = new MemoryStream();

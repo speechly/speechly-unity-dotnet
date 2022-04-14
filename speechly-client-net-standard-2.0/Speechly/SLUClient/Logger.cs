@@ -1,6 +1,6 @@
 using System;
 
-namespace Speechly.SLUClient {
+namespace Speechly.Tools {
   public class Logger {
     public delegate void LoggerDelegate(string s);
     public static LoggerDelegate Log = (string s) => {

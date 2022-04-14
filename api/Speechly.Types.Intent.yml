@@ -1,0 +1,118 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.Intent
+  commentId: T:Speechly.Types.Intent
+  id: Intent
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.Intent.intent
+  - Speechly.Types.Intent.isFinal
+  langs:
+  - csharp
+  - vb
+  name: Intent
+  nameWithType: Intent
+  fullName: Speechly.Types.Intent
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Intent
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 47
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: 'public class Intent : object'
+    content.vb: >-
+      Public Class Intent
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.Intent.intent
+  commentId: F:Speechly.Types.Intent.intent
+  id: intent
+  parent: Speechly.Types.Intent
+  langs:
+  - csharp
+  - vb
+  name: intent
+  nameWithType: Intent.intent
+  fullName: Speechly.Types.Intent.intent
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: intent
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 48
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public string intent
+    return:
+      type: System.String
+    content.vb: Public intent As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.Intent.isFinal
+  commentId: F:Speechly.Types.Intent.isFinal
+  id: isFinal
+  parent: Speechly.Types.Intent
+  langs:
+  - csharp
+  - vb
+  name: isFinal
+  nameWithType: Intent.isFinal
+  fullName: Speechly.Types.Intent.isFinal
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/dotnet-vad
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: isFinal
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 49
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public bool isFinal
+    return:
+      type: System.Boolean
+    content.vb: Public isFinal As Boolean
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
