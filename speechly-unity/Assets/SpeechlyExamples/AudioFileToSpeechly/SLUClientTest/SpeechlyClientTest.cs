@@ -40,8 +40,7 @@ namespace Speechly.SLUClient {
       stopWatch.Restart();
       
       var decoder = new CloudDecoder(
-        loginUrl: "https://staging.speechly.com/login",
-        apiUrl: "wss://staging.speechly.com/ws/v1?sampleRate=16000",
+        apiUrl: "https://staging.speechly.com",
         appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e", // Restaurant booking configuration
         deviceId: Platform.GetDeviceId()
       );

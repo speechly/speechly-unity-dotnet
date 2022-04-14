@@ -12,7 +12,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "uLxNOJKweCqRAOCgcQVRWuSkWZZ3QVWMr+YqzhYHnbI="
+          "hash": "ltH9TVkEGTSyjw7O9LED4HW9confwJuITMpBhhcr+r8="
         }
       },
       "is_incremental": true,
@@ -24,7 +24,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.CloudDecoder.html",
-          "hash": "D0Pw7RwvehgVkNtgy/zfbS83+Tg3jSd4yN9QUk/uO5g="
+          "hash": "5UP4cF/uEMPTGkq1PtexxyZcJ8y5ODMklRjb9B3HHcY="
         }
       },
       "is_incremental": true,
@@ -63,7 +63,7 @@
           "hash": "Ce8bP9m2V0ofWBOrYPKdfGUlwIMVTnFAMIpt4dl5oSc="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -72,7 +72,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.SpeechlyClient.html",
-          "hash": "Xsjc1XpVZ3Q06w5NQ5btNvg0qjZxGfi7z5qC+ZVUTMo="
+          "hash": "d2mywa4VPdugAfWJp9hZ8fecr+X3UOo0Vlg+y2lRnSM="
         }
       },
       "is_incremental": true,
@@ -84,10 +84,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.html",
-          "hash": "BCeIZeNNRVD1IbNH01xUYG3uxlCvKIGeQG9z2Kec+5U="
+          "hash": "yyZKUatTKzs3HzFRSkvv5mg9uTWYm80AsMMvgDZRKaU="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -375,7 +375,7 @@
           "hash": "ZqYmAQAKLWODKvcXhQIVCujM90TF7gVYgwfTu+fyppo="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -483,7 +483,7 @@
           "hash": "ZpO8kXhOyHyytwcdUFtiI2JdwFLdqZya1aPB43H9uq0="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -533,7 +533,7 @@
           "can_incremental": true,
           "incrementalPhase": "build",
           "total_file_count": 39,
-          "skipped_file_count": 38
+          "skipped_file_count": 39
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

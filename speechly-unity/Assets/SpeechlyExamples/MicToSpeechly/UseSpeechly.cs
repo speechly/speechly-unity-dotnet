@@ -32,7 +32,7 @@ public class UseSpeechly : MonoBehaviour
   public void OnMouseDown()
   {
     Debug.Log("Mouse Down");
-    if (!IsButtonHeld && !speechlyClient.IsListening)
+    if (!IsButtonHeld && !speechlyClient.IsActive)
     {
       IsButtonHeld = true;
       _ = speechlyClient.StartContext();
@@ -42,7 +42,7 @@ public class UseSpeechly : MonoBehaviour
   public void OnMouseUp()
   {
     Debug.Log("Mouse Up");
-    if (IsButtonHeld && speechlyClient.IsListening)
+    if (IsButtonHeld && speechlyClient.IsActive)
     {
       IsButtonHeld = false;
       _ = speechlyClient.StopContext();

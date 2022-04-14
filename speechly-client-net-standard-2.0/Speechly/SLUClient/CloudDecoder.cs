@@ -17,8 +17,8 @@ namespace Speechly.SLUClient {
 
   public class CloudDecoder: IDecoder {
     override internal event ResponseReceivedDelegate OnMessage = (MsgCommon msgCommon, string msgString) => {};
-    private string loginUrl = "https://api.speechly.com/login";
-    private string apiUrl = "wss://api.speechly.com/ws/v1?sampleRate=16000";
+    private string loginUrl = null;
+    private string apiUrl = null;
     private string projectId = null;
     private string appId = null;
     private string deviceId = null;
@@ -32,26 +32,37 @@ namespace Speechly.SLUClient {
 /// Initialize speech processing with Speechly's cloud SLU service.
 /// </summary>
 /// <param name="deviceId">An unique string id for the device.</param>
-/// <param name="loginUrl">Authentication service url (default: Speechly's production env's url)</param>
-/// <param name="apiUrl">SLU API url (default: Speechly's production env's url)</param>
-/// <param name="projectId">Your Speechly app id for authentication. Only provide either app id or project id, not both (default: `null`).</param>
-/// <param name="appId">Your Speechly project id for authentication. Only provide either app id or project id, not both (default: `null`).</param>
+/// <param name="apiUrl">Speechly SLU API url (default: `https://api.speechly.com`)</param>
+/// <param name="projectId">Speechly app id for authentication. Only provide either app id or project id, not both (default: `null`).</param>
+/// <param name="appId">Speechly project id for authentication. Only provide either app id or project id, not both (default: `null`).</param>
 /// <param name="debug">Enable debug prints thru <see cref="Logger.Log"/> delegate. (default: `false`)</param>
 
     public CloudDecoder(
       string deviceId,
-      string loginUrl = null,
       string apiUrl = null,
       string appId = null,
       string projectId = null,
       bool debug = false
     ) {
-      if (loginUrl != null) this.loginUrl = loginUrl;
-      if (apiUrl != null) this.apiUrl = apiUrl;
-      if (appId != null) this.appId = appId;
-      if (projectId != null) this.projectId = projectId;
       this.deviceId = deviceId;
       this.debug = debug;
+
+      if (apiUrl == null) {
+        apiUrl = "https://api.speechly.com";
+      }
+
+      this.loginUrl = $"{apiUrl}/login";
+      this.apiUrl = $"{apiUrl.Replace("http", "ws")}/ws/v1?sampleRate=16000";
+
+      if (String.IsNullOrWhiteSpace(projectId) && String.IsNullOrWhiteSpace(appId)) {
+        throw new Exception("Either appId or projectId has to be provided. Get it from ${apiUrl}/dashboard");
+      }
+      if (!String.IsNullOrWhiteSpace(projectId) && !String.IsNullOrWhiteSpace(appId)) {
+        throw new Exception("Please log in with either projectId or appId, not both. With projectId login you may use all appIds within the project. Get it from ${apiUrl}/dashboard");
+      }
+
+      this.appId = appId;
+      this.projectId = projectId;
     }
 
     override internal async Task Initialize() {

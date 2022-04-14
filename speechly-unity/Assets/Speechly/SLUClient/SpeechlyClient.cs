@@ -14,7 +14,7 @@ namespace Speechly.SLUClient {
 /// #### Usage
 ///
 /// - Create a new SpeechlyClient instance.
-/// - Create an SLU decoder (<see cref="CloudDecoder"/>) and pass it to `SpeechClient`'s <see cref="Initialize"/>.
+/// - Create an SLU decoder (<see cref="CloudDecoder"/>) and pass it to `SpeechlyClient`'s <see cref="Initialize"/>.
 /// - Attach delegates like <see cref="OnSegmentChange"/> to listen to and handle the SLU results.
 /// - Feed audio to process with <see cref="ProcessAudio"/>.
 /// - (delegates are firing up as speech is processed)
@@ -56,7 +56,7 @@ namespace Speechly.SLUClient {
     }
 
     /// Returns true when StartContext is called and expecting StopContext next
-    public bool IsListening { get; private set; } = false;
+    public bool IsActive { get; private set; } = false;
 
     public int SamplesSent { get; private set; } = 0;
     public EnergyTresholdVAD Vad { get; private set; } = null;
@@ -183,7 +183,7 @@ namespace Speechly.SLUClient {
     public void StopStream(bool auto = false) {
       if (IsAudioStreaming) {
         if ((auto && streamAutoStarted) || !streamAutoStarted) {
-          if (IsListening) {
+          if (IsActive) {
             _ = StopContext();
           }
 
@@ -207,7 +207,7 @@ namespace Speechly.SLUClient {
 /// <returns>An unique utterance id.</returns>
 
     public Task<string> StartContext(string appId = null) {
-      if (IsListening) {
+      if (IsActive) {
         throw new Exception("Already listening.");
       }
 
@@ -215,7 +215,7 @@ namespace Speechly.SLUClient {
         StartStream(AudioInputStreamIdentifier, auto: true);
       }
 
-      IsListening = true;
+      IsActive = true;
       SamplesSent = 0;
       UtteranceSerial++;
 
@@ -232,7 +232,7 @@ namespace Speechly.SLUClient {
         try {
           return this.decoder.StartContext();
         } catch (Exception e) {
-          IsListening = false;
+          IsActive = false;
           Logger.LogError(e.ToString());
           throw;
         }
@@ -311,7 +311,7 @@ namespace Speechly.SLUClient {
             ProcessFrame(sampleRingBuffer, frameBase, subFrameSamples);
           }
 
-          if (IsListening) {
+          if (IsActive) {
             
             if (SamplesSent == 0) {
               // Start of the utterance - send history frames
@@ -363,11 +363,11 @@ namespace Speechly.SLUClient {
 
     private void AutoControlListening() {
       if (this.Vad != null && this.Vad.Enabled && this.Vad.VADControlListening) {
-        if (!IsListening && Vad.IsSignalDetected) {
+        if (!IsActive && Vad.IsSignalDetected) {
           _ = StartContext();
         }
 
-        if (IsListening && !Vad.IsSignalDetected) {
+        if (IsActive && !Vad.IsSignalDetected) {
           _ = StopContext();
         }
       }
@@ -411,10 +411,10 @@ namespace Speechly.SLUClient {
 /// <returns>An unique utterance id.</returns>
 
     public Task<string> StopContext() {
-      if (!IsListening) {
+      if (!IsActive) {
         throw new Exception("Already stopped listening.");
       }
-      IsListening = false;
+      IsActive = false;
 
       string localBaseName = $"{AudioInputStreamIdentifier}_{UtteranceSerial.ToString().PadLeft(4, '0')}";
       string contextId = localBaseName;

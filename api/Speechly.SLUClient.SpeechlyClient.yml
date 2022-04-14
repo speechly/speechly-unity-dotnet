@@ -8,8 +8,8 @@ items:
   - Speechly.SLUClient.SpeechlyClient.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean,System.String,Speechly.SLUClient.EnergyTresholdVAD,System.Boolean)
   - Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier
   - Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)
+  - Speechly.SLUClient.SpeechlyClient.IsActive
   - Speechly.SLUClient.SpeechlyClient.IsAudioStreaming
-  - Speechly.SLUClient.SpeechlyClient.IsListening
   - Speechly.SLUClient.SpeechlyClient.IsReady
   - Speechly.SLUClient.SpeechlyClient.OnEntity
   - Speechly.SLUClient.SpeechlyClient.OnIntent
@@ -53,7 +53,7 @@ items:
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
-  summary: "\nCreate a new Speechly Spoken Language Understading (SLU) Client to process speech and provide the results of automatic speech recogition (ASR) and natural langugage understanding (NLU) using delegates.\n\n#### Usage\n\n- Create a new SpeechlyClient instance.\n- Create an SLU decoder (<xref href=\"Speechly.SLUClient.CloudDecoder\" data-throw-if-not-resolved=\"false\"></xref>) and pass it to `SpeechClient`&apos;s <xref href=\"Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)\" data-throw-if-not-resolved=\"false\"></xref>.\n- Attach delegates like <xref href=\"Speechly.SLUClient.SpeechlyClient.OnSegmentChange\" data-throw-if-not-resolved=\"false\"></xref> to listen to and handle the SLU results.\n- Feed audio to process with <xref href=\"Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single%5b%5d%2cSystem.Int32%2cSystem.Int32%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref>.\n- (delegates are firing up as speech is processed)\n- When you don&apos;t need SLU services any more call <xref href=\"Speechly.SLUClient.SpeechlyClient.Shutdown\" data-throw-if-not-resolved=\"false\"></xref> to free resources.\n\nYou can feed audio continuously, but control when to start and stop process speech with <xref href=\"Speechly.SLUClient.SpeechlyClient.StartContext(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.SLUClient.SpeechlyClient.StopContext\" data-throw-if-not-resolved=\"false\"></xref> or\nlet voice activity detection (VAD) handle that automatically by passing <xref href=\"Speechly.SLUClient.EnergyTresholdVAD\" data-throw-if-not-resolved=\"false\"></xref> to SpeechlyClient constructor.\n"
+  summary: "\nCreate a new Speechly Spoken Language Understading (SLU) Client to process speech and provide the results of automatic speech recogition (ASR) and natural langugage understanding (NLU) using delegates.\n\n#### Usage\n\n- Create a new SpeechlyClient instance.\n- Create an SLU decoder (<xref href=\"Speechly.SLUClient.CloudDecoder\" data-throw-if-not-resolved=\"false\"></xref>) and pass it to `SpeechlyClient`&apos;s <xref href=\"Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)\" data-throw-if-not-resolved=\"false\"></xref>.\n- Attach delegates like <xref href=\"Speechly.SLUClient.SpeechlyClient.OnSegmentChange\" data-throw-if-not-resolved=\"false\"></xref> to listen to and handle the SLU results.\n- Feed audio to process with <xref href=\"Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single%5b%5d%2cSystem.Int32%2cSystem.Int32%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref>.\n- (delegates are firing up as speech is processed)\n- When you don&apos;t need SLU services any more call <xref href=\"Speechly.SLUClient.SpeechlyClient.Shutdown\" data-throw-if-not-resolved=\"false\"></xref> to free resources.\n\nYou can feed audio continuously, but control when to start and stop process speech with <xref href=\"Speechly.SLUClient.SpeechlyClient.StartContext(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.SLUClient.SpeechlyClient.StopContext\" data-throw-if-not-resolved=\"false\"></xref> or\nlet voice activity detection (VAD) handle that automatically by passing <xref href=\"Speechly.SLUClient.EnergyTresholdVAD\" data-throw-if-not-resolved=\"false\"></xref> to SpeechlyClient constructor.\n"
   example: []
   syntax:
     content: 'public class SpeechlyClient : object'
@@ -482,23 +482,23 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: Speechly.SLUClient.SpeechlyClient.IsListening
-  commentId: P:Speechly.SLUClient.SpeechlyClient.IsListening
-  id: IsListening
+- uid: Speechly.SLUClient.SpeechlyClient.IsActive
+  commentId: P:Speechly.SLUClient.SpeechlyClient.IsActive
+  id: IsActive
   parent: Speechly.SLUClient.SpeechlyClient
   langs:
   - csharp
   - vb
-  name: IsListening
-  nameWithType: SpeechlyClient.IsListening
-  fullName: Speechly.SLUClient.SpeechlyClient.IsListening
+  name: IsActive
+  nameWithType: SpeechlyClient.IsActive
+  fullName: Speechly.SLUClient.SpeechlyClient.IsActive
   type: Property
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
       branch: feature/dotnet-vad
       repo: git@github.com:speechly/speechly-unity-dotnet.git
-    id: IsListening
+    id: IsActive
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
     startLine: 58
   assemblies:
@@ -506,12 +506,12 @@ items:
   namespace: Speechly.SLUClient
   example: []
   syntax:
-    content: public bool IsListening { get; }
+    content: public bool IsActive { get; }
     parameters: []
     return:
       type: System.Boolean
-    content.vb: Public ReadOnly Property IsListening As Boolean
-  overload: Speechly.SLUClient.SpeechlyClient.IsListening*
+    content.vb: Public ReadOnly Property IsActive As Boolean
+  overload: Speechly.SLUClient.SpeechlyClient.IsActive*
   modifiers.csharp:
   - public
   - get
@@ -1238,11 +1238,11 @@ references:
   name: IsReady
   nameWithType: SpeechlyClient.IsReady
   fullName: Speechly.SLUClient.SpeechlyClient.IsReady
-- uid: Speechly.SLUClient.SpeechlyClient.IsListening*
-  commentId: Overload:Speechly.SLUClient.SpeechlyClient.IsListening
-  name: IsListening
-  nameWithType: SpeechlyClient.IsListening
-  fullName: Speechly.SLUClient.SpeechlyClient.IsListening
+- uid: Speechly.SLUClient.SpeechlyClient.IsActive*
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.IsActive
+  name: IsActive
+  nameWithType: SpeechlyClient.IsActive
+  fullName: Speechly.SLUClient.SpeechlyClient.IsActive
 - uid: Speechly.SLUClient.SpeechlyClient.SamplesSent*
   commentId: Overload:Speechly.SLUClient.SpeechlyClient.SamplesSent
   name: SamplesSent

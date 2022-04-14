@@ -95,19 +95,19 @@ Streaming stops upon call to SpeechlyClient.StopContext().</p>
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_CloudDecoder__ctor_System_String_System_String_System_String_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.CloudDecoder.%23ctor(System.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_CloudDecoder__ctor_System_String_System_String_System_String_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.CloudDecoder.%23ctor(System.String%2CSystem.String%2CSystem.String%2CSystem.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs/#L41">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs/#L40">View Source</a>
   </span>
   <a id="Speechly_SLUClient_CloudDecoder__ctor_" data-uid="Speechly.SLUClient.CloudDecoder.#ctor*"></a>
-  <h4 id="Speechly_SLUClient_CloudDecoder__ctor_System_String_System_String_System_String_System_String_System_String_System_Boolean_" data-uid="Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)">CloudDecoder(String, String, String, String, String, Boolean)</h4>
+  <h4 id="Speechly_SLUClient_CloudDecoder__ctor_System_String_System_String_System_String_System_String_System_Boolean_" data-uid="Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.Boolean)">CloudDecoder(String, String, String, String, Boolean)</h4>
   <div class="markdown level1 summary"><p>Initialize speech processing with Speechly's cloud SLU service.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public CloudDecoder(string deviceId, string loginUrl = null, string apiUrl = null, string appId = null, string projectId = null, bool debug = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public CloudDecoder(string deviceId, string apiUrl = null, string appId = null, string projectId = null, bool debug = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -127,26 +127,20 @@ Streaming stops upon call to SpeechlyClient.StopContext().</p>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
-        <td><span class="parametername">loginUrl</span></td>
-        <td><p>Authentication service url (default: Speechly's production env's url)</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.String</span></td>
         <td><span class="parametername">apiUrl</span></td>
-        <td><p>SLU API url (default: Speechly's production env's url)</p>
+        <td><p>Speechly SLU API url (default: <code>https://api.speechly.com</code>)</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">appId</span></td>
-        <td><p>Your Speechly project id for authentication. Only provide either app id or project id, not both (default: <code>null</code>).</p>
+        <td><p>Speechly project id for authentication. Only provide either app id or project id, not both (default: <code>null</code>).</p>
 </td>
       </tr>
       <tr>
         <td><span class="xref">System.String</span></td>
         <td><span class="parametername">projectId</span></td>
-        <td><p>Your Speechly app id for authentication. Only provide either app id or project id, not both (default: <code>null</code>).</p>
+        <td><p>Speechly app id for authentication. Only provide either app id or project id, not both (default: <code>null</code>).</p>
 </td>
       </tr>
       <tr>

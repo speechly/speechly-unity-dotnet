@@ -18,7 +18,8 @@ Download [speechly-client.unitypackage](https://github.com/speechly/speechly-uni
   - [speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/](speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/)
   - [speechly-unity/Assets/SpeechlyExamples/VoiceCommands/](speechly-unity/Assets/SpeechlyExamples/VoiceCommands/)
 
-## Unity usage
+
+## Getting Started with Unity
 
 Import `Speechly/` folder from [speechly-client.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage) that contains code to use Speechly cloud API.
 
@@ -68,7 +69,7 @@ public class AudioFileToSpeechly : MonoBehaviour
 
     // Send test audio. Callback(s) will fire and log the results.
     await client.StartContext();
-    await client.SendAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
+    client.ProcessAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
     await client.StopContext();
   }
 
@@ -90,11 +91,15 @@ Import [SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/
 
 Import [SpeechlyExamples/VoiceCommands/](speechly-unity/Assets/SpeechlyExamples/VoiceCommands/) and `Speechly/` folders from `speechly-client.unitypackage` to run a Unity sample scene that showcases a point-and-talk interface: target an object and hold the mouse button to issue speech commands like "make it big and red" or "delete". Again, app-specific logic is in `UseSpeechly.cs` which registers a callback to respond to detected intents and keywords (entities).
 
-## OS X
+## API Documentation
+
+- [API documentation (DocFX generated)](https://speechly.github.io/speechly-unity-dotnet/)
+
+## OS X notes
 
 To enable microphone input on OS X, set `Player Settings > Settings for PC, Mac & Linux Standalone > Other Settings > Microphone Usage Description`, to for example, "Voice input is automatically processed by Speechly.com".
 
-## Android
+## Android notes
 
 ### Device testing
 
@@ -118,6 +123,13 @@ To diagnose problems with device builds, you can do the following:
 </linker>
 ```
 
+## Developing and contributing
+
+We are happy to receive community contributions! For small fixes, feel free to file a pull request. For bigger changes or new features start by filing an issue.
+
+- `./link-speechly-sources.sh` shell script will create hard links from `speechly-client-net-standard-2.0/Speechly/` to `speechly-unity/Assets/Speechly/` so shared .NET code in `SLUClient` is in sync. Please run the script after checking out the repo and before making any changes. If you can't use the script please ensure that the files are identical manually before opening a PR.
+- `./build-docs.sh` generates public API documentation using DocFX from triple-slash `///` comments with C# XML documentation tags.
+
 ### Command line usage with `dotnet`
 
 SpeechlyClient features can be run with prerecorded audio on the command line in `speechly-client-net-standard-2.0/` folder:
@@ -125,7 +137,3 @@ SpeechlyClient features can be run with prerecorded audio on the command line in
 - `dotnet run test` processes an example file, sends to Speechly cloud SLU and prints the received results in console.
 - `dotnet run vad` processes an example file, sends the utterances audio to files in `temp/` folder as 16 bit raw and creates an utterance timestamp `.tsv` (tab-separated values) for each audio file processed.
 - `dotnet run vad myaudiofiles/*.raw` processes a set of files with VAD.
-
-## Developing and contributing
-
-- `link-speechly-sources.sh` shell script will create hard links from `speechly-client-net-standard-2.0/Speechly/` to `speechly-unity/Assets/Speechly/` so shared .NET code in `SLUClient` is in sync. Please run the script after checking out the repo and before making any changes. If you can't use the script please ensure that the files are identical manually before opening a PR.

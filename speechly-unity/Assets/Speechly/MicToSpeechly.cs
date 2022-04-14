@@ -114,8 +114,7 @@ public partial class MicToSpeechly : MonoBehaviour
 
     if (SpeechlyEnv == SpeechlyEnvironment.Production || SpeechlyEnv == SpeechlyEnvironment.Staging) {
       decoder = new CloudDecoder(
-        loginUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "https://staging.speechly.com/login",
-        apiUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "wss://staging.speechly.com/ws/v1?sampleRate=16000",
+        apiUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "https://staging.speechly.com",
         appId: this.AppId,
         deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
         debug: DebugPrint
@@ -138,7 +137,7 @@ public partial class MicToSpeechly : MonoBehaviour
         } else {
           if (wasVADEnabled) {
             wasVADEnabled = false;
-            if (SpeechlyClient.IsListening) {
+            if (SpeechlyClient.IsActive) {
               StopContext();
             }
           }

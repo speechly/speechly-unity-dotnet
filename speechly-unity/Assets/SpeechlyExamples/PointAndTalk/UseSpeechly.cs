@@ -70,7 +70,7 @@ namespace Speechly.Demo.VoiceCommands
       if (Input.GetMouseButtonDown(0)) {
         TranscriptText.text = "LISTENING...";
 
-        if (!speechlyClient.IsListening) {
+        if (!speechlyClient.IsActive) {
           _ = speechlyClient.StartContext();
         }
 
@@ -94,7 +94,7 @@ namespace Speechly.Demo.VoiceCommands
           var outline = selection.gameObject.GetComponent<Outline>();
           if (outline != null) outline.enabled = false;
         }
-        if (speechlyClient.IsListening) {
+        if (speechlyClient.IsActive) {
           _ = speechlyClient.StopContext();
         }
       }

@@ -5,7 +5,7 @@ items:
   id: CloudDecoder
   parent: Speechly.SLUClient
   children:
-  - Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)
+  - Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.Boolean)
   langs:
   - csharp
   - vb
@@ -40,16 +40,16 @@ items:
   modifiers.vb:
   - Public
   - Class
-- uid: Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)
-  commentId: M:Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)
-  id: '#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)'
+- uid: Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.Boolean)
+  commentId: M:Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.Boolean)
+  id: '#ctor(System.String,System.String,System.String,System.String,System.Boolean)'
   parent: Speechly.SLUClient.CloudDecoder
   langs:
   - csharp
   - vb
-  name: CloudDecoder(String, String, String, String, String, Boolean)
-  nameWithType: CloudDecoder.CloudDecoder(String, String, String, String, String, Boolean)
-  fullName: Speechly.SLUClient.CloudDecoder.CloudDecoder(System.String, System.String, System.String, System.String, System.String, System.Boolean)
+  name: CloudDecoder(String, String, String, String, Boolean)
+  nameWithType: CloudDecoder.CloudDecoder(String, String, String, String, Boolean)
+  fullName: Speechly.SLUClient.CloudDecoder.CloudDecoder(System.String, System.String, System.String, System.String, System.Boolean)
   type: Constructor
   source:
     remote:
@@ -58,34 +58,31 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: .ctor
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
-    startLine: 40
+    startLine: 39
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient
   summary: "\nInitialize speech processing with Speechly&apos;s cloud SLU service.\n"
   example: []
   syntax:
-    content: public CloudDecoder(string deviceId, string loginUrl = null, string apiUrl = null, string appId = null, string projectId = null, bool debug = false)
+    content: public CloudDecoder(string deviceId, string apiUrl = null, string appId = null, string projectId = null, bool debug = false)
     parameters:
     - id: deviceId
       type: System.String
       description: An unique string id for the device.
-    - id: loginUrl
-      type: System.String
-      description: 'Authentication service url (default: Speechly&apos;s production env&apos;s url)'
     - id: apiUrl
       type: System.String
-      description: 'SLU API url (default: Speechly&apos;s production env&apos;s url)'
+      description: 'Speechly SLU API url (default: `https://api.speechly.com`)'
     - id: appId
       type: System.String
-      description: 'Your Speechly project id for authentication. Only provide either app id or project id, not both (default: `null`).'
+      description: 'Speechly project id for authentication. Only provide either app id or project id, not both (default: `null`).'
     - id: projectId
       type: System.String
-      description: 'Your Speechly app id for authentication. Only provide either app id or project id, not both (default: `null`).'
+      description: 'Speechly app id for authentication. Only provide either app id or project id, not both (default: `null`).'
     - id: debug
       type: System.Boolean
       description: 'Enable debug prints thru <xref href="Speechly.Tools.Logger.Log" data-throw-if-not-resolved="false"></xref> delegate. (default: `false`)'
-    content.vb: Public Sub New(deviceId As String, loginUrl As String = Nothing, apiUrl As String = Nothing, appId As String = Nothing, projectId As String = Nothing, debug As Boolean = False)
+    content.vb: Public Sub New(deviceId As String, apiUrl As String = Nothing, appId As String = Nothing, projectId As String = Nothing, debug As Boolean = False)
   overload: Speechly.SLUClient.CloudDecoder.#ctor*
   modifiers.csharp:
   - public

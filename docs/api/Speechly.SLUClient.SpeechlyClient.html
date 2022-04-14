@@ -77,7 +77,7 @@
 <h4 id="usage">Usage</h4>
 <ul>
 <li>Create a new SpeechlyClient instance.</li>
-<li>Create an SLU decoder (<a class="xref" href="Speechly.SLUClient.CloudDecoder.html">CloudDecoder</a>) and pass it to <code>SpeechClient</code>'s <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_">Initialize(IDecoder)</a>.</li>
+<li>Create an SLU decoder (<a class="xref" href="Speechly.SLUClient.CloudDecoder.html">CloudDecoder</a>) and pass it to <code>SpeechlyClient</code>'s <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_">Initialize(IDecoder)</a>.</li>
 <li>Attach delegates like <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_OnSegmentChange">OnSegmentChange</a> to listen to and handle the SLU results.</li>
 <li>Feed audio to process with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_ProcessAudio_System_Single___System_Int32_System_Int32_System_Boolean_">ProcessAudio(Single[], Int32, Int32, Boolean)</a>.</li>
 <li>(delegates are firing up as speech is processed)</li>
@@ -528,18 +528,18 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_IsAudioStreaming.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.IsAudioStreaming%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_IsActive.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.IsActive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L49">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L59">View Source</a>
   </span>
-  <a id="Speechly_SLUClient_SpeechlyClient_IsAudioStreaming_" data-uid="Speechly.SLUClient.SpeechlyClient.IsAudioStreaming*"></a>
-  <h4 id="Speechly_SLUClient_SpeechlyClient_IsAudioStreaming" data-uid="Speechly.SLUClient.SpeechlyClient.IsAudioStreaming">IsAudioStreaming</h4>
+  <a id="Speechly_SLUClient_SpeechlyClient_IsActive_" data-uid="Speechly.SLUClient.SpeechlyClient.IsActive*"></a>
+  <h4 id="Speechly_SLUClient_SpeechlyClient_IsActive" data-uid="Speechly.SLUClient.SpeechlyClient.IsActive">IsActive</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsAudioStreaming { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsActive { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -558,18 +558,18 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_IsListening.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.IsListening%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_IsAudioStreaming.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.IsAudioStreaming%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L59">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L49">View Source</a>
   </span>
-  <a id="Speechly_SLUClient_SpeechlyClient_IsListening_" data-uid="Speechly.SLUClient.SpeechlyClient.IsListening*"></a>
-  <h4 id="Speechly_SLUClient_SpeechlyClient_IsListening" data-uid="Speechly.SLUClient.SpeechlyClient.IsListening">IsListening</h4>
+  <a id="Speechly_SLUClient_SpeechlyClient_IsAudioStreaming_" data-uid="Speechly.SLUClient.SpeechlyClient.IsAudioStreaming*"></a>
+  <h4 id="Speechly_SLUClient_SpeechlyClient_IsAudioStreaming" data-uid="Speechly.SLUClient.SpeechlyClient.IsAudioStreaming">IsAudioStreaming</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public bool IsListening { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public bool IsAudioStreaming { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">

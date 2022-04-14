@@ -100,7 +100,7 @@ Results will accumulate in Segment for the duration of the an utterance.</p>
 <h4 id="usage">Usage</h4>
 <ul>
 <li>Create a new SpeechlyClient instance.</li>
-<li>Create an SLU decoder (<a class="xref" href="Speechly.SLUClient.CloudDecoder.html">CloudDecoder</a>) and pass it to <code>SpeechClient</code>'s <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_">Initialize(IDecoder)</a>.</li>
+<li>Create an SLU decoder (<a class="xref" href="Speechly.SLUClient.CloudDecoder.html">CloudDecoder</a>) and pass it to <code>SpeechlyClient</code>'s <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_">Initialize(IDecoder)</a>.</li>
 <li>Attach delegates like <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_OnSegmentChange">OnSegmentChange</a> to listen to and handle the SLU results.</li>
 <li>Feed audio to process with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_ProcessAudio_System_Single___System_Int32_System_Int32_System_Boolean_">ProcessAudio(Single[], Int32, Int32, Boolean)</a>.</li>
 <li>(delegates are firing up as speech is processed)</li>

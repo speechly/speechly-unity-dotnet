@@ -1,7 +1,7 @@
 {
   "Speechly.SLUClient": "Speechly.SLUClient.yml",
   "Speechly.SLUClient.CloudDecoder": "Speechly.SLUClient.CloudDecoder.yml",
-  "Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)": "Speechly.SLUClient.CloudDecoder.yml",
+  "Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.Boolean)": "Speechly.SLUClient.CloudDecoder.yml",
   "Speechly.SLUClient.EnergyTresholdVAD": "Speechly.SLUClient.EnergyTresholdVAD.yml",
   "Speechly.SLUClient.EnergyTresholdVAD.BaselineEnergy": "Speechly.SLUClient.EnergyTresholdVAD.yml",
   "Speechly.SLUClient.EnergyTresholdVAD.Enabled": "Speechly.SLUClient.EnergyTresholdVAD.yml",
@@ -31,8 +31,8 @@
   "Speechly.SLUClient.SpeechlyClient.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean,System.String,Speechly.SLUClient.EnergyTresholdVAD,System.Boolean)": "Speechly.SLUClient.SpeechlyClient.yml",
   "Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier": "Speechly.SLUClient.SpeechlyClient.yml",
   "Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)": "Speechly.SLUClient.SpeechlyClient.yml",
+  "Speechly.SLUClient.SpeechlyClient.IsActive": "Speechly.SLUClient.SpeechlyClient.yml",
   "Speechly.SLUClient.SpeechlyClient.IsAudioStreaming": "Speechly.SLUClient.SpeechlyClient.yml",
-  "Speechly.SLUClient.SpeechlyClient.IsListening": "Speechly.SLUClient.SpeechlyClient.yml",
   "Speechly.SLUClient.SpeechlyClient.IsReady": "Speechly.SLUClient.SpeechlyClient.yml",
   "Speechly.SLUClient.SpeechlyClient.OnEntity": "Speechly.SLUClient.SpeechlyClient.yml",
   "Speechly.SLUClient.SpeechlyClient.OnIntent": "Speechly.SLUClient.SpeechlyClient.yml",

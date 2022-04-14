@@ -13,12 +13,12 @@ references:
   commentId: T:Speechly.SLUClient.CloudDecoder
   fullName: Speechly.SLUClient.CloudDecoder
   nameWithType: CloudDecoder
-- uid: Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)
-  name: CloudDecoder(String, String, String, String, String, Boolean)
-  href: api/Speechly.SLUClient.CloudDecoder.html#Speechly_SLUClient_CloudDecoder__ctor_System_String_System_String_System_String_System_String_System_String_System_Boolean_
-  commentId: M:Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.String,System.Boolean)
-  fullName: Speechly.SLUClient.CloudDecoder.CloudDecoder(System.String, System.String, System.String, System.String, System.String, System.Boolean)
-  nameWithType: CloudDecoder.CloudDecoder(String, String, String, String, String, Boolean)
+- uid: Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.Boolean)
+  name: CloudDecoder(String, String, String, String, Boolean)
+  href: api/Speechly.SLUClient.CloudDecoder.html#Speechly_SLUClient_CloudDecoder__ctor_System_String_System_String_System_String_System_String_System_Boolean_
+  commentId: M:Speechly.SLUClient.CloudDecoder.#ctor(System.String,System.String,System.String,System.String,System.Boolean)
+  fullName: Speechly.SLUClient.CloudDecoder.CloudDecoder(System.String, System.String, System.String, System.String, System.Boolean)
+  nameWithType: CloudDecoder.CloudDecoder(String, String, String, String, Boolean)
 - uid: Speechly.SLUClient.CloudDecoder.#ctor*
   name: CloudDecoder
   href: api/Speechly.SLUClient.CloudDecoder.html#Speechly_SLUClient_CloudDecoder__ctor_
@@ -266,6 +266,19 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.Initialize
   nameWithType: SpeechlyClient.Initialize
+- uid: Speechly.SLUClient.SpeechlyClient.IsActive
+  name: IsActive
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_IsActive
+  commentId: P:Speechly.SLUClient.SpeechlyClient.IsActive
+  fullName: Speechly.SLUClient.SpeechlyClient.IsActive
+  nameWithType: SpeechlyClient.IsActive
+- uid: Speechly.SLUClient.SpeechlyClient.IsActive*
+  name: IsActive
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_IsActive_
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.IsActive
+  isSpec: "True"
+  fullName: Speechly.SLUClient.SpeechlyClient.IsActive
+  nameWithType: SpeechlyClient.IsActive
 - uid: Speechly.SLUClient.SpeechlyClient.IsAudioStreaming
   name: IsAudioStreaming
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_IsAudioStreaming
@@ -279,19 +292,6 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.IsAudioStreaming
   nameWithType: SpeechlyClient.IsAudioStreaming
-- uid: Speechly.SLUClient.SpeechlyClient.IsListening
-  name: IsListening
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_IsListening
-  commentId: P:Speechly.SLUClient.SpeechlyClient.IsListening
-  fullName: Speechly.SLUClient.SpeechlyClient.IsListening
-  nameWithType: SpeechlyClient.IsListening
-- uid: Speechly.SLUClient.SpeechlyClient.IsListening*
-  name: IsListening
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_IsListening_
-  commentId: Overload:Speechly.SLUClient.SpeechlyClient.IsListening
-  isSpec: "True"
-  fullName: Speechly.SLUClient.SpeechlyClient.IsListening
-  nameWithType: SpeechlyClient.IsListening
 - uid: Speechly.SLUClient.SpeechlyClient.IsReady
   name: IsReady
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_IsReady
