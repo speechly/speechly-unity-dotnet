@@ -84,5 +84,15 @@ namespace Speechly.Tools {
       return lengthSamples;
     }
 
+    public static readonly double LOG_2_PLUS_LOG_5 = Math.Log(2) + Math.Log(5);
+
+    public static float EnergyToDb(float energy) {
+      return (float)(10.0*Math.Log(energy) / LOG_2_PLUS_LOG_5);
+    }
+
+    public static float DbToEnergy(float db) {
+      return (float)Math.Pow(10.0, db / 10.0);
+    }
+
   }
 }

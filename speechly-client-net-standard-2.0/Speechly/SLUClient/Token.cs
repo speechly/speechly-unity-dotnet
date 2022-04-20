@@ -92,7 +92,7 @@ namespace Speechly.SLUClient {
   internal class TokenResponse
   {
       [DataMember]
-      public string access_token;
+      public string access_token = null;
   }
 
 }
