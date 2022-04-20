@@ -1,10 +1,9 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Linq;
 using UnityEngine;
-using Speechly.SLUClient;
 using UnityEngine.UI;
 using TMPro;
-using System.Linq;
+
+using Speechly.SLUClient;
 
 namespace Speechly.Demo.VoiceCommands
 {
@@ -32,17 +31,19 @@ namespace Speechly.Demo.VoiceCommands
         );
 
         if (selection != null) {
-          var size = segment.entities.Select(entry => entry.Value).ToList().Where(entity => entity.type == "size").Select(entity => entity.value).ToArray().FirstOrDefault();
-          var color = segment.entities.Select(entry => entry.Value).ToList().Where(entity => entity.type == "color").Select(entity => entity.value).ToArray().FirstOrDefault();
-          var shape = segment.entities.Select(entry => entry.Value).ToList().Where(entity => entity.type == "shape").Select(entity => entity.value).ToArray().FirstOrDefault();
-
-          if (size == "big") selection.localScale = new Vector3(2,2,2);
-          if (size == "medium") selection.localScale = new Vector3(1,1,1);
-          if (size == "small") selection.localScale = new Vector3(0.5f,0.5f,0.5f);
-          if (size == "tall") selection.localScale = new Vector3(0.5f,10f,0.5f);
+          var size = segment.entities.Select(entry => entry.Value).ToList().Where(entity => entity.type == "size").Select(entity => entity.value).Reverse().ToArray().FirstOrDefault();
+          var color = segment.entities.Select(entry => entry.Value).ToList().Where(entity => entity.type == "color").Select(entity => entity.value).Reverse().ToArray().FirstOrDefault();
+          var shape = segment.entities.Select(entry => entry.Value).ToList().Where(entity => entity.type == "shape").Select(entity => entity.value).Reverse().ToArray().FirstOrDefault();
 
           var mesh = selection.GetComponent<MeshFilter>();
           var renderer = mesh.GetComponent<Renderer>();
+
+          switch (size) {
+            case "big": selection.localScale = new Vector3(2,2,2); break;
+            case "medium": selection.localScale = new Vector3(1,1,1); break;
+            case "small": selection.localScale = new Vector3(0.5f,0.5f,0.5f); break;
+            case "tall": selection.localScale = new Vector3(0.5f,10f,0.5f); break;
+          }
 
           switch (color) {
             case "yellow": renderer.material.color = new Color(1,1,0,1); break;
@@ -54,10 +55,12 @@ namespace Speechly.Demo.VoiceCommands
             case "black": renderer.material.color = new Color(0.1f,0.1f,0.1f,1); break;
           }
 
-          if (shape == "sphere") mesh.mesh = Sphere.GetComponent<MeshFilter>().sharedMesh;
-          if (shape == "cube") mesh.mesh = Cube.GetComponent<MeshFilter>().sharedMesh;
+          switch (shape) {
+            case "sphere": mesh.mesh = Sphere.GetComponent<MeshFilter>().sharedMesh; break;
+            case "cube": mesh.mesh = Cube.GetComponent<MeshFilter>().sharedMesh; break;
+          }
 
-          // Set visibility
+          // Control visibility
           selection.gameObject.SetActive(segment.intent.intent != "delete");
         }
       };

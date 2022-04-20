@@ -2879,19 +2879,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SpeechlyEnv: 0
-  AppId: f44486fe-d248-404f-b4bc-44ebe257b93f
+  AppId: 28e50e5e-8f65-4f94-8903-247245910130
   CaptureDeviceName: 
   MicSampleRate: 16000
   FrameMillis: 30
   HistoryFrames: 5
-  Vad:
+  EnergyLevels:
     Enabled: 1
-    VADMinimumEnergy: 0.005
-    VADSignalToNoise: 2
-    VADFrames: 5
-    VADActivation: 0.7
-    VADRelease: 0.2
-    VADSustainMillis: 3000
-    VADNoiseHalftimeMillis: 400
-    VADControlListening: 0
+    SignalToNoiseDb: 3
+    NoiseGateDb: -24
+    NoiseLearnHalftimeMillis: 400
+    SignalSearchFrames: 5
+    SignalActivation: 0.7
+    SignalRelease: 0.2
+    SignalSustainMillis: 3000
+    IsSignalDetected: 0
+    SignalDb: 0
+    NoiseLevelDb: 0
+    ControlListening: 0
   DebugPrint: 0

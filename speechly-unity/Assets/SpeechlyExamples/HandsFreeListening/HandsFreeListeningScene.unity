@@ -1784,22 +1784,25 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f6b6837b89e74c51819907efcc77c50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  SpeechlyEnv: 1
-  AppId: 42a85063-f6a0-47af-810e-1d11bff4ae34
+  SpeechlyEnv: 0
+  AppId: 8fb67f1e-69df-4d25-811b-4413a3264be2
   CaptureDeviceName: 
   MicSampleRate: 16000
   FrameMillis: 30
   HistoryFrames: 8
-  Vad:
+  EnergyLevels:
     Enabled: 1
-    VADMinimumEnergy: 0.005
-    VADSignalToNoise: 2
-    VADFrames: 6
-    VADActivation: 0.7
-    VADRelease: 0.2
-    VADSustainMillis: 3000
-    VADNoiseHalftimeMillis: 1000
-    VADControlListening: 1
+    SignalToNoiseDb: 3
+    NoiseGateDb: -24
+    NoiseLearnHalftimeMillis: 400
+    SignalSearchFrames: 5
+    SignalActivation: 0.7
+    SignalRelease: 0.2
+    SignalSustainMillis: 3000
+    IsSignalDetected: 0
+    SignalDb: 0
+    NoiseLevelDb: 0
+    ControlListening: 1
   DebugPrint: 0
 --- !u!1 &2069320975
 GameObject:

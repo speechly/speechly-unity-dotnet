@@ -8,7 +8,6 @@ public class UseSpeechly : MonoBehaviour
   public Slider SliderAudioPeak;
   public TMP_Text TranscriptText;
   private SpeechlyClient speechlyClient;
-  private bool IsButtonHeld = false;
 
   void Start()
   {
@@ -31,20 +30,16 @@ public class UseSpeechly : MonoBehaviour
 
   public void OnMouseDown()
   {
-    Debug.Log("Mouse Down");
-    if (!IsButtonHeld && !speechlyClient.IsActive)
+    if (!speechlyClient.IsActive)
     {
-      IsButtonHeld = true;
       _ = speechlyClient.StartContext();
     }
   }
 
   public void OnMouseUp()
   {
-    Debug.Log("Mouse Up");
-    if (IsButtonHeld && speechlyClient.IsActive)
+    if (speechlyClient.IsActive)
     {
-      IsButtonHeld = false;
       _ = speechlyClient.StopContext();
     }
   }
