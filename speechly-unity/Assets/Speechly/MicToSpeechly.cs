@@ -36,7 +36,7 @@ public partial class MicToSpeechly : MonoBehaviour
   [Tooltip("Number of frames to keep in memory. When listening is started, history frames are sent to capture the lead-in audio.")]
   public int HistoryFrames = 8;
   [Tooltip("Voice Activity Detection (VAD) using adaptive energy thresholding. Automatically controls listening based on audio 'loudness'.")]
-  public EnergyTresholdVAD Vad = new EnergyTresholdVAD{ Enabled = true, VADControlListening = false };
+  public EnergyTresholdVAD EnergyLevels = new EnergyTresholdVAD{ Enabled = true, ControlListening = false };
   public bool DebugPrint = false;
   public SpeechlyClient SpeechlyClient { get; private set; }
   private AudioClip clip;
@@ -60,7 +60,7 @@ public partial class MicToSpeechly : MonoBehaviour
     Logger.LogError = Debug.LogError;
 
     SpeechlyClient = new SpeechlyClient(
-      vad: this.Vad,
+      vad: this.EnergyLevels,
       manualUpdate: true,
       frameMillis: FrameMillis,
       historyFrames: HistoryFrames,
@@ -127,12 +127,14 @@ public partial class MicToSpeechly : MonoBehaviour
     yield return new WaitUntil(() => task.IsCompleted);
 
     while (true) {
+      // Relay debug state
+      SpeechlyClient.Debug = DebugPrint;
       // Fire handlers in main Unity thread
       SpeechlyClient.Update();
 
       // Ensure VAD-initiated listening is stopped if VAD state is altered "on the fly"
-      if (Vad != null) {
-        if (Vad.Enabled && Vad.VADControlListening) {
+      if (EnergyLevels != null) {
+        if (EnergyLevels.Enabled && EnergyLevels.ControlListening) {
           wasVADEnabled = true;
         } else {
           if (wasVADEnabled) {

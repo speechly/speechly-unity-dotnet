@@ -10,65 +10,86 @@ namespace Speechly.SLUClient {
 /// Adaptive energy threshold voice activity detection (VAD) implementation.
 /// It can be used to enable hands-free operation of the SLU decoder.
 ///
-/// When enough loud frames have been detected, VAD activates and calls StartContext automatically. When enough silent frames have been detected, the VAD deactivates after the sustain time and StopContext is called automatically. The background noise energy gradually adapts when VAD is not active.
-/// 
-/// Use its public field to configure minimum energy level, signal-to-noise ratio, minimum activation time and an activation/deactivation treshold (ratio of loud to silent frames).
+/// When enough frames with a signal stronger than SignalToNoiseDb have been detected, IsSignalDetected goes true. When enough silent frames have been detected, IsSignalDetected goes false after the sustain time.
+/// Use its public fields to configure the static noise gate level, signal-to-noise level, activation/deactivation treshold (ratio of signal to silent frames) and the signal sustain time.
+/// The background noise level gradually adapts when no signal is detected.
+///
+/// IsSignalDetected can be used to drive SpeechlyClient's StartContext and StopContext automatically by setting ControlListening true.
 /// </summary>
 
   [System.Serializable]
    public class EnergyTresholdVAD {
+    #if UNITY_EDITOR
+    [Tooltip("Run energy analysis.")]
+    #endif
     public bool Enabled = true;
 
     #if UNITY_EDITOR
-    [Range(0.0f, 1.0f)]
-    [Tooltip("Energy threshold - below this won't trigger activation")]
-    #endif
-    public float VADMinimumEnergy = 0.005f;
-
-    #if UNITY_EDITOR
-    [Range(1.0f, 10.0f)]
+    [Range(0.0f, 10.0f)]
     [Tooltip("Signal-to-noise energy ratio needed for frame to be 'loud'")]
     #endif
-    public float VADSignalToNoise = 2.0f;
+    public float SignalToNoiseDb = 3.0f;
 
     #if UNITY_EDITOR
-    [Range(1, 32)]
-    [Tooltip("Number of past frames analyzed for energy threshold VAD. Should be <= than HistoryFrames.")]
+    [Range(-90.0f, 0.0f)]
+    [Tooltip("Energy threshold - below this won't trigger activation")]
     #endif
-    public int VADFrames = 5;
-
-    #if UNITY_EDITOR
-    [Range(.0f, 1.0f)]
-    [Tooltip("Minimum 'loud' to 'silent' frame ratio in history to activate 'IsSignalDetected'")]
-    #endif
-    public float VADActivation = 0.7f;
-
-    #if UNITY_EDITOR
-    [Range(.0f, 1.0f)]
-    [Tooltip("Maximum 'loud' to 'silent' frame ratio in history to inactivate 'IsSignalDetected'. Only evaluated when the sustain period is over.")]
-    #endif
-    public float VADRelease = 0.2f;
-
-    #if UNITY_EDITOR
-    [Range(0, 8000)]
-    [Tooltip("Duration to keep 'IsSignalDetected' active. Renewed as long as VADActivation is holds true.")]
-    #endif
-    public int VADSustainMillis = 3000;
+    public float NoiseGateDb = -24f;
 
     #if UNITY_EDITOR
     [Range(0, 5000)]
     [Tooltip("Rate of background noise learn. Defined as duration in which background noise energy is moved halfway towards current frame's energy.")]
     #endif
-    public int VADNoiseHalftimeMillis = 400;
+    public int NoiseLearnHalftimeMillis = 400;
 
     #if UNITY_EDITOR
-    [Tooltip("Disable VAD listening control if you want to use the energy threshold but want to implement custom listening control by reading IsSignalDetected state.")]
+    [Range(1, 32)]
+    [Tooltip("Number of past frames analyzed for energy threshold VAD. Should be <= than HistoryFrames.")]
     #endif
-    public bool VADControlListening = true;
+    public int SignalSearchFrames = 5;
+
+    #if UNITY_EDITOR
+    [Range(.0f, 1.0f)]
+    [Tooltip("Minimum 'signal' to 'silent' frame ratio in history to activate 'IsSignalDetected'")]
+    #endif
+    public float SignalActivation = 0.7f;
+
+    #if UNITY_EDITOR
+    [Range(.0f, 1.0f)]
+    [Tooltip("Maximum 'signal' to 'silent' frame ratio in history to inactivate 'IsSignalDetected'. Only evaluated when the sustain period is over.")]
+    #endif
+    public float SignalRelease = 0.2f;
+
+    #if UNITY_EDITOR
+    [Range(0, 8000)]
+    [Tooltip("Duration to keep 'IsSignalDetected' active. Renewed as long as VADActivation is holds true.")]
+    #endif
+    public int SignalSustainMillis = 3000;
+
+    #if UNITY_EDITOR
+    [Header("Output")]
+    #endif
+    public bool IsSignalDetected;
+
+    #if UNITY_EDITOR
+    [Range(0.0f, 10.0f)]
+    #endif
+    public float SignalDb;
+
+    #if UNITY_EDITOR
+    [Range(-90.0f, 0.0f)]
+    #endif
+    public float NoiseLevelDb;
+
+    #if UNITY_EDITOR
+    [Header("Signal detection controls listening")]
+    [Tooltip("Enable listening control if you want to use IsSignalDetected to control SpeechlyClient's StartContext/StopContext.")]
+    #endif
+    public bool ControlListening = true;
+
 
     public float Energy {get; private set; } = 0f;
     public float BaselineEnergy {get; private set; } = -1f;
-    public bool IsSignalDetected {get; private set; }
     private int loudFrameBits = 0;
     private float vadSustainMillisLeft = 0;
     private int FrameMillis = 30;
@@ -85,26 +106,32 @@ namespace Speechly.SLUClient {
         BaselineEnergy = Energy;
       }
 
-      bool isLoudFrame = Energy > Math.Max(VADMinimumEnergy, BaselineEnergy * VADSignalToNoise);
+      bool isLoudFrame = Energy > Math.Max(Math.Pow(10.0, NoiseGateDb / 10.0), BaselineEnergy * Math.Pow(10.0, SignalToNoiseDb / 10.0));
       PushFrameHistory(isLoudFrame);
 
       IsSignalDetected = DetermineNewSignalState(IsSignalDetected);
 
       AdaptBackgroundNoise();
+
+      SignalDb = AudioTools.EnergyToDb(Energy / BaselineEnergy);
+      NoiseLevelDb = AudioTools.EnergyToDb(BaselineEnergy);
     }
 
     private bool DetermineNewSignalState(bool currentState) {
       vadSustainMillisLeft = Math.Max(vadSustainMillisLeft - FrameMillis, 0);
 
-      int loudFrames = CountLoudFrames(VADFrames);
-      float loudFrameRatio = (1f * loudFrames) / VADFrames;
+      int loudFrames = CountLoudFrames(SignalSearchFrames);
 
-      if (loudFrameRatio >= VADActivation) {
-        vadSustainMillisLeft = VADSustainMillis;
+      int activationFrames = (int)Math.Round(SignalActivation * SignalSearchFrames);
+      int releaseFrames = (int)Math.Round(SignalRelease * SignalSearchFrames);
+
+      if (loudFrames >= activationFrames) {
+        // Renew sustain time
+        vadSustainMillisLeft = SignalSustainMillis;
         return true;
       }
-
-      if (loudFrameRatio < VADRelease && vadSustainMillisLeft == 0) {
+      
+      if (loudFrames <= releaseFrames && vadSustainMillisLeft == 0) {
         return false;
       }
 
@@ -114,8 +141,8 @@ namespace Speechly.SLUClient {
     private void AdaptBackgroundNoise() {
       // Gradually learn background noise level
       if (!IsSignalDetected) {
-        if (VADNoiseHalftimeMillis > 0f) {
-          var decay = (float)Math.Pow(2.0, -FrameMillis / (double)VADNoiseHalftimeMillis);
+        if (NoiseLearnHalftimeMillis > 0f) {
+          var decay = (float)Math.Pow(2.0, -FrameMillis / (double)NoiseLearnHalftimeMillis);
           BaselineEnergy = (BaselineEnergy * decay) + (Energy * (1f - decay));
         }
       }
