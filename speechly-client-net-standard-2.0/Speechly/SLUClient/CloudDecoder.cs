@@ -55,10 +55,10 @@ namespace Speechly.SLUClient {
       this.apiUrl = $"{apiUrl.Replace("http", "ws")}/ws/v1?sampleRate=16000";
 
       if (String.IsNullOrWhiteSpace(projectId) && String.IsNullOrWhiteSpace(appId)) {
-        throw new Exception("Either appId or projectId has to be provided. Get it from ${apiUrl}/dashboard");
+        throw new Exception($"Either appId or projectId has to be provided. Get it from {apiUrl}/dashboard");
       }
       if (!String.IsNullOrWhiteSpace(projectId) && !String.IsNullOrWhiteSpace(appId)) {
-        throw new Exception("Please log in with either projectId or appId, not both. With projectId login you may use all appIds within the project. Get it from ${apiUrl}/dashboard");
+        throw new Exception($"Please log in with either projectId or appId, not both. With projectId login you may use all appIds within the project. Get it from {apiUrl}/dashboard");
       }
 
       this.appId = appId;

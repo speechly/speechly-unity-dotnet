@@ -25,8 +25,8 @@ public partial class MicToSpeechly : MonoBehaviour
   [Tooltip("Speechly environment to connect to")]
   public SpeechlyEnvironment SpeechlyEnv = SpeechlyEnvironment.Production;
 
-  [Tooltip("Speechly App Id")]
-  public string AppId = "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1"; // Speechly Client Demos / speech-to-text only configuration
+  [Tooltip("Speechly App Id from https://api.speechly.com/dashboard")]
+  public string AppId = "";
   [Tooltip("Capture device name or null for default.")]
   public string CaptureDeviceName = null;
   public int MicSampleRate = 16000;
@@ -36,7 +36,7 @@ public partial class MicToSpeechly : MonoBehaviour
   [Tooltip("Number of frames to keep in memory. When listening is started, history frames are sent to capture the lead-in audio.")]
   public int HistoryFrames = 8;
   [Tooltip("Voice Activity Detection (VAD) using adaptive energy thresholding. Automatically controls listening based on audio 'loudness'.")]
-  public EnergyTresholdVAD Vad = new EnergyTresholdVAD{ Enabled = true, VADControlListening = false };
+  public EnergyTresholdVAD EnergyLevels = new EnergyTresholdVAD{ Enabled = true, ControlListening = false };
   public bool DebugPrint = false;
   public SpeechlyClient SpeechlyClient { get; private set; }
   private AudioClip clip;
@@ -60,7 +60,7 @@ public partial class MicToSpeechly : MonoBehaviour
     Logger.LogError = Debug.LogError;
 
     SpeechlyClient = new SpeechlyClient(
-      vad: this.Vad,
+      vad: this.EnergyLevels,
       manualUpdate: true,
       frameMillis: FrameMillis,
       historyFrames: HistoryFrames,
@@ -115,7 +115,7 @@ public partial class MicToSpeechly : MonoBehaviour
     if (SpeechlyEnv == SpeechlyEnvironment.Production || SpeechlyEnv == SpeechlyEnvironment.Staging) {
       decoder = new CloudDecoder(
         apiUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "https://staging.speechly.com",
-        appId: this.AppId,
+        appId: String.IsNullOrWhiteSpace(this.AppId) ? null : this.AppId,
         deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
         debug: DebugPrint
       );
@@ -127,12 +127,14 @@ public partial class MicToSpeechly : MonoBehaviour
     yield return new WaitUntil(() => task.IsCompleted);
 
     while (true) {
+      // Relay debug state
+      SpeechlyClient.Debug = DebugPrint;
       // Fire handlers in main Unity thread
       SpeechlyClient.Update();
 
       // Ensure VAD-initiated listening is stopped if VAD state is altered "on the fly"
-      if (Vad != null) {
-        if (Vad.Enabled && Vad.VADControlListening) {
+      if (EnergyLevels != null) {
+        if (EnergyLevels.Enabled && EnergyLevels.ControlListening) {
           wasVADEnabled = true;
         } else {
           if (wasVADEnabled) {

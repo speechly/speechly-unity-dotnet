@@ -70,11 +70,13 @@ namespace Speechly.SLUClient {
     /// Current count of continuously processed samples (thru ProcessAudio) from start of stream
     public int StreamSamplePos { get; private set; } = 0;
 
+    /// Enable debug prints
+    public bool Debug = false;
+
     /// Message queue used when manualUpdate is true. Delegates are fired with a call to Update() that should be run in the desired thread (main) thread.
     private ConcurrentQueue<SegmentMessage> messageQueue = new ConcurrentQueue<SegmentMessage>();
     private Dictionary<string, Dictionary<int, Segment>> activeContexts = new Dictionary<string, Dictionary<int, Segment>>();
     private bool manualUpdate;
-    private bool debug = false;
     private string saveToFolder = null;
     private FileStream outAudioStream;
 
@@ -121,7 +123,7 @@ namespace Speechly.SLUClient {
       this.manualUpdate = manualUpdate;
       this.saveToFolder = saveToFolder;
       this.Vad = vad;
-      this.debug = debug;
+      this.Debug = debug;
 
       frameSamples = internalSampleRate * frameMillis / 1000;
 
@@ -362,7 +364,7 @@ namespace Speechly.SLUClient {
     }
 
     private void AutoControlListening() {
-      if (this.Vad != null && this.Vad.Enabled && this.Vad.VADControlListening) {
+      if (this.Vad != null && this.Vad.Enabled && this.Vad.ControlListening) {
         if (!IsActive && Vad.IsSignalDetected) {
           _ = StartContext();
         }
@@ -455,12 +457,12 @@ namespace Speechly.SLUClient {
     {
       switch (msgCommon.type) {
         case "started": {
-          if (debug) Logger.Log($"Started context '{msgCommon.audio_context}'");
+          if (Debug) Logger.Log($"Started context '{msgCommon.audio_context}'");
           activeContexts.Add(msgCommon.audio_context, new Dictionary<int, Segment>());
           break;
         }
         case "stopped": {
-          if (debug) Logger.Log($"Stopped context '{msgCommon.audio_context}'");
+          if (Debug) Logger.Log($"Stopped context '{msgCommon.audio_context}'");
           activeContexts.Remove(msgCommon.audio_context);
           break;
         }
@@ -484,6 +486,7 @@ namespace Speechly.SLUClient {
         case "tentative_transcript": {
           var msg = JSON.Parse(msgString, new MsgTentativeTranscript());
           segmentState.UpdateTranscript(msg.data.words);
+          if (Debug) Logger.Log(segmentState.ToString());
           OnTentativeTranscript(msg);
           break;
         }
@@ -491,12 +494,14 @@ namespace Speechly.SLUClient {
           var msg = JSON.Parse(msgString, new MsgTranscript());
           msg.data.isFinal = true;
           segmentState.UpdateTranscript(msg.data);
+          if (Debug) Logger.Log(segmentState.ToString());
           OnTranscript(msg);
           break;
         }
         case "tentative_entities": {
           var msg = JSON.Parse(msgString, new MsgTentativeEntity());
           segmentState.UpdateEntity(msg.data.entities);
+          if (Debug) Logger.Log(segmentState.ToString());
           OnTentativeEntity(msg);
           break;
         }
@@ -504,23 +509,27 @@ namespace Speechly.SLUClient {
           var msg = JSON.Parse(msgString, new MsgEntity());
           msg.data.isFinal = true;
           segmentState.UpdateEntity(msg.data);
+          if (Debug) Logger.Log(segmentState.ToString());
           OnEntity(msg);
           break;
         }
         case "tentative_intent": {
           var msg = JSON.Parse(msgString, new MsgIntent());
           segmentState.UpdateIntent(msg.data.intent, false);
+          if (Debug) Logger.Log(segmentState.ToString());
           OnTentativeIntent(msg);
           break;
         }
         case "intent": {
           var msg = JSON.Parse(msgString, new MsgIntent());
           segmentState.UpdateIntent(msg.data.intent, true);
+          if (Debug) Logger.Log(segmentState.ToString());
           OnIntent(msg);
           break;
         }
         case "segment_end": {
           segmentState.EndSegment();
+          if (Debug) Logger.Log(segmentState.ToString());
           break;
         }
         default: {
