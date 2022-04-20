@@ -25,8 +25,8 @@ public partial class MicToSpeechly : MonoBehaviour
   [Tooltip("Speechly environment to connect to")]
   public SpeechlyEnvironment SpeechlyEnv = SpeechlyEnvironment.Production;
 
-  [Tooltip("Speechly App Id")]
-  public string AppId = "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1"; // Speechly Client Demos / speech-to-text only configuration
+  [Tooltip("Speechly App Id from https://api.speechly.com/dashboard")]
+  public string AppId = "";
   [Tooltip("Capture device name or null for default.")]
   public string CaptureDeviceName = null;
   public int MicSampleRate = 16000;
@@ -115,7 +115,7 @@ public partial class MicToSpeechly : MonoBehaviour
     if (SpeechlyEnv == SpeechlyEnvironment.Production || SpeechlyEnv == SpeechlyEnvironment.Staging) {
       decoder = new CloudDecoder(
         apiUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "https://staging.speechly.com",
-        appId: this.AppId,
+        appId: String.IsNullOrWhiteSpace(this.AppId) ? null : this.AppId,
         deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
         debug: DebugPrint
       );
