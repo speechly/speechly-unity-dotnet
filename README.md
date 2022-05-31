@@ -2,7 +2,13 @@
 
 [Speechly](https://www.speechly.com/?utm_source=github&utm_medium=react-client&utm_campaign=text) is an API for building voice features into games, XR, applications and web sites. This client library streams audio from a Unity or .NET app to Speechly cloud API and provides a C# API for receiving real-time speech-to-text transcription and natural language understanding results.
 
+## Releases
+
 Download [speechly-client.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage) to get the latest Speechly Unity client library and example scenes bundled up for Unity.
+
+## API Documentation
+
+- [API documentation (DocFX generated)](https://speechly.github.io/speechly-unity-dotnet/)
 
 ## Requirements
 
@@ -17,7 +23,6 @@ Download [speechly-client.unitypackage](https://github.com/speechly/speechly-uni
   - [speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/)
   - [speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/](speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/)
   - [speechly-unity/Assets/SpeechlyExamples/VoiceCommands/](speechly-unity/Assets/SpeechlyExamples/VoiceCommands/)
-
 
 ## Getting Started with Unity
 
@@ -90,10 +95,6 @@ Import [SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/
 ### VoiceCommands
 
 Import [SpeechlyExamples/VoiceCommands/](speechly-unity/Assets/SpeechlyExamples/VoiceCommands/) and `Speechly/` folders from `speechly-client.unitypackage` to run a Unity sample scene that showcases a point-and-talk interface: target an object and hold the mouse button to issue speech commands like "make it big and red" or "delete". Again, app-specific logic is in `UseSpeechly.cs` which registers a callback to respond to detected intents and keywords (entities).
-
-## API Documentation
-
-- [API documentation (DocFX generated)](https://speechly.github.io/speechly-unity-dotnet/)
 
 ## OS X notes
 
