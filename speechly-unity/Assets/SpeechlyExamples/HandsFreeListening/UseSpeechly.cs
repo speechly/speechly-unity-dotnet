@@ -25,7 +25,7 @@ namespace Speechly.Example.NoiseGateTrigger
         TranscriptText.text = segment.ToString(
           (intent) => "",
           (words, entityType) => $"<color=#15e8b5>{words}<color=#ffffff>",
-          ""
+          "."
         );
       };
     }
