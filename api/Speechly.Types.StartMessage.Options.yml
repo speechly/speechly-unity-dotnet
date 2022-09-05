@@ -1,0 +1,166 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.StartMessage.Options
+  commentId: T:Speechly.Types.StartMessage.Options
+  id: StartMessage.Options
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.StartMessage.Options.silence_triggered_segmentation
+  - Speechly.Types.StartMessage.Options.vocabulary
+  - Speechly.Types.StartMessage.Options.vocabulary_bias
+  langs:
+  - csharp
+  - vb
+  name: StartMessage.Options
+  nameWithType: StartMessage.Options
+  fullName: Speechly.Types.StartMessage.Options
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Options
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 237
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: 'public class Options : object'
+    content.vb: >-
+      Public Class Options
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.StartMessage.Options.vocabulary
+  commentId: F:Speechly.Types.StartMessage.Options.vocabulary
+  id: vocabulary
+  parent: Speechly.Types.StartMessage.Options
+  langs:
+  - csharp
+  - vb
+  name: vocabulary
+  nameWithType: StartMessage.Options.vocabulary
+  fullName: Speechly.Types.StartMessage.Options.vocabulary
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: vocabulary
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 240
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public string[] vocabulary
+    return:
+      type: System.String[]
+    content.vb: Public vocabulary As String()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.StartMessage.Options.vocabulary_bias
+  commentId: F:Speechly.Types.StartMessage.Options.vocabulary_bias
+  id: vocabulary_bias
+  parent: Speechly.Types.StartMessage.Options
+  langs:
+  - csharp
+  - vb
+  name: vocabulary_bias
+  nameWithType: StartMessage.Options.vocabulary_bias
+  fullName: Speechly.Types.StartMessage.Options.vocabulary_bias
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: vocabulary_bias
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 242
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public string[] vocabulary_bias
+    return:
+      type: System.String[]
+    content.vb: Public vocabulary_bias As String()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.StartMessage.Options.silence_triggered_segmentation
+  commentId: F:Speechly.Types.StartMessage.Options.silence_triggered_segmentation
+  id: silence_triggered_segmentation
+  parent: Speechly.Types.StartMessage.Options
+  langs:
+  - csharp
+  - vb
+  name: silence_triggered_segmentation
+  nameWithType: StartMessage.Options.silence_triggered_segmentation
+  fullName: Speechly.Types.StartMessage.Options.silence_triggered_segmentation
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: silence_triggered_segmentation
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 244
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public string[] silence_triggered_segmentation
+    return:
+      type: System.String[]
+    content.vb: Public silence_triggered_segmentation As String()
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: System.String[]
+  isExternal: true
+  name: String[]
+  nameWithType: String[]
+  fullName: System.String[]
+  nameWithType.vb: String()
+  fullName.vb: System.String()
+  name.vb: String()
+  spec.csharp:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.String
+    name: String
+    nameWithType: String
+    fullName: System.String
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()

@@ -1,0 +1,121 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.ContextOptions
+  commentId: T:Speechly.Types.ContextOptions
+  id: ContextOptions
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.ContextOptions.BoostVocabulary
+  - Speechly.Types.ContextOptions.SilenceSegmentationMillis
+  langs:
+  - csharp
+  - vb
+  name: ContextOptions
+  nameWithType: ContextOptions
+  fullName: Speechly.Types.ContextOptions
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ContextOptions
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 196
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  summary: "\nOptions for speech recognition\n"
+  example: []
+  syntax:
+    content: 'public class ContextOptions : object'
+    content.vb: >-
+      Public Class ContextOptions
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.ContextOptions.SilenceSegmentationMillis
+  commentId: F:Speechly.Types.ContextOptions.SilenceSegmentationMillis
+  id: SilenceSegmentationMillis
+  parent: Speechly.Types.ContextOptions
+  langs:
+  - csharp
+  - vb
+  name: SilenceSegmentationMillis
+  nameWithType: ContextOptions.SilenceSegmentationMillis
+  fullName: Speechly.Types.ContextOptions.SilenceSegmentationMillis
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SilenceSegmentationMillis
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 227
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public int SilenceSegmentationMillis
+    return:
+      type: System.Int32
+    content.vb: Public SilenceSegmentationMillis As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.ContextOptions.BoostVocabulary
+  commentId: F:Speechly.Types.ContextOptions.BoostVocabulary
+  id: BoostVocabulary
+  parent: Speechly.Types.ContextOptions
+  langs:
+  - csharp
+  - vb
+  name: BoostVocabulary
+  nameWithType: ContextOptions.BoostVocabulary
+  fullName: Speechly.Types.ContextOptions.BoostVocabulary
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: BoostVocabulary
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 232
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public ContextOptions.ShallowFusionSettings BoostVocabulary
+    return:
+      type: Speechly.Types.ContextOptions.ShallowFusionSettings
+    content.vb: Public BoostVocabulary As ContextOptions.ShallowFusionSettings
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Speechly.Types.ContextOptions.ShallowFusionSettings
+  commentId: T:Speechly.Types.ContextOptions.ShallowFusionSettings
+  parent: Speechly.Types
+  name: ContextOptions.ShallowFusionSettings
+  nameWithType: ContextOptions.ShallowFusionSettings
+  fullName: Speechly.Types.ContextOptions.ShallowFusionSettings

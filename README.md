@@ -1,4 +1,4 @@
-# Speechly Client for Unity and .NET Standard 2.0 API
+# Speechly Client Library for Unity and C#
 
 [Speechly](https://www.speechly.com/?utm_source=github&utm_medium=react-client&utm_campaign=text) is an API for building voice features into games, XR, applications and web sites. This client library streams audio from a Unity or .NET app to Speechly cloud API and provides a C# API for receiving real-time speech-to-text transcription and natural language understanding results.
 
@@ -12,23 +12,19 @@ Download [speechly-client.unitypackage](https://github.com/speechly/speechly-uni
 
 ## Requirements
 
-- A C# development environment conforming to .NET Standard 2.0 API
+- A C# development environment with .NET Standard 2.0 API:
   - Unity 2018.1 or later (tested with 2019.4.36f1 and 2021.2.12f1)
   - Microsoft .NET Core 3 or later (tested with .NET 6.0.200)
 
-## Contents of this repository
-
-- [speechly-client-net-standard-2.0/](speechly-client-net-standard-2.0/) contains the Speechly client library code and a sample .NET console app.
-- [speechly-unity/Assets/Speechly/](speechly-unity/Assets/Speechly/) folder contains the same basic .NET Speechly client code plus Unity-specific `MicToSpeechly.cs` microphone code and Unity sample projects:
-  - [speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/)
-  - [speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/](speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/)
-  - [speechly-unity/Assets/SpeechlyExamples/VoiceCommands/](speechly-unity/Assets/SpeechlyExamples/VoiceCommands/)
-
 ## Getting Started with Unity
 
-Import `Speechly/` folder from [speechly-client.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage) that contains code to use Speechly cloud API.
+### Installation
 
-> If you want to skip straight to trying out a working sample scene, see [more code examples](#more-code-examples) below.
+- Download [speechly-client.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage)
+- Select Assets > Import Package > Custom Package... and select the downloaded file.
+- Import `Speechly/` folder from the package to your Unity project
+- Drop `MicToSpeechly` prefab to your scene hierarchy
+- Select it and enter a valid token in the `App Id` field
 
 ### Unity example
 
@@ -73,9 +69,9 @@ public class AudioFileToSpeechly : MonoBehaviour
     await SpeechlyClient.Initialize(decoder);
 
     // Send test audio. Callback(s) will fire and log the results.
-    await client.StartContext();
+    await client.Start();
     client.ProcessAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
-    await client.StopContext();
+    await client.Stop();
   }
 
   void Update()
@@ -86,7 +82,13 @@ public class AudioFileToSpeechly : MonoBehaviour
 }
 ```
 
-## More code examples
+## Contents of this repository
+
+- [speechly-client-net-standard-2.0/](speechly-client-net-standard-2.0/) contains the Speechly client library code and a sample .NET console app.
+- [speechly-unity/Assets/Speechly/](speechly-unity/Assets/Speechly/) folder contains the same basic .NET Speechly client code plus Unity-specific `MicToSpeechly.cs` microphone code and Unity sample projects:
+  - [speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/)
+  - [speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/](speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/)
+  - [speechly-unity/Assets/SpeechlyExamples/VoiceCommands/](speechly-unity/Assets/SpeechlyExamples/VoiceCommands/)
 
 ### MicToSpeechly
 
@@ -107,9 +109,12 @@ To enable microphone input on OS X, set `Player Settings > Settings for PC, Mac 
 To diagnose problems with device builds, you can do the following:
 
 - First try running MicToSpeechlyScene.unity in the editor without errors.
-- Change to Android player, set MicToSpeechlyScene.unity as the main scene and do a `build and run` to deploy the build to on a device.
-- On terminal, do `adb logcat -s Unity:D` to follow Unity-related logs from the device.
-- Run the app on device. Keep `Hold to talk` button pressed and say "ONE, TWO, THREE". Then release the button.
+- Change to Android player, set MicToSpeechlyScene.unity as the main scene and do a `build and run` to deploy and start the build to on a device.
+- On the terminal start following Unity-related log lines:
+```
+adb logcat -s Unity:D
+```
+- Use the app on device. Ensure it's listening (e.g. keep `Hold to talk` button pressed) and say "ONE, TWO, THREE". Then release the button.
 - You should see "ONE, TWO, THREE" displayed in the top-left corner of the screen. If not, see the terminal for errors.
 
 ### Android troubleshooting

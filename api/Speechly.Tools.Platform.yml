@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Platform
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
@@ -57,7 +57,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ConfigPath
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
@@ -90,7 +90,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: GetDeviceId
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
@@ -127,7 +127,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Fetch
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
@@ -164,11 +164,11 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: GetPersistentStoragePath
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-    startLine: 54
+    startLine: 62
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.Tools
@@ -198,11 +198,11 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: GuidFromString
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-    startLine: 65
+    startLine: 73
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.Tools
@@ -235,11 +235,11 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: RestoreOrCreateConfig
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-    startLine: 77
+    startLine: 85
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.Tools
@@ -279,11 +279,11 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SaveConfig
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-    startLine: 88
+    startLine: 96
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.Tools

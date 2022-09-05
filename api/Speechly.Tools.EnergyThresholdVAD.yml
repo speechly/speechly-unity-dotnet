@@ -1,0 +1,299 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Tools.EnergyThresholdVAD
+  commentId: T:Speechly.Tools.EnergyThresholdVAD
+  id: EnergyThresholdVAD
+  parent: Speechly.Tools
+  children:
+  - Speechly.Tools.EnergyThresholdVAD.#ctor(Speechly.Types.VADOptions,Speechly.Types.AudioInfo)
+  - Speechly.Tools.EnergyThresholdVAD.Options
+  - Speechly.Tools.EnergyThresholdVAD.Output
+  - Speechly.Tools.EnergyThresholdVAD.ProcessFrame(System.Single[],System.Int32,System.Int32)
+  - Speechly.Tools.EnergyThresholdVAD.ResetVAD
+  langs:
+  - csharp
+  - vb
+  name: EnergyThresholdVAD
+  nameWithType: EnergyThresholdVAD
+  fullName: Speechly.Tools.EnergyThresholdVAD
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: EnergyThresholdVAD
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+    startLine: 18
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  summary: "\nAdaptive energy threshold voice activity detection (VAD) implementation.\nIt can be used to enable hands-free operation of the SLU decoder.\n\nWhen enough frames with a signal stronger than SignalToNoiseDb have been detected, IsSignalDetected goes true. When enough silent frames have been detected, IsSignalDetected goes false after the sustain time.\nUse its public fields to configure the static noise gate level, signal-to-noise level, activation/deactivation treshold (ratio of signal to silent frames) and the signal sustain time.\nThe background noise level gradually adapts when no signal is detected.\n\nIsSignalDetected can be used to drive SpeechlyClient&apos;s Start and Stop automatically by setting ControlListening true.\n"
+  example: []
+  syntax:
+    content: 'public class EnergyThresholdVAD : object'
+    content.vb: >-
+      Public Class EnergyThresholdVAD
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Tools.EnergyThresholdVAD.Options
+  commentId: P:Speechly.Tools.EnergyThresholdVAD.Options
+  id: Options
+  parent: Speechly.Tools.EnergyThresholdVAD
+  langs:
+  - csharp
+  - vb
+  name: Options
+  nameWithType: EnergyThresholdVAD.Options
+  fullName: Speechly.Tools.EnergyThresholdVAD.Options
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Options
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+    startLine: 21
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public VADOptions Options { get; }
+    parameters: []
+    return:
+      type: Speechly.Types.VADOptions
+    content.vb: Public ReadOnly Property Options As VADOptions
+  overload: Speechly.Tools.EnergyThresholdVAD.Options*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.Tools.EnergyThresholdVAD.Output
+  commentId: P:Speechly.Tools.EnergyThresholdVAD.Output
+  id: Output
+  parent: Speechly.Tools.EnergyThresholdVAD
+  langs:
+  - csharp
+  - vb
+  name: Output
+  nameWithType: EnergyThresholdVAD.Output
+  fullName: Speechly.Tools.EnergyThresholdVAD.Output
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Output
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+    startLine: 22
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public AudioInfo Output { get; }
+    parameters: []
+    return:
+      type: Speechly.Types.AudioInfo
+    content.vb: Public ReadOnly Property Output As AudioInfo
+  overload: Speechly.Tools.EnergyThresholdVAD.Output*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.Tools.EnergyThresholdVAD.#ctor(Speechly.Types.VADOptions,Speechly.Types.AudioInfo)
+  commentId: M:Speechly.Tools.EnergyThresholdVAD.#ctor(Speechly.Types.VADOptions,Speechly.Types.AudioInfo)
+  id: '#ctor(Speechly.Types.VADOptions,Speechly.Types.AudioInfo)'
+  parent: Speechly.Tools.EnergyThresholdVAD
+  langs:
+  - csharp
+  - vb
+  name: EnergyThresholdVAD(VADOptions, AudioInfo)
+  nameWithType: EnergyThresholdVAD.EnergyThresholdVAD(VADOptions, AudioInfo)
+  fullName: Speechly.Tools.EnergyThresholdVAD.EnergyThresholdVAD(Speechly.Types.VADOptions, Speechly.Types.AudioInfo)
+  type: Constructor
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: .ctor
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+    startLine: 30
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public EnergyThresholdVAD(VADOptions options, AudioInfo output)
+    parameters:
+    - id: options
+      type: Speechly.Types.VADOptions
+    - id: output
+      type: Speechly.Types.AudioInfo
+    content.vb: Public Sub New(options As VADOptions, output As AudioInfo)
+  overload: Speechly.Tools.EnergyThresholdVAD.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Tools.EnergyThresholdVAD.ProcessFrame(System.Single[],System.Int32,System.Int32)
+  commentId: M:Speechly.Tools.EnergyThresholdVAD.ProcessFrame(System.Single[],System.Int32,System.Int32)
+  id: ProcessFrame(System.Single[],System.Int32,System.Int32)
+  parent: Speechly.Tools.EnergyThresholdVAD
+  langs:
+  - csharp
+  - vb
+  name: ProcessFrame(Single[], Int32, Int32)
+  nameWithType: EnergyThresholdVAD.ProcessFrame(Single[], Int32, Int32)
+  fullName: Speechly.Tools.EnergyThresholdVAD.ProcessFrame(System.Single[], System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ProcessFrame
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+    startLine: 35
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public void ProcessFrame(float[] floats, int start = 0, int length = null)
+    parameters:
+    - id: floats
+      type: System.Single[]
+    - id: start
+      type: System.Int32
+    - id: length
+      type: System.Int32
+    content.vb: Public Sub ProcessFrame(floats As Single(), start As Integer = 0, length As Integer = Nothing)
+  overload: Speechly.Tools.EnergyThresholdVAD.ProcessFrame*
+  nameWithType.vb: EnergyThresholdVAD.ProcessFrame(Single(), Int32, Int32)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Speechly.Tools.EnergyThresholdVAD.ProcessFrame(System.Single(), System.Int32, System.Int32)
+  name.vb: ProcessFrame(Single(), Int32, Int32)
+- uid: Speechly.Tools.EnergyThresholdVAD.ResetVAD
+  commentId: M:Speechly.Tools.EnergyThresholdVAD.ResetVAD
+  id: ResetVAD
+  parent: Speechly.Tools.EnergyThresholdVAD
+  langs:
+  - csharp
+  - vb
+  name: ResetVAD()
+  nameWithType: EnergyThresholdVAD.ResetVAD()
+  fullName: Speechly.Tools.EnergyThresholdVAD.ResetVAD()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ResetVAD
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+    startLine: 104
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public void ResetVAD()
+    content.vb: Public Sub ResetVAD
+  overload: Speechly.Tools.EnergyThresholdVAD.ResetVAD*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Tools
+  commentId: N:Speechly.Tools
+  name: Speechly.Tools
+  nameWithType: Speechly.Tools
+  fullName: Speechly.Tools
+- uid: Speechly.Tools.EnergyThresholdVAD.Options*
+  commentId: Overload:Speechly.Tools.EnergyThresholdVAD.Options
+  name: Options
+  nameWithType: EnergyThresholdVAD.Options
+  fullName: Speechly.Tools.EnergyThresholdVAD.Options
+- uid: Speechly.Types.VADOptions
+  commentId: T:Speechly.Types.VADOptions
+  parent: Speechly.Types
+  name: VADOptions
+  nameWithType: VADOptions
+  fullName: Speechly.Types.VADOptions
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: Speechly.Tools.EnergyThresholdVAD.Output*
+  commentId: Overload:Speechly.Tools.EnergyThresholdVAD.Output
+  name: Output
+  nameWithType: EnergyThresholdVAD.Output
+  fullName: Speechly.Tools.EnergyThresholdVAD.Output
+- uid: Speechly.Types.AudioInfo
+  commentId: T:Speechly.Types.AudioInfo
+  parent: Speechly.Types
+  name: AudioInfo
+  nameWithType: AudioInfo
+  fullName: Speechly.Types.AudioInfo
+- uid: Speechly.Tools.EnergyThresholdVAD.#ctor*
+  commentId: Overload:Speechly.Tools.EnergyThresholdVAD.#ctor
+  name: EnergyThresholdVAD
+  nameWithType: EnergyThresholdVAD.EnergyThresholdVAD
+  fullName: Speechly.Tools.EnergyThresholdVAD.EnergyThresholdVAD
+- uid: Speechly.Tools.EnergyThresholdVAD.ProcessFrame*
+  commentId: Overload:Speechly.Tools.EnergyThresholdVAD.ProcessFrame
+  name: ProcessFrame
+  nameWithType: EnergyThresholdVAD.ProcessFrame
+  fullName: Speechly.Tools.EnergyThresholdVAD.ProcessFrame
+- uid: System.Single[]
+  isExternal: true
+  name: Single[]
+  nameWithType: Single[]
+  fullName: System.Single[]
+  nameWithType.vb: Single()
+  fullName.vb: System.Single()
+  name.vb: Single()
+  spec.csharp:
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Speechly.Tools.EnergyThresholdVAD.ResetVAD*
+  commentId: Overload:Speechly.Tools.EnergyThresholdVAD.ResetVAD
+  name: ResetVAD
+  nameWithType: EnergyThresholdVAD.ResetVAD
+  fullName: Speechly.Tools.EnergyThresholdVAD.ResetVAD

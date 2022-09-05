@@ -1,4 +1,5 @@
 using Speechly.Types;
+using Speechly.Tools;
 using System.Threading.Tasks;
 
 namespace Speechly.SLUClient {
@@ -6,10 +7,10 @@ namespace Speechly.SLUClient {
 
   public abstract class IDecoder {
     internal abstract event ResponseReceivedDelegate OnMessage;
-    internal abstract Task Initialize();
-    internal abstract Task<string> StartContext();
+    internal abstract Task Initialize(AudioProcessorOptions audioProcessorOptions, ContextOptions contextOptions);
+    internal abstract Task<string> Start();
     internal abstract void SendAudio(float[] floats, int start = 0, int length = -1);
-    internal abstract Task<string> StopContext();
+    internal abstract Task<string> Stop();
     internal abstract Task Shutdown();
   }
 }

@@ -1,0 +1,151 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.StartMessage
+  commentId: T:Speechly.Types.StartMessage
+  id: StartMessage
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.StartMessage.appId
+  - Speechly.Types.StartMessage.eventType
+  - Speechly.Types.StartMessage.options
+  langs:
+  - csharp
+  - vb
+  name: StartMessage
+  nameWithType: StartMessage
+  fullName: Speechly.Types.StartMessage
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: StartMessage
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 235
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: 'public class StartMessage : object'
+    content.vb: >-
+      Public Class StartMessage
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.StartMessage.eventType
+  commentId: F:Speechly.Types.StartMessage.eventType
+  id: eventType
+  parent: Speechly.Types.StartMessage
+  langs:
+  - csharp
+  - vb
+  name: eventType
+  nameWithType: StartMessage.eventType
+  fullName: Speechly.Types.StartMessage.eventType
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: eventType
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 247
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public string eventType
+    return:
+      type: System.String
+    content.vb: Public eventType As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.StartMessage.appId
+  commentId: F:Speechly.Types.StartMessage.appId
+  id: appId
+  parent: Speechly.Types.StartMessage
+  langs:
+  - csharp
+  - vb
+  name: appId
+  nameWithType: StartMessage.appId
+  fullName: Speechly.Types.StartMessage.appId
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: appId
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 249
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public string appId
+    return:
+      type: System.String
+    content.vb: Public appId As String
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.StartMessage.options
+  commentId: F:Speechly.Types.StartMessage.options
+  id: options
+  parent: Speechly.Types.StartMessage
+  langs:
+  - csharp
+  - vb
+  name: options
+  nameWithType: StartMessage.options
+  fullName: Speechly.Types.StartMessage.options
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: options
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 251
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public StartMessage.Options options
+    return:
+      type: Speechly.Types.StartMessage.Options
+    content.vb: Public options As StartMessage.Options
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Speechly.Types.StartMessage.Options
+  commentId: T:Speechly.Types.StartMessage.Options
+  parent: Speechly.Types
+  name: StartMessage.Options
+  nameWithType: StartMessage.Options
+  fullName: Speechly.Types.StartMessage.Options

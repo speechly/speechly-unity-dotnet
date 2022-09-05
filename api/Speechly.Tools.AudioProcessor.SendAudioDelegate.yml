@@ -1,0 +1,78 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Tools.AudioProcessor.SendAudioDelegate
+  commentId: T:Speechly.Tools.AudioProcessor.SendAudioDelegate
+  id: AudioProcessor.SendAudioDelegate
+  parent: Speechly.Tools
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: AudioProcessor.SendAudioDelegate
+  nameWithType: AudioProcessor.SendAudioDelegate
+  fullName: Speechly.Tools.AudioProcessor.SendAudioDelegate
+  type: Delegate
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SendAudioDelegate
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    startLine: 11
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public delegate void SendAudioDelegate(float[] floats, int start = 0, int length = null);
+    parameters:
+    - id: floats
+      type: System.Single[]
+    - id: start
+      type: System.Int32
+    - id: length
+      type: System.Int32
+    content.vb: Public Delegate Sub SendAudioDelegate(floats As Single(), start As Integer = 0, length As Integer = Nothing)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: Speechly.Tools
+  commentId: N:Speechly.Tools
+  name: Speechly.Tools
+  nameWithType: Speechly.Tools
+  fullName: Speechly.Tools
+- uid: System.Single[]
+  isExternal: true
+  name: Single[]
+  nameWithType: Single[]
+  fullName: System.Single[]
+  nameWithType.vb: Single()
+  fullName.vb: System.Single()
+  name.vb: Single()
+  spec.csharp:
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32

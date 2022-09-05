@@ -1,0 +1,340 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.VADOptions
+  commentId: T:Speechly.Types.VADOptions
+  id: VADOptions
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.VADOptions.Enabled
+  - Speechly.Types.VADOptions.NoiseGateDb
+  - Speechly.Types.VADOptions.NoiseLearnHalftimeMillis
+  - Speechly.Types.VADOptions.SignalActivation
+  - Speechly.Types.VADOptions.SignalRelease
+  - Speechly.Types.VADOptions.SignalSearchFrames
+  - Speechly.Types.VADOptions.SignalSustainMillis
+  - Speechly.Types.VADOptions.SignalToNoiseDb
+  langs:
+  - csharp
+  - vb
+  name: VADOptions
+  nameWithType: VADOptions
+  fullName: Speechly.Types.VADOptions
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: VADOptions
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 122
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  summary: "\nOptions for Voice Activity Detection (VAD)\n"
+  example: []
+  syntax:
+    content: 'public class VADOptions : object'
+    content.vb: >-
+      Public Class VADOptions
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.VADOptions.Enabled
+  commentId: P:Speechly.Types.VADOptions.Enabled
+  id: Enabled
+  parent: Speechly.Types.VADOptions
+  langs:
+  - csharp
+  - vb
+  name: Enabled
+  nameWithType: VADOptions.Enabled
+  fullName: Speechly.Types.VADOptions.Enabled
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Enabled
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 127
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public bool Enabled { get; set; }
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\nEnable energy-level calculations\n"
+    content.vb: Public Property Enabled As Boolean
+  overload: Speechly.Types.VADOptions.Enabled*
+  modifiers.csharp:
+  - public
+  - get
+  - set
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.VADOptions.SignalToNoiseDb
+  commentId: F:Speechly.Types.VADOptions.SignalToNoiseDb
+  id: SignalToNoiseDb
+  parent: Speechly.Types.VADOptions
+  langs:
+  - csharp
+  - vb
+  name: SignalToNoiseDb
+  nameWithType: VADOptions.SignalToNoiseDb
+  fullName: Speechly.Types.VADOptions.SignalToNoiseDb
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SignalToNoiseDb
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 136
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public float SignalToNoiseDb
+    return:
+      type: System.Single
+      description: "\nSignal-to-noise energy ratio needed for frame to be &apos;loud&apos;\n"
+    content.vb: Public SignalToNoiseDb As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.VADOptions.NoiseGateDb
+  commentId: F:Speechly.Types.VADOptions.NoiseGateDb
+  id: NoiseGateDb
+  parent: Speechly.Types.VADOptions
+  langs:
+  - csharp
+  - vb
+  name: NoiseGateDb
+  nameWithType: VADOptions.NoiseGateDb
+  fullName: Speechly.Types.VADOptions.NoiseGateDb
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: NoiseGateDb
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 145
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public float NoiseGateDb
+    return:
+      type: System.Single
+      description: "\nEnergy threshold - below this won&apos;t trigger activation\n"
+    content.vb: Public NoiseGateDb As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.VADOptions.NoiseLearnHalftimeMillis
+  commentId: F:Speechly.Types.VADOptions.NoiseLearnHalftimeMillis
+  id: NoiseLearnHalftimeMillis
+  parent: Speechly.Types.VADOptions
+  langs:
+  - csharp
+  - vb
+  name: NoiseLearnHalftimeMillis
+  nameWithType: VADOptions.NoiseLearnHalftimeMillis
+  fullName: Speechly.Types.VADOptions.NoiseLearnHalftimeMillis
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: NoiseLearnHalftimeMillis
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 154
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public int NoiseLearnHalftimeMillis
+    return:
+      type: System.Int32
+      description: "\nRate of background noise learn. Defined as duration in which background noise energy is moved halfway towards current frame&apos;s energy.\n"
+    content.vb: Public NoiseLearnHalftimeMillis As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.VADOptions.SignalSearchFrames
+  commentId: F:Speechly.Types.VADOptions.SignalSearchFrames
+  id: SignalSearchFrames
+  parent: Speechly.Types.VADOptions
+  langs:
+  - csharp
+  - vb
+  name: SignalSearchFrames
+  nameWithType: VADOptions.SignalSearchFrames
+  fullName: Speechly.Types.VADOptions.SignalSearchFrames
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SignalSearchFrames
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 163
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public int SignalSearchFrames
+    return:
+      type: System.Int32
+    content.vb: Public SignalSearchFrames As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.VADOptions.SignalActivation
+  commentId: F:Speechly.Types.VADOptions.SignalActivation
+  id: SignalActivation
+  parent: Speechly.Types.VADOptions
+  langs:
+  - csharp
+  - vb
+  name: SignalActivation
+  nameWithType: VADOptions.SignalActivation
+  fullName: Speechly.Types.VADOptions.SignalActivation
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SignalActivation
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 172
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public float SignalActivation
+    return:
+      type: System.Single
+      description: "\nMinimum &apos;signal&apos; to &apos;silent&apos; frame ratio in history to activate &apos;IsSignalDetected&apos;\n"
+    content.vb: Public SignalActivation As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.VADOptions.SignalRelease
+  commentId: F:Speechly.Types.VADOptions.SignalRelease
+  id: SignalRelease
+  parent: Speechly.Types.VADOptions
+  langs:
+  - csharp
+  - vb
+  name: SignalRelease
+  nameWithType: VADOptions.SignalRelease
+  fullName: Speechly.Types.VADOptions.SignalRelease
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SignalRelease
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 181
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public float SignalRelease
+    return:
+      type: System.Single
+      description: "\nMaximum &apos;signal&apos; to &apos;silent&apos; frame ratio in history to inactivate &apos;IsSignalDetected&apos;. Only evaluated when the sustain period is over.\n"
+    content.vb: Public SignalRelease As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.VADOptions.SignalSustainMillis
+  commentId: F:Speechly.Types.VADOptions.SignalSustainMillis
+  id: SignalSustainMillis
+  parent: Speechly.Types.VADOptions
+  langs:
+  - csharp
+  - vb
+  name: SignalSustainMillis
+  nameWithType: VADOptions.SignalSustainMillis
+  fullName: Speechly.Types.VADOptions.SignalSustainMillis
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SignalSustainMillis
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 190
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public int SignalSustainMillis
+    return:
+      type: System.Int32
+      description: "\nDuration to keep &apos;IsSignalDetected&apos; active. Renewed as long as VADActivation is holds true.\n"
+    content.vb: Public SignalSustainMillis As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: Speechly.Types.VADOptions.Enabled*
+  commentId: Overload:Speechly.Types.VADOptions.Enabled
+  name: Enabled
+  nameWithType: VADOptions.Enabled
+  fullName: Speechly.Types.VADOptions.Enabled
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Single
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32

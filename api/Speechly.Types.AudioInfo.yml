@@ -1,0 +1,292 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.AudioInfo
+  commentId: T:Speechly.Types.AudioInfo
+  id: AudioInfo
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.AudioInfo.IsSignalDetected
+  - Speechly.Types.AudioInfo.NoiseLevelDb
+  - Speechly.Types.AudioInfo.SamplesSent
+  - Speechly.Types.AudioInfo.SignalDb
+  - Speechly.Types.AudioInfo.StreamSamplePos
+  - Speechly.Types.AudioInfo.UtteranceSerial
+  langs:
+  - csharp
+  - vb
+  name: AudioInfo
+  nameWithType: AudioInfo
+  fullName: Speechly.Types.AudioInfo
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: AudioInfo
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 37
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  summary: "\nStatistics calculated by the Audio Processor. Note that this information is not currently available when using libSpeechly AudioProcessor.\n"
+  example: []
+  syntax:
+    content: 'public class AudioInfo : object'
+    content.vb: >-
+      Public Class AudioInfo
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.AudioInfo.IsSignalDetected
+  commentId: F:Speechly.Types.AudioInfo.IsSignalDetected
+  id: IsSignalDetected
+  parent: Speechly.Types.AudioInfo
+  langs:
+  - csharp
+  - vb
+  name: IsSignalDetected
+  nameWithType: AudioInfo.IsSignalDetected
+  fullName: Speechly.Types.AudioInfo.IsSignalDetected
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: IsSignalDetected
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 42
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public bool IsSignalDetected
+    return:
+      type: System.Boolean
+      description: "\nTrue if VAD has detected a loud signal.\n"
+    content.vb: Public IsSignalDetected As Boolean
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.AudioInfo.SignalDb
+  commentId: F:Speechly.Types.AudioInfo.SignalDb
+  id: SignalDb
+  parent: Speechly.Types.AudioInfo
+  langs:
+  - csharp
+  - vb
+  name: SignalDb
+  nameWithType: AudioInfo.SignalDb
+  fullName: Speechly.Types.AudioInfo.SignalDb
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SignalDb
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 50
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public float SignalDb
+    return:
+      type: System.Single
+      description: "\nSignal level in dB above noise level.\n"
+    content.vb: Public SignalDb As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.AudioInfo.NoiseLevelDb
+  commentId: F:Speechly.Types.AudioInfo.NoiseLevelDb
+  id: NoiseLevelDb
+  parent: Speechly.Types.AudioInfo
+  langs:
+  - csharp
+  - vb
+  name: NoiseLevelDb
+  nameWithType: AudioInfo.NoiseLevelDb
+  fullName: Speechly.Types.AudioInfo.NoiseLevelDb
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: NoiseLevelDb
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 58
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public float NoiseLevelDb
+    return:
+      type: System.Single
+      description: "\nCurrent noise level in dB.\n"
+    content.vb: Public NoiseLevelDb As Single
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.AudioInfo.StreamSamplePos
+  commentId: P:Speechly.Types.AudioInfo.StreamSamplePos
+  id: StreamSamplePos
+  parent: Speechly.Types.AudioInfo
+  langs:
+  - csharp
+  - vb
+  name: StreamSamplePos
+  nameWithType: AudioInfo.StreamSamplePos
+  fullName: Speechly.Types.AudioInfo.StreamSamplePos
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: StreamSamplePos
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 63
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public int StreamSamplePos { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: "\nCurrent count of continuously processed samples (thru ProcessAudio) since StartStream\n"
+    content.vb: Public ReadOnly Property StreamSamplePos As Integer
+  overload: Speechly.Types.AudioInfo.StreamSamplePos*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.Types.AudioInfo.SamplesSent
+  commentId: P:Speechly.Types.AudioInfo.SamplesSent
+  id: SamplesSent
+  parent: Speechly.Types.AudioInfo
+  langs:
+  - csharp
+  - vb
+  name: SamplesSent
+  nameWithType: AudioInfo.SamplesSent
+  fullName: Speechly.Types.AudioInfo.SamplesSent
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: SamplesSent
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 68
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public int SamplesSent { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: "\nCurrent count of processed samples since Start\n"
+    content.vb: Public ReadOnly Property SamplesSent As Integer
+  overload: Speechly.Types.AudioInfo.SamplesSent*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.Types.AudioInfo.UtteranceSerial
+  commentId: P:Speechly.Types.AudioInfo.UtteranceSerial
+  id: UtteranceSerial
+  parent: Speechly.Types.AudioInfo
+  langs:
+  - csharp
+  - vb
+  name: UtteranceSerial
+  nameWithType: AudioInfo.UtteranceSerial
+  fullName: Speechly.Types.AudioInfo.UtteranceSerial
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: UtteranceSerial
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 73
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public int UtteranceSerial { get; }
+    parameters: []
+    return:
+      type: System.Int32
+      description: "\n0-based local index of utterance within the stream. -1 if no utterances have been processed.\n"
+    content.vb: Public ReadOnly Property UtteranceSerial As Integer
+  overload: Speechly.Types.AudioInfo.UtteranceSerial*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: System.Single
+  isExternal: true
+  name: Single
+  nameWithType: Single
+  fullName: System.Single
+- uid: Speechly.Types.AudioInfo.StreamSamplePos*
+  commentId: Overload:Speechly.Types.AudioInfo.StreamSamplePos
+  name: StreamSamplePos
+  nameWithType: AudioInfo.StreamSamplePos
+  fullName: Speechly.Types.AudioInfo.StreamSamplePos
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Speechly.Types.AudioInfo.SamplesSent*
+  commentId: Overload:Speechly.Types.AudioInfo.SamplesSent
+  name: SamplesSent
+  nameWithType: AudioInfo.SamplesSent
+  fullName: Speechly.Types.AudioInfo.SamplesSent
+- uid: Speechly.Types.AudioInfo.UtteranceSerial*
+  commentId: Overload:Speechly.Types.AudioInfo.UtteranceSerial
+  name: UtteranceSerial
+  nameWithType: AudioInfo.UtteranceSerial
+  fullName: Speechly.Types.AudioInfo.UtteranceSerial

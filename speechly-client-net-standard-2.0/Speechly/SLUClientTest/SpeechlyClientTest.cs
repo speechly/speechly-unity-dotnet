@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using System.Linq;
 using System.Diagnostics;
 using Speechly.Tools;
+using Speechly.Types;
 
 namespace Speechly.SLUClient {
   internal class SpeechlyClientTest {
@@ -49,10 +50,10 @@ namespace Speechly.SLUClient {
       var connectTime = stopWatch.ElapsedMilliseconds;
 
       stopWatch.Restart();
-      _ = client.StartContext();
+      _ = client.Start();
 
       client.ProcessAudioFile(fileName);
-      await client.StopContext();
+      await client.Stop();
       var sluTime = stopWatch.ElapsedMilliseconds;
 
       Logger.Log($"==== STATS ====");
@@ -60,10 +61,13 @@ namespace Speechly.SLUClient {
       Logger.Log($"SLU time: {sluTime} ms");
     }
 
-    public static void SplitWithVAD(string fileName, string saveToFolder = null, string logUtteranceFolder = null) {
+    public static async Task SplitWithVAD(string fileName, string saveToFolder = null, string logUtteranceFolder = null) {
       Stopwatch stopWatch = new Stopwatch();
 
-      EnergyTresholdVAD vad = new EnergyTresholdVAD();
+      EnergyThresholdVAD vad = new EnergyThresholdVAD(
+        new VADOptions(),
+        new AudioInfo()
+      );
 
       StreamWriter logUtteranceStream = null;
       int utteranceStartSamplePos = 0;
@@ -74,9 +78,10 @@ namespace Speechly.SLUClient {
 
       var client = new SpeechlyClient(
         saveToFolder: saveToFolder,
-        vad: vad,
         debug: true
       );
+
+      await client.Initialize(decoder: null, audioProcessorOptions: new AudioProcessorOptions() { VADControlsListening = true } );
 
       client.OnStartStream = () => {
         Logger.Log("client.OnStartStream");
@@ -91,21 +96,21 @@ namespace Speechly.SLUClient {
         logUtteranceStream = null;
       };
 
-      client.OnStartContext = () => {
-        Logger.Log($"client.OnStartContext {client.StreamSamplePos}");
-        utteranceStartSamplePos = client.StreamSamplePos;
+      client.OnStart = () => {
+        Logger.Log($"client.OnStart {client.Output.StreamSamplePos}");
+        utteranceStartSamplePos = client.Output.StreamSamplePos;
       };
 
-      client.OnStopContext = () => {
-        Logger.Log("client.OnStopContext");
-        string serialString = client.UtteranceSerial.ToString().PadLeft(4, '0');
-        logUtteranceStream.WriteLine($"{client.AudioInputStreamIdentifier}\t{serialString}\t{utteranceStartSamplePos}\t{client.SamplesSent}");
+      client.OnStop = () => {
+        Logger.Log("client.OnStop");
+        string serialString = client.Output.UtteranceSerial.ToString().PadLeft(4, '0');
+        logUtteranceStream.WriteLine($"{client.AudioInputStreamIdentifier}\t{serialString}\t{utteranceStartSamplePos}\t{client.Output.SamplesSent}");
       };
 
       stopWatch.Restart();
-      // _ = client.StartContext();
+      // _ = client.Start();
       client.ProcessAudioFile(fileName);
-      // await client.StopContext();
+      // await client.Stop();
       var processTime = stopWatch.ElapsedMilliseconds;
 
       Logger.Log($"==== STATS ====");

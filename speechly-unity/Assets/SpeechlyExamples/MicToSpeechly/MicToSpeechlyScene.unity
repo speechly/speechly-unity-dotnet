@@ -777,9 +777,9 @@ MonoBehaviour:
   m_HandleRect: {fileID: 885213177}
   m_Direction: 0
   m_MinValue: 0
-  m_MaxValue: 0.5
+  m_MaxValue: 12
   m_WholeNumbers: 0
-  m_Value: 0.2
+  m_Value: 1
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1515,10 +1515,16 @@ MonoBehaviour:
   SpeechlyEnv: 0
   AppId: 629379fd-7071-4cae-9ab1-a3ee61ac3a07
   CaptureDeviceName: 
-  MicSampleRate: 16000
-  FrameMillis: 30
-  HistoryFrames: 5
-  EnergyLevels:
+  ModelBundle: 
+  ListenOnLaunch: 0
+  DebugPrint: 1
+  AudioProcessorOptions:
+    InputSampleRate: 16000
+    InternalSampleRate: 16000
+    FrameMillis: 30
+    HistoryFrames: 8
+    Handsfree: 0
+  VADOptions:
     Enabled: 1
     SignalToNoiseDb: 3
     NoiseGateDb: -24
@@ -1527,8 +1533,7 @@ MonoBehaviour:
     SignalActivation: 0.7
     SignalRelease: 0.2
     SignalSustainMillis: 3000
+  Output:
     IsSignalDetected: 0
     SignalDb: 0
     NoiseLevelDb: 0
-    ControlListening: 0
-  DebugPrint: 1

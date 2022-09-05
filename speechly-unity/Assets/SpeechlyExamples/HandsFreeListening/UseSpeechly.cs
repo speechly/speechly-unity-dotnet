@@ -33,10 +33,10 @@ namespace Speechly.Example.NoiseGateTrigger
     void Update()
     {
       speechlyClient = MicToSpeechly.Instance.SpeechlyClient;
-      SliderEnergy.value = speechlyClient.Vad.Energy;
-      SliderBaselineEnergy.value = speechlyClient.Vad.BaselineEnergy;
-      Fill.color = speechlyClient.Vad.IsSignalDetected ? Color.red : Color.white;
-      ButtonText.text = speechlyClient.Vad.IsSignalDetected ? "Signal Detected" : "No Signal";
+      SliderBaselineEnergy.value = speechlyClient.Output.NoiseLevelDb;
+      SliderEnergy.value = speechlyClient.Output.NoiseLevelDb + speechlyClient.Output.SignalDb;
+      Fill.color = speechlyClient.Output.IsSignalDetected ? Color.red : Color.white;
+      ButtonText.text = speechlyClient.Output.IsSignalDetected ? "Signal Detected" : "Signal Status";
     }
 
   }

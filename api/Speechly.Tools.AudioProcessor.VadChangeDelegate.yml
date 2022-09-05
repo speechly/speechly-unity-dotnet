@@ -1,0 +1,48 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Tools.AudioProcessor.VadChangeDelegate
+  commentId: T:Speechly.Tools.AudioProcessor.VadChangeDelegate
+  id: AudioProcessor.VadChangeDelegate
+  parent: Speechly.Tools
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: AudioProcessor.VadChangeDelegate
+  nameWithType: AudioProcessor.VadChangeDelegate
+  fullName: Speechly.Tools.AudioProcessor.VadChangeDelegate
+  type: Delegate
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: VadChangeDelegate
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    startLine: 12
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public delegate void VadChangeDelegate(bool isSignalDetected);
+    parameters:
+    - id: isSignalDetected
+      type: System.Boolean
+    content.vb: Public Delegate Sub VadChangeDelegate(isSignalDetected As Boolean)
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: Speechly.Tools
+  commentId: N:Speechly.Tools
+  name: Speechly.Tools
+  nameWithType: Speechly.Tools
+  fullName: Speechly.Tools
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

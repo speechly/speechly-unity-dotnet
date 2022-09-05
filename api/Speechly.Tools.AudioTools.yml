@@ -6,9 +6,12 @@ items:
   parent: Speechly.Tools
   children:
   - Speechly.Tools.AudioTools.ConvertInt16ToFloat(System.Byte[]@,System.Single[]@,System.Int32,System.Int32,System.Int32)
+  - Speechly.Tools.AudioTools.DbToEnergy(System.Single)
   - Speechly.Tools.AudioTools.Downsample(System.Single[]@,System.Single[]@,System.Int32,System.Int32,System.Int32,System.Int32)
+  - Speechly.Tools.AudioTools.EnergyToDb(System.Single)
   - Speechly.Tools.AudioTools.GetAudioPeak(System.Single[]@,System.Int32,System.Int32)
   - Speechly.Tools.AudioTools.GetEnergy(System.Single[]@,System.Int32,System.Int32)
+  - Speechly.Tools.AudioTools.LOG_2_PLUS_LOG_5
   langs:
   - csharp
   - vb
@@ -18,11 +21,11 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioTools.cs
-      branch: feature/dotnet-vad
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: AudioTools
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioTools.cs
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
     startLine: 3
   assemblies:
   - speechly-unity-net-standard-2.0
@@ -53,11 +56,11 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioTools.cs
-      branch: feature/dotnet-vad
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Downsample
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioTools.cs
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
     startLine: 5
   assemblies:
   - speechly-unity-net-standard-2.0
@@ -101,11 +104,11 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioTools.cs
-      branch: feature/dotnet-vad
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: GetEnergy
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioTools.cs
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
     startLine: 49
   assemblies:
   - speechly-unity-net-standard-2.0
@@ -145,11 +148,11 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioTools.cs
-      branch: feature/dotnet-vad
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: GetAudioPeak
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioTools.cs
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
     startLine: 60
   assemblies:
   - speechly-unity-net-standard-2.0
@@ -189,11 +192,11 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioTools.cs
-      branch: feature/dotnet-vad
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ConvertInt16ToFloat
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioTools.cs
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
     startLine: 73
   assemblies:
   - speechly-unity-net-standard-2.0
@@ -224,6 +227,115 @@ items:
   - Shared
   fullName.vb: Speechly.Tools.AudioTools.ConvertInt16ToFloat(ByRef System.Byte(), ByRef System.Single(), System.Int32, System.Int32, System.Int32)
   name.vb: ConvertInt16ToFloat(ByRef Byte(), ByRef Single(), Int32, Int32, Int32)
+- uid: Speechly.Tools.AudioTools.LOG_2_PLUS_LOG_5
+  commentId: F:Speechly.Tools.AudioTools.LOG_2_PLUS_LOG_5
+  id: LOG_2_PLUS_LOG_5
+  parent: Speechly.Tools.AudioTools
+  langs:
+  - csharp
+  - vb
+  name: LOG_2_PLUS_LOG_5
+  nameWithType: AudioTools.LOG_2_PLUS_LOG_5
+  fullName: Speechly.Tools.AudioTools.LOG_2_PLUS_LOG_5
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: LOG_2_PLUS_LOG_5
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+    startLine: 86
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public static readonly double LOG_2_PLUS_LOG_5
+    return:
+      type: System.Double
+    content.vb: Public Shared ReadOnly LOG_2_PLUS_LOG_5 As Double
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+- uid: Speechly.Tools.AudioTools.EnergyToDb(System.Single)
+  commentId: M:Speechly.Tools.AudioTools.EnergyToDb(System.Single)
+  id: EnergyToDb(System.Single)
+  parent: Speechly.Tools.AudioTools
+  langs:
+  - csharp
+  - vb
+  name: EnergyToDb(Single)
+  nameWithType: AudioTools.EnergyToDb(Single)
+  fullName: Speechly.Tools.AudioTools.EnergyToDb(System.Single)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: EnergyToDb
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+    startLine: 88
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public static float EnergyToDb(float energy)
+    parameters:
+    - id: energy
+      type: System.Single
+    return:
+      type: System.Single
+    content.vb: Public Shared Function EnergyToDb(energy As Single) As Single
+  overload: Speechly.Tools.AudioTools.EnergyToDb*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: Speechly.Tools.AudioTools.DbToEnergy(System.Single)
+  commentId: M:Speechly.Tools.AudioTools.DbToEnergy(System.Single)
+  id: DbToEnergy(System.Single)
+  parent: Speechly.Tools.AudioTools
+  langs:
+  - csharp
+  - vb
+  name: DbToEnergy(Single)
+  nameWithType: AudioTools.DbToEnergy(Single)
+  fullName: Speechly.Tools.AudioTools.DbToEnergy(System.Single)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: DbToEnergy
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+    startLine: 92
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public static float DbToEnergy(float db)
+    parameters:
+    - id: db
+      type: System.Single
+    return:
+      type: System.Single
+    content.vb: Public Shared Function DbToEnergy(db As Single) As Single
+  overload: Speechly.Tools.AudioTools.DbToEnergy*
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
 references:
 - uid: Speechly.Tools
   commentId: N:Speechly.Tools
@@ -312,3 +424,19 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+- uid: System.Double
+  commentId: '!:System.Double'
+  isExternal: true
+  name: Double
+  nameWithType: Double
+  fullName: System.Double
+- uid: Speechly.Tools.AudioTools.EnergyToDb*
+  commentId: Overload:Speechly.Tools.AudioTools.EnergyToDb
+  name: EnergyToDb
+  nameWithType: AudioTools.EnergyToDb
+  fullName: Speechly.Tools.AudioTools.EnergyToDb
+- uid: Speechly.Tools.AudioTools.DbToEnergy*
+  commentId: Overload:Speechly.Tools.AudioTools.DbToEnergy
+  name: DbToEnergy
+  nameWithType: AudioTools.DbToEnergy
+  fullName: Speechly.Tools.AudioTools.DbToEnergy

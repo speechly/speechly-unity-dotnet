@@ -1,0 +1,264 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.AudioProcessorOptions
+  commentId: T:Speechly.Types.AudioProcessorOptions
+  id: AudioProcessorOptions
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.AudioProcessorOptions.FrameMillis
+  - Speechly.Types.AudioProcessorOptions.HistoryFrames
+  - Speechly.Types.AudioProcessorOptions.InputSampleRate
+  - Speechly.Types.AudioProcessorOptions.InternalSampleRate
+  - Speechly.Types.AudioProcessorOptions.VADControlsListening
+  - Speechly.Types.AudioProcessorOptions.VADSettings
+  langs:
+  - csharp
+  - vb
+  name: AudioProcessorOptions
+  nameWithType: AudioProcessorOptions
+  fullName: Speechly.Types.AudioProcessorOptions
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: AudioProcessorOptions
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 79
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  summary: "\nOptions for Audio Processor and Voice Activity Detection (VAD)\n"
+  example: []
+  syntax:
+    content: 'public class AudioProcessorOptions : object'
+    content.vb: >-
+      Public Class AudioProcessorOptions
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.AudioProcessorOptions.InputSampleRate
+  commentId: F:Speechly.Types.AudioProcessorOptions.InputSampleRate
+  id: InputSampleRate
+  parent: Speechly.Types.AudioProcessorOptions
+  langs:
+  - csharp
+  - vb
+  name: InputSampleRate
+  nameWithType: AudioProcessorOptions.InputSampleRate
+  fullName: Speechly.Types.AudioProcessorOptions.InputSampleRate
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: InputSampleRate
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 84
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public int InputSampleRate
+    return:
+      type: System.Int32
+      description: "\nInput sample rate in Hz.\n"
+    content.vb: Public InputSampleRate As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.AudioProcessorOptions.InternalSampleRate
+  commentId: F:Speechly.Types.AudioProcessorOptions.InternalSampleRate
+  id: InternalSampleRate
+  parent: Speechly.Types.AudioProcessorOptions
+  langs:
+  - csharp
+  - vb
+  name: InternalSampleRate
+  nameWithType: AudioProcessorOptions.InternalSampleRate
+  fullName: Speechly.Types.AudioProcessorOptions.InternalSampleRate
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: InternalSampleRate
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 89
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public int InternalSampleRate
+    return:
+      type: System.Int32
+      description: "\nInternal Speechly sample rate in Hz. Currently only 16000 Hz is supported.\n"
+    content.vb: Public InternalSampleRate As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.AudioProcessorOptions.FrameMillis
+  commentId: F:Speechly.Types.AudioProcessorOptions.FrameMillis
+  id: FrameMillis
+  parent: Speechly.Types.AudioProcessorOptions
+  langs:
+  - csharp
+  - vb
+  name: FrameMillis
+  nameWithType: AudioProcessorOptions.FrameMillis
+  fullName: Speechly.Types.AudioProcessorOptions.FrameMillis
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: FrameMillis
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 94
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public int FrameMillis
+    return:
+      type: System.Int32
+      description: "\nInternal frame length. Affects audio caching and VAD energy analysis.\n"
+    content.vb: Public FrameMillis As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.AudioProcessorOptions.HistoryFrames
+  commentId: F:Speechly.Types.AudioProcessorOptions.HistoryFrames
+  id: HistoryFrames
+  parent: Speechly.Types.AudioProcessorOptions
+  langs:
+  - csharp
+  - vb
+  name: HistoryFrames
+  nameWithType: AudioProcessorOptions.HistoryFrames
+  fullName: Speechly.Types.AudioProcessorOptions.HistoryFrames
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: HistoryFrames
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 103
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public int HistoryFrames
+    return:
+      type: System.Int32
+      description: "\nTotal number of history frames to keep in memory. Will be sent upon a starting a new utterance.\n"
+    content.vb: Public HistoryFrames As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.AudioProcessorOptions.VADControlsListening
+  commentId: F:Speechly.Types.AudioProcessorOptions.VADControlsListening
+  id: VADControlsListening
+  parent: Speechly.Types.AudioProcessorOptions
+  langs:
+  - csharp
+  - vb
+  name: VADControlsListening
+  nameWithType: AudioProcessorOptions.VADControlsListening
+  fullName: Speechly.Types.AudioProcessorOptions.VADControlsListening
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: VADControlsListening
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 111
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  example: []
+  syntax:
+    content: public bool VADControlsListening
+    return:
+      type: System.Boolean
+      description: "\nAllows VAD&apos;s IsSignalDetected to control SpeechlyClient&apos;s Start/Stop.\n"
+    content.vb: Public VADControlsListening As Boolean
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.AudioProcessorOptions.VADSettings
+  commentId: F:Speechly.Types.AudioProcessorOptions.VADSettings
+  id: VADSettings
+  parent: Speechly.Types.AudioProcessorOptions
+  langs:
+  - csharp
+  - vb
+  name: VADSettings
+  nameWithType: AudioProcessorOptions.VADSettings
+  fullName: Speechly.Types.AudioProcessorOptions.VADSettings
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: VADSettings
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 116
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public VADOptions VADSettings
+    return:
+      type: Speechly.Types.VADOptions
+    content.vb: Public VADSettings As VADOptions
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Speechly.Types.VADOptions
+  commentId: T:Speechly.Types.VADOptions
+  parent: Speechly.Types
+  name: VADOptions
+  nameWithType: VADOptions
+  fullName: Speechly.Types.VADOptions

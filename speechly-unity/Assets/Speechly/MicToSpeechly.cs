@@ -4,12 +4,16 @@ using UnityEngine;
 using System;
 using System.Threading.Tasks;
 using Speechly.Tools;
+using Speechly.Types;
 using Logger = Speechly.Tools.Logger;
 
 namespace Speechly.SLUClient {
 
 public partial class MicToSpeechly : MonoBehaviour
 {
+  /// Set to false if you're calling AdjustAudioProcessor manually
+  public const bool WATCH_VAD_SETTING = true;
+
   public enum SpeechlyEnvironment {
     Production,
     Staging,
@@ -27,26 +31,33 @@ public partial class MicToSpeechly : MonoBehaviour
 
   [Tooltip("Speechly App Id from https://api.speechly.com/dashboard")]
   public string AppId = "";
+
   [Tooltip("Capture device name or null for default.")]
+
   public string CaptureDeviceName = null;
-  public int MicSampleRate = 16000;
-  [Tooltip("Milliseconds of history data to send upon StartContext to capture lead of the utterance.")]
-  public int FrameMillis = 30;
-  [Range(1, 32)]
-  [Tooltip("Number of frames to keep in memory. When listening is started, history frames are sent to capture the lead-in audio.")]
-  public int HistoryFrames = 8;
-  [Tooltip("Voice Activity Detection (VAD) using adaptive energy thresholding. Automatically controls listening based on audio 'loudness'.")]
-  public EnergyTresholdVAD EnergyLevels = new EnergyTresholdVAD{ Enabled = true, ControlListening = false };
+
+  [Tooltip("Model Bundle filename")]
+  public string ModelBundle = null;
+
   public bool DebugPrint = false;
+
+  [SerializeField]
+  public AudioProcessorOptions AudioProcessorSettings = new AudioProcessorOptions();
+
+  [SerializeField]
+  public ContextOptions SpeechRecognitionSettings = new ContextOptions();
+
+  [SerializeField]
+  public AudioInfo Output = new AudioInfo();
+
   public SpeechlyClient SpeechlyClient { get; private set; }
   private AudioClip clip;
   private float[] waveData;
   private int oldRingbufferPos;
-  private bool wasVADEnabled = false;
+  private bool wasVADEnabled;
   private Coroutine runSpeechlyCoroutine = null;
   IDecoder decoder = null;
-  partial void CreateOnDeviceDecoder(bool debug);
-
+  partial void CreateOnDeviceDecoder(string deviceId, string modelBundleFile, bool debug);
 
   private void Awake() 
   { 
@@ -60,11 +71,8 @@ public partial class MicToSpeechly : MonoBehaviour
     Logger.LogError = Debug.LogError;
 
     SpeechlyClient = new SpeechlyClient(
-      vad: this.EnergyLevels,
       manualUpdate: true,
-      frameMillis: FrameMillis,
-      historyFrames: HistoryFrames,
-      inputSampleRate: MicSampleRate,
+      output: this.Output,
       debug: DebugPrint
     );
 
@@ -79,10 +87,10 @@ public partial class MicToSpeechly : MonoBehaviour
     // Debug.Log($"minFreq {minFreq} maxFreq {maxFreq}");
 
     int capturedAudioBufferMillis = 500;
-    int micBufferMillis = FrameMillis * HistoryFrames + capturedAudioBufferMillis;
+    int micBufferMillis = AudioProcessorSettings.FrameMillis * AudioProcessorSettings.HistoryFrames + capturedAudioBufferMillis;
     int micBufferSecs = (micBufferMillis / 1000) + 1;
     // Start audio capture
-    clip = Microphone.Start(CaptureDeviceName, true, micBufferSecs, MicSampleRate);
+    clip = Microphone.Start(CaptureDeviceName, true, micBufferSecs, AudioProcessorSettings.InputSampleRate);
 
     if (clip != null)
     {
@@ -94,6 +102,7 @@ public partial class MicToSpeechly : MonoBehaviour
       throw new Exception($"Could not open microphone {CaptureDeviceName}");
     }
 
+    wasVADEnabled = this.AudioProcessorSettings.VADControlsListening;
     runSpeechlyCoroutine = StartCoroutine(RunSpeechly());
   }
 
@@ -106,7 +115,11 @@ public partial class MicToSpeechly : MonoBehaviour
   private IEnumerator RunSpeechly()
   {
     if (SpeechlyEnv == SpeechlyEnvironment.OnDevice) {
-      CreateOnDeviceDecoder(debug: DebugPrint);
+      CreateOnDeviceDecoder(
+        deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
+        ModelBundle,
+        debug: DebugPrint
+      );
       if (this.decoder == null) {
         throw new Exception("Speechly on-device spoken language understanding (SLU) is not available. Most likely your Unity project does not contain the SpeechlyOnDevice folder. Please contact Speechly to enable on-device support - you'll need extra files delivered under Speechly on-device licence.");
       }
@@ -123,7 +136,7 @@ public partial class MicToSpeechly : MonoBehaviour
 
     // Wait for connect
     Task task;
-    task = SpeechlyClient.Initialize(decoder);
+    task = SpeechlyClient.Initialize(decoder, AudioProcessorSettings, SpeechRecognitionSettings, preferLibSpeechlyAudioProcessor: SpeechlyEnv == SpeechlyEnvironment.OnDevice);
     yield return new WaitUntil(() => task.IsCompleted);
 
     while (true) {
@@ -131,20 +144,6 @@ public partial class MicToSpeechly : MonoBehaviour
       SpeechlyClient.Debug = DebugPrint;
       // Fire handlers in main Unity thread
       SpeechlyClient.Update();
-
-      // Ensure VAD-initiated listening is stopped if VAD state is altered "on the fly"
-      if (EnergyLevels != null) {
-        if (EnergyLevels.Enabled && EnergyLevels.ControlListening) {
-          wasVADEnabled = true;
-        } else {
-          if (wasVADEnabled) {
-            wasVADEnabled = false;
-            if (SpeechlyClient.IsActive) {
-              StopContext();
-            }
-          }
-        }
-      }
 
       int captureRingbufferPos = Microphone.GetPosition(CaptureDeviceName);
       
@@ -163,21 +162,17 @@ public partial class MicToSpeechly : MonoBehaviour
         SpeechlyClient.ProcessAudio(waveData, 0, samples);
       }
 
+      if (WATCH_VAD_SETTING) {
+        if (this.AudioProcessorSettings.VADControlsListening != wasVADEnabled) {
+          SpeechlyClient.AdjustAudioProcessor(vadControlsListening: this.AudioProcessorSettings.VADControlsListening);
+          wasVADEnabled = this.AudioProcessorSettings.VADControlsListening;
+        }
+      }
+
       // Wait for a frame for new audio
       yield return null;
     }
   }
-
-  // Drop-and-forget wrapper for async StartContext
-  public void StartContext() {
-    _ = SpeechlyClient.StartContext();
-  }
-
-  // Drop-and-forget wrapper for async StopContext
-  public void StopContext() {
-    _ = SpeechlyClient.StopContext();
-  }
-
 }
 
 }

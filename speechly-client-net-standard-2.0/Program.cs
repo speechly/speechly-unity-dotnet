@@ -31,7 +31,7 @@ class Program
         }
 
         foreach( string fileName in files) {
-          SpeechlyClientTest.SplitWithVAD(fileName, outFolder, logPath);
+          await SpeechlyClientTest.SplitWithVAD(fileName, outFolder, logPath);
         }
 
         break;

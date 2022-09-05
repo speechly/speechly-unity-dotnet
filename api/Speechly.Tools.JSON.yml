@@ -19,7 +19,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: JSON
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
@@ -54,7 +54,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StringifyToStream
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
@@ -96,7 +96,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Stringify
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
@@ -138,7 +138,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ParseFromStream
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
@@ -184,7 +184,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Parse
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs

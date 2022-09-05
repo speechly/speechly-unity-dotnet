@@ -20,8 +20,8 @@ namespace Speechly.SLUClient {
 /// - (delegates are firing up as speech is processed)
 /// - When you don't need SLU services any more call <see cref="Shutdown"/> to free resources.
 ///
-/// You can feed audio continuously, but control when to start and stop process speech with <see cref="StartContext"/> and <see cref="StopContext"/> or
-/// let voice activity detection (VAD) handle that automatically by passing <see cref="EnergyTresholdVAD"/> to SpeechlyClient constructor.
+/// You can feed audio continuously, but control when to start and stop process speech with <see cref="Start"/> and <see cref="Stop"/> or
+/// let voice activity detection (VAD) handle that automatically by passing <see cref="EnergyThresholdVAD"/> to SpeechlyClient constructor.
 /// </summary>
 
   public class SpeechlyClient {
@@ -29,7 +29,7 @@ namespace Speechly.SLUClient {
 /// <summary>
 /// Read the combined results of automatic speech recoginition (ASR) and natural language detection (NLU).
 /// 
-/// You can control when to start and stop process speech either manually with <see cref="StartContext"/> and <see cref="StopContext"/> or
+/// You can control when to start and stop process speech either manually with <see cref="Start"/> and <see cref="Stop"/> or
 /// automatically by providing a voice activity detection (VAD) field to <see cref="SpeechlyClient"/>.
 /// </summary>
 
@@ -42,33 +42,27 @@ namespace Speechly.SLUClient {
     public IntentDelegate OnIntent = (msg) => {};
     public StartStreamDelegate OnStartStream = () => {};
     public StopStreamDelegate OnStopStream = () => {};
-    public StartContextDelegate OnStartContext = () => {};
-    public StopContextDelegate OnStopContext = () => {};
+    public StartDelegate OnStart = () => {};
+    public StopDelegate OnStop = () => {};
+
+    public AudioInfo Output { get; private set; }
+    private AudioProcessor AudioProcessor;
 
     // Returns true when StartStream has been called
     public bool IsAudioStreaming { get; private set; } = false;
 
-    /// Returns true when SLU Engine is ready for Start/StopContext calls
+    /// Returns true when SLU Engine is ready for Start/Stop calls
     public bool IsReady {
       get {
         return this.decoder != null;
       }
     }
 
-    /// Returns true when StartContext is called and expecting StopContext next
+    /// Returns true when Start is called and expecting Stop next
     public bool IsActive { get; private set; } = false;
-
-    public int SamplesSent { get; private set; } = 0;
-    public EnergyTresholdVAD Vad { get; private set; } = null;
 
     /// Utterance identifier
     public string AudioInputStreamIdentifier { get; private set; } = "utterance";
-
-    /// 0-based local index of utterance within the stream
-    public int UtteranceSerial { get; private set; } = -1;
-
-    /// Current count of continuously processed samples (thru ProcessAudio) from start of stream
-    public int StreamSamplePos { get; private set; } = 0;
 
     /// Enable debug prints
     public bool Debug = false;
@@ -76,62 +70,47 @@ namespace Speechly.SLUClient {
     /// Message queue used when manualUpdate is true. Delegates are fired with a call to Update() that should be run in the desired thread (main) thread.
     private ConcurrentQueue<SegmentMessage> messageQueue = new ConcurrentQueue<SegmentMessage>();
     private Dictionary<string, Dictionary<int, Segment>> activeContexts = new Dictionary<string, Dictionary<int, Segment>>();
+    private AudioProcessorOptions audioProcessorOptions;
+    private ContextOptions contextOptions;
     private bool manualUpdate;
     private string saveToFolder = null;
     private FileStream outAudioStream;
 
-    private int inputSampleRate = 16000;
-    private int internalSampleRate = 16000;
-    private int frameMillis = 30;
-
-    /// Total number of history frames to keep in memory. Will be sent upon a starting a new utterance.
-    private int historyFrames = 5;
-
-    private int frameSamples;
-
-    private int streamFramePos = 0;
     private bool streamAutoStarted;
-    private float[] sampleRingBuffer = null;
-    private int frameSamplePos;
-    private int currentFrameNumber = 0;
+
     private IDecoder decoder;
 
 /// <summary>
 /// Create a new SpeechlyClient to process audio and fire delegates to provide SLU results.
 /// </summary>
-/// <param name="vad"><see cref="EnergyTresholdVAD"/> instance to control automatic listening on/off. Null disables VAD. (default: `null`)</param>
+/// <param name="vad"><see cref="EnergyThresholdVAD"/> instance to control automatic listening on/off. Null disables VAD. (default: `null`)</param>
 /// <param name="historyFrames">Count of the audio history frames (default: `5`). Total history duration will be historyFrames * frameSamples.</param>
-/// <param name="frameMillis">Size of one audio frame (default: `30` ms). Total history duration will be historyFrames*frameSamples. History is sent upon StartContext to capture the start of utterance which especially important with VAD, which activates with a constant delay.</param>
+/// <param name="frameMillis">Size of one audio frame (default: `30` ms). Total history duration will be historyFrames*frameSamples. History is sent upon Start to capture the start of utterance which especially important with VAD, which activates with a constant delay.</param>
 /// <param name="manualUpdate">Setting `manualUpdate = true` postpones SpeechlyClient's delegates (OnSegmentChange, OnTranscript...) until you manually run <see cref="Update"/>. This enables you to call Unity API in SpeechlyClient's delegates, as Unity API should only be used in the main Unity thread. (Default: false)</param>
 /// <param name="saveToFolder">Defines a local folder to save utterance files as 16 bit, 16000 hZ mono raw. Null disables saving. (default: `null`)</param>
 /// <param name="inputSampleRate">Define the sample rate of incoming audio (default: `16000`)</param>
 /// <param name="debug">Enable debug prints thru <see cref="Logger.Log"/> delegate. (default: `false`)</param>
 
     public SpeechlyClient(
-      int frameMillis = 30,
-      int historyFrames = 5,
-      int inputSampleRate = 16000,
       bool manualUpdate = false,
       string saveToFolder = null, // @TODO Future: Allow storing to memory stream as well for replay?
-      EnergyTresholdVAD vad = null, // @TODO Future: Allow different VAD implementation thru IVAD interface
+      AudioInfo output = null,
       bool debug = false
     ) {
 
-      this.frameMillis = Math.Max(frameMillis, 1);
-      this.historyFrames = Math.Max(historyFrames, 1);  // Need at least 1 frame; the current one
-      this.inputSampleRate = inputSampleRate;
       this.manualUpdate = manualUpdate;
       this.saveToFolder = saveToFolder;
-      this.Vad = vad;
       this.Debug = debug;
 
-      frameSamples = internalSampleRate * frameMillis / 1000;
+      if (output == null) {
+        this.Output = new AudioInfo();
+      } else {
+        this.Output = output;
+      }
 
       if (saveToFolder != null) {
         Directory.CreateDirectory(saveToFolder);
       }
-
-      sampleRingBuffer = new float[frameSamples * historyFrames];
     }
 
 /// <summary>
@@ -142,39 +121,73 @@ namespace Speechly.SLUClient {
 /// </summary>
 /// <param name="decoder">SLU decoder implementing IDecoder interface like <see cref="CloudDecoder"/>.</param>
 /// <returns>Task that completes when the decoder is ready.</returns>
-    public async Task Initialize(IDecoder decoder) {
-      if (this.decoder == null) {
+    public async Task Initialize(IDecoder decoder, AudioProcessorOptions audioProcessorOptions = null, ContextOptions contextOptions = null, bool preferLibSpeechlyAudioProcessor = false) {
+      if (audioProcessorOptions == null) {
+        audioProcessorOptions = new AudioProcessorOptions();
+      }
+      this.audioProcessorOptions = audioProcessorOptions;
+
+      if (contextOptions == null) {
+        contextOptions = new ContextOptions();
+      }
+      this.contextOptions = contextOptions;
+
+      if (this.decoder == null && decoder != null) {
         try {
           if (this.manualUpdate) {
             decoder.OnMessage += QueueMessage;
           } else {
             decoder.OnMessage += OnMessage;
           }
-          await decoder.Initialize();
+          await decoder.Initialize(
+            audioProcessorOptions,
+            contextOptions
+          );
           this.decoder = decoder;
         } catch (Exception e) {
           Logger.LogError(e.ToString());
           throw;
         }
       }
+
+      if (!preferLibSpeechlyAudioProcessor) {
+        this.AudioProcessor = new AudioProcessor(
+          audioProcessorOptions,
+          this.Output,
+          this.Debug
+        );
+
+        this.AudioProcessor.OnSendAudio += SendAudio;
+        this.AudioProcessor.OnVadStateChange += (isSignalDetected) => {
+          if (isSignalDetected) {
+            _ = Start();
+          } else {
+            _ = Stop();
+          }
+        };
+      }
+
     }
 
 /// <summary>
-/// `StartStream` should be called at start of a continuous audio stream. It resets the stream sample counters and history. For backwards compability, ProcessAudio and StartContext ensure it's been called.
+/// `StartStream` should be called at start of a continuous audio stream. It resets the stream sample counters and history. For backwards compability, ProcessAudio and Start ensure it's been called.
 /// `OnStreamStart` delegate is triggered upon a call to StartStream.
 /// </summary>
     public void StartStream(string streamIdentifier, bool auto = false) {
       if (!IsAudioStreaming) {
-        IsAudioStreaming = true;
         streamAutoStarted = auto;
-        streamFramePos = 0;
-        StreamSamplePos = 0;
-        frameSamplePos = 0;
-        currentFrameNumber = 0;
-        UtteranceSerial = -1;
-        this.AudioInputStreamIdentifier = streamIdentifier;
+
+        IsAudioStreaming = true;
+        AudioInputStreamIdentifier = streamIdentifier;
+        AudioProcessor?.Reset();
 
         OnStartStream();
+
+        // Start receiving results if using libSpeechly AudioProcessor
+        if (AudioProcessor == null && audioProcessorOptions.VADControlsListening) {
+          _ = Start();
+        }
+
       }
     }
 
@@ -186,11 +199,8 @@ namespace Speechly.SLUClient {
       if (IsAudioStreaming) {
         if ((auto && streamAutoStarted) || !streamAutoStarted) {
           if (IsActive) {
-            _ = StopContext();
+            _ = Stop();
           }
-
-          // Process remaining frame samples
-          ProcessAudio(sampleRingBuffer, 0, frameSamplePos, true);
 
           IsAudioStreaming = false;
         
@@ -200,15 +210,36 @@ namespace Speechly.SLUClient {
     }
 
 /// <summary>
+/// Control AudioProcessor parameters.
+/// </summary>
+/// <param name="vadControlsListening">`true` enables VAD to control listening. `false` disables VAD feature and stops listening immediately. `null` for no change.</param>
+
+    public void AdjustAudioProcessor(bool? vadControlsListening = null) {
+      if (vadControlsListening != null) {
+        this.audioProcessorOptions.VADControlsListening = (bool)vadControlsListening;
+        // Start audio flow if using libSpeechly
+        if (AudioProcessor == null) {
+          if (this.audioProcessorOptions.VADControlsListening && !IsActive) {
+            _ = Start();
+          }
+        }
+        // Ensure listening is stopped when VAD control is toggled off
+        if (!this.audioProcessorOptions.VADControlsListening && IsActive) {
+          _ = Stop();
+        }
+      }
+    }
+
+/// <summary>
 /// Start listening for user speech and feeding it to the SLU decoder.
-/// `OnContextStart` is triggered upon a call to StartContext. It's also triggered by automatic VAD activation.
+/// `OnContextStart` is triggered upon a call to Start. It's also triggered by automatic VAD activation.
 ///
 /// You don't need to await this call if you don't need the utterance id.
 /// </summary>
 /// <param name="appId">Cloud decoder only: The Speechly app id to connect to, if not the default. If specified, you must use project id based login with cloud decoder.</param>
 /// <returns>An unique utterance id.</returns>
 
-    public Task<string> StartContext(string appId = null) {
+    public Task<string> Start(string appId = null) {
       if (IsActive) {
         throw new Exception("Already listening.");
       }
@@ -218,21 +249,25 @@ namespace Speechly.SLUClient {
       }
 
       IsActive = true;
-      SamplesSent = 0;
-      UtteranceSerial++;
-
-      string localBaseName = $"{AudioInputStreamIdentifier}_{UtteranceSerial.ToString().PadLeft(4, '0')}";
+      string localBaseName;
+      
+      if (AudioProcessor != null) {
+        AudioProcessor.Start();
+        localBaseName = $"{AudioInputStreamIdentifier}_{Output.UtteranceSerial.ToString().PadLeft(4, '0')}";
+      } else {
+        localBaseName = $"{AudioInputStreamIdentifier}";
+      }
       string contextId = localBaseName;
 
       if (saveToFolder != null) {
         outAudioStream = new FileStream(Path.Combine(saveToFolder, $"{localBaseName}.raw"), FileMode.OpenOrCreate, FileAccess.Write, FileShare.None);
       }
 
-      OnStartContext();
+      OnStart();
 
       if (this.decoder != null) {
         try {
-          return this.decoder.StartContext();
+          return this.decoder.Start();
         } catch (Exception e) {
           IsActive = false;
           Logger.LogError(e.ToString());
@@ -257,87 +292,39 @@ namespace Speechly.SLUClient {
 ///
 /// It's recommended to constantly feed new audio as long as you want to use Speechly's SLU services.
 ///
-/// You can control when to start and stop process speech either manually with <see cref="StartContext"/> and <see cref="StopContext"/> or
+/// You can control when to start and stop process speech either manually with <see cref="Start"/> and <see cref="Stop"/> or
 /// automatically by providing a voice activity detection (VAD) field to <see cref="SpeechlyClient"/>.
 /// 
 /// The audio is handled as follows:
 /// - Downsample to 16kHz if needed
 /// - Add to history ringbuffer
 /// - Calculate energy (VAD)
-/// - Automatic Start/StopContext (VAD)
+/// - Automatic Start/Stop (VAD)
 /// - Send utterance audio to a file
 /// - Send utterance audio to Speechly SLU decoder
 /// </summary>
 /// <param name="floats">Array of float containing samples to feed to the audio pipeline. Each sample needs to be in range -1f..1f.</param>
 /// <param name="start">Start index of audio to process in samples (default: `0`).</param>
 /// <param name="length">Length of audio to process in samples or `-1` to process the whole array (default: `-1`).</param>
-/// <param name="forceSubFrameProcess"><see cref="StopStream"/> internally uses this to force processing of last subframe at end of audio stream (default: `false`).</param>
 
-    public void ProcessAudio(float[] floats, int start = 0, int length = -1, bool forceSubFrameProcess = false) {
+    public void ProcessAudio(float[] floats, int start = 0, int length = -1) {
       if (!IsAudioStreaming) {
         StartStream(AudioInputStreamIdentifier, auto: false);  // Assume no auto-start/stop if ProcessAudio call encountered before startContext call
       }
 
-      if (length < 0) length = floats.Length;
-      if (length == 0) return;
-
-      int i = start;
-      int endIndex = start + length;
-
-      while (i < endIndex) {
-        int frameBase = currentFrameNumber * frameSamples;
-
-        if (inputSampleRate == internalSampleRate) {
-          // Copy input samples to fill current ringbuffer frame
-          int samplesToFillFrame = Math.Min(endIndex - i, frameSamples - frameSamplePos);
-          int frameEndIndex = frameSamplePos + samplesToFillFrame;
-          while (frameSamplePos < frameEndIndex) {
-            sampleRingBuffer[frameBase + frameSamplePos++] = floats[i++];
-          }
-        } else {
-          // Downsample input samples to fill current ringbuffer frame
-          float ratio = 1f * inputSampleRate / internalSampleRate;
-          int inputSamplesToFillFrame = Math.Min(endIndex - i, (int)Math.Round(ratio * (frameSamples - frameSamplePos)));
-          int samplesToFillFrame = Math.Min((int)Math.Round((endIndex - i) / ratio), frameSamples - frameSamplePos);
-          AudioTools.Downsample(floats, ref sampleRingBuffer, i,inputSamplesToFillFrame, frameBase+frameSamplePos,samplesToFillFrame);
-          i += inputSamplesToFillFrame;
-          frameSamplePos += samplesToFillFrame;
-        }
-
-        // Process frame
-        if (frameSamplePos == frameSamples || forceSubFrameProcess) {
-          frameSamplePos = 0;
-          int subFrameSamples = forceSubFrameProcess ? frameSamplePos : frameSamples;
-
-          if (!forceSubFrameProcess) {
-            ProcessFrame(sampleRingBuffer, frameBase, subFrameSamples);
-          }
-
-          if (IsActive) {
-            
-            if (SamplesSent == 0) {
-              // Start of the utterance - send history frames
-              int sendHistory = Math.Min(streamFramePos, historyFrames - 1);
-              int historyFrameIndex = (currentFrameNumber + historyFrames - sendHistory) % historyFrames;
-              while (historyFrameIndex != currentFrameNumber) {
-                SendAudio(sampleRingBuffer, historyFrameIndex * frameSamples, frameSamples);
-                historyFrameIndex = (historyFrameIndex + 1) % historyFrames;
-              }
-            }
-            SendAudio(sampleRingBuffer, frameBase, subFrameSamples);
-          }
-
-          streamFramePos += 1;
-          StreamSamplePos += subFrameSamples;
-          currentFrameNumber = (currentFrameNumber + 1) % historyFrames;
+      if (AudioProcessor != null) {
+        AudioProcessor.ProcessAudio(floats, start, length);
+      } else {
+        if (IsActive) {
+          SendAudio(floats, start, length);
         }
       }
     }
 
     public void ProcessAudio(Stream fileStream) {
-      // @TODO Use a pre-allocated buf
-      var bytes = new byte[frameSamples * 2];
-      var floats = new float[frameSamples];
+      const int CHUNK_SAMPLES = 16000;
+      var bytes = new byte[CHUNK_SAMPLES * 2];
+      var floats = new float[CHUNK_SAMPLES];
 
       while (true) {
         int bytesRead = fileStream.Read(bytes, 0, bytes.Length);
@@ -352,32 +339,7 @@ namespace Speechly.SLUClient {
       }
     }
 
-    private void ProcessFrame(float[] floats, int start = 0, int length = -1) {
-      AnalyzeAudioFrame(in floats, start, length);
-      AutoControlListening();
-    }
-
-    private void AnalyzeAudioFrame(in float[] waveData, int s, int frameSamples) {
-      if (this.Vad != null && this.Vad.Enabled) {
-        Vad.ProcessFrame(waveData, s, frameSamples);
-      }
-    }
-
-    private void AutoControlListening() {
-      if (this.Vad != null && this.Vad.Enabled && this.Vad.ControlListening) {
-        if (!IsActive && Vad.IsSignalDetected) {
-          _ = StartContext();
-        }
-
-        if (IsActive && !Vad.IsSignalDetected) {
-          _ = StopContext();
-        }
-      }
-    }
-
-    private void SendAudio(float[] floats, int start = 0, int length = -1) {
-      SamplesSent += length;
-
+    internal void SendAudio(float[] floats, int start = 0, int length = -1) {
       // Stream to file
       if (saveToFolder != null) {
         SaveToDisk(floats, start, length);
@@ -406,30 +368,31 @@ namespace Speechly.SLUClient {
 
 /// <summary>
 /// Stop listening for user speech.
-/// `OnContextStop` is triggered upon a call to StopContext. It's also triggered by automatic VAD deactivation.
+/// `OnContextStop` is triggered upon a call to Stop. It's also triggered by automatic VAD deactivation.
 ///
 /// You don't need to await this call if you don't need the utterance id.
 /// </summary>
 /// <returns>An unique utterance id.</returns>
 
-    public Task<string> StopContext() {
+    public Task<string> Stop() {
       if (!IsActive) {
         throw new Exception("Already stopped listening.");
       }
+      AudioProcessor?.Stop();
       IsActive = false;
 
-      string localBaseName = $"{AudioInputStreamIdentifier}_{UtteranceSerial.ToString().PadLeft(4, '0')}";
+      string localBaseName = $"{AudioInputStreamIdentifier}_{Output.UtteranceSerial.ToString().PadLeft(4, '0')}";
       string contextId = localBaseName;
 
       if (saveToFolder != null) {
         outAudioStream.Close();
       }
 
-      OnStopContext();
+      OnStop();
 
       if (this.decoder != null) {
         try {
-          return this.decoder.StopContext();
+          return this.decoder.Stop();
         } catch (Exception e) {
           Logger.LogError(e.ToString());
           throw;

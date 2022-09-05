@@ -22,7 +22,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: WsClient
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
@@ -57,7 +57,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnResponseReceived
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
@@ -88,7 +88,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ReceiveBufferSize
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
@@ -123,7 +123,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ConnectAsync
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
@@ -161,7 +161,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: DisconnectAsync
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
@@ -194,7 +194,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SendText
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
@@ -227,7 +227,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SendBytes
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
@@ -263,7 +263,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Dispose
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs

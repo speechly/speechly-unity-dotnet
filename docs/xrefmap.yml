@@ -26,121 +26,6 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.CloudDecoder.CloudDecoder
   nameWithType: CloudDecoder.CloudDecoder
-- uid: Speechly.SLUClient.EnergyTresholdVAD
-  name: EnergyTresholdVAD
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html
-  commentId: T:Speechly.SLUClient.EnergyTresholdVAD
-  fullName: Speechly.SLUClient.EnergyTresholdVAD
-  nameWithType: EnergyTresholdVAD
-- uid: Speechly.SLUClient.EnergyTresholdVAD.BaselineEnergy
-  name: BaselineEnergy
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_BaselineEnergy
-  commentId: P:Speechly.SLUClient.EnergyTresholdVAD.BaselineEnergy
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.BaselineEnergy
-  nameWithType: EnergyTresholdVAD.BaselineEnergy
-- uid: Speechly.SLUClient.EnergyTresholdVAD.BaselineEnergy*
-  name: BaselineEnergy
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_BaselineEnergy_
-  commentId: Overload:Speechly.SLUClient.EnergyTresholdVAD.BaselineEnergy
-  isSpec: "True"
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.BaselineEnergy
-  nameWithType: EnergyTresholdVAD.BaselineEnergy
-- uid: Speechly.SLUClient.EnergyTresholdVAD.Enabled
-  name: Enabled
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_Enabled
-  commentId: F:Speechly.SLUClient.EnergyTresholdVAD.Enabled
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.Enabled
-  nameWithType: EnergyTresholdVAD.Enabled
-- uid: Speechly.SLUClient.EnergyTresholdVAD.Energy
-  name: Energy
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_Energy
-  commentId: P:Speechly.SLUClient.EnergyTresholdVAD.Energy
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.Energy
-  nameWithType: EnergyTresholdVAD.Energy
-- uid: Speechly.SLUClient.EnergyTresholdVAD.Energy*
-  name: Energy
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_Energy_
-  commentId: Overload:Speechly.SLUClient.EnergyTresholdVAD.Energy
-  isSpec: "True"
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.Energy
-  nameWithType: EnergyTresholdVAD.Energy
-- uid: Speechly.SLUClient.EnergyTresholdVAD.IsSignalDetected
-  name: IsSignalDetected
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_IsSignalDetected
-  commentId: P:Speechly.SLUClient.EnergyTresholdVAD.IsSignalDetected
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.IsSignalDetected
-  nameWithType: EnergyTresholdVAD.IsSignalDetected
-- uid: Speechly.SLUClient.EnergyTresholdVAD.IsSignalDetected*
-  name: IsSignalDetected
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_IsSignalDetected_
-  commentId: Overload:Speechly.SLUClient.EnergyTresholdVAD.IsSignalDetected
-  isSpec: "True"
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.IsSignalDetected
-  nameWithType: EnergyTresholdVAD.IsSignalDetected
-- uid: Speechly.SLUClient.EnergyTresholdVAD.ProcessFrame(System.Single[],System.Int32,System.Int32)
-  name: ProcessFrame(Single[], Int32, Int32)
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_ProcessFrame_System_Single___System_Int32_System_Int32_
-  commentId: M:Speechly.SLUClient.EnergyTresholdVAD.ProcessFrame(System.Single[],System.Int32,System.Int32)
-  name.vb: ProcessFrame(Single(), Int32, Int32)
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.ProcessFrame(System.Single[], System.Int32, System.Int32)
-  fullName.vb: Speechly.SLUClient.EnergyTresholdVAD.ProcessFrame(System.Single(), System.Int32, System.Int32)
-  nameWithType: EnergyTresholdVAD.ProcessFrame(Single[], Int32, Int32)
-  nameWithType.vb: EnergyTresholdVAD.ProcessFrame(Single(), Int32, Int32)
-- uid: Speechly.SLUClient.EnergyTresholdVAD.ProcessFrame*
-  name: ProcessFrame
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_ProcessFrame_
-  commentId: Overload:Speechly.SLUClient.EnergyTresholdVAD.ProcessFrame
-  isSpec: "True"
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.ProcessFrame
-  nameWithType: EnergyTresholdVAD.ProcessFrame
-- uid: Speechly.SLUClient.EnergyTresholdVAD.VADActivation
-  name: VADActivation
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_VADActivation
-  commentId: F:Speechly.SLUClient.EnergyTresholdVAD.VADActivation
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.VADActivation
-  nameWithType: EnergyTresholdVAD.VADActivation
-- uid: Speechly.SLUClient.EnergyTresholdVAD.VADControlListening
-  name: VADControlListening
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_VADControlListening
-  commentId: F:Speechly.SLUClient.EnergyTresholdVAD.VADControlListening
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.VADControlListening
-  nameWithType: EnergyTresholdVAD.VADControlListening
-- uid: Speechly.SLUClient.EnergyTresholdVAD.VADFrames
-  name: VADFrames
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_VADFrames
-  commentId: F:Speechly.SLUClient.EnergyTresholdVAD.VADFrames
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.VADFrames
-  nameWithType: EnergyTresholdVAD.VADFrames
-- uid: Speechly.SLUClient.EnergyTresholdVAD.VADMinimumEnergy
-  name: VADMinimumEnergy
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_VADMinimumEnergy
-  commentId: F:Speechly.SLUClient.EnergyTresholdVAD.VADMinimumEnergy
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.VADMinimumEnergy
-  nameWithType: EnergyTresholdVAD.VADMinimumEnergy
-- uid: Speechly.SLUClient.EnergyTresholdVAD.VADNoiseHalftimeMillis
-  name: VADNoiseHalftimeMillis
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_VADNoiseHalftimeMillis
-  commentId: F:Speechly.SLUClient.EnergyTresholdVAD.VADNoiseHalftimeMillis
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.VADNoiseHalftimeMillis
-  nameWithType: EnergyTresholdVAD.VADNoiseHalftimeMillis
-- uid: Speechly.SLUClient.EnergyTresholdVAD.VADRelease
-  name: VADRelease
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_VADRelease
-  commentId: F:Speechly.SLUClient.EnergyTresholdVAD.VADRelease
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.VADRelease
-  nameWithType: EnergyTresholdVAD.VADRelease
-- uid: Speechly.SLUClient.EnergyTresholdVAD.VADSignalToNoise
-  name: VADSignalToNoise
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_VADSignalToNoise
-  commentId: F:Speechly.SLUClient.EnergyTresholdVAD.VADSignalToNoise
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.VADSignalToNoise
-  nameWithType: EnergyTresholdVAD.VADSignalToNoise
-- uid: Speechly.SLUClient.EnergyTresholdVAD.VADSustainMillis
-  name: VADSustainMillis
-  href: api/Speechly.SLUClient.EnergyTresholdVAD.html#Speechly_SLUClient_EnergyTresholdVAD_VADSustainMillis
-  commentId: F:Speechly.SLUClient.EnergyTresholdVAD.VADSustainMillis
-  fullName: Speechly.SLUClient.EnergyTresholdVAD.VADSustainMillis
-  nameWithType: EnergyTresholdVAD.VADSustainMillis
 - uid: Speechly.SLUClient.IDecoder
   name: IDecoder
   href: api/Speechly.SLUClient.IDecoder.html
@@ -227,12 +112,12 @@ references:
   commentId: T:Speechly.SLUClient.SpeechlyClient
   fullName: Speechly.SLUClient.SpeechlyClient
   nameWithType: SpeechlyClient
-- uid: Speechly.SLUClient.SpeechlyClient.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean,System.String,Speechly.SLUClient.EnergyTresholdVAD,System.Boolean)
-  name: SpeechlyClient(Int32, Int32, Int32, Boolean, String, EnergyTresholdVAD, Boolean)
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient__ctor_System_Int32_System_Int32_System_Int32_System_Boolean_System_String_Speechly_SLUClient_EnergyTresholdVAD_System_Boolean_
-  commentId: M:Speechly.SLUClient.SpeechlyClient.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean,System.String,Speechly.SLUClient.EnergyTresholdVAD,System.Boolean)
-  fullName: Speechly.SLUClient.SpeechlyClient.SpeechlyClient(System.Int32, System.Int32, System.Int32, System.Boolean, System.String, Speechly.SLUClient.EnergyTresholdVAD, System.Boolean)
-  nameWithType: SpeechlyClient.SpeechlyClient(Int32, Int32, Int32, Boolean, String, EnergyTresholdVAD, Boolean)
+- uid: Speechly.SLUClient.SpeechlyClient.#ctor(System.Boolean,System.String,Speechly.Types.AudioInfo,System.Boolean)
+  name: SpeechlyClient(Boolean, String, AudioInfo, Boolean)
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient__ctor_System_Boolean_System_String_Speechly_Types_AudioInfo_System_Boolean_
+  commentId: M:Speechly.SLUClient.SpeechlyClient.#ctor(System.Boolean,System.String,Speechly.Types.AudioInfo,System.Boolean)
+  fullName: Speechly.SLUClient.SpeechlyClient.SpeechlyClient(System.Boolean, System.String, Speechly.Types.AudioInfo, System.Boolean)
+  nameWithType: SpeechlyClient.SpeechlyClient(Boolean, String, AudioInfo, Boolean)
 - uid: Speechly.SLUClient.SpeechlyClient.#ctor*
   name: SpeechlyClient
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient__ctor_
@@ -240,6 +125,22 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.SpeechlyClient
   nameWithType: SpeechlyClient.SpeechlyClient
+- uid: Speechly.SLUClient.SpeechlyClient.AdjustAudioProcessor(System.Nullable{System.Boolean})
+  name: AdjustAudioProcessor(Nullable<Boolean>)
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_AdjustAudioProcessor_System_Nullable_System_Boolean__
+  commentId: M:Speechly.SLUClient.SpeechlyClient.AdjustAudioProcessor(System.Nullable{System.Boolean})
+  name.vb: AdjustAudioProcessor(Nullable(Of Boolean))
+  fullName: Speechly.SLUClient.SpeechlyClient.AdjustAudioProcessor(System.Nullable<System.Boolean>)
+  fullName.vb: Speechly.SLUClient.SpeechlyClient.AdjustAudioProcessor(System.Nullable(Of System.Boolean))
+  nameWithType: SpeechlyClient.AdjustAudioProcessor(Nullable<Boolean>)
+  nameWithType.vb: SpeechlyClient.AdjustAudioProcessor(Nullable(Of Boolean))
+- uid: Speechly.SLUClient.SpeechlyClient.AdjustAudioProcessor*
+  name: AdjustAudioProcessor
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_AdjustAudioProcessor_
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.AdjustAudioProcessor
+  isSpec: "True"
+  fullName: Speechly.SLUClient.SpeechlyClient.AdjustAudioProcessor
+  nameWithType: SpeechlyClient.AdjustAudioProcessor
 - uid: Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier
   name: AudioInputStreamIdentifier
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_AudioInputStreamIdentifier
@@ -253,12 +154,18 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier
   nameWithType: SpeechlyClient.AudioInputStreamIdentifier
-- uid: Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)
-  name: Initialize(IDecoder)
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_
-  commentId: M:Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)
-  fullName: Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)
-  nameWithType: SpeechlyClient.Initialize(IDecoder)
+- uid: Speechly.SLUClient.SpeechlyClient.Debug
+  name: Debug
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Debug
+  commentId: F:Speechly.SLUClient.SpeechlyClient.Debug
+  fullName: Speechly.SLUClient.SpeechlyClient.Debug
+  nameWithType: SpeechlyClient.Debug
+- uid: Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder,Speechly.Types.AudioProcessorOptions,Speechly.Types.ContextOptions,System.Boolean)
+  name: Initialize(IDecoder, AudioProcessorOptions, ContextOptions, Boolean)
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_Speechly_Types_AudioProcessorOptions_Speechly_Types_ContextOptions_System_Boolean_
+  commentId: M:Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder,Speechly.Types.AudioProcessorOptions,Speechly.Types.ContextOptions,System.Boolean)
+  fullName: Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder, Speechly.Types.AudioProcessorOptions, Speechly.Types.ContextOptions, System.Boolean)
+  nameWithType: SpeechlyClient.Initialize(IDecoder, AudioProcessorOptions, ContextOptions, Boolean)
 - uid: Speechly.SLUClient.SpeechlyClient.Initialize*
   name: Initialize
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Initialize_
@@ -323,24 +230,24 @@ references:
   commentId: F:Speechly.SLUClient.SpeechlyClient.OnSegmentChange
   fullName: Speechly.SLUClient.SpeechlyClient.OnSegmentChange
   nameWithType: SpeechlyClient.OnSegmentChange
-- uid: Speechly.SLUClient.SpeechlyClient.OnStartContext
-  name: OnStartContext
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_OnStartContext
-  commentId: F:Speechly.SLUClient.SpeechlyClient.OnStartContext
-  fullName: Speechly.SLUClient.SpeechlyClient.OnStartContext
-  nameWithType: SpeechlyClient.OnStartContext
+- uid: Speechly.SLUClient.SpeechlyClient.OnStart
+  name: OnStart
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_OnStart
+  commentId: F:Speechly.SLUClient.SpeechlyClient.OnStart
+  fullName: Speechly.SLUClient.SpeechlyClient.OnStart
+  nameWithType: SpeechlyClient.OnStart
 - uid: Speechly.SLUClient.SpeechlyClient.OnStartStream
   name: OnStartStream
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_OnStartStream
   commentId: F:Speechly.SLUClient.SpeechlyClient.OnStartStream
   fullName: Speechly.SLUClient.SpeechlyClient.OnStartStream
   nameWithType: SpeechlyClient.OnStartStream
-- uid: Speechly.SLUClient.SpeechlyClient.OnStopContext
-  name: OnStopContext
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_OnStopContext
-  commentId: F:Speechly.SLUClient.SpeechlyClient.OnStopContext
-  fullName: Speechly.SLUClient.SpeechlyClient.OnStopContext
-  nameWithType: SpeechlyClient.OnStopContext
+- uid: Speechly.SLUClient.SpeechlyClient.OnStop
+  name: OnStop
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_OnStop
+  commentId: F:Speechly.SLUClient.SpeechlyClient.OnStop
+  fullName: Speechly.SLUClient.SpeechlyClient.OnStop
+  nameWithType: SpeechlyClient.OnStop
 - uid: Speechly.SLUClient.SpeechlyClient.OnStopStream
   name: OnStopStream
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_OnStopStream
@@ -371,21 +278,34 @@ references:
   commentId: F:Speechly.SLUClient.SpeechlyClient.OnTranscript
   fullName: Speechly.SLUClient.SpeechlyClient.OnTranscript
   nameWithType: SpeechlyClient.OnTranscript
+- uid: Speechly.SLUClient.SpeechlyClient.Output
+  name: Output
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Output
+  commentId: P:Speechly.SLUClient.SpeechlyClient.Output
+  fullName: Speechly.SLUClient.SpeechlyClient.Output
+  nameWithType: SpeechlyClient.Output
+- uid: Speechly.SLUClient.SpeechlyClient.Output*
+  name: Output
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Output_
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.Output
+  isSpec: "True"
+  fullName: Speechly.SLUClient.SpeechlyClient.Output
+  nameWithType: SpeechlyClient.Output
 - uid: Speechly.SLUClient.SpeechlyClient.ProcessAudio(Stream)
   name: ProcessAudio(Stream)
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_ProcessAudio_Stream_
   commentId: M:Speechly.SLUClient.SpeechlyClient.ProcessAudio(Stream)
   fullName: Speechly.SLUClient.SpeechlyClient.ProcessAudio(Stream)
   nameWithType: SpeechlyClient.ProcessAudio(Stream)
-- uid: Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)
-  name: ProcessAudio(Single[], Int32, Int32, Boolean)
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_ProcessAudio_System_Single___System_Int32_System_Int32_System_Boolean_
-  commentId: M:Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)
-  name.vb: ProcessAudio(Single(), Int32, Int32, Boolean)
-  fullName: Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single[], System.Int32, System.Int32, System.Boolean)
-  fullName.vb: Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single(), System.Int32, System.Int32, System.Boolean)
-  nameWithType: SpeechlyClient.ProcessAudio(Single[], Int32, Int32, Boolean)
-  nameWithType.vb: SpeechlyClient.ProcessAudio(Single(), Int32, Int32, Boolean)
+- uid: Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single[],System.Int32,System.Int32)
+  name: ProcessAudio(Single[], Int32, Int32)
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_ProcessAudio_System_Single___System_Int32_System_Int32_
+  commentId: M:Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single[],System.Int32,System.Int32)
+  name.vb: ProcessAudio(Single(), Int32, Int32)
+  fullName: Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single[], System.Int32, System.Int32)
+  fullName.vb: Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single(), System.Int32, System.Int32)
+  nameWithType: SpeechlyClient.ProcessAudio(Single[], Int32, Int32)
+  nameWithType.vb: SpeechlyClient.ProcessAudio(Single(), Int32, Int32)
 - uid: Speechly.SLUClient.SpeechlyClient.ProcessAudio*
   name: ProcessAudio
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_ProcessAudio_
@@ -406,19 +326,6 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.ProcessAudioFile
   nameWithType: SpeechlyClient.ProcessAudioFile
-- uid: Speechly.SLUClient.SpeechlyClient.SamplesSent
-  name: SamplesSent
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_SamplesSent
-  commentId: P:Speechly.SLUClient.SpeechlyClient.SamplesSent
-  fullName: Speechly.SLUClient.SpeechlyClient.SamplesSent
-  nameWithType: SpeechlyClient.SamplesSent
-- uid: Speechly.SLUClient.SpeechlyClient.SamplesSent*
-  name: SamplesSent
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_SamplesSent_
-  commentId: Overload:Speechly.SLUClient.SpeechlyClient.SamplesSent
-  isSpec: "True"
-  fullName: Speechly.SLUClient.SpeechlyClient.SamplesSent
-  nameWithType: SpeechlyClient.SamplesSent
 - uid: Speechly.SLUClient.SpeechlyClient.Shutdown
   name: Shutdown()
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Shutdown
@@ -432,19 +339,19 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.Shutdown
   nameWithType: SpeechlyClient.Shutdown
-- uid: Speechly.SLUClient.SpeechlyClient.StartContext(System.String)
-  name: StartContext(String)
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StartContext_System_String_
-  commentId: M:Speechly.SLUClient.SpeechlyClient.StartContext(System.String)
-  fullName: Speechly.SLUClient.SpeechlyClient.StartContext(System.String)
-  nameWithType: SpeechlyClient.StartContext(String)
-- uid: Speechly.SLUClient.SpeechlyClient.StartContext*
-  name: StartContext
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StartContext_
-  commentId: Overload:Speechly.SLUClient.SpeechlyClient.StartContext
+- uid: Speechly.SLUClient.SpeechlyClient.Start(System.String)
+  name: Start(String)
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Start_System_String_
+  commentId: M:Speechly.SLUClient.SpeechlyClient.Start(System.String)
+  fullName: Speechly.SLUClient.SpeechlyClient.Start(System.String)
+  nameWithType: SpeechlyClient.Start(String)
+- uid: Speechly.SLUClient.SpeechlyClient.Start*
+  name: Start
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Start_
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.Start
   isSpec: "True"
-  fullName: Speechly.SLUClient.SpeechlyClient.StartContext
-  nameWithType: SpeechlyClient.StartContext
+  fullName: Speechly.SLUClient.SpeechlyClient.Start
+  nameWithType: SpeechlyClient.Start
 - uid: Speechly.SLUClient.SpeechlyClient.StartStream(System.String,System.Boolean)
   name: StartStream(String, Boolean)
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StartStream_System_String_System_Boolean_
@@ -458,19 +365,19 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.StartStream
   nameWithType: SpeechlyClient.StartStream
-- uid: Speechly.SLUClient.SpeechlyClient.StopContext
-  name: StopContext()
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StopContext
-  commentId: M:Speechly.SLUClient.SpeechlyClient.StopContext
-  fullName: Speechly.SLUClient.SpeechlyClient.StopContext()
-  nameWithType: SpeechlyClient.StopContext()
-- uid: Speechly.SLUClient.SpeechlyClient.StopContext*
-  name: StopContext
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StopContext_
-  commentId: Overload:Speechly.SLUClient.SpeechlyClient.StopContext
+- uid: Speechly.SLUClient.SpeechlyClient.Stop
+  name: Stop()
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Stop
+  commentId: M:Speechly.SLUClient.SpeechlyClient.Stop
+  fullName: Speechly.SLUClient.SpeechlyClient.Stop()
+  nameWithType: SpeechlyClient.Stop()
+- uid: Speechly.SLUClient.SpeechlyClient.Stop*
+  name: Stop
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Stop_
+  commentId: Overload:Speechly.SLUClient.SpeechlyClient.Stop
   isSpec: "True"
-  fullName: Speechly.SLUClient.SpeechlyClient.StopContext
-  nameWithType: SpeechlyClient.StopContext
+  fullName: Speechly.SLUClient.SpeechlyClient.Stop
+  nameWithType: SpeechlyClient.Stop
 - uid: Speechly.SLUClient.SpeechlyClient.StopStream(System.Boolean)
   name: StopStream(Boolean)
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StopStream_System_Boolean_
@@ -484,19 +391,6 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.StopStream
   nameWithType: SpeechlyClient.StopStream
-- uid: Speechly.SLUClient.SpeechlyClient.StreamSamplePos
-  name: StreamSamplePos
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StreamSamplePos
-  commentId: P:Speechly.SLUClient.SpeechlyClient.StreamSamplePos
-  fullName: Speechly.SLUClient.SpeechlyClient.StreamSamplePos
-  nameWithType: SpeechlyClient.StreamSamplePos
-- uid: Speechly.SLUClient.SpeechlyClient.StreamSamplePos*
-  name: StreamSamplePos
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StreamSamplePos_
-  commentId: Overload:Speechly.SLUClient.SpeechlyClient.StreamSamplePos
-  isSpec: "True"
-  fullName: Speechly.SLUClient.SpeechlyClient.StreamSamplePos
-  nameWithType: SpeechlyClient.StreamSamplePos
 - uid: Speechly.SLUClient.SpeechlyClient.Update
   name: Update()
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Update
@@ -510,38 +404,149 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.Update
   nameWithType: SpeechlyClient.Update
-- uid: Speechly.SLUClient.SpeechlyClient.UtteranceSerial
-  name: UtteranceSerial
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_UtteranceSerial
-  commentId: P:Speechly.SLUClient.SpeechlyClient.UtteranceSerial
-  fullName: Speechly.SLUClient.SpeechlyClient.UtteranceSerial
-  nameWithType: SpeechlyClient.UtteranceSerial
-- uid: Speechly.SLUClient.SpeechlyClient.UtteranceSerial*
-  name: UtteranceSerial
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_UtteranceSerial_
-  commentId: Overload:Speechly.SLUClient.SpeechlyClient.UtteranceSerial
-  isSpec: "True"
-  fullName: Speechly.SLUClient.SpeechlyClient.UtteranceSerial
-  nameWithType: SpeechlyClient.UtteranceSerial
-- uid: Speechly.SLUClient.SpeechlyClient.Vad
-  name: Vad
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Vad
-  commentId: P:Speechly.SLUClient.SpeechlyClient.Vad
-  fullName: Speechly.SLUClient.SpeechlyClient.Vad
-  nameWithType: SpeechlyClient.Vad
-- uid: Speechly.SLUClient.SpeechlyClient.Vad*
-  name: Vad
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Vad_
-  commentId: Overload:Speechly.SLUClient.SpeechlyClient.Vad
-  isSpec: "True"
-  fullName: Speechly.SLUClient.SpeechlyClient.Vad
-  nameWithType: SpeechlyClient.Vad
 - uid: Speechly.Tools
   name: Speechly.Tools
   href: api/Speechly.Tools.html
   commentId: N:Speechly.Tools
   fullName: Speechly.Tools
   nameWithType: Speechly.Tools
+- uid: Speechly.Tools.AudioProcessor
+  name: AudioProcessor
+  href: api/Speechly.Tools.AudioProcessor.html
+  commentId: T:Speechly.Tools.AudioProcessor
+  fullName: Speechly.Tools.AudioProcessor
+  nameWithType: AudioProcessor
+- uid: Speechly.Tools.AudioProcessor.#ctor(Speechly.Types.AudioProcessorOptions,Speechly.Types.AudioInfo,System.Boolean)
+  name: AudioProcessor(AudioProcessorOptions, AudioInfo, Boolean)
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor__ctor_Speechly_Types_AudioProcessorOptions_Speechly_Types_AudioInfo_System_Boolean_
+  commentId: M:Speechly.Tools.AudioProcessor.#ctor(Speechly.Types.AudioProcessorOptions,Speechly.Types.AudioInfo,System.Boolean)
+  fullName: Speechly.Tools.AudioProcessor.AudioProcessor(Speechly.Types.AudioProcessorOptions, Speechly.Types.AudioInfo, System.Boolean)
+  nameWithType: AudioProcessor.AudioProcessor(AudioProcessorOptions, AudioInfo, Boolean)
+- uid: Speechly.Tools.AudioProcessor.#ctor*
+  name: AudioProcessor
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor__ctor_
+  commentId: Overload:Speechly.Tools.AudioProcessor.#ctor
+  isSpec: "True"
+  fullName: Speechly.Tools.AudioProcessor.AudioProcessor
+  nameWithType: AudioProcessor.AudioProcessor
+- uid: Speechly.Tools.AudioProcessor.OnSendAudio
+  name: OnSendAudio
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_OnSendAudio
+  commentId: F:Speechly.Tools.AudioProcessor.OnSendAudio
+  fullName: Speechly.Tools.AudioProcessor.OnSendAudio
+  nameWithType: AudioProcessor.OnSendAudio
+- uid: Speechly.Tools.AudioProcessor.OnVadStateChange
+  name: OnVadStateChange
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_OnVadStateChange
+  commentId: F:Speechly.Tools.AudioProcessor.OnVadStateChange
+  fullName: Speechly.Tools.AudioProcessor.OnVadStateChange
+  nameWithType: AudioProcessor.OnVadStateChange
+- uid: Speechly.Tools.AudioProcessor.Options
+  name: Options
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_Options
+  commentId: P:Speechly.Tools.AudioProcessor.Options
+  fullName: Speechly.Tools.AudioProcessor.Options
+  nameWithType: AudioProcessor.Options
+- uid: Speechly.Tools.AudioProcessor.Options*
+  name: Options
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_Options_
+  commentId: Overload:Speechly.Tools.AudioProcessor.Options
+  isSpec: "True"
+  fullName: Speechly.Tools.AudioProcessor.Options
+  nameWithType: AudioProcessor.Options
+- uid: Speechly.Tools.AudioProcessor.Output
+  name: Output
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_Output
+  commentId: P:Speechly.Tools.AudioProcessor.Output
+  fullName: Speechly.Tools.AudioProcessor.Output
+  nameWithType: AudioProcessor.Output
+- uid: Speechly.Tools.AudioProcessor.Output*
+  name: Output
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_Output_
+  commentId: Overload:Speechly.Tools.AudioProcessor.Output
+  isSpec: "True"
+  fullName: Speechly.Tools.AudioProcessor.Output
+  nameWithType: AudioProcessor.Output
+- uid: Speechly.Tools.AudioProcessor.ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)
+  name: ProcessAudio(Single[], Int32, Int32, Boolean)
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_ProcessAudio_System_Single___System_Int32_System_Int32_System_Boolean_
+  commentId: M:Speechly.Tools.AudioProcessor.ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)
+  name.vb: ProcessAudio(Single(), Int32, Int32, Boolean)
+  fullName: Speechly.Tools.AudioProcessor.ProcessAudio(System.Single[], System.Int32, System.Int32, System.Boolean)
+  fullName.vb: Speechly.Tools.AudioProcessor.ProcessAudio(System.Single(), System.Int32, System.Int32, System.Boolean)
+  nameWithType: AudioProcessor.ProcessAudio(Single[], Int32, Int32, Boolean)
+  nameWithType.vb: AudioProcessor.ProcessAudio(Single(), Int32, Int32, Boolean)
+- uid: Speechly.Tools.AudioProcessor.ProcessAudio*
+  name: ProcessAudio
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_ProcessAudio_
+  commentId: Overload:Speechly.Tools.AudioProcessor.ProcessAudio
+  isSpec: "True"
+  fullName: Speechly.Tools.AudioProcessor.ProcessAudio
+  nameWithType: AudioProcessor.ProcessAudio
+- uid: Speechly.Tools.AudioProcessor.Reset(System.Int32)
+  name: Reset(Int32)
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_Reset_System_Int32_
+  commentId: M:Speechly.Tools.AudioProcessor.Reset(System.Int32)
+  fullName: Speechly.Tools.AudioProcessor.Reset(System.Int32)
+  nameWithType: AudioProcessor.Reset(Int32)
+- uid: Speechly.Tools.AudioProcessor.Reset*
+  name: Reset
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_Reset_
+  commentId: Overload:Speechly.Tools.AudioProcessor.Reset
+  isSpec: "True"
+  fullName: Speechly.Tools.AudioProcessor.Reset
+  nameWithType: AudioProcessor.Reset
+- uid: Speechly.Tools.AudioProcessor.SendAudioDelegate
+  name: AudioProcessor.SendAudioDelegate
+  href: api/Speechly.Tools.AudioProcessor.SendAudioDelegate.html
+  commentId: T:Speechly.Tools.AudioProcessor.SendAudioDelegate
+  fullName: Speechly.Tools.AudioProcessor.SendAudioDelegate
+  nameWithType: AudioProcessor.SendAudioDelegate
+- uid: Speechly.Tools.AudioProcessor.Start
+  name: Start()
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_Start
+  commentId: M:Speechly.Tools.AudioProcessor.Start
+  fullName: Speechly.Tools.AudioProcessor.Start()
+  nameWithType: AudioProcessor.Start()
+- uid: Speechly.Tools.AudioProcessor.Start*
+  name: Start
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_Start_
+  commentId: Overload:Speechly.Tools.AudioProcessor.Start
+  isSpec: "True"
+  fullName: Speechly.Tools.AudioProcessor.Start
+  nameWithType: AudioProcessor.Start
+- uid: Speechly.Tools.AudioProcessor.Stop
+  name: Stop()
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_Stop
+  commentId: M:Speechly.Tools.AudioProcessor.Stop
+  fullName: Speechly.Tools.AudioProcessor.Stop()
+  nameWithType: AudioProcessor.Stop()
+- uid: Speechly.Tools.AudioProcessor.Stop*
+  name: Stop
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_Stop_
+  commentId: Overload:Speechly.Tools.AudioProcessor.Stop
+  isSpec: "True"
+  fullName: Speechly.Tools.AudioProcessor.Stop
+  nameWithType: AudioProcessor.Stop
+- uid: Speechly.Tools.AudioProcessor.Vad
+  name: Vad
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_Vad
+  commentId: P:Speechly.Tools.AudioProcessor.Vad
+  fullName: Speechly.Tools.AudioProcessor.Vad
+  nameWithType: AudioProcessor.Vad
+- uid: Speechly.Tools.AudioProcessor.Vad*
+  name: Vad
+  href: api/Speechly.Tools.AudioProcessor.html#Speechly_Tools_AudioProcessor_Vad_
+  commentId: Overload:Speechly.Tools.AudioProcessor.Vad
+  isSpec: "True"
+  fullName: Speechly.Tools.AudioProcessor.Vad
+  nameWithType: AudioProcessor.Vad
+- uid: Speechly.Tools.AudioProcessor.VadChangeDelegate
+  name: AudioProcessor.VadChangeDelegate
+  href: api/Speechly.Tools.AudioProcessor.VadChangeDelegate.html
+  commentId: T:Speechly.Tools.AudioProcessor.VadChangeDelegate
+  fullName: Speechly.Tools.AudioProcessor.VadChangeDelegate
+  nameWithType: AudioProcessor.VadChangeDelegate
 - uid: Speechly.Tools.AudioTools
   name: AudioTools
   href: api/Speechly.Tools.AudioTools.html
@@ -564,6 +569,19 @@ references:
   isSpec: "True"
   fullName: Speechly.Tools.AudioTools.ConvertInt16ToFloat
   nameWithType: AudioTools.ConvertInt16ToFloat
+- uid: Speechly.Tools.AudioTools.DbToEnergy(System.Single)
+  name: DbToEnergy(Single)
+  href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_DbToEnergy_System_Single_
+  commentId: M:Speechly.Tools.AudioTools.DbToEnergy(System.Single)
+  fullName: Speechly.Tools.AudioTools.DbToEnergy(System.Single)
+  nameWithType: AudioTools.DbToEnergy(Single)
+- uid: Speechly.Tools.AudioTools.DbToEnergy*
+  name: DbToEnergy
+  href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_DbToEnergy_
+  commentId: Overload:Speechly.Tools.AudioTools.DbToEnergy
+  isSpec: "True"
+  fullName: Speechly.Tools.AudioTools.DbToEnergy
+  nameWithType: AudioTools.DbToEnergy
 - uid: Speechly.Tools.AudioTools.Downsample(System.Single[]@,System.Single[]@,System.Int32,System.Int32,System.Int32,System.Int32)
   name: Downsample(in Single[], ref Single[], Int32, Int32, Int32, Int32)
   href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_Downsample_System_Single____System_Single____System_Int32_System_Int32_System_Int32_System_Int32_
@@ -580,6 +598,19 @@ references:
   isSpec: "True"
   fullName: Speechly.Tools.AudioTools.Downsample
   nameWithType: AudioTools.Downsample
+- uid: Speechly.Tools.AudioTools.EnergyToDb(System.Single)
+  name: EnergyToDb(Single)
+  href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_EnergyToDb_System_Single_
+  commentId: M:Speechly.Tools.AudioTools.EnergyToDb(System.Single)
+  fullName: Speechly.Tools.AudioTools.EnergyToDb(System.Single)
+  nameWithType: AudioTools.EnergyToDb(Single)
+- uid: Speechly.Tools.AudioTools.EnergyToDb*
+  name: EnergyToDb
+  href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_EnergyToDb_
+  commentId: Overload:Speechly.Tools.AudioTools.EnergyToDb
+  isSpec: "True"
+  fullName: Speechly.Tools.AudioTools.EnergyToDb
+  nameWithType: AudioTools.EnergyToDb
 - uid: Speechly.Tools.AudioTools.GetAudioPeak(System.Single[]@,System.Int32,System.Int32)
   name: GetAudioPeak(in Single[], Int32, Int32)
   href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_GetAudioPeak_System_Single____System_Int32_System_Int32_
@@ -612,6 +643,86 @@ references:
   isSpec: "True"
   fullName: Speechly.Tools.AudioTools.GetEnergy
   nameWithType: AudioTools.GetEnergy
+- uid: Speechly.Tools.AudioTools.LOG_2_PLUS_LOG_5
+  name: LOG_2_PLUS_LOG_5
+  href: api/Speechly.Tools.AudioTools.html#Speechly_Tools_AudioTools_LOG_2_PLUS_LOG_5
+  commentId: F:Speechly.Tools.AudioTools.LOG_2_PLUS_LOG_5
+  fullName: Speechly.Tools.AudioTools.LOG_2_PLUS_LOG_5
+  nameWithType: AudioTools.LOG_2_PLUS_LOG_5
+- uid: Speechly.Tools.EnergyThresholdVAD
+  name: EnergyThresholdVAD
+  href: api/Speechly.Tools.EnergyThresholdVAD.html
+  commentId: T:Speechly.Tools.EnergyThresholdVAD
+  fullName: Speechly.Tools.EnergyThresholdVAD
+  nameWithType: EnergyThresholdVAD
+- uid: Speechly.Tools.EnergyThresholdVAD.#ctor(Speechly.Types.VADOptions,Speechly.Types.AudioInfo)
+  name: EnergyThresholdVAD(VADOptions, AudioInfo)
+  href: api/Speechly.Tools.EnergyThresholdVAD.html#Speechly_Tools_EnergyThresholdVAD__ctor_Speechly_Types_VADOptions_Speechly_Types_AudioInfo_
+  commentId: M:Speechly.Tools.EnergyThresholdVAD.#ctor(Speechly.Types.VADOptions,Speechly.Types.AudioInfo)
+  fullName: Speechly.Tools.EnergyThresholdVAD.EnergyThresholdVAD(Speechly.Types.VADOptions, Speechly.Types.AudioInfo)
+  nameWithType: EnergyThresholdVAD.EnergyThresholdVAD(VADOptions, AudioInfo)
+- uid: Speechly.Tools.EnergyThresholdVAD.#ctor*
+  name: EnergyThresholdVAD
+  href: api/Speechly.Tools.EnergyThresholdVAD.html#Speechly_Tools_EnergyThresholdVAD__ctor_
+  commentId: Overload:Speechly.Tools.EnergyThresholdVAD.#ctor
+  isSpec: "True"
+  fullName: Speechly.Tools.EnergyThresholdVAD.EnergyThresholdVAD
+  nameWithType: EnergyThresholdVAD.EnergyThresholdVAD
+- uid: Speechly.Tools.EnergyThresholdVAD.Options
+  name: Options
+  href: api/Speechly.Tools.EnergyThresholdVAD.html#Speechly_Tools_EnergyThresholdVAD_Options
+  commentId: P:Speechly.Tools.EnergyThresholdVAD.Options
+  fullName: Speechly.Tools.EnergyThresholdVAD.Options
+  nameWithType: EnergyThresholdVAD.Options
+- uid: Speechly.Tools.EnergyThresholdVAD.Options*
+  name: Options
+  href: api/Speechly.Tools.EnergyThresholdVAD.html#Speechly_Tools_EnergyThresholdVAD_Options_
+  commentId: Overload:Speechly.Tools.EnergyThresholdVAD.Options
+  isSpec: "True"
+  fullName: Speechly.Tools.EnergyThresholdVAD.Options
+  nameWithType: EnergyThresholdVAD.Options
+- uid: Speechly.Tools.EnergyThresholdVAD.Output
+  name: Output
+  href: api/Speechly.Tools.EnergyThresholdVAD.html#Speechly_Tools_EnergyThresholdVAD_Output
+  commentId: P:Speechly.Tools.EnergyThresholdVAD.Output
+  fullName: Speechly.Tools.EnergyThresholdVAD.Output
+  nameWithType: EnergyThresholdVAD.Output
+- uid: Speechly.Tools.EnergyThresholdVAD.Output*
+  name: Output
+  href: api/Speechly.Tools.EnergyThresholdVAD.html#Speechly_Tools_EnergyThresholdVAD_Output_
+  commentId: Overload:Speechly.Tools.EnergyThresholdVAD.Output
+  isSpec: "True"
+  fullName: Speechly.Tools.EnergyThresholdVAD.Output
+  nameWithType: EnergyThresholdVAD.Output
+- uid: Speechly.Tools.EnergyThresholdVAD.ProcessFrame(System.Single[],System.Int32,System.Int32)
+  name: ProcessFrame(Single[], Int32, Int32)
+  href: api/Speechly.Tools.EnergyThresholdVAD.html#Speechly_Tools_EnergyThresholdVAD_ProcessFrame_System_Single___System_Int32_System_Int32_
+  commentId: M:Speechly.Tools.EnergyThresholdVAD.ProcessFrame(System.Single[],System.Int32,System.Int32)
+  name.vb: ProcessFrame(Single(), Int32, Int32)
+  fullName: Speechly.Tools.EnergyThresholdVAD.ProcessFrame(System.Single[], System.Int32, System.Int32)
+  fullName.vb: Speechly.Tools.EnergyThresholdVAD.ProcessFrame(System.Single(), System.Int32, System.Int32)
+  nameWithType: EnergyThresholdVAD.ProcessFrame(Single[], Int32, Int32)
+  nameWithType.vb: EnergyThresholdVAD.ProcessFrame(Single(), Int32, Int32)
+- uid: Speechly.Tools.EnergyThresholdVAD.ProcessFrame*
+  name: ProcessFrame
+  href: api/Speechly.Tools.EnergyThresholdVAD.html#Speechly_Tools_EnergyThresholdVAD_ProcessFrame_
+  commentId: Overload:Speechly.Tools.EnergyThresholdVAD.ProcessFrame
+  isSpec: "True"
+  fullName: Speechly.Tools.EnergyThresholdVAD.ProcessFrame
+  nameWithType: EnergyThresholdVAD.ProcessFrame
+- uid: Speechly.Tools.EnergyThresholdVAD.ResetVAD
+  name: ResetVAD()
+  href: api/Speechly.Tools.EnergyThresholdVAD.html#Speechly_Tools_EnergyThresholdVAD_ResetVAD
+  commentId: M:Speechly.Tools.EnergyThresholdVAD.ResetVAD
+  fullName: Speechly.Tools.EnergyThresholdVAD.ResetVAD()
+  nameWithType: EnergyThresholdVAD.ResetVAD()
+- uid: Speechly.Tools.EnergyThresholdVAD.ResetVAD*
+  name: ResetVAD
+  href: api/Speechly.Tools.EnergyThresholdVAD.html#Speechly_Tools_EnergyThresholdVAD_ResetVAD_
+  commentId: Overload:Speechly.Tools.EnergyThresholdVAD.ResetVAD
+  isSpec: "True"
+  fullName: Speechly.Tools.EnergyThresholdVAD.ResetVAD
+  nameWithType: EnergyThresholdVAD.ResetVAD
 - uid: Speechly.Tools.JSON
   name: JSON
   href: api/Speechly.Tools.JSON.html
@@ -907,6 +1018,111 @@ references:
   commentId: N:Speechly.Types
   fullName: Speechly.Types
   nameWithType: Speechly.Types
+- uid: Speechly.Types.AudioInfo
+  name: AudioInfo
+  href: api/Speechly.Types.AudioInfo.html
+  commentId: T:Speechly.Types.AudioInfo
+  fullName: Speechly.Types.AudioInfo
+  nameWithType: AudioInfo
+- uid: Speechly.Types.AudioInfo.IsSignalDetected
+  name: IsSignalDetected
+  href: api/Speechly.Types.AudioInfo.html#Speechly_Types_AudioInfo_IsSignalDetected
+  commentId: F:Speechly.Types.AudioInfo.IsSignalDetected
+  fullName: Speechly.Types.AudioInfo.IsSignalDetected
+  nameWithType: AudioInfo.IsSignalDetected
+- uid: Speechly.Types.AudioInfo.NoiseLevelDb
+  name: NoiseLevelDb
+  href: api/Speechly.Types.AudioInfo.html#Speechly_Types_AudioInfo_NoiseLevelDb
+  commentId: F:Speechly.Types.AudioInfo.NoiseLevelDb
+  fullName: Speechly.Types.AudioInfo.NoiseLevelDb
+  nameWithType: AudioInfo.NoiseLevelDb
+- uid: Speechly.Types.AudioInfo.SamplesSent
+  name: SamplesSent
+  href: api/Speechly.Types.AudioInfo.html#Speechly_Types_AudioInfo_SamplesSent
+  commentId: P:Speechly.Types.AudioInfo.SamplesSent
+  fullName: Speechly.Types.AudioInfo.SamplesSent
+  nameWithType: AudioInfo.SamplesSent
+- uid: Speechly.Types.AudioInfo.SamplesSent*
+  name: SamplesSent
+  href: api/Speechly.Types.AudioInfo.html#Speechly_Types_AudioInfo_SamplesSent_
+  commentId: Overload:Speechly.Types.AudioInfo.SamplesSent
+  isSpec: "True"
+  fullName: Speechly.Types.AudioInfo.SamplesSent
+  nameWithType: AudioInfo.SamplesSent
+- uid: Speechly.Types.AudioInfo.SignalDb
+  name: SignalDb
+  href: api/Speechly.Types.AudioInfo.html#Speechly_Types_AudioInfo_SignalDb
+  commentId: F:Speechly.Types.AudioInfo.SignalDb
+  fullName: Speechly.Types.AudioInfo.SignalDb
+  nameWithType: AudioInfo.SignalDb
+- uid: Speechly.Types.AudioInfo.StreamSamplePos
+  name: StreamSamplePos
+  href: api/Speechly.Types.AudioInfo.html#Speechly_Types_AudioInfo_StreamSamplePos
+  commentId: P:Speechly.Types.AudioInfo.StreamSamplePos
+  fullName: Speechly.Types.AudioInfo.StreamSamplePos
+  nameWithType: AudioInfo.StreamSamplePos
+- uid: Speechly.Types.AudioInfo.StreamSamplePos*
+  name: StreamSamplePos
+  href: api/Speechly.Types.AudioInfo.html#Speechly_Types_AudioInfo_StreamSamplePos_
+  commentId: Overload:Speechly.Types.AudioInfo.StreamSamplePos
+  isSpec: "True"
+  fullName: Speechly.Types.AudioInfo.StreamSamplePos
+  nameWithType: AudioInfo.StreamSamplePos
+- uid: Speechly.Types.AudioInfo.UtteranceSerial
+  name: UtteranceSerial
+  href: api/Speechly.Types.AudioInfo.html#Speechly_Types_AudioInfo_UtteranceSerial
+  commentId: P:Speechly.Types.AudioInfo.UtteranceSerial
+  fullName: Speechly.Types.AudioInfo.UtteranceSerial
+  nameWithType: AudioInfo.UtteranceSerial
+- uid: Speechly.Types.AudioInfo.UtteranceSerial*
+  name: UtteranceSerial
+  href: api/Speechly.Types.AudioInfo.html#Speechly_Types_AudioInfo_UtteranceSerial_
+  commentId: Overload:Speechly.Types.AudioInfo.UtteranceSerial
+  isSpec: "True"
+  fullName: Speechly.Types.AudioInfo.UtteranceSerial
+  nameWithType: AudioInfo.UtteranceSerial
+- uid: Speechly.Types.AudioProcessorOptions
+  name: AudioProcessorOptions
+  href: api/Speechly.Types.AudioProcessorOptions.html
+  commentId: T:Speechly.Types.AudioProcessorOptions
+  fullName: Speechly.Types.AudioProcessorOptions
+  nameWithType: AudioProcessorOptions
+- uid: Speechly.Types.AudioProcessorOptions.FrameMillis
+  name: FrameMillis
+  href: api/Speechly.Types.AudioProcessorOptions.html#Speechly_Types_AudioProcessorOptions_FrameMillis
+  commentId: F:Speechly.Types.AudioProcessorOptions.FrameMillis
+  fullName: Speechly.Types.AudioProcessorOptions.FrameMillis
+  nameWithType: AudioProcessorOptions.FrameMillis
+- uid: Speechly.Types.AudioProcessorOptions.HistoryFrames
+  name: HistoryFrames
+  href: api/Speechly.Types.AudioProcessorOptions.html#Speechly_Types_AudioProcessorOptions_HistoryFrames
+  commentId: F:Speechly.Types.AudioProcessorOptions.HistoryFrames
+  fullName: Speechly.Types.AudioProcessorOptions.HistoryFrames
+  nameWithType: AudioProcessorOptions.HistoryFrames
+- uid: Speechly.Types.AudioProcessorOptions.InputSampleRate
+  name: InputSampleRate
+  href: api/Speechly.Types.AudioProcessorOptions.html#Speechly_Types_AudioProcessorOptions_InputSampleRate
+  commentId: F:Speechly.Types.AudioProcessorOptions.InputSampleRate
+  fullName: Speechly.Types.AudioProcessorOptions.InputSampleRate
+  nameWithType: AudioProcessorOptions.InputSampleRate
+- uid: Speechly.Types.AudioProcessorOptions.InternalSampleRate
+  name: InternalSampleRate
+  href: api/Speechly.Types.AudioProcessorOptions.html#Speechly_Types_AudioProcessorOptions_InternalSampleRate
+  commentId: F:Speechly.Types.AudioProcessorOptions.InternalSampleRate
+  fullName: Speechly.Types.AudioProcessorOptions.InternalSampleRate
+  nameWithType: AudioProcessorOptions.InternalSampleRate
+- uid: Speechly.Types.AudioProcessorOptions.VADControlsListening
+  name: VADControlsListening
+  href: api/Speechly.Types.AudioProcessorOptions.html#Speechly_Types_AudioProcessorOptions_VADControlsListening
+  commentId: F:Speechly.Types.AudioProcessorOptions.VADControlsListening
+  fullName: Speechly.Types.AudioProcessorOptions.VADControlsListening
+  nameWithType: AudioProcessorOptions.VADControlsListening
+- uid: Speechly.Types.AudioProcessorOptions.VADSettings
+  name: VADSettings
+  href: api/Speechly.Types.AudioProcessorOptions.html#Speechly_Types_AudioProcessorOptions_VADSettings
+  commentId: F:Speechly.Types.AudioProcessorOptions.VADSettings
+  fullName: Speechly.Types.AudioProcessorOptions.VADSettings
+  nameWithType: AudioProcessorOptions.VADSettings
 - uid: Speechly.Types.BeautifyEntity
   name: BeautifyEntity
   href: api/Speechly.Types.BeautifyEntity.html
@@ -919,6 +1135,42 @@ references:
   commentId: T:Speechly.Types.BeautifyIntent
   fullName: Speechly.Types.BeautifyIntent
   nameWithType: BeautifyIntent
+- uid: Speechly.Types.ContextOptions
+  name: ContextOptions
+  href: api/Speechly.Types.ContextOptions.html
+  commentId: T:Speechly.Types.ContextOptions
+  fullName: Speechly.Types.ContextOptions
+  nameWithType: ContextOptions
+- uid: Speechly.Types.ContextOptions.BoostVocabulary
+  name: BoostVocabulary
+  href: api/Speechly.Types.ContextOptions.html#Speechly_Types_ContextOptions_BoostVocabulary
+  commentId: F:Speechly.Types.ContextOptions.BoostVocabulary
+  fullName: Speechly.Types.ContextOptions.BoostVocabulary
+  nameWithType: ContextOptions.BoostVocabulary
+- uid: Speechly.Types.ContextOptions.ShallowFusionSettings
+  name: ContextOptions.ShallowFusionSettings
+  href: api/Speechly.Types.ContextOptions.ShallowFusionSettings.html
+  commentId: T:Speechly.Types.ContextOptions.ShallowFusionSettings
+  fullName: Speechly.Types.ContextOptions.ShallowFusionSettings
+  nameWithType: ContextOptions.ShallowFusionSettings
+- uid: Speechly.Types.ContextOptions.ShallowFusionSettings.Vocabulary
+  name: Vocabulary
+  href: api/Speechly.Types.ContextOptions.ShallowFusionSettings.html#Speechly_Types_ContextOptions_ShallowFusionSettings_Vocabulary
+  commentId: F:Speechly.Types.ContextOptions.ShallowFusionSettings.Vocabulary
+  fullName: Speechly.Types.ContextOptions.ShallowFusionSettings.Vocabulary
+  nameWithType: ContextOptions.ShallowFusionSettings.Vocabulary
+- uid: Speechly.Types.ContextOptions.ShallowFusionSettings.Weight
+  name: Weight
+  href: api/Speechly.Types.ContextOptions.ShallowFusionSettings.html#Speechly_Types_ContextOptions_ShallowFusionSettings_Weight
+  commentId: F:Speechly.Types.ContextOptions.ShallowFusionSettings.Weight
+  fullName: Speechly.Types.ContextOptions.ShallowFusionSettings.Weight
+  nameWithType: ContextOptions.ShallowFusionSettings.Weight
+- uid: Speechly.Types.ContextOptions.SilenceSegmentationMillis
+  name: SilenceSegmentationMillis
+  href: api/Speechly.Types.ContextOptions.html#Speechly_Types_ContextOptions_SilenceSegmentationMillis
+  commentId: F:Speechly.Types.ContextOptions.SilenceSegmentationMillis
+  fullName: Speechly.Types.ContextOptions.SilenceSegmentationMillis
+  nameWithType: ContextOptions.SilenceSegmentationMillis
 - uid: Speechly.Types.Entity
   name: Entity
   href: api/Speechly.Types.Entity.html
@@ -985,6 +1237,37 @@ references:
   commentId: T:Speechly.Types.IntentDelegate
   fullName: Speechly.Types.IntentDelegate
   nameWithType: IntentDelegate
+- uid: Speechly.Types.ModelExpiredException
+  name: ModelExpiredException
+  href: api/Speechly.Types.ModelExpiredException.html
+  commentId: T:Speechly.Types.ModelExpiredException
+  fullName: Speechly.Types.ModelExpiredException
+  nameWithType: ModelExpiredException
+- uid: Speechly.Types.ModelExpiredException.#ctor
+  name: ModelExpiredException()
+  href: api/Speechly.Types.ModelExpiredException.html#Speechly_Types_ModelExpiredException__ctor
+  commentId: M:Speechly.Types.ModelExpiredException.#ctor
+  fullName: Speechly.Types.ModelExpiredException.ModelExpiredException()
+  nameWithType: ModelExpiredException.ModelExpiredException()
+- uid: Speechly.Types.ModelExpiredException.#ctor(System.String)
+  name: ModelExpiredException(String)
+  href: api/Speechly.Types.ModelExpiredException.html#Speechly_Types_ModelExpiredException__ctor_System_String_
+  commentId: M:Speechly.Types.ModelExpiredException.#ctor(System.String)
+  fullName: Speechly.Types.ModelExpiredException.ModelExpiredException(System.String)
+  nameWithType: ModelExpiredException.ModelExpiredException(String)
+- uid: Speechly.Types.ModelExpiredException.#ctor(System.String,Exception)
+  name: ModelExpiredException(String, Exception)
+  href: api/Speechly.Types.ModelExpiredException.html#Speechly_Types_ModelExpiredException__ctor_System_String_Exception_
+  commentId: M:Speechly.Types.ModelExpiredException.#ctor(System.String,Exception)
+  fullName: Speechly.Types.ModelExpiredException.ModelExpiredException(System.String, Exception)
+  nameWithType: ModelExpiredException.ModelExpiredException(String, Exception)
+- uid: Speechly.Types.ModelExpiredException.#ctor*
+  name: ModelExpiredException
+  href: api/Speechly.Types.ModelExpiredException.html#Speechly_Types_ModelExpiredException__ctor_
+  commentId: Overload:Speechly.Types.ModelExpiredException.#ctor
+  isSpec: "True"
+  fullName: Speechly.Types.ModelExpiredException.ModelExpiredException
+  nameWithType: ModelExpiredException.ModelExpiredException
 - uid: Speechly.Types.MsgCommon
   name: MsgCommon
   href: api/Speechly.Types.MsgCommon.html
@@ -1138,24 +1421,72 @@ references:
   commentId: T:Speechly.Types.SegmentChangeDelegate
   fullName: Speechly.Types.SegmentChangeDelegate
   nameWithType: SegmentChangeDelegate
-- uid: Speechly.Types.StartContextDelegate
-  name: StartContextDelegate
-  href: api/Speechly.Types.StartContextDelegate.html
-  commentId: T:Speechly.Types.StartContextDelegate
-  fullName: Speechly.Types.StartContextDelegate
-  nameWithType: StartContextDelegate
+- uid: Speechly.Types.StartDelegate
+  name: StartDelegate
+  href: api/Speechly.Types.StartDelegate.html
+  commentId: T:Speechly.Types.StartDelegate
+  fullName: Speechly.Types.StartDelegate
+  nameWithType: StartDelegate
+- uid: Speechly.Types.StartMessage
+  name: StartMessage
+  href: api/Speechly.Types.StartMessage.html
+  commentId: T:Speechly.Types.StartMessage
+  fullName: Speechly.Types.StartMessage
+  nameWithType: StartMessage
+- uid: Speechly.Types.StartMessage.appId
+  name: appId
+  href: api/Speechly.Types.StartMessage.html#Speechly_Types_StartMessage_appId
+  commentId: F:Speechly.Types.StartMessage.appId
+  fullName: Speechly.Types.StartMessage.appId
+  nameWithType: StartMessage.appId
+- uid: Speechly.Types.StartMessage.eventType
+  name: eventType
+  href: api/Speechly.Types.StartMessage.html#Speechly_Types_StartMessage_eventType
+  commentId: F:Speechly.Types.StartMessage.eventType
+  fullName: Speechly.Types.StartMessage.eventType
+  nameWithType: StartMessage.eventType
+- uid: Speechly.Types.StartMessage.options
+  name: options
+  href: api/Speechly.Types.StartMessage.html#Speechly_Types_StartMessage_options
+  commentId: F:Speechly.Types.StartMessage.options
+  fullName: Speechly.Types.StartMessage.options
+  nameWithType: StartMessage.options
+- uid: Speechly.Types.StartMessage.Options
+  name: StartMessage.Options
+  href: api/Speechly.Types.StartMessage.Options.html
+  commentId: T:Speechly.Types.StartMessage.Options
+  fullName: Speechly.Types.StartMessage.Options
+  nameWithType: StartMessage.Options
+- uid: Speechly.Types.StartMessage.Options.silence_triggered_segmentation
+  name: silence_triggered_segmentation
+  href: api/Speechly.Types.StartMessage.Options.html#Speechly_Types_StartMessage_Options_silence_triggered_segmentation
+  commentId: F:Speechly.Types.StartMessage.Options.silence_triggered_segmentation
+  fullName: Speechly.Types.StartMessage.Options.silence_triggered_segmentation
+  nameWithType: StartMessage.Options.silence_triggered_segmentation
+- uid: Speechly.Types.StartMessage.Options.vocabulary
+  name: vocabulary
+  href: api/Speechly.Types.StartMessage.Options.html#Speechly_Types_StartMessage_Options_vocabulary
+  commentId: F:Speechly.Types.StartMessage.Options.vocabulary
+  fullName: Speechly.Types.StartMessage.Options.vocabulary
+  nameWithType: StartMessage.Options.vocabulary
+- uid: Speechly.Types.StartMessage.Options.vocabulary_bias
+  name: vocabulary_bias
+  href: api/Speechly.Types.StartMessage.Options.html#Speechly_Types_StartMessage_Options_vocabulary_bias
+  commentId: F:Speechly.Types.StartMessage.Options.vocabulary_bias
+  fullName: Speechly.Types.StartMessage.Options.vocabulary_bias
+  nameWithType: StartMessage.Options.vocabulary_bias
 - uid: Speechly.Types.StartStreamDelegate
   name: StartStreamDelegate
   href: api/Speechly.Types.StartStreamDelegate.html
   commentId: T:Speechly.Types.StartStreamDelegate
   fullName: Speechly.Types.StartStreamDelegate
   nameWithType: StartStreamDelegate
-- uid: Speechly.Types.StopContextDelegate
-  name: StopContextDelegate
-  href: api/Speechly.Types.StopContextDelegate.html
-  commentId: T:Speechly.Types.StopContextDelegate
-  fullName: Speechly.Types.StopContextDelegate
-  nameWithType: StopContextDelegate
+- uid: Speechly.Types.StopDelegate
+  name: StopDelegate
+  href: api/Speechly.Types.StopDelegate.html
+  commentId: T:Speechly.Types.StopDelegate
+  fullName: Speechly.Types.StopDelegate
+  nameWithType: StopDelegate
 - uid: Speechly.Types.StopStreamDelegate
   name: StopStreamDelegate
   href: api/Speechly.Types.StopStreamDelegate.html
@@ -1180,6 +1511,67 @@ references:
   commentId: T:Speechly.Types.TranscriptDelegate
   fullName: Speechly.Types.TranscriptDelegate
   nameWithType: TranscriptDelegate
+- uid: Speechly.Types.VADOptions
+  name: VADOptions
+  href: api/Speechly.Types.VADOptions.html
+  commentId: T:Speechly.Types.VADOptions
+  fullName: Speechly.Types.VADOptions
+  nameWithType: VADOptions
+- uid: Speechly.Types.VADOptions.Enabled
+  name: Enabled
+  href: api/Speechly.Types.VADOptions.html#Speechly_Types_VADOptions_Enabled
+  commentId: P:Speechly.Types.VADOptions.Enabled
+  fullName: Speechly.Types.VADOptions.Enabled
+  nameWithType: VADOptions.Enabled
+- uid: Speechly.Types.VADOptions.Enabled*
+  name: Enabled
+  href: api/Speechly.Types.VADOptions.html#Speechly_Types_VADOptions_Enabled_
+  commentId: Overload:Speechly.Types.VADOptions.Enabled
+  isSpec: "True"
+  fullName: Speechly.Types.VADOptions.Enabled
+  nameWithType: VADOptions.Enabled
+- uid: Speechly.Types.VADOptions.NoiseGateDb
+  name: NoiseGateDb
+  href: api/Speechly.Types.VADOptions.html#Speechly_Types_VADOptions_NoiseGateDb
+  commentId: F:Speechly.Types.VADOptions.NoiseGateDb
+  fullName: Speechly.Types.VADOptions.NoiseGateDb
+  nameWithType: VADOptions.NoiseGateDb
+- uid: Speechly.Types.VADOptions.NoiseLearnHalftimeMillis
+  name: NoiseLearnHalftimeMillis
+  href: api/Speechly.Types.VADOptions.html#Speechly_Types_VADOptions_NoiseLearnHalftimeMillis
+  commentId: F:Speechly.Types.VADOptions.NoiseLearnHalftimeMillis
+  fullName: Speechly.Types.VADOptions.NoiseLearnHalftimeMillis
+  nameWithType: VADOptions.NoiseLearnHalftimeMillis
+- uid: Speechly.Types.VADOptions.SignalActivation
+  name: SignalActivation
+  href: api/Speechly.Types.VADOptions.html#Speechly_Types_VADOptions_SignalActivation
+  commentId: F:Speechly.Types.VADOptions.SignalActivation
+  fullName: Speechly.Types.VADOptions.SignalActivation
+  nameWithType: VADOptions.SignalActivation
+- uid: Speechly.Types.VADOptions.SignalRelease
+  name: SignalRelease
+  href: api/Speechly.Types.VADOptions.html#Speechly_Types_VADOptions_SignalRelease
+  commentId: F:Speechly.Types.VADOptions.SignalRelease
+  fullName: Speechly.Types.VADOptions.SignalRelease
+  nameWithType: VADOptions.SignalRelease
+- uid: Speechly.Types.VADOptions.SignalSearchFrames
+  name: SignalSearchFrames
+  href: api/Speechly.Types.VADOptions.html#Speechly_Types_VADOptions_SignalSearchFrames
+  commentId: F:Speechly.Types.VADOptions.SignalSearchFrames
+  fullName: Speechly.Types.VADOptions.SignalSearchFrames
+  nameWithType: VADOptions.SignalSearchFrames
+- uid: Speechly.Types.VADOptions.SignalSustainMillis
+  name: SignalSustainMillis
+  href: api/Speechly.Types.VADOptions.html#Speechly_Types_VADOptions_SignalSustainMillis
+  commentId: F:Speechly.Types.VADOptions.SignalSustainMillis
+  fullName: Speechly.Types.VADOptions.SignalSustainMillis
+  nameWithType: VADOptions.SignalSustainMillis
+- uid: Speechly.Types.VADOptions.SignalToNoiseDb
+  name: SignalToNoiseDb
+  href: api/Speechly.Types.VADOptions.html#Speechly_Types_VADOptions_SignalToNoiseDb
+  commentId: F:Speechly.Types.VADOptions.SignalToNoiseDb
+  fullName: Speechly.Types.VADOptions.SignalToNoiseDb
+  nameWithType: VADOptions.SignalToNoiseDb
 - uid: Speechly.Types.Word
   name: Word
   href: api/Speechly.Types.Word.html

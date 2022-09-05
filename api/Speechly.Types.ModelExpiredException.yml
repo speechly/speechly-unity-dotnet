@@ -1,0 +1,161 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Types.ModelExpiredException
+  commentId: T:Speechly.Types.ModelExpiredException
+  id: ModelExpiredException
+  parent: Speechly.Types
+  children:
+  - Speechly.Types.ModelExpiredException.#ctor
+  - Speechly.Types.ModelExpiredException.#ctor(System.String)
+  - Speechly.Types.ModelExpiredException.#ctor(System.String,Exception)
+  langs:
+  - csharp
+  - vb
+  name: ModelExpiredException
+  nameWithType: ModelExpiredException
+  fullName: Speechly.Types.ModelExpiredException
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ModelExpiredException
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 27
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: 'public class ModelExpiredException : Exception'
+    content.vb: >-
+      Public Class ModelExpiredException
+          Inherits Exception
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Types.ModelExpiredException.#ctor
+  commentId: M:Speechly.Types.ModelExpiredException.#ctor
+  id: '#ctor'
+  parent: Speechly.Types.ModelExpiredException
+  langs:
+  - csharp
+  - vb
+  name: ModelExpiredException()
+  nameWithType: ModelExpiredException.ModelExpiredException()
+  fullName: Speechly.Types.ModelExpiredException.ModelExpiredException()
+  type: Constructor
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: .ctor
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 29
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public ModelExpiredException()
+    content.vb: Public Sub New
+  overload: Speechly.Types.ModelExpiredException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.ModelExpiredException.#ctor(System.String)
+  commentId: M:Speechly.Types.ModelExpiredException.#ctor(System.String)
+  id: '#ctor(System.String)'
+  parent: Speechly.Types.ModelExpiredException
+  langs:
+  - csharp
+  - vb
+  name: ModelExpiredException(String)
+  nameWithType: ModelExpiredException.ModelExpiredException(String)
+  fullName: Speechly.Types.ModelExpiredException.ModelExpiredException(System.String)
+  type: Constructor
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: .ctor
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 30
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public ModelExpiredException(string message)
+    parameters:
+    - id: message
+      type: System.String
+    content.vb: Public Sub New(message As String)
+  overload: Speechly.Types.ModelExpiredException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Types.ModelExpiredException.#ctor(System.String,Exception)
+  commentId: M:Speechly.Types.ModelExpiredException.#ctor(System.String,Exception)
+  id: '#ctor(System.String,Exception)'
+  parent: Speechly.Types.ModelExpiredException
+  langs:
+  - csharp
+  - vb
+  name: ModelExpiredException(String, Exception)
+  nameWithType: ModelExpiredException.ModelExpiredException(String, Exception)
+  fullName: Speechly.Types.ModelExpiredException.ModelExpiredException(System.String, Exception)
+  type: Constructor
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: .ctor
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    startLine: 31
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Types
+  syntax:
+    content: public ModelExpiredException(string message, Exception inner)
+    parameters:
+    - id: message
+      type: System.String
+    - id: inner
+      type: Exception
+    content.vb: Public Sub New(message As String, inner As Exception)
+  overload: Speechly.Types.ModelExpiredException.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: Speechly.Types.ModelExpiredException.#ctor*
+  commentId: Overload:Speechly.Types.ModelExpiredException.#ctor
+  name: ModelExpiredException
+  nameWithType: ModelExpiredException.ModelExpiredException
+  fullName: Speechly.Types.ModelExpiredException.ModelExpiredException
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: Exception
+  commentId: '!:Exception'
+  isExternal: true
+  name: Exception
+  nameWithType: Exception
+  fullName: Exception
