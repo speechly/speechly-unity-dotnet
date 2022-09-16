@@ -4,7 +4,11 @@ items:
   commentId: N:Speechly.Tools
   id: Speechly.Tools
   children:
+  - Speechly.Tools.AudioProcessor
+  - Speechly.Tools.AudioProcessor.SendAudioDelegate
+  - Speechly.Tools.AudioProcessor.VadChangeDelegate
   - Speechly.Tools.AudioTools
+  - Speechly.Tools.EnergyThresholdVAD
   - Speechly.Tools.JSON
   - Speechly.Tools.Logger
   - Speechly.Tools.Logger.LoggerDelegate
@@ -21,11 +25,34 @@ items:
   assemblies:
   - speechly-unity-net-standard-2.0
 references:
+- uid: Speechly.Tools.AudioProcessor
+  commentId: T:Speechly.Tools.AudioProcessor
+  name: AudioProcessor
+  nameWithType: AudioProcessor
+  fullName: Speechly.Tools.AudioProcessor
+- uid: Speechly.Tools.AudioProcessor.SendAudioDelegate
+  commentId: T:Speechly.Tools.AudioProcessor.SendAudioDelegate
+  parent: Speechly.Tools
+  name: AudioProcessor.SendAudioDelegate
+  nameWithType: AudioProcessor.SendAudioDelegate
+  fullName: Speechly.Tools.AudioProcessor.SendAudioDelegate
+- uid: Speechly.Tools.AudioProcessor.VadChangeDelegate
+  commentId: T:Speechly.Tools.AudioProcessor.VadChangeDelegate
+  parent: Speechly.Tools
+  name: AudioProcessor.VadChangeDelegate
+  nameWithType: AudioProcessor.VadChangeDelegate
+  fullName: Speechly.Tools.AudioProcessor.VadChangeDelegate
 - uid: Speechly.Tools.AudioTools
   commentId: T:Speechly.Tools.AudioTools
   name: AudioTools
   nameWithType: AudioTools
   fullName: Speechly.Tools.AudioTools
+- uid: Speechly.Tools.EnergyThresholdVAD
+  commentId: T:Speechly.Tools.EnergyThresholdVAD
+  parent: Speechly.Tools
+  name: EnergyThresholdVAD
+  nameWithType: EnergyThresholdVAD
+  fullName: Speechly.Tools.EnergyThresholdVAD
 - uid: Speechly.Tools.JSON
   commentId: T:Speechly.Tools.JSON
   name: JSON

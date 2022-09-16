@@ -506,10 +506,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 281230170}
   m_HandleRect: {fileID: 33476814}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 0.5
+  m_MinValue: -90
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 0.4
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -923,10 +923,10 @@ MonoBehaviour:
   m_FillRect: {fileID: 1796486933}
   m_HandleRect: {fileID: 1073776682}
   m_Direction: 0
-  m_MinValue: 0
-  m_MaxValue: 0.5
+  m_MinValue: -90
+  m_MaxValue: 0
   m_WholeNumbers: 0
-  m_Value: 0.1
+  m_Value: 0
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
@@ -1179,7 +1179,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 758041406}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 979204ce5b94d4780a3c33f9a0802125, type: 3}
+  m_Script: {fileID: 11500000, guid: 1facb91a63f504a0983722fe61005293, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   SliderEnergy: {fileID: 275751998}
@@ -1787,23 +1787,31 @@ MonoBehaviour:
   SpeechlyEnv: 0
   AppId: 8fb67f1e-69df-4d25-811b-4413a3264be2
   CaptureDeviceName: 
-  MicSampleRate: 16000
-  FrameMillis: 30
-  HistoryFrames: 8
-  EnergyLevels:
-    Enabled: 1
-    SignalToNoiseDb: 3
-    NoiseGateDb: -24
-    NoiseLearnHalftimeMillis: 400
-    SignalSearchFrames: 5
-    SignalActivation: 0.7
-    SignalRelease: 0.2
-    SignalSustainMillis: 3000
+  ModelBundle: 
+  DebugPrint: 0
+  AudioProcessorSettings:
+    InputSampleRate: 16000
+    InternalSampleRate: 16000
+    FrameMillis: 30
+    HistoryFrames: 8
+    VADControlsListening: 1
+    VADSettings:
+      SignalToNoiseDb: 3
+      NoiseGateDb: -24
+      NoiseLearnHalftimeMillis: 400
+      SignalSearchFrames: 5
+      SignalActivation: 0.7
+      SignalRelease: 0.2
+      SignalSustainMillis: 3000
+  SpeechRecognitionSettings:
+    SilenceSegmentationMillis: 720
+    BoostVocabulary:
+      Vocabulary: 
+      Weight: 0
+  Output:
     IsSignalDetected: 0
     SignalDb: 0
     NoiseLevelDb: 0
-    ControlListening: 1
-  DebugPrint: 0
 --- !u!1 &2069320975
 GameObject:
   m_ObjectHideFlags: 0

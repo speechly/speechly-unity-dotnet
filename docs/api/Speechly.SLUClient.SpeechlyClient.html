@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Class SpeechlyClient
    ">
-    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="generator" content="docfx 2.59.3.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -77,14 +77,14 @@
 <h4 id="usage">Usage</h4>
 <ul>
 <li>Create a new SpeechlyClient instance.</li>
-<li>Create an SLU decoder (<a class="xref" href="Speechly.SLUClient.CloudDecoder.html">CloudDecoder</a>) and pass it to <code>SpeechlyClient</code>'s <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_">Initialize(IDecoder)</a>.</li>
+<li>Create an SLU decoder (<a class="xref" href="Speechly.SLUClient.CloudDecoder.html">CloudDecoder</a>) and pass it to <code>SpeechlyClient</code>'s <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_Speechly_Types_AudioProcessorOptions_Speechly_Types_ContextOptions_System_Boolean_">Initialize(IDecoder, AudioProcessorOptions, ContextOptions, Boolean)</a>.</li>
 <li>Attach delegates like <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_OnSegmentChange">OnSegmentChange</a> to listen to and handle the SLU results.</li>
-<li>Feed audio to process with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_ProcessAudio_System_Single___System_Int32_System_Int32_System_Boolean_">ProcessAudio(Single[], Int32, Int32, Boolean)</a>.</li>
+<li>Feed audio to process with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_ProcessAudio_System_Single___System_Int32_System_Int32_">ProcessAudio(Single[], Int32, Int32)</a>.</li>
 <li>(delegates are firing up as speech is processed)</li>
 <li>When you don't need SLU services any more call <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Shutdown">Shutdown()</a> to free resources.</li>
 </ul>
-<p>You can feed audio continuously, but control when to start and stop process speech with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StartContext_System_String_">StartContext(String)</a> and <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StopContext">StopContext()</a> or
-let voice activity detection (VAD) handle that automatically by passing <a class="xref" href="Speechly.SLUClient.EnergyTresholdVAD.html">EnergyTresholdVAD</a> to SpeechlyClient constructor.</p>
+<p>You can feed audio continuously, but control when to start and stop process speech with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Start_System_String_">Start(String)</a> and <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Stop">Stop()</a> or
+let voice activity detection (VAD) handle that automatically by passing <a class="xref" href="Speechly.Tools.EnergyThresholdVAD.html">EnergyThresholdVAD</a> to SpeechlyClient constructor.</p>
 </div>
   <div class="markdown level0 conceptual"></div>
   <div class="inheritance">
@@ -102,19 +102,19 @@ let voice activity detection (VAD) handle that automatically by passing <a class
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient__ctor_System_Int32_System_Int32_System_Int32_System_Boolean_System_String_Speechly_SLUClient_EnergyTresholdVAD_System_Boolean_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.%23ctor(System.Int32%2CSystem.Int32%2CSystem.Int32%2CSystem.Boolean%2CSystem.String%2CSpeechly.SLUClient.EnergyTresholdVAD%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient__ctor_System_Boolean_System_String_Speechly_Types_AudioInfo_System_Boolean_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.%23ctor(System.Boolean%2CSystem.String%2CSpeechly.Types.AudioInfo%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L108">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L94">View Source</a>
   </span>
   <a id="Speechly_SLUClient_SpeechlyClient__ctor_" data-uid="Speechly.SLUClient.SpeechlyClient.#ctor*"></a>
-  <h4 id="Speechly_SLUClient_SpeechlyClient__ctor_System_Int32_System_Int32_System_Int32_System_Boolean_System_String_Speechly_SLUClient_EnergyTresholdVAD_System_Boolean_" data-uid="Speechly.SLUClient.SpeechlyClient.#ctor(System.Int32,System.Int32,System.Int32,System.Boolean,System.String,Speechly.SLUClient.EnergyTresholdVAD,System.Boolean)">SpeechlyClient(Int32, Int32, Int32, Boolean, String, EnergyTresholdVAD, Boolean)</h4>
+  <h4 id="Speechly_SLUClient_SpeechlyClient__ctor_System_Boolean_System_String_Speechly_Types_AudioInfo_System_Boolean_" data-uid="Speechly.SLUClient.SpeechlyClient.#ctor(System.Boolean,System.String,Speechly.Types.AudioInfo,System.Boolean)">SpeechlyClient(Boolean, String, AudioInfo, Boolean)</h4>
   <div class="markdown level1 summary"><p>Create a new SpeechlyClient to process audio and fire delegates to provide SLU results.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public SpeechlyClient(int frameMillis = 30, int historyFrames = 5, int inputSampleRate = 16000, bool manualUpdate = false, string saveToFolder = null, EnergyTresholdVAD vad = null, bool debug = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public SpeechlyClient(bool manualUpdate = false, string saveToFolder = null, AudioInfo output = null, bool debug = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -126,24 +126,6 @@ let voice activity detection (VAD) handle that automatically by passing <a class
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">frameMillis</span></td>
-        <td><p>Size of one audio frame (default: <code>30</code> ms). Total history duration will be historyFrames*frameSamples. History is sent upon StartContext to capture the start of utterance which especially important with VAD, which activates with a constant delay.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">historyFrames</span></td>
-        <td><p>Count of the audio history frames (default: <code>5</code>). Total history duration will be historyFrames * frameSamples.</p>
-</td>
-      </tr>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td><span class="parametername">inputSampleRate</span></td>
-        <td><p>Define the sample rate of incoming audio (default: <code>16000</code>)</p>
-</td>
-      </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
         <td><span class="parametername">manualUpdate</span></td>
@@ -157,10 +139,9 @@ let voice activity detection (VAD) handle that automatically by passing <a class
 </td>
       </tr>
       <tr>
-        <td><a class="xref" href="Speechly.SLUClient.EnergyTresholdVAD.html">EnergyTresholdVAD</a></td>
-        <td><span class="parametername">vad</span></td>
-        <td><p><a class="xref" href="Speechly.SLUClient.EnergyTresholdVAD.html">EnergyTresholdVAD</a> instance to control automatic listening on/off. Null disables VAD. (default: <code>null</code>)</p>
-</td>
+        <td><a class="xref" href="Speechly.Types.AudioInfo.html">AudioInfo</a></td>
+        <td><span class="parametername">output</span></td>
+        <td></td>
       </tr>
       <tr>
         <td><span class="xref">System.Boolean</span></td>
@@ -174,10 +155,39 @@ let voice activity detection (VAD) handle that automatically by passing <a class
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnEntity.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnEntity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_Debug.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.Debug%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L40">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L68">View Source</a>
+  </span>
+  <h4 id="Speechly_SLUClient_SpeechlyClient_Debug" data-uid="Speechly.SLUClient.SpeechlyClient.Debug">Debug</h4>
+  <div class="markdown level1 summary"></div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public bool Debug</code></pre>
+  </div>
+  <h5 class="fieldValue">Field Value</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnEntity.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnEntity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L40">View Source</a>
   </span>
   <h4 id="Speechly_SLUClient_SpeechlyClient_OnEntity" data-uid="Speechly.SLUClient.SpeechlyClient.OnEntity">OnEntity</h4>
   <div class="markdown level1 summary"></div>
@@ -203,10 +213,10 @@ let voice activity detection (VAD) handle that automatically by passing <a class
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnIntent.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnIntent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnIntent.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnIntent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L42">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L42">View Source</a>
   </span>
   <h4 id="Speechly_SLUClient_SpeechlyClient_OnIntent" data-uid="Speechly.SLUClient.SpeechlyClient.OnIntent">OnIntent</h4>
   <div class="markdown level1 summary"></div>
@@ -232,14 +242,14 @@ let voice activity detection (VAD) handle that automatically by passing <a class
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnSegmentChange.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnSegmentChange%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnSegmentChange.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnSegmentChange%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L36">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L36">View Source</a>
   </span>
   <h4 id="Speechly_SLUClient_SpeechlyClient_OnSegmentChange" data-uid="Speechly.SLUClient.SpeechlyClient.OnSegmentChange">OnSegmentChange</h4>
   <div class="markdown level1 summary"><p>Read the combined results of automatic speech recoginition (ASR) and natural language detection (NLU).</p>
-<p>You can control when to start and stop process speech either manually with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StartContext_System_String_">StartContext(String)</a> and <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StopContext">StopContext()</a> or
+<p>You can control when to start and stop process speech either manually with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Start_System_String_">Start(String)</a> and <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Stop">Stop()</a> or
 automatically by providing a voice activity detection (VAD) field to <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html">SpeechlyClient</a>.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -264,17 +274,17 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnStartContext.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnStartContext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnStart.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnStart%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L45">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L45">View Source</a>
   </span>
-  <h4 id="Speechly_SLUClient_SpeechlyClient_OnStartContext" data-uid="Speechly.SLUClient.SpeechlyClient.OnStartContext">OnStartContext</h4>
+  <h4 id="Speechly_SLUClient_SpeechlyClient_OnStart" data-uid="Speechly.SLUClient.SpeechlyClient.OnStart">OnStart</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StartContextDelegate OnStartContext</code></pre>
+    <pre><code class="lang-csharp hljs">public StartDelegate OnStart</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -286,17 +296,17 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Speechly.Types.StartContextDelegate.html">StartContextDelegate</a></td>
+        <td><a class="xref" href="Speechly.Types.StartDelegate.html">StartDelegate</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnStartStream.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnStartStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnStartStream.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnStartStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L43">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L43">View Source</a>
   </span>
   <h4 id="Speechly_SLUClient_SpeechlyClient_OnStartStream" data-uid="Speechly.SLUClient.SpeechlyClient.OnStartStream">OnStartStream</h4>
   <div class="markdown level1 summary"></div>
@@ -322,17 +332,17 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnStopContext.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnStopContext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnStop.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnStop%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L46">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L46">View Source</a>
   </span>
-  <h4 id="Speechly_SLUClient_SpeechlyClient_OnStopContext" data-uid="Speechly.SLUClient.SpeechlyClient.OnStopContext">OnStopContext</h4>
+  <h4 id="Speechly_SLUClient_SpeechlyClient_OnStop" data-uid="Speechly.SLUClient.SpeechlyClient.OnStop">OnStop</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public StopContextDelegate OnStopContext</code></pre>
+    <pre><code class="lang-csharp hljs">public StopDelegate OnStop</code></pre>
   </div>
   <h5 class="fieldValue">Field Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -344,17 +354,17 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
     </thead>
     <tbody>
       <tr>
-        <td><a class="xref" href="Speechly.Types.StopContextDelegate.html">StopContextDelegate</a></td>
+        <td><a class="xref" href="Speechly.Types.StopDelegate.html">StopDelegate</a></td>
         <td></td>
       </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnStopStream.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnStopStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnStopStream.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnStopStream%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L44">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L44">View Source</a>
   </span>
   <h4 id="Speechly_SLUClient_SpeechlyClient_OnStopStream" data-uid="Speechly.SLUClient.SpeechlyClient.OnStopStream">OnStopStream</h4>
   <div class="markdown level1 summary"></div>
@@ -380,10 +390,10 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnTentativeEntity.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnTentativeEntity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnTentativeEntity.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnTentativeEntity%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L39">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L39">View Source</a>
   </span>
   <h4 id="Speechly_SLUClient_SpeechlyClient_OnTentativeEntity" data-uid="Speechly.SLUClient.SpeechlyClient.OnTentativeEntity">OnTentativeEntity</h4>
   <div class="markdown level1 summary"></div>
@@ -409,10 +419,10 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnTentativeIntent.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnTentativeIntent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnTentativeIntent.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnTentativeIntent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L41">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L41">View Source</a>
   </span>
   <h4 id="Speechly_SLUClient_SpeechlyClient_OnTentativeIntent" data-uid="Speechly.SLUClient.SpeechlyClient.OnTentativeIntent">OnTentativeIntent</h4>
   <div class="markdown level1 summary"></div>
@@ -438,10 +448,10 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnTentativeTranscript.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnTentativeTranscript%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnTentativeTranscript.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnTentativeTranscript%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L37">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L37">View Source</a>
   </span>
   <h4 id="Speechly_SLUClient_SpeechlyClient_OnTentativeTranscript" data-uid="Speechly.SLUClient.SpeechlyClient.OnTentativeTranscript">OnTentativeTranscript</h4>
   <div class="markdown level1 summary"></div>
@@ -467,10 +477,10 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnTranscript.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnTranscript%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_OnTranscript.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.OnTranscript%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L38">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L38">View Source</a>
   </span>
   <h4 id="Speechly_SLUClient_SpeechlyClient_OnTranscript" data-uid="Speechly.SLUClient.SpeechlyClient.OnTranscript">OnTranscript</h4>
   <div class="markdown level1 summary"></div>
@@ -498,10 +508,10 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_AudioInputStreamIdentifier.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_AudioInputStreamIdentifier.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L65">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L65">View Source</a>
   </span>
   <a id="Speechly_SLUClient_SpeechlyClient_AudioInputStreamIdentifier_" data-uid="Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier*"></a>
   <h4 id="Speechly_SLUClient_SpeechlyClient_AudioInputStreamIdentifier" data-uid="Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier">AudioInputStreamIdentifier</h4>
@@ -528,10 +538,10 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_IsActive.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.IsActive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_IsActive.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.IsActive%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L59">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L62">View Source</a>
   </span>
   <a id="Speechly_SLUClient_SpeechlyClient_IsActive_" data-uid="Speechly.SLUClient.SpeechlyClient.IsActive*"></a>
   <h4 id="Speechly_SLUClient_SpeechlyClient_IsActive" data-uid="Speechly.SLUClient.SpeechlyClient.IsActive">IsActive</h4>
@@ -558,10 +568,10 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_IsAudioStreaming.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.IsAudioStreaming%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_IsAudioStreaming.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.IsAudioStreaming%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L49">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L52">View Source</a>
   </span>
   <a id="Speechly_SLUClient_SpeechlyClient_IsAudioStreaming_" data-uid="Speechly.SLUClient.SpeechlyClient.IsAudioStreaming*"></a>
   <h4 id="Speechly_SLUClient_SpeechlyClient_IsAudioStreaming" data-uid="Speechly.SLUClient.SpeechlyClient.IsAudioStreaming">IsAudioStreaming</h4>
@@ -588,10 +598,10 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_IsReady.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.IsReady%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_IsReady.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.IsReady%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L52">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L55">View Source</a>
   </span>
   <a id="Speechly_SLUClient_SpeechlyClient_IsReady_" data-uid="Speechly.SLUClient.SpeechlyClient.IsReady*"></a>
   <h4 id="Speechly_SLUClient_SpeechlyClient_IsReady" data-uid="Speechly.SLUClient.SpeechlyClient.IsReady">IsReady</h4>
@@ -618,18 +628,18 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_SamplesSent.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.SamplesSent%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_Output.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.Output%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L61">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L48">View Source</a>
   </span>
-  <a id="Speechly_SLUClient_SpeechlyClient_SamplesSent_" data-uid="Speechly.SLUClient.SpeechlyClient.SamplesSent*"></a>
-  <h4 id="Speechly_SLUClient_SpeechlyClient_SamplesSent" data-uid="Speechly.SLUClient.SpeechlyClient.SamplesSent">SamplesSent</h4>
+  <a id="Speechly_SLUClient_SpeechlyClient_Output_" data-uid="Speechly.SLUClient.SpeechlyClient.Output*"></a>
+  <h4 id="Speechly_SLUClient_SpeechlyClient_Output" data-uid="Speechly.SLUClient.SpeechlyClient.Output">Output</h4>
   <div class="markdown level1 summary"></div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int SamplesSent { get; }</code></pre>
+    <pre><code class="lang-csharp hljs">public AudioInfo Output { get; }</code></pre>
   </div>
   <h5 class="propertyValue">Property Value</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -641,97 +651,7 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
     </thead>
     <tbody>
       <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_StreamSamplePos.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.StreamSamplePos%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L71">View Source</a>
-  </span>
-  <a id="Speechly_SLUClient_SpeechlyClient_StreamSamplePos_" data-uid="Speechly.SLUClient.SpeechlyClient.StreamSamplePos*"></a>
-  <h4 id="Speechly_SLUClient_SpeechlyClient_StreamSamplePos" data-uid="Speechly.SLUClient.SpeechlyClient.StreamSamplePos">StreamSamplePos</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int StreamSamplePos { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_UtteranceSerial.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.UtteranceSerial%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L68">View Source</a>
-  </span>
-  <a id="Speechly_SLUClient_SpeechlyClient_UtteranceSerial_" data-uid="Speechly.SLUClient.SpeechlyClient.UtteranceSerial*"></a>
-  <h4 id="Speechly_SLUClient_SpeechlyClient_UtteranceSerial" data-uid="Speechly.SLUClient.SpeechlyClient.UtteranceSerial">UtteranceSerial</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public int UtteranceSerial { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><span class="xref">System.Int32</span></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-  <span class="small pull-right mobile-hide">
-    <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_Vad.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.Vad%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
-  </span>
-  <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L62">View Source</a>
-  </span>
-  <a id="Speechly_SLUClient_SpeechlyClient_Vad_" data-uid="Speechly.SLUClient.SpeechlyClient.Vad*"></a>
-  <h4 id="Speechly_SLUClient_SpeechlyClient_Vad" data-uid="Speechly.SLUClient.SpeechlyClient.Vad">Vad</h4>
-  <div class="markdown level1 summary"></div>
-  <div class="markdown level1 conceptual"></div>
-  <h5 class="decalaration">Declaration</h5>
-  <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public EnergyTresholdVAD Vad { get; }</code></pre>
-  </div>
-  <h5 class="propertyValue">Property Value</h5>
-  <table class="table table-bordered table-striped table-condensed">
-    <thead>
-      <tr>
-        <th>Type</th>
-        <th>Description</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><a class="xref" href="Speechly.SLUClient.EnergyTresholdVAD.html">EnergyTresholdVAD</a></td>
+        <td><a class="xref" href="Speechly.Types.AudioInfo.html">AudioInfo</a></td>
         <td></td>
       </tr>
     </tbody>
@@ -740,13 +660,47 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </h3>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_AdjustAudioProcessor_System_Nullable_System_Boolean__.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.AdjustAudioProcessor(System.Nullable%7BSystem.Boolean%7D)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L143">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L217">View Source</a>
+  </span>
+  <a id="Speechly_SLUClient_SpeechlyClient_AdjustAudioProcessor_" data-uid="Speechly.SLUClient.SpeechlyClient.AdjustAudioProcessor*"></a>
+  <h4 id="Speechly_SLUClient_SpeechlyClient_AdjustAudioProcessor_System_Nullable_System_Boolean__" data-uid="Speechly.SLUClient.SpeechlyClient.AdjustAudioProcessor(System.Nullable{System.Boolean})">AdjustAudioProcessor(Nullable&lt;Boolean&gt;)</h4>
+  <div class="markdown level1 summary"><p>Control AudioProcessor parameters.</p>
+</div>
+  <div class="markdown level1 conceptual"></div>
+  <h5 class="decalaration">Declaration</h5>
+  <div class="codewrapper">
+    <pre><code class="lang-csharp hljs">public void AdjustAudioProcessor(bool? vadControlsListening = null)</code></pre>
+  </div>
+  <h5 class="parameters">Parameters</h5>
+  <table class="table table-bordered table-striped table-condensed">
+    <thead>
+      <tr>
+        <th>Type</th>
+        <th>Name</th>
+        <th>Description</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><span class="xref">System.Nullable</span>&lt;<span class="xref">System.Boolean</span>&gt;</td>
+        <td><span class="parametername">vadControlsListening</span></td>
+        <td><p><code>true</code> enables VAD to control listening. <code>false</code> disables VAD feature and stops listening immediately. <code>null</code> for no change.</p>
+</td>
+      </tr>
+    </tbody>
+  </table>
+  <span class="small pull-right mobile-hide">
+    <span class="divider">|</span>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_Speechly_Types_AudioProcessorOptions_Speechly_Types_ContextOptions_System_Boolean_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder%2CSpeechly.Types.AudioProcessorOptions%2CSpeechly.Types.ContextOptions%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+  </span>
+  <span class="small pull-right mobile-hide">
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L124">View Source</a>
   </span>
   <a id="Speechly_SLUClient_SpeechlyClient_Initialize_" data-uid="Speechly.SLUClient.SpeechlyClient.Initialize*"></a>
-  <h4 id="Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_" data-uid="Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder)">Initialize(IDecoder)</h4>
+  <h4 id="Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_Speechly_Types_AudioProcessorOptions_Speechly_Types_ContextOptions_System_Boolean_" data-uid="Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder,Speechly.Types.AudioProcessorOptions,Speechly.Types.ContextOptions,System.Boolean)">Initialize(IDecoder, AudioProcessorOptions, ContextOptions, Boolean)</h4>
   <div class="markdown level1 summary"><p>SLU decoder instance to use like <a class="xref" href="Speechly.SLUClient.CloudDecoder.html">CloudDecoder</a>.</p>
 <p>The SLU decoder provides the automatic speech recognition (ASR) and
 natural language understanding (NLU) capabilities via SLU delegates (OnSegmentChange, OnTranscript...).</p>
@@ -754,7 +708,7 @@ natural language understanding (NLU) capabilities via SLU delegates (OnSegmentCh
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public async Task Initialize(IDecoder decoder)</code></pre>
+    <pre><code class="lang-csharp hljs">public async Task Initialize(IDecoder decoder, AudioProcessorOptions audioProcessorOptions = null, ContextOptions contextOptions = null, bool preferLibSpeechlyAudioProcessor = false)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -771,6 +725,21 @@ natural language understanding (NLU) capabilities via SLU delegates (OnSegmentCh
         <td><span class="parametername">decoder</span></td>
         <td><p>SLU decoder implementing IDecoder interface like <a class="xref" href="Speechly.SLUClient.CloudDecoder.html">CloudDecoder</a>.</p>
 </td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Speechly.Types.AudioProcessorOptions.html">AudioProcessorOptions</a></td>
+        <td><span class="parametername">audioProcessorOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><a class="xref" href="Speechly.Types.ContextOptions.html">ContextOptions</a></td>
+        <td><span class="parametername">contextOptions</span></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><span class="xref">System.Boolean</span></td>
+        <td><span class="parametername">preferLibSpeechlyAudioProcessor</span></td>
+        <td></td>
       </tr>
     </tbody>
   </table>
@@ -792,10 +761,10 @@ natural language understanding (NLU) capabilities via SLU delegates (OnSegmentCh
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_ProcessAudio_Stream_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.ProcessAudio(Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_ProcessAudio_Stream_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.ProcessAudio(Stream)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L335">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L324">View Source</a>
   </span>
   <a id="Speechly_SLUClient_SpeechlyClient_ProcessAudio_" data-uid="Speechly.SLUClient.SpeechlyClient.ProcessAudio*"></a>
   <h4 id="Speechly_SLUClient_SpeechlyClient_ProcessAudio_Stream_" data-uid="Speechly.SLUClient.SpeechlyClient.ProcessAudio(Stream)">ProcessAudio(Stream)</h4>
@@ -824,23 +793,23 @@ natural language understanding (NLU) capabilities via SLU delegates (OnSegmentCh
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_ProcessAudio_System_Single___System_Int32_System_Int32_System_Boolean_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single%5B%5D%2CSystem.Int32%2CSystem.Int32%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_ProcessAudio_System_Single___System_Int32_System_Int32_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single%5B%5D%2CSystem.Int32%2CSystem.Int32)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L274">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L310">View Source</a>
   </span>
   <a id="Speechly_SLUClient_SpeechlyClient_ProcessAudio_" data-uid="Speechly.SLUClient.SpeechlyClient.ProcessAudio*"></a>
-  <h4 id="Speechly_SLUClient_SpeechlyClient_ProcessAudio_System_Single___System_Int32_System_Int32_System_Boolean_" data-uid="Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)">ProcessAudio(Single[], Int32, Int32, Boolean)</h4>
+  <h4 id="Speechly_SLUClient_SpeechlyClient_ProcessAudio_System_Single___System_Int32_System_Int32_" data-uid="Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single[],System.Int32,System.Int32)">ProcessAudio(Single[], Int32, Int32)</h4>
   <div class="markdown level1 summary"><p>Process speech audio samples from a microphone or other audio source.</p>
 <p>It's recommended to constantly feed new audio as long as you want to use Speechly's SLU services.</p>
-<p>You can control when to start and stop process speech either manually with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StartContext_System_String_">StartContext(String)</a> and <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StopContext">StopContext()</a> or
+<p>You can control when to start and stop process speech either manually with <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Start_System_String_">Start(String)</a> and <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Stop">Stop()</a> or
 automatically by providing a voice activity detection (VAD) field to <a class="xref" href="Speechly.SLUClient.SpeechlyClient.html">SpeechlyClient</a>.</p>
 <p>The audio is handled as follows:</p>
 <ul>
 <li>Downsample to 16kHz if needed</li>
 <li>Add to history ringbuffer</li>
 <li>Calculate energy (VAD)</li>
-<li>Automatic Start/StopContext (VAD)</li>
+<li>Automatic Start/Stop (VAD)</li>
 <li>Send utterance audio to a file</li>
 <li>Send utterance audio to Speechly SLU decoder</li>
 </ul>
@@ -848,7 +817,7 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public void ProcessAudio(float[] floats, int start = 0, int length = null, bool forceSubFrameProcess = false)</code></pre>
+    <pre><code class="lang-csharp hljs">public void ProcessAudio(float[] floats, int start = 0, int length = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -878,20 +847,14 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
         <td><p>Length of audio to process in samples or <code>-1</code> to process the whole array (default: <code>-1</code>).</p>
 </td>
       </tr>
-      <tr>
-        <td><span class="xref">System.Boolean</span></td>
-        <td><span class="parametername">forceSubFrameProcess</span></td>
-        <td><p><a class="xref" href="Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_StopStream_System_Boolean_">StopStream(Boolean)</a> internally uses this to force processing of last subframe at end of audio stream (default: <code>false</code>).</p>
-</td>
-      </tr>
     </tbody>
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_ProcessAudioFile_System_String_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.ProcessAudioFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_ProcessAudioFile_System_String_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.ProcessAudioFile(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L244">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L281">View Source</a>
   </span>
   <a id="Speechly_SLUClient_SpeechlyClient_ProcessAudioFile_" data-uid="Speechly.SLUClient.SpeechlyClient.ProcessAudioFile*"></a>
   <h4 id="Speechly_SLUClient_SpeechlyClient_ProcessAudioFile_System_String_" data-uid="Speechly.SLUClient.SpeechlyClient.ProcessAudioFile(System.String)">ProcessAudioFile(String)</h4>
@@ -920,10 +883,10 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_Shutdown.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.Shutdown%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_Shutdown.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.Shutdown%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L540">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L512">View Source</a>
   </span>
   <a id="Speechly_SLUClient_SpeechlyClient_Shutdown_" data-uid="Speechly.SLUClient.SpeechlyClient.Shutdown*"></a>
   <h4 id="Speechly_SLUClient_SpeechlyClient_Shutdown" data-uid="Speechly.SLUClient.SpeechlyClient.Shutdown">Shutdown()</h4>
@@ -952,21 +915,21 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_StartContext_System_String_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.StartContext(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_Start_System_String_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.Start(System.String)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L209">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L242">View Source</a>
   </span>
-  <a id="Speechly_SLUClient_SpeechlyClient_StartContext_" data-uid="Speechly.SLUClient.SpeechlyClient.StartContext*"></a>
-  <h4 id="Speechly_SLUClient_SpeechlyClient_StartContext_System_String_" data-uid="Speechly.SLUClient.SpeechlyClient.StartContext(System.String)">StartContext(String)</h4>
+  <a id="Speechly_SLUClient_SpeechlyClient_Start_" data-uid="Speechly.SLUClient.SpeechlyClient.Start*"></a>
+  <h4 id="Speechly_SLUClient_SpeechlyClient_Start_System_String_" data-uid="Speechly.SLUClient.SpeechlyClient.Start(System.String)">Start(String)</h4>
   <div class="markdown level1 summary"><p>Start listening for user speech and feeding it to the SLU decoder.
-<code>OnContextStart</code> is triggered upon a call to StartContext. It's also triggered by automatic VAD activation.</p>
+<code>OnContextStart</code> is triggered upon a call to Start. It's also triggered by automatic VAD activation.</p>
 <p>You don't need to await this call if you don't need the utterance id.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; StartContext(string appId = null)</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; Start(string appId = null)</code></pre>
   </div>
   <h5 class="parameters">Parameters</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1004,14 +967,14 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_StartStream_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.StartStream(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_StartStream_System_String_System_Boolean_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.StartStream(System.String%2CSystem.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L164">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L176">View Source</a>
   </span>
   <a id="Speechly_SLUClient_SpeechlyClient_StartStream_" data-uid="Speechly.SLUClient.SpeechlyClient.StartStream*"></a>
   <h4 id="Speechly_SLUClient_SpeechlyClient_StartStream_System_String_System_Boolean_" data-uid="Speechly.SLUClient.SpeechlyClient.StartStream(System.String,System.Boolean)">StartStream(String, Boolean)</h4>
-  <div class="markdown level1 summary"><p><code>StartStream</code> should be called at start of a continuous audio stream. It resets the stream sample counters and history. For backwards compability, ProcessAudio and StartContext ensure it's been called.
+  <div class="markdown level1 summary"><p><code>StartStream</code> should be called at start of a continuous audio stream. It resets the stream sample counters and history. For backwards compability, ProcessAudio and Start ensure it's been called.
 <code>OnStreamStart</code> delegate is triggered upon a call to StartStream.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
@@ -1043,21 +1006,21 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_StopContext.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.StopContext%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_Stop.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.Stop%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L413">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L377">View Source</a>
   </span>
-  <a id="Speechly_SLUClient_SpeechlyClient_StopContext_" data-uid="Speechly.SLUClient.SpeechlyClient.StopContext*"></a>
-  <h4 id="Speechly_SLUClient_SpeechlyClient_StopContext" data-uid="Speechly.SLUClient.SpeechlyClient.StopContext">StopContext()</h4>
+  <a id="Speechly_SLUClient_SpeechlyClient_Stop_" data-uid="Speechly.SLUClient.SpeechlyClient.Stop*"></a>
+  <h4 id="Speechly_SLUClient_SpeechlyClient_Stop" data-uid="Speechly.SLUClient.SpeechlyClient.Stop">Stop()</h4>
   <div class="markdown level1 summary"><p>Stop listening for user speech.
-<code>OnContextStop</code> is triggered upon a call to StopContext. It's also triggered by automatic VAD deactivation.</p>
+<code>OnContextStop</code> is triggered upon a call to Stop. It's also triggered by automatic VAD deactivation.</p>
 <p>You don't need to await this call if you don't need the utterance id.</p>
 </div>
   <div class="markdown level1 conceptual"></div>
   <h5 class="decalaration">Declaration</h5>
   <div class="codewrapper">
-    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; StopContext()</code></pre>
+    <pre><code class="lang-csharp hljs">public Task&lt;string&gt; Stop()</code></pre>
   </div>
   <h5 class="returns">Returns</h5>
   <table class="table table-bordered table-striped table-condensed">
@@ -1077,10 +1040,10 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_StopStream_System_Boolean_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.StopStream(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_StopStream_System_Boolean_.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.StopStream(System.Boolean)%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L183">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L198">View Source</a>
   </span>
   <a id="Speechly_SLUClient_SpeechlyClient_StopStream_" data-uid="Speechly.SLUClient.SpeechlyClient.StopStream*"></a>
   <h4 id="Speechly_SLUClient_SpeechlyClient_StopStream_System_Boolean_" data-uid="Speechly.SLUClient.SpeechlyClient.StopStream(System.Boolean)">StopStream(Boolean)</h4>
@@ -1111,10 +1074,10 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
   </table>
   <span class="small pull-right mobile-hide">
     <span class="divider">|</span>
-    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_Update.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.Update%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient_Update.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient.Update%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A">Improve this Doc</a>
   </span>
   <span class="small pull-right mobile-hide">
-    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L443">View Source</a>
+    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L408">View Source</a>
   </span>
   <a id="Speechly_SLUClient_SpeechlyClient_Update_" data-uid="Speechly.SLUClient.SpeechlyClient.Update*"></a>
   <h4 id="Speechly_SLUClient_SpeechlyClient_Update" data-uid="Speechly.SLUClient.SpeechlyClient.Update">Update()</h4>
@@ -1133,10 +1096,10 @@ automatically by providing a voice activity detection (VAD) field to <a class="x
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/dotnet-vad/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/speechly/speechly-unity-dotnet/new/feature/new-library-2022-08/apiSpec/new?filename=Speechly_SLUClient_SpeechlyClient.md&amp;value=---%0Auid%3A%20Speechly.SLUClient.SpeechlyClient%0Asummary%3A%20'*You%20can%20override%20summary%20for%20the%20API%20here%20using%20*MARKDOWN*%20syntax'%0A---%0A%0A*Please%20type%20below%20more%20information%20about%20this%20API%3A*%0A%0A" class="contribution-link">Improve this Doc</a>
                   </li>
                   <li>
-                    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/dotnet-vad/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L27" class="contribution-link">View Source</a>
+                    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/feature/new-library-2022-08/speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs/#L27" class="contribution-link">View Source</a>
                   </li>
                 </ul>
               </div>

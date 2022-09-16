@@ -15,11 +15,11 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: EntityDelegate
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-    startLine: 11
+    startLine: 16
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.Types

@@ -37,10 +37,18 @@ namespace Speechly.Tools {
       var req = UnityEngine.Networking.UnityWebRequest.Get(url);
       var reqOp = req.SendWebRequest();
       var tsc = new TaskCompletionSource<byte[]>();
-      reqOp.completed += asyncOp => tsc.TrySetResult(reqOp.webRequest.downloadHandler.data);
+
+      void completeLoad() {
+        if (!String.IsNullOrEmpty(req.error)) {
+          throw new Exception($"Error while fetching from url {url}:\n{req.error}");
+        }
+        tsc.TrySetResult(reqOp.webRequest.downloadHandler.data);
+      };
 
       if (reqOp.isDone) {
-        tsc.TrySetResult(reqOp.webRequest.downloadHandler.data);
+        completeLoad();
+      } else {
+        reqOp.completed += asyncOp => completeLoad();
       }
 
       return tsc.Task;

@@ -4,12 +4,17 @@ items:
   commentId: N:Speechly.Types
   id: Speechly.Types
   children:
+  - Speechly.Types.AudioInfo
+  - Speechly.Types.AudioProcessorOptions
   - Speechly.Types.BeautifyEntity
   - Speechly.Types.BeautifyIntent
+  - Speechly.Types.ContextOptions
+  - Speechly.Types.ContextOptions.ShallowFusionSettings
   - Speechly.Types.Entity
   - Speechly.Types.EntityDelegate
   - Speechly.Types.Intent
   - Speechly.Types.IntentDelegate
+  - Speechly.Types.ModelExpiredException
   - Speechly.Types.MsgCommon
   - Speechly.Types.MsgEntity
   - Speechly.Types.MsgIntent
@@ -20,13 +25,16 @@ items:
   - Speechly.Types.MsgTentativeTranscript.Data
   - Speechly.Types.MsgTranscript
   - Speechly.Types.SegmentChangeDelegate
-  - Speechly.Types.StartContextDelegate
+  - Speechly.Types.StartDelegate
+  - Speechly.Types.StartMessage
+  - Speechly.Types.StartMessage.Options
   - Speechly.Types.StartStreamDelegate
-  - Speechly.Types.StopContextDelegate
+  - Speechly.Types.StopDelegate
   - Speechly.Types.StopStreamDelegate
   - Speechly.Types.TentativeEntityDelegate
   - Speechly.Types.TentativeTranscriptDelegate
   - Speechly.Types.TranscriptDelegate
+  - Speechly.Types.VADOptions
   - Speechly.Types.Word
   langs:
   - csharp
@@ -86,18 +94,18 @@ references:
   name: StopStreamDelegate
   nameWithType: StopStreamDelegate
   fullName: Speechly.Types.StopStreamDelegate
-- uid: Speechly.Types.StartContextDelegate
-  commentId: T:Speechly.Types.StartContextDelegate
+- uid: Speechly.Types.StartDelegate
+  commentId: T:Speechly.Types.StartDelegate
   parent: Speechly.Types
-  name: StartContextDelegate
-  nameWithType: StartContextDelegate
-  fullName: Speechly.Types.StartContextDelegate
-- uid: Speechly.Types.StopContextDelegate
-  commentId: T:Speechly.Types.StopContextDelegate
+  name: StartDelegate
+  nameWithType: StartDelegate
+  fullName: Speechly.Types.StartDelegate
+- uid: Speechly.Types.StopDelegate
+  commentId: T:Speechly.Types.StopDelegate
   parent: Speechly.Types
-  name: StopContextDelegate
-  nameWithType: StopContextDelegate
-  fullName: Speechly.Types.StopContextDelegate
+  name: StopDelegate
+  nameWithType: StopDelegate
+  fullName: Speechly.Types.StopDelegate
 - uid: Speechly.Types.BeautifyIntent
   commentId: T:Speechly.Types.BeautifyIntent
   parent: Speechly.Types
@@ -110,6 +118,52 @@ references:
   name: BeautifyEntity
   nameWithType: BeautifyEntity
   fullName: Speechly.Types.BeautifyEntity
+- uid: Speechly.Types.ModelExpiredException
+  commentId: T:Speechly.Types.ModelExpiredException
+  name: ModelExpiredException
+  nameWithType: ModelExpiredException
+  fullName: Speechly.Types.ModelExpiredException
+- uid: Speechly.Types.AudioInfo
+  commentId: T:Speechly.Types.AudioInfo
+  parent: Speechly.Types
+  name: AudioInfo
+  nameWithType: AudioInfo
+  fullName: Speechly.Types.AudioInfo
+- uid: Speechly.Types.AudioProcessorOptions
+  commentId: T:Speechly.Types.AudioProcessorOptions
+  parent: Speechly.Types
+  name: AudioProcessorOptions
+  nameWithType: AudioProcessorOptions
+  fullName: Speechly.Types.AudioProcessorOptions
+- uid: Speechly.Types.VADOptions
+  commentId: T:Speechly.Types.VADOptions
+  parent: Speechly.Types
+  name: VADOptions
+  nameWithType: VADOptions
+  fullName: Speechly.Types.VADOptions
+- uid: Speechly.Types.ContextOptions
+  commentId: T:Speechly.Types.ContextOptions
+  parent: Speechly.Types
+  name: ContextOptions
+  nameWithType: ContextOptions
+  fullName: Speechly.Types.ContextOptions
+- uid: Speechly.Types.ContextOptions.ShallowFusionSettings
+  commentId: T:Speechly.Types.ContextOptions.ShallowFusionSettings
+  parent: Speechly.Types
+  name: ContextOptions.ShallowFusionSettings
+  nameWithType: ContextOptions.ShallowFusionSettings
+  fullName: Speechly.Types.ContextOptions.ShallowFusionSettings
+- uid: Speechly.Types.StartMessage
+  commentId: T:Speechly.Types.StartMessage
+  name: StartMessage
+  nameWithType: StartMessage
+  fullName: Speechly.Types.StartMessage
+- uid: Speechly.Types.StartMessage.Options
+  commentId: T:Speechly.Types.StartMessage.Options
+  parent: Speechly.Types
+  name: StartMessage.Options
+  nameWithType: StartMessage.Options
+  fullName: Speechly.Types.StartMessage.Options
 - uid: Speechly.Types.Word
   commentId: T:Speechly.Types.Word
   parent: Speechly.Types

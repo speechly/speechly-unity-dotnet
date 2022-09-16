@@ -15,11 +15,11 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/IDecoder.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: IDecoder
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/IDecoder.cs
-    startLine: 6
+    startLine: 7
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.SLUClient

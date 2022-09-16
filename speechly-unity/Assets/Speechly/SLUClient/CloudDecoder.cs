@@ -11,8 +11,8 @@ namespace Speechly.SLUClient {
 /// Provides speech processing with Speechly's cloud SLU service.
 ///
 /// Internally handles authentication using https and audio streaming via secure websocket.
-/// Audio is streamed when listening is started with SpeechlyClient.StartContext().
-/// Streaming stops upon call to SpeechlyClient.StopContext().
+/// Audio is streamed when listening is started with SpeechlyClient.Start().
+/// Streaming stops upon call to SpeechlyClient.Stop().
 /// </summary>
 
   public class CloudDecoder: IDecoder {
@@ -27,6 +27,7 @@ namespace Speechly.SLUClient {
     private WsClient wsClient = null;
     private ConcurrentQueue<TaskCompletionSource<string>> startContextTCS = new ConcurrentQueue<TaskCompletionSource<string>>();
     private ConcurrentQueue<TaskCompletionSource<string>> stopContextTCS = new ConcurrentQueue<TaskCompletionSource<string>>();
+    private StartMessage startMessage;
 
 /// <summary>
 /// Initialize speech processing with Speechly's cloud SLU service.
@@ -65,7 +66,7 @@ namespace Speechly.SLUClient {
       this.projectId = projectId;
     }
 
-    override internal async Task Initialize() {
+    override internal async Task Initialize(AudioProcessorOptions audioProcessorOptions, ContextOptions contextOptions) {
       if (debug) Logger.Log("Initializing and connecting Cloud SLU...");
       var tokenFetcher = new LoginToken();
       string token = await tokenFetcher.FetchToken(loginUrl, projectId, appId, deviceId);
@@ -75,18 +76,25 @@ namespace Speechly.SLUClient {
       wsClient = new WsClient();
       wsClient.OnResponseReceived = OnResponse;
 
+      // Prebuild the start message
+      startMessage = new StartMessage() {eventType = "start", appId = this.appId};
+      startMessage.options = new StartMessage.Options();
+      startMessage.options.silence_triggered_segmentation = new[] {Convert.ToString(contextOptions.SilenceSegmentationMillis)};
+      if (contextOptions.BoostVocabulary != null && !string.IsNullOrEmpty(contextOptions.BoostVocabulary.Vocabulary)) {
+        startMessage.options.vocabulary = contextOptions.BoostVocabulary.Vocabulary.ToUpper().Split('\n');
+        startMessage.options.vocabulary_bias = new[] {Convert.ToString(contextOptions.BoostVocabulary.Weight)};
+      }
+
       await wsClient.ConnectAsync(apiUrl, token);
       if (debug) Logger.Log("Cloud SLU ready");
     }
 
-    override internal Task<string> StartContext() {
+    override internal Task<string> Start() {
       var tcs = new TaskCompletionSource<string>();
       startContextTCS.Enqueue(tcs);
-      if (appId != null) {
-        wsClient.SendText($"{{\"event\": \"start\", \"appId\": \"{appId}\"}}");
-      } else {
-        wsClient.SendText($"{{\"event\": \"start\"}}");
-      }
+      
+      wsClient.SendText(JSON.Stringify<StartMessage>(startMessage));
+
       return tcs.Task;
     }
 
@@ -133,7 +141,7 @@ namespace Speechly.SLUClient {
       wsClient.SendBytes(new ArraySegment<byte>(buf));
     }
 
-    override internal Task<string> StopContext() {
+    override internal Task<string> Stop() {
       var tcs = new TaskCompletionSource<string>();
       stopContextTCS.Enqueue(tcs);
       wsClient.SendText($"{{\"event\": \"stop\"}}");

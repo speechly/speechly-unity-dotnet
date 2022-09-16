@@ -18,11 +18,11 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: MsgCommon
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-    startLine: 85
+    startLine: 318
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.Types
@@ -53,11 +53,11 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: type
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-    startLine: 86
+    startLine: 319
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.Types
@@ -88,11 +88,11 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: audio_context
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-    startLine: 87
+    startLine: 320
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.Types
@@ -123,11 +123,11 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: segment_id
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-    startLine: 88
+    startLine: 321
   assemblies:
   - speechly-unity-net-standard-2.0
   namespace: Speechly.Types

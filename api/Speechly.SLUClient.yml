@@ -5,7 +5,6 @@ items:
   id: Speechly.SLUClient
   children:
   - Speechly.SLUClient.CloudDecoder
-  - Speechly.SLUClient.EnergyTresholdVAD
   - Speechly.SLUClient.IDecoder
   - Speechly.SLUClient.Segment
   - Speechly.SLUClient.SpeechlyClient
@@ -24,12 +23,6 @@ references:
   name: CloudDecoder
   nameWithType: CloudDecoder
   fullName: Speechly.SLUClient.CloudDecoder
-- uid: Speechly.SLUClient.EnergyTresholdVAD
-  commentId: T:Speechly.SLUClient.EnergyTresholdVAD
-  parent: Speechly.SLUClient
-  name: EnergyTresholdVAD
-  nameWithType: EnergyTresholdVAD
-  fullName: Speechly.SLUClient.EnergyTresholdVAD
 - uid: Speechly.SLUClient.IDecoder
   commentId: T:Speechly.SLUClient.IDecoder
   parent: Speechly.SLUClient

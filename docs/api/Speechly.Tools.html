@@ -10,7 +10,7 @@
     <meta name="viewport" content="width=device-width">
     <meta name="title" content="Namespace Speechly.Tools
    ">
-    <meta name="generator" content="docfx 2.59.2.0">
+    <meta name="generator" content="docfx 2.59.3.0">
     
     <link rel="shortcut icon" href="../favicon.ico">
     <link rel="stylesheet" href="../styles/docfx.vendor.css">
@@ -77,8 +77,18 @@
   <div class="markdown level0 remarks"></div>
     <h3 id="classes">Classes
   </h3>
+      <h4><a class="xref" href="Speechly.Tools.AudioProcessor.html">AudioProcessor</a></h4>
+      <section></section>
       <h4><a class="xref" href="Speechly.Tools.AudioTools.html">AudioTools</a></h4>
       <section></section>
+      <h4><a class="xref" href="Speechly.Tools.EnergyThresholdVAD.html">EnergyThresholdVAD</a></h4>
+      <section><p>Adaptive energy threshold voice activity detection (VAD) implementation.
+It can be used to enable hands-free operation of the SLU decoder.</p>
+<p>When enough frames with a signal stronger than SignalToNoiseDb have been detected, IsSignalDetected goes true. When enough silent frames have been detected, IsSignalDetected goes false after the sustain time.
+Use its public fields to configure the static noise gate level, signal-to-noise level, activation/deactivation treshold (ratio of signal to silent frames) and the signal sustain time.
+The background noise level gradually adapts when no signal is detected.</p>
+<p>IsSignalDetected can be used to drive SpeechlyClient's Start and Stop automatically by setting ControlListening true.</p>
+</section>
       <h4><a class="xref" href="Speechly.Tools.JSON.html">JSON</a></h4>
       <section></section>
       <h4><a class="xref" href="Speechly.Tools.Logger.html">Logger</a></h4>
@@ -89,6 +99,10 @@
       <section></section>
     <h3 id="delegates">Delegates
   </h3>
+      <h4><a class="xref" href="Speechly.Tools.AudioProcessor.SendAudioDelegate.html">AudioProcessor.SendAudioDelegate</a></h4>
+      <section></section>
+      <h4><a class="xref" href="Speechly.Tools.AudioProcessor.VadChangeDelegate.html">AudioProcessor.VadChangeDelegate</a></h4>
+      <section></section>
       <h4><a class="xref" href="Speechly.Tools.Logger.LoggerDelegate.html">Logger.LoggerDelegate</a></h4>
       <section></section>
       <h4><a class="xref" href="Speechly.Tools.WsClient.ResponseReceivedDelegate.html">WsClient.ResponseReceivedDelegate</a></h4>

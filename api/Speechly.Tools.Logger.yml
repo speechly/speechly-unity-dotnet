@@ -17,7 +17,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Logger
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
@@ -52,7 +52,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Log
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
@@ -85,7 +85,7 @@ items:
   source:
     remote:
       path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
-      branch: feature/dotnet-vad
+      branch: feature/new-library-2022-08
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: LogError
     path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs

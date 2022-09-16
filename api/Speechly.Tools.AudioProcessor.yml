@@ -1,0 +1,516 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.Tools.AudioProcessor
+  commentId: T:Speechly.Tools.AudioProcessor
+  id: AudioProcessor
+  parent: Speechly.Tools
+  children:
+  - Speechly.Tools.AudioProcessor.#ctor(Speechly.Types.AudioProcessorOptions,Speechly.Types.AudioInfo,System.Boolean)
+  - Speechly.Tools.AudioProcessor.OnSendAudio
+  - Speechly.Tools.AudioProcessor.OnVadStateChange
+  - Speechly.Tools.AudioProcessor.Options
+  - Speechly.Tools.AudioProcessor.Output
+  - Speechly.Tools.AudioProcessor.ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)
+  - Speechly.Tools.AudioProcessor.Reset(System.Int32)
+  - Speechly.Tools.AudioProcessor.Start
+  - Speechly.Tools.AudioProcessor.Stop
+  - Speechly.Tools.AudioProcessor.Vad
+  langs:
+  - csharp
+  - vb
+  name: AudioProcessor
+  nameWithType: AudioProcessor
+  fullName: Speechly.Tools.AudioProcessor
+  type: Class
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: AudioProcessor
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    startLine: 8
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: 'public class AudioProcessor : object'
+    content.vb: >-
+      Public Class AudioProcessor
+          Inherits Object
+  inheritance:
+  - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.Tools.AudioProcessor.OnSendAudio
+  commentId: F:Speechly.Tools.AudioProcessor.OnSendAudio
+  id: OnSendAudio
+  parent: Speechly.Tools.AudioProcessor
+  langs:
+  - csharp
+  - vb
+  name: OnSendAudio
+  nameWithType: AudioProcessor.OnSendAudio
+  fullName: Speechly.Tools.AudioProcessor.OnSendAudio
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnSendAudio
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    startLine: 14
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public AudioProcessor.SendAudioDelegate OnSendAudio
+    return:
+      type: Speechly.Tools.AudioProcessor.SendAudioDelegate
+    content.vb: Public OnSendAudio As AudioProcessor.SendAudioDelegate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Tools.AudioProcessor.OnVadStateChange
+  commentId: F:Speechly.Tools.AudioProcessor.OnVadStateChange
+  id: OnVadStateChange
+  parent: Speechly.Tools.AudioProcessor
+  langs:
+  - csharp
+  - vb
+  name: OnVadStateChange
+  nameWithType: AudioProcessor.OnVadStateChange
+  fullName: Speechly.Tools.AudioProcessor.OnVadStateChange
+  type: Field
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnVadStateChange
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    startLine: 15
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public AudioProcessor.VadChangeDelegate OnVadStateChange
+    return:
+      type: Speechly.Tools.AudioProcessor.VadChangeDelegate
+    content.vb: Public OnVadStateChange As AudioProcessor.VadChangeDelegate
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Tools.AudioProcessor.Vad
+  commentId: P:Speechly.Tools.AudioProcessor.Vad
+  id: Vad
+  parent: Speechly.Tools.AudioProcessor
+  langs:
+  - csharp
+  - vb
+  name: Vad
+  nameWithType: AudioProcessor.Vad
+  fullName: Speechly.Tools.AudioProcessor.Vad
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Vad
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    startLine: 16
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public EnergyThresholdVAD Vad { get; }
+    parameters: []
+    return:
+      type: Speechly.Tools.EnergyThresholdVAD
+    content.vb: Public ReadOnly Property Vad As EnergyThresholdVAD
+  overload: Speechly.Tools.AudioProcessor.Vad*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.Tools.AudioProcessor.Options
+  commentId: P:Speechly.Tools.AudioProcessor.Options
+  id: Options
+  parent: Speechly.Tools.AudioProcessor
+  langs:
+  - csharp
+  - vb
+  name: Options
+  nameWithType: AudioProcessor.Options
+  fullName: Speechly.Tools.AudioProcessor.Options
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Options
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    startLine: 17
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public AudioProcessorOptions Options { get; }
+    parameters: []
+    return:
+      type: Speechly.Types.AudioProcessorOptions
+    content.vb: Public ReadOnly Property Options As AudioProcessorOptions
+  overload: Speechly.Tools.AudioProcessor.Options*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.Tools.AudioProcessor.Output
+  commentId: P:Speechly.Tools.AudioProcessor.Output
+  id: Output
+  parent: Speechly.Tools.AudioProcessor
+  langs:
+  - csharp
+  - vb
+  name: Output
+  nameWithType: AudioProcessor.Output
+  fullName: Speechly.Tools.AudioProcessor.Output
+  type: Property
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Output
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    startLine: 18
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public AudioInfo Output { get; }
+    parameters: []
+    return:
+      type: Speechly.Types.AudioInfo
+    content.vb: Public ReadOnly Property Output As AudioInfo
+  overload: Speechly.Tools.AudioProcessor.Output*
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+- uid: Speechly.Tools.AudioProcessor.#ctor(Speechly.Types.AudioProcessorOptions,Speechly.Types.AudioInfo,System.Boolean)
+  commentId: M:Speechly.Tools.AudioProcessor.#ctor(Speechly.Types.AudioProcessorOptions,Speechly.Types.AudioInfo,System.Boolean)
+  id: '#ctor(Speechly.Types.AudioProcessorOptions,Speechly.Types.AudioInfo,System.Boolean)'
+  parent: Speechly.Tools.AudioProcessor
+  langs:
+  - csharp
+  - vb
+  name: AudioProcessor(AudioProcessorOptions, AudioInfo, Boolean)
+  nameWithType: AudioProcessor.AudioProcessor(AudioProcessorOptions, AudioInfo, Boolean)
+  fullName: Speechly.Tools.AudioProcessor.AudioProcessor(Speechly.Types.AudioProcessorOptions, Speechly.Types.AudioInfo, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: .ctor
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    startLine: 29
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public AudioProcessor(AudioProcessorOptions options, AudioInfo output, bool debug = false)
+    parameters:
+    - id: options
+      type: Speechly.Types.AudioProcessorOptions
+    - id: output
+      type: Speechly.Types.AudioInfo
+    - id: debug
+      type: System.Boolean
+    content.vb: Public Sub New(options As AudioProcessorOptions, output As AudioInfo, debug As Boolean = False)
+  overload: Speechly.Tools.AudioProcessor.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Tools.AudioProcessor.Start
+  commentId: M:Speechly.Tools.AudioProcessor.Start
+  id: Start
+  parent: Speechly.Tools.AudioProcessor
+  langs:
+  - csharp
+  - vb
+  name: Start()
+  nameWithType: AudioProcessor.Start()
+  fullName: Speechly.Tools.AudioProcessor.Start()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Start
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    startLine: 44
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public void Start()
+    content.vb: Public Sub Start
+  overload: Speechly.Tools.AudioProcessor.Start*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Tools.AudioProcessor.Stop
+  commentId: M:Speechly.Tools.AudioProcessor.Stop
+  id: Stop
+  parent: Speechly.Tools.AudioProcessor
+  langs:
+  - csharp
+  - vb
+  name: Stop()
+  nameWithType: AudioProcessor.Stop()
+  fullName: Speechly.Tools.AudioProcessor.Stop()
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Stop
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    startLine: 50
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public void Stop()
+    content.vb: Public Sub Stop
+  overload: Speechly.Tools.AudioProcessor.Stop*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Tools.AudioProcessor.Reset(System.Int32)
+  commentId: M:Speechly.Tools.AudioProcessor.Reset(System.Int32)
+  id: Reset(System.Int32)
+  parent: Speechly.Tools.AudioProcessor
+  langs:
+  - csharp
+  - vb
+  name: Reset(Int32)
+  nameWithType: AudioProcessor.Reset(Int32)
+  fullName: Speechly.Tools.AudioProcessor.Reset(System.Int32)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Reset
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    startLine: 56
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  syntax:
+    content: public void Reset(int inputSampleRate = 0)
+    parameters:
+    - id: inputSampleRate
+      type: System.Int32
+    content.vb: Public Sub Reset(inputSampleRate As Integer = 0)
+  overload: Speechly.Tools.AudioProcessor.Reset*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: Speechly.Tools.AudioProcessor.ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)
+  commentId: M:Speechly.Tools.AudioProcessor.ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)
+  id: ProcessAudio(System.Single[],System.Int32,System.Int32,System.Boolean)
+  parent: Speechly.Tools.AudioProcessor
+  langs:
+  - csharp
+  - vb
+  name: ProcessAudio(Single[], Int32, Int32, Boolean)
+  nameWithType: AudioProcessor.ProcessAudio(Single[], Int32, Int32, Boolean)
+  fullName: Speechly.Tools.AudioProcessor.ProcessAudio(System.Single[], System.Int32, System.Int32, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+      branch: feature/new-library-2022-08
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ProcessAudio
+    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    startLine: 93
+  assemblies:
+  - speechly-unity-net-standard-2.0
+  namespace: Speechly.Tools
+  summary: "\nProcess speech audio samples from a microphone or other audio source.\n\nIt&apos;s recommended to constantly feed new audio as long as you want to use Speechly&apos;s SLU services.\n\nYou can control when to start and stop process speech either manually with <xref href=\"Speechly.Tools.AudioProcessor.Start\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.Tools.AudioProcessor.Stop\" data-throw-if-not-resolved=\"false\"></xref> or\nautomatically by providing a voice activity detection (VAD) field to <see cref=\"!:SpeechlyClient\"></see>.\n\nThe audio is handled as follows:\n- Downsample to 16kHz if needed\n- Add to history ringbuffer\n- Calculate energy (VAD)\n- Automatic Start/Stop (VAD)\n- Send utterance audio to a file\n- Send utterance audio to Speechly SLU decoder\n"
+  example: []
+  syntax:
+    content: public void ProcessAudio(float[] floats, int start = 0, int length = null, bool forceSubFrameProcess = false)
+    parameters:
+    - id: floats
+      type: System.Single[]
+      description: Array of float containing samples to feed to the audio pipeline. Each sample needs to be in range -1f..1f.
+    - id: start
+      type: System.Int32
+      description: 'Start index of audio to process in samples (default: `0`).'
+    - id: length
+      type: System.Int32
+      description: 'Length of audio to process in samples or `-1` to process the whole array (default: `-1`).'
+    - id: forceSubFrameProcess
+      type: System.Boolean
+      description: 'Forces processing of last subframe at end of audio stream (default: `false`).'
+    content.vb: Public Sub ProcessAudio(floats As Single(), start As Integer = 0, length As Integer = Nothing, forceSubFrameProcess As Boolean = False)
+  overload: Speechly.Tools.AudioProcessor.ProcessAudio*
+  nameWithType.vb: AudioProcessor.ProcessAudio(Single(), Int32, Int32, Boolean)
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: Speechly.Tools.AudioProcessor.ProcessAudio(System.Single(), System.Int32, System.Int32, System.Boolean)
+  name.vb: ProcessAudio(Single(), Int32, Int32, Boolean)
+references:
+- uid: Speechly.Tools
+  commentId: N:Speechly.Tools
+  name: Speechly.Tools
+  nameWithType: Speechly.Tools
+  fullName: Speechly.Tools
+- uid: Speechly.Tools.AudioProcessor.SendAudioDelegate
+  commentId: T:Speechly.Tools.AudioProcessor.SendAudioDelegate
+  parent: Speechly.Tools
+  name: AudioProcessor.SendAudioDelegate
+  nameWithType: AudioProcessor.SendAudioDelegate
+  fullName: Speechly.Tools.AudioProcessor.SendAudioDelegate
+- uid: Speechly.Tools.AudioProcessor.VadChangeDelegate
+  commentId: T:Speechly.Tools.AudioProcessor.VadChangeDelegate
+  parent: Speechly.Tools
+  name: AudioProcessor.VadChangeDelegate
+  nameWithType: AudioProcessor.VadChangeDelegate
+  fullName: Speechly.Tools.AudioProcessor.VadChangeDelegate
+- uid: Speechly.Tools.AudioProcessor.Vad*
+  commentId: Overload:Speechly.Tools.AudioProcessor.Vad
+  name: Vad
+  nameWithType: AudioProcessor.Vad
+  fullName: Speechly.Tools.AudioProcessor.Vad
+- uid: Speechly.Tools.EnergyThresholdVAD
+  commentId: T:Speechly.Tools.EnergyThresholdVAD
+  parent: Speechly.Tools
+  name: EnergyThresholdVAD
+  nameWithType: EnergyThresholdVAD
+  fullName: Speechly.Tools.EnergyThresholdVAD
+- uid: Speechly.Tools.AudioProcessor.Options*
+  commentId: Overload:Speechly.Tools.AudioProcessor.Options
+  name: Options
+  nameWithType: AudioProcessor.Options
+  fullName: Speechly.Tools.AudioProcessor.Options
+- uid: Speechly.Types.AudioProcessorOptions
+  commentId: T:Speechly.Types.AudioProcessorOptions
+  parent: Speechly.Types
+  name: AudioProcessorOptions
+  nameWithType: AudioProcessorOptions
+  fullName: Speechly.Types.AudioProcessorOptions
+- uid: Speechly.Types
+  commentId: N:Speechly.Types
+  name: Speechly.Types
+  nameWithType: Speechly.Types
+  fullName: Speechly.Types
+- uid: Speechly.Tools.AudioProcessor.Output*
+  commentId: Overload:Speechly.Tools.AudioProcessor.Output
+  name: Output
+  nameWithType: AudioProcessor.Output
+  fullName: Speechly.Tools.AudioProcessor.Output
+- uid: Speechly.Types.AudioInfo
+  commentId: T:Speechly.Types.AudioInfo
+  parent: Speechly.Types
+  name: AudioInfo
+  nameWithType: AudioInfo
+  fullName: Speechly.Types.AudioInfo
+- uid: Speechly.Tools.AudioProcessor.#ctor*
+  commentId: Overload:Speechly.Tools.AudioProcessor.#ctor
+  name: AudioProcessor
+  nameWithType: AudioProcessor.AudioProcessor
+  fullName: Speechly.Tools.AudioProcessor.AudioProcessor
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean
+- uid: Speechly.Tools.AudioProcessor.Start*
+  commentId: Overload:Speechly.Tools.AudioProcessor.Start
+  name: Start
+  nameWithType: AudioProcessor.Start
+  fullName: Speechly.Tools.AudioProcessor.Start
+- uid: Speechly.Tools.AudioProcessor.Stop*
+  commentId: Overload:Speechly.Tools.AudioProcessor.Stop
+  name: Stop
+  nameWithType: AudioProcessor.Stop
+  fullName: Speechly.Tools.AudioProcessor.Stop
+- uid: Speechly.Tools.AudioProcessor.Reset*
+  commentId: Overload:Speechly.Tools.AudioProcessor.Reset
+  name: Reset
+  nameWithType: AudioProcessor.Reset
+  fullName: Speechly.Tools.AudioProcessor.Reset
+- uid: System.Int32
+  isExternal: true
+  name: Int32
+  nameWithType: Int32
+  fullName: System.Int32
+- uid: Speechly.Tools.AudioProcessor.Start
+  commentId: M:Speechly.Tools.AudioProcessor.Start
+  isExternal: true
+- uid: Speechly.Tools.AudioProcessor.Stop
+  commentId: M:Speechly.Tools.AudioProcessor.Stop
+  isExternal: true
+- uid: Speechly.Tools.AudioProcessor.ProcessAudio*
+  commentId: Overload:Speechly.Tools.AudioProcessor.ProcessAudio
+  name: ProcessAudio
+  nameWithType: AudioProcessor.ProcessAudio
+  fullName: Speechly.Tools.AudioProcessor.ProcessAudio
+- uid: System.Single[]
+  isExternal: true
+  name: Single[]
+  nameWithType: Single[]
+  fullName: System.Single[]
+  nameWithType.vb: Single()
+  fullName.vb: System.Single()
+  name.vb: Single()
+  spec.csharp:
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Single
+    name: Single
+    nameWithType: Single
+    fullName: System.Single
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()

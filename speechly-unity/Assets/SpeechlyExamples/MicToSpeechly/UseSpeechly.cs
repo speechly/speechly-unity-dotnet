@@ -18,21 +18,21 @@ public class UseSpeechly : MonoBehaviour
       TranscriptText.text = segment.ToString(
         (intent) => "",
         (words, entityType) => $"<color=#15e8b5>{words}<color=#ffffff>",
-        ""
+        "."
       );
     };
   }
 
   void Update()
   {
-    SliderAudioPeak.value = MicToSpeechly.Instance.SpeechlyClient.Vad.Energy;
+    SliderAudioPeak.value = MicToSpeechly.Instance.SpeechlyClient.Output.SignalDb;
   }
 
   public void OnMouseDown()
   {
     if (!speechlyClient.IsActive)
     {
-      _ = speechlyClient.StartContext();
+      _ = speechlyClient.Start();
     }
   }
 
@@ -40,7 +40,7 @@ public class UseSpeechly : MonoBehaviour
   {
     if (speechlyClient.IsActive)
     {
-      _ = speechlyClient.StopContext();
+      _ = speechlyClient.Stop();
     }
   }
 

@@ -4,8 +4,6 @@
   items:
   - uid: Speechly.SLUClient.CloudDecoder
     name: CloudDecoder
-  - uid: Speechly.SLUClient.EnergyTresholdVAD
-    name: EnergyTresholdVAD
   - uid: Speechly.SLUClient.IDecoder
     name: IDecoder
   - uid: Speechly.SLUClient.Segment
@@ -15,8 +13,16 @@
 - uid: Speechly.Tools
   name: Speechly.Tools
   items:
+  - uid: Speechly.Tools.AudioProcessor
+    name: AudioProcessor
+  - uid: Speechly.Tools.AudioProcessor.SendAudioDelegate
+    name: AudioProcessor.SendAudioDelegate
+  - uid: Speechly.Tools.AudioProcessor.VadChangeDelegate
+    name: AudioProcessor.VadChangeDelegate
   - uid: Speechly.Tools.AudioTools
     name: AudioTools
+  - uid: Speechly.Tools.EnergyThresholdVAD
+    name: EnergyThresholdVAD
   - uid: Speechly.Tools.JSON
     name: JSON
   - uid: Speechly.Tools.Logger
@@ -32,10 +38,18 @@
 - uid: Speechly.Types
   name: Speechly.Types
   items:
+  - uid: Speechly.Types.AudioInfo
+    name: AudioInfo
+  - uid: Speechly.Types.AudioProcessorOptions
+    name: AudioProcessorOptions
   - uid: Speechly.Types.BeautifyEntity
     name: BeautifyEntity
   - uid: Speechly.Types.BeautifyIntent
     name: BeautifyIntent
+  - uid: Speechly.Types.ContextOptions
+    name: ContextOptions
+  - uid: Speechly.Types.ContextOptions.ShallowFusionSettings
+    name: ContextOptions.ShallowFusionSettings
   - uid: Speechly.Types.Entity
     name: Entity
   - uid: Speechly.Types.EntityDelegate
@@ -44,6 +58,8 @@
     name: Intent
   - uid: Speechly.Types.IntentDelegate
     name: IntentDelegate
+  - uid: Speechly.Types.ModelExpiredException
+    name: ModelExpiredException
   - uid: Speechly.Types.MsgCommon
     name: MsgCommon
   - uid: Speechly.Types.MsgEntity
@@ -64,12 +80,16 @@
     name: MsgTranscript
   - uid: Speechly.Types.SegmentChangeDelegate
     name: SegmentChangeDelegate
-  - uid: Speechly.Types.StartContextDelegate
-    name: StartContextDelegate
+  - uid: Speechly.Types.StartDelegate
+    name: StartDelegate
+  - uid: Speechly.Types.StartMessage
+    name: StartMessage
+  - uid: Speechly.Types.StartMessage.Options
+    name: StartMessage.Options
   - uid: Speechly.Types.StartStreamDelegate
     name: StartStreamDelegate
-  - uid: Speechly.Types.StopContextDelegate
-    name: StopContextDelegate
+  - uid: Speechly.Types.StopDelegate
+    name: StopDelegate
   - uid: Speechly.Types.StopStreamDelegate
     name: StopStreamDelegate
   - uid: Speechly.Types.TentativeEntityDelegate
@@ -78,5 +98,7 @@
     name: TentativeTranscriptDelegate
   - uid: Speechly.Types.TranscriptDelegate
     name: TranscriptDelegate
+  - uid: Speechly.Types.VADOptions
+    name: VADOptions
   - uid: Speechly.Types.Word
     name: Word

@@ -68,13 +68,13 @@ namespace Speechly.Demo.VoiceCommands
 
     void Update()
     {
-      SliderAudioPeak.value = MicToSpeechly.Instance.SpeechlyClient.Vad.Energy;
+      SliderAudioPeak.value = MicToSpeechly.Instance.SpeechlyClient.Output.SignalDb;
 
       if (Input.GetMouseButtonDown(0)) {
         TranscriptText.text = "LISTENING...";
 
         if (!speechlyClient.IsActive) {
-          _ = speechlyClient.StartContext();
+          _ = speechlyClient.Start();
         }
 
         RaycastHit hit;
@@ -98,7 +98,7 @@ namespace Speechly.Demo.VoiceCommands
           if (outline != null) outline.enabled = false;
         }
         if (speechlyClient.IsActive) {
-          _ = speechlyClient.StopContext();
+          _ = speechlyClient.Stop();
         }
       }
     }
