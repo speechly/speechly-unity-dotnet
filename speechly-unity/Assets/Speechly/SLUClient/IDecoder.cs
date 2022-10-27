@@ -7,7 +7,7 @@ namespace Speechly.SLUClient {
 
   public abstract class IDecoder {
     internal abstract event ResponseReceivedDelegate OnMessage;
-    internal abstract Task Initialize(AudioProcessorOptions audioProcessorOptions, ContextOptions contextOptions);
+    internal abstract Task Initialize(AudioProcessorOptions audioProcessorOptions, ContextOptions contextOptions, AudioInfo audioInfo);
     internal abstract Task<string> Start();
     internal abstract void SendAudio(float[] floats, int start = 0, int length = -1);
     internal abstract Task<string> Stop();

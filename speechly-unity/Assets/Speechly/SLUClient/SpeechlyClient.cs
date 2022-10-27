@@ -141,7 +141,8 @@ namespace Speechly.SLUClient {
           }
           await decoder.Initialize(
             audioProcessorOptions,
-            contextOptions
+            contextOptions,
+            this.Output
           );
           this.decoder = decoder;
         } catch (Exception e) {

@@ -66,7 +66,7 @@ namespace Speechly.SLUClient {
       this.projectId = projectId;
     }
 
-    override internal async Task Initialize(AudioProcessorOptions audioProcessorOptions, ContextOptions contextOptions) {
+    override internal async Task Initialize(AudioProcessorOptions audioProcessorOptions, ContextOptions contextOptions, AudioInfo _) {
       if (debug) Logger.Log("Initializing and connecting Cloud SLU...");
       var tokenFetcher = new LoginToken();
       string token = await tokenFetcher.FetchToken(loginUrl, projectId, appId, deviceId);

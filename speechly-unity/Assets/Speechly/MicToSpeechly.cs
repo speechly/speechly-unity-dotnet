@@ -121,7 +121,7 @@ public partial class MicToSpeechly : MonoBehaviour
         debug: DebugPrint
       );
       if (this.decoder == null) {
-        throw new Exception("Speechly on-device spoken language understanding (SLU) is not available. Most likely your Unity project does not contain the SpeechlyOnDevice folder. Please contact Speechly to enable on-device support - you'll need extra files delivered under Speechly on-device licence.");
+        throw new Exception("Speechly on-device spoken language understanding (SLU) is not available. Please contact Speechly to enable on-device support.");
       }
     }
 
