@@ -8,4 +8,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/SpeechlyExamples/PointAndTalk/PointAndTalkScene.unity
     guid: a00d3f6bd307c4dab91fd7357cf15f63
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: cd30942c45c9a475096eddd86be17f71,
+      type: 2}
