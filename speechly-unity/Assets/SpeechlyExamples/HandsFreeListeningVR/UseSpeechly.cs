@@ -3,7 +3,7 @@ using Speechly.SLUClient;
 using UnityEngine.UI;
 using TMPro;
 
-namespace Speechly.Example.NoiseGateTrigger
+namespace Speechly.Example.NoiseGateTriggerVR
 {
   public class UseSpeechly : MonoBehaviour
   {

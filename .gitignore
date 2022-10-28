@@ -1,2 +1,20 @@
 [Oo]bj/
 docfx.console/
+
+# Packed files
+*.apk
+*.zip
+*.unitypackage
+
+# No model bundles except for the ones specificly committed
+*.bundle
+
+# No libraries except for the ones specificly committed
+*.so
+*.dylib
+
+# Allow the distribution unitypackage
+!speechlyclient.unitypackage
+
+# OS X system files
+.DS_Store
