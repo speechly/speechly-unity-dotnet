@@ -9,16 +9,11 @@ namespace Speechly.SLUClient {
 
     public static OnDeviceDecoder CreateDecoder(string deviceId, string modelBundleFile, bool debug = false) {
       string path = $"{Application.streamingAssetsPath}/SpeechlyOnDevice/Models/";
-#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
-      string protocol = "file://";
-#else
-      string protocol = "";
-#endif
 
 #if UNITY_ANDROID || UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
       ByteBufProvider byteBufProvider = async() => {
         try {
-          var bundleTask = Platform.Fetch($"{protocol}{path}{modelBundleFile}");
+          var bundleTask = Platform.Fetch($"{path}{modelBundleFile}");
           await Task.WhenAll(new []{bundleTask});
           return new ByteBufs{
             bundle_buf = bundleTask.Result

@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2238053259677155648}
   - component: {fileID: 2238053259677155663}
   m_Layer: 0
-  m_Name: MicToSpeechly
+  m_Name: Speechly
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -46,20 +46,28 @@ MonoBehaviour:
   SpeechlyEnv: 0
   AppId: 
   CaptureDeviceName: 
-  MicSampleRate: 16000
-  FrameMillis: 30
-  HistoryFrames: 8
-  EnergyLevels:
-    Enabled: 1
-    SignalToNoiseDb: 3
-    NoiseGateDb: -24
-    NoiseLearnHalftimeMillis: 400
-    SignalSearchFrames: 5
-    SignalActivation: 0.7
-    SignalRelease: 0.2
-    SignalSustainMillis: 3000
+  ModelBundle: dummy.bundle
+  DebugPrint: 0
+  AudioProcessorSettings:
+    InputSampleRate: 16000
+    InternalSampleRate: 16000
+    FrameMillis: 30
+    HistoryFrames: 8
+    VADControlsListening: 0
+    VADSettings:
+      SignalToNoiseDb: 3
+      NoiseGateDb: -24
+      NoiseLearnHalftimeMillis: 400
+      SignalSearchFrames: 5
+      SignalActivation: 0.7
+      SignalRelease: 0.2
+      SignalSustainMillis: 3000
+  SpeechRecognitionSettings:
+    SilenceSegmentationMillis: 720
+    BoostVocabulary:
+      Vocabulary: 
+      Weight: 0
+  Output:
     IsSignalDetected: 0
     SignalDb: 0
     NoiseLevelDb: 0
-    ControlListening: 0
-  DebugPrint: 0

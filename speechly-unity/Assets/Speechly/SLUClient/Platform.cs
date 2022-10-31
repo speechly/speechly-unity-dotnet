@@ -33,6 +33,14 @@ namespace Speechly.Tools {
     }
 
     public static Task<byte[]> Fetch(string url) {
+
+// Local files need to be fetched with file:// protocol on OS_X. On Android this won't work.
+#if UNITY_EDITOR_OSX || UNITY_STANDALONE_OSX
+      if (url.IndexOf("://") < 0) {
+        url = $"file://{url}";
+      }
+#endif
+
 #if UNITY_EDITOR || UNITY_STANDALONE || UNITY_ANDROID || UNITY_IOS
       var req = UnityEngine.Networking.UnityWebRequest.Get(url);
       var reqOp = req.SendWebRequest();
