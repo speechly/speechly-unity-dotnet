@@ -27,7 +27,7 @@ class Program
         string[] files = argList.ToArray();
 
         if (files.Length == 0) {
-          files = new string[] {"Speechly/SLUClientTest/00_chinese_restaurant.raw"};
+          files = new string[] {"Speechly/SpeechlyClientTest/00_chinese_restaurant.raw"};
         }
 
         foreach( string fileName in files) {
@@ -40,7 +40,7 @@ class Program
         string fileName = null;
         argList.TryDequeue(out fileName);
         if (String.IsNullOrWhiteSpace(fileName)) {
-          fileName = "Speechly/SLUClientTest/00_chinese_restaurant.raw";
+          fileName = "Speechly/SpeechlyClientTest/00_chinese_restaurant.raw";
         }
         await SpeechlyClientTest.TestCloudProcessing(fileName);
         break;
