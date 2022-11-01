@@ -1,22 +1,20 @@
 # Speechly Client Library for Unity and C#
 
-[Speechly](https://www.speechly.com/?utm_source=github&utm_medium=react-client&utm_campaign=text) is an API for building voice features into games, XR, applications and web sites. This client library streams audio from a Unity or .NET app to Speechly cloud API and provides a C# API for receiving real-time speech-to-text transcription and natural language understanding results.
+## Overview
 
-## Releases
+[Speechly](https://www.speechly.com/?utm_source=github&utm_medium=react-client&utm_campaign=text) is an API for building voice features and voice chat moderation into games, XR, applications and web sites. Speechly Client Library for Unity and C# streams audio for analysis and provides real-time speech-to-text transcription and information extracted from the speech via the library's C# API.
 
-Download [speechly-client.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage) to get the latest Speechly Unity client library and example scenes bundled up for Unity.
+Speech recognition runs by default in Speechly cloud (online). On-device (offline) capabilities are available via separate libSpeechly add-on that runs machine learning models on the device itself using Core ML and TensorFlow Lite.
 
-## API Documentation
+## Package contents
 
-- [API documentation (DocFX generated)](https://speechly.github.io/speechly-unity-dotnet/)
+- [speechly-dotnet/](speechly-dotnet/) contains the C# SpeechlyClient without Unity dependencies
+- [speechly-unity/Assets/com.speechly.speechly-unity/](speechly-unity/Assets/com.speechly.speechly-unity/) folder contains the C# SpeechlyClient plus Unity-specifics like `Speechly.prefab` and `MicToSpeechly.cs` script and Unity sample projects:
+  - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/MicToSpeechly/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/MicToSpeechly/)
+  - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/AudioFileToSpeechly/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/AudioFileToSpeechly/)
+  - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/VoiceCommands/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/VoiceCommands/)
 
-## Requirements
-
-- A C# development environment with .NET Standard 2.0 API:
-  - Unity 2018.1 or later (tested with 2019.4.36f1 and 2021.2.12f1)
-  - Microsoft .NET Core 3 or later (tested with .NET 6.0.200)
-
-## Getting Started with Unity
+## Unity usage
 
 ### Installation
 
@@ -26,77 +24,59 @@ Download [speechly-client.unitypackage](https://github.com/speechly/speechly-uni
 - Drop `MicToSpeechly` prefab to your scene hierarchy
 - Select it and enter a valid token in the `App Id` field
 
-### Unity example
+Refer to https://docs.unity3d.com/Manual/upm-ui-install.html for instructions on using Unity packages.
 
-The following code example streams a pre-recorded raw audio file (16 bit mono, 16000 samples/sec) to Speechly via the websocket API and logs speech and language recognition results to console.
+### Requirements
 
-Constructing SpeechlyClient requires an `appId` (or `projectId`) from [Speechly Dashboard](https://api.speechly.com/dashboard/) that determines which intents and keywords (entities) should be returned in addition to basic speech-to-text (ASR).
+- Unity 2018.1 or later (tested with 2019.4.36f1 and 2021.2.12f1)
+- TextMeshPro (examples only)
+- XR Plug-in Management (VR example only)
 
-Setting `manualUpdate: true` postpones SpeechlyClient's callbacks (OnSegmentChange, OnTranscript...) until you manually run `SpeechlyClient.Update()`. This enables you to call Unity API in SpeechlyClient's callbacks, as Unity API should only be used in the main Unity thread.
+### Supported languages
 
-```
-using UnityEngine;
-using Speechly.SLUClient;
- 
-public class AudioFileToSpeechly : MonoBehaviour
-{
+- English
+- Finnish
+- Additional language support is discussed [here](https://github.com/speechly/speechly/discussions/139).
 
-  SpeechlyClient client;
+### Workflows
 
-  async void Start()
-  {
-    client = new SpeechlyClient(
-      manualUpdate: true,
-      debug: true
-    );
+- Add the `Speechly.prefab` to your scene and select it.
+- In the inspector, enter a valid `App id` acquired from [Speechly dashboard](https://api.speechly.com/dashboard)
+- Check `debug print` and `VAD controls listening`
 
-    // Set the desired callbacks.
-    // OnSegmentChange fires on any change and keeps a record of all words, intents and entities until the end of utterance is signaled with `segment.isFinal`.
-    // It's the recommended way to read SLU results.
-    
-    client.OnSegmentChange = (segment) => {
-      Debug.Log(segment.ToString());
-    };
+`Speechly.prefab` is by default set with `Don't destroy` so it's available in every scene. It creates a `SpeechlyClient` singleton which you can can access with `MicToSpeechly.Instance.SpeechlyClient`. Please see [SpeechlyClient API](https://speechly.github.io/speechly-unity-dotnet/).
 
-    // Get your app id from https://api.speechly.com/dashboard
-    decoder = new CloudDecoder(
-      appId: "ef84e8ba-c5a7-46c2-856e-8b853e2c77b1", // Basic ASR
-      deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
-      debug: true
-    );
+To display speech-to-text in a TMP text field, you can use something like this:
 
-    // Connect to CloudDecoder
-    await SpeechlyClient.Initialize(decoder);
-
-    // Send test audio. Callback(s) will fire and log the results.
-    await client.Start();
-    client.ProcessAudioFile("Assets/Speechly/00_chinese_restaurant.raw");
-    await client.Stop();
-  }
-
-  void Update()
-  {
-    // Manually fire Speechly callbacks in main thread instead of websocket thread
-    client.Update();
-  }
-}
+```C#
+    void Start()
+    {
+      var speechlyClient = MicToSpeechly.Instance.SpeechlyClient;
+      speechlyClient.OnSegmentChange += (segment) =>
+      {
+        Debug.Log(segment.ToString());
+        TranscriptText.text = segment.ToString(
+          (intent) => "",
+          (words, entityType) => $"<color=#15e8b5>{words}<color=#ffffff>",
+          "."
+        );
+      };
+    }
 ```
 
-## Contents of this repository
+### Reference
 
-- [speechly-client-net-standard-2.0/](speechly-client-net-standard-2.0/) contains the Speechly client library code and a sample .NET console app.
-- [speechly-unity/Assets/Speechly/](speechly-unity/Assets/Speechly/) folder contains the same basic .NET Speechly client code plus Unity-specific `MicToSpeechly.cs` microphone code and Unity sample projects:
-  - [speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/)
-  - [speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/](speechly-unity/Assets/SpeechlyExamples/AudioFileToSpeechly/)
-  - [speechly-unity/Assets/SpeechlyExamples/VoiceCommands/](speechly-unity/Assets/SpeechlyExamples/VoiceCommands/)
+- [SpeechlyClient API documentation (DocFX generated)](https://speechly.github.io/speechly-unity-dotnet/)
 
-### MicToSpeechly
+### Samples
 
-Import [SpeechlyExamples/MicToSpeechly/](speechly-unity/Assets/SpeechlyExamples/MicToSpeechly/) and `Speechly/` folders from [speechly-client.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage) to run a Unity sample scene that streams data from microphone to Speechly using [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/MicToSpeechly.cs) script running on a GameObject. App-specific logic is in `UseSpeechly.cs` which registers a callback and shows speech-to-text results in the UI.
+#### MicToSpeechly
 
-### VoiceCommands
+Import [com.speechly.speechly-unity/Examples/MicToSpeechly/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/MicToSpeechly/) and `Speechly/` folders from [speechly-client.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage) to run a Unity sample scene that streams data from microphone to Speechly using [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/com.speechly.speechly-unity/Unity/MicToSpeechly.cs) script running on a GameObject. App-specific logic is in `UseSpeechly.cs` which registers a callback and shows speech-to-text results in the UI.
 
-Import [SpeechlyExamples/VoiceCommands/](speechly-unity/Assets/SpeechlyExamples/VoiceCommands/) and `Speechly/` folders from `speechly-client.unitypackage` to run a Unity sample scene that showcases a point-and-talk interface: target an object and hold the mouse button to issue speech commands like "make it big and red" or "delete". Again, app-specific logic is in `UseSpeechly.cs` which registers a callback to respond to detected intents and keywords (entities).
+#### VoiceCommands
+
+Import [com.speechly.speechly-unity/Examples/VoiceCommands/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/VoiceCommands/) and `Speechly/` folders from `speechly-client.unitypackage` to run a Unity sample scene that showcases a point-and-talk interface: target an object and hold the mouse button to issue speech commands like "make it big and red" or "delete". Again, app-specific logic is in `UseSpeechly.cs` which registers a callback to respond to detected intents and keywords (entities).
 
 ## OS X notes
 
@@ -133,12 +113,19 @@ adb logcat -s Unity:D
 
 We are happy to receive community contributions! For small fixes, feel free to file a pull request. For bigger changes or new features start by filing an issue.
 
-- `./link-speechly-sources.sh` shell script will create hard links from `speechly-client-net-standard-2.0/Speechly/` to `speechly-unity/Assets/Speechly/` so shared .NET code in `SLUClient` is in sync. Please run the script after checking out the repo and before making any changes. If you can't use the script please ensure that the files are identical manually before opening a PR.
+- `./link-speechly-sources.sh` shell script will create hard links from `speechly-dotnet/Speechly/` to `speechly-unity/Assets/com.speechly.speechly-unity/` so shared .NET code remains is in sync. Please run the script after checking out the repo and before making any changes. If you can't use the script please ensure that the files are identical manually before opening a PR.
 - `./build-docs.sh` generates public API documentation using DocFX from triple-slash `///` comments with C# XML documentation tags.
+
+## C# Usage with dotnet
+
+### Requirements
+
+- A C# development environment with .NET Standard 2.0 API:
+  - Microsoft .NET Core 3 or later (tested with .NET 6.0.200)
 
 ### Command line usage with `dotnet`
 
-SpeechlyClient features can be run with prerecorded audio on the command line in `speechly-client-net-standard-2.0/` folder:
+SpeechlyClient features can be run with prerecorded audio on the command line in `speechly-dotnet/` folder:
 
 - `dotnet run test` processes an example file, sends to Speechly cloud SLU and prints the received results in console.
 - `dotnet run vad` processes an example file, sends the utterances audio to files in `temp/` folder as 16 bit raw and creates an utterance timestamp `.tsv` (tab-separated values) for each audio file processed.

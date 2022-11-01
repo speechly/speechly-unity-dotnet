@@ -64,11 +64,11 @@ linkSource () {
   echo "OK"
 }
 
-HARDLINK_SOURCE="speechly-dotnet/Speechly/SLUClient"
+HARDLINK_SOURCE="speechly-dotnet/Speechly/SpeechlyClient"
 HARDLINK_DEST="speechly-unity/Assets/com.speechly.speechly-unity/SpeechlyClient"
 linkSource $HARDLINK_SOURCE $HARDLINK_DEST
 
-HARDLINK_SOURCE="speechly-dotnet/Speechly/SLUClientTest"
-HARDLINK_DEST="speechly-unity/Assets/com.speechly.speechly-unity/SpeechlyExamples/AudioFileToSpeechly/SLUClientTest"
+HARDLINK_SOURCE="speechly-dotnet/Speechly/SpeechlyClientTest"
+HARDLINK_DEST="speechly-unity/Assets/com.speechly.speechly-unity/Examples/AudioFileToSpeechly/SpeechlyClientTest"
 
 linkSource $HARDLINK_SOURCE $HARDLINK_DEST
