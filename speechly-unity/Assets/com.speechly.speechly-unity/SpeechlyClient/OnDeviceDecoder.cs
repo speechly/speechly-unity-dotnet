@@ -8,11 +8,7 @@ using Speechly.Types;
 using Logger = Speechly.Tools.Logger;
 
 namespace Speechly.SLUClient {
-  public delegate Task<ByteBufs> ByteBufProvider();
-
-  public struct ByteBufs {
-    public byte[] bundle_buf;
-  }
+  public delegate Task<byte[]> ModelDataProvider();
 
   public class OnDeviceDecoder : IDecoder
   {
@@ -157,68 +153,54 @@ namespace Speechly.SLUClient {
     private bool debug = false;
     private int contextSerial = 0;
     private int segmentIndex = 0;
+    private ModelDataProvider modelBundleProvider;
     private ConcurrentQueue<string> activeContexts = new ConcurrentQueue<string>();
-    private ByteBufProvider byteBufProvider = null;
     private DecoderError error = new DecoderError();
     private AudioInfo Output;
 
-    public OnDeviceDecoder(string deviceId, bool debug = false) {
+    public OnDeviceDecoder(ModelDataProvider modelBundleProvider, string deviceId, bool debug = false) {
       this.deviceId = deviceId;
-      this.debug = debug;
-    }
-
-    public OnDeviceDecoder(string deviceId, ByteBufProvider byteBufProvider, bool debug = false) {
-      this.deviceId = deviceId;
-      this.byteBufProvider = byteBufProvider;
+      this.modelBundleProvider = modelBundleProvider;
       this.debug = debug;
     }
 
     override internal async Task Initialize(AudioProcessorOptions audioProcessorOptions, ContextOptions contextOptions, AudioInfo audioInfo) {
       this.Output = audioInfo;
+      byte[] bundle_buf;
 
-      if (byteBufProvider == null) {
-        if (debug) Logger.Log("Initializing on-device SLU from model files...");
-        string path = "Assets/StreamingAssets/SpeechlyOnDevice/Models";
-        decoderFactoryHandle = DecoderFactory_Create(
-          $"{path}/encoder.ort",
-          $"{path}/predictor.ort",
-          $"{path}/joint.ort",
-          $"{path}/feat.ort",
-          $"{path}/subwords.lst"
-        );
-        if (decoderFactoryHandle == null) {
-          throw new Exception($"Error with DecoderFactory_Create. Do you have Speechly model files (.lst and .ort) in {path}?");
+      if (debug) Logger.Log("Initializing on-device SLU from model byte buffers...");
+
+      try {
+        bundle_buf = await this.modelBundleProvider();
+      } catch (Exception e) {
+        throw new Exception($"Failed to load Speechly on-device Model Bundle. Please check if the file exists.\n{e.Message}");
+      }
+
+      if (bundle_buf.Length == 0) {
+        throw new Exception($"Failed to load Speechly on-device Model Bundle. The file has zero length.\nAre you trying to load placeholder dummy.bundle? Please contact Speechly to enable on-device support.");
+      }
+
+      decoderFactoryHandle = DecoderFactory_CreateFromModelArchive(bundle_buf, bundle_buf.Length, ref error);
+
+      if (SPEECHLY_ERROR_NONE != error.error_code) {
+        string errorDescription = $"Error while loading Speechly model files.\n";
+        errorDescription += $"DecoderFactory_CreateFromModelArchive code {error.error_code}: ";
+        if (0 != (error.error_code & SPEECHLY_ERROR_MISMATCH_IN_MODEL_ARCHITECTURE)) {
+          errorDescription += $"SPEECHLY_ERROR_MISMATCH_IN_MODEL_ARCHITECTURE ";
         }
-      } else {
-        if (debug) Logger.Log("Initializing on-device SLU from model byte buffers...");
-        var byteBufs = await byteBufProvider();
-
-        if (byteBufs.bundle_buf.Length == 0) {
-          throw new Exception($"Failed to load Speechly on-device Model Bundle. The file has zero length.\nAre you trying to load placeholder dummy.bundle? Please contact Speechly to enable on-device support.");
+        if (0 != (error.error_code & SPEECHLY_ERROR_INVALID_MODEL)) {
+          errorDescription += $"SPEECHLY_ERROR_INVALID_MODEL ";
         }
-
-        decoderFactoryHandle = DecoderFactory_CreateFromModelArchive(byteBufs.bundle_buf, byteBufs.bundle_buf.Length, ref error);
-
-        if (SPEECHLY_ERROR_NONE != error.error_code) {
-          string errorDescription = $"Error while loading Speechly model files.\n";
-          errorDescription += $"DecoderFactory_CreateFromModelArchive code {error.error_code}: ";
-          if (0 != (error.error_code & SPEECHLY_ERROR_MISMATCH_IN_MODEL_ARCHITECTURE)) {
-            errorDescription += $"SPEECHLY_ERROR_MISMATCH_IN_MODEL_ARCHITECTURE ";
-          }
-          if (0 != (error.error_code & SPEECHLY_ERROR_INVALID_MODEL)) {
-            errorDescription += $"SPEECHLY_ERROR_INVALID_MODEL ";
-          }
-          if (0 != (error.error_code & SPEECHLY_ERROR_EXPIRED_MODEL)) {
-            errorDescription += $"SPEECHLY_ERROR_EXPIRED_MODEL ";
-            // Throw a special exception for model expiration so it can be catched
-            throw new ModelExpiredException($"{errorDescription}\n");
-          }
-          throw new Exception($"{errorDescription}\n");
+        if (0 != (error.error_code & SPEECHLY_ERROR_EXPIRED_MODEL)) {
+          errorDescription += $"SPEECHLY_ERROR_EXPIRED_MODEL ";
+          // Throw a special exception for model expiration so it can be catched
+          throw new ModelExpiredException($"{errorDescription}\n");
         }
+        throw new Exception($"{errorDescription}\n");
+      }
 
-        if (decoderFactoryHandle == null) {
-          throw new Exception($"Error with DecoderFactory_CreateFromBuffers. There's probably something wrong with the Speechly model files (.lst and .ort) passed.");
-        }
+      if (decoderFactoryHandle == null) {
+        throw new Exception($"Unknown error with DecoderFactory_CreateFromBuffers. There's probably something wrong with the Speechly model file.");
       }
 
       DecoderFactory_SetSegmentationDelay(decoderFactoryHandle, contextOptions.SilenceSegmentationMillis, ref error);
