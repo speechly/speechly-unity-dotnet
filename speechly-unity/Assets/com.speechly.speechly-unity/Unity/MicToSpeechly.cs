@@ -57,7 +57,6 @@ public partial class MicToSpeechly : MonoBehaviour
   private bool wasVADEnabled;
   private Coroutine runSpeechlyCoroutine = null;
   IDecoder decoder = null;
-  partial void CreateOnDeviceDecoder(string deviceId, string modelBundleFile, bool debug);
 
   private void Awake() 
   { 
@@ -115,14 +114,11 @@ public partial class MicToSpeechly : MonoBehaviour
   private IEnumerator RunSpeechly()
   {
     if (SpeechlyEnv == SpeechlyEnvironment.OnDevice) {
-      CreateOnDeviceDecoder(
+      decoder = new OnDeviceDecoder(
+        async () => await Platform.Fetch($"{Application.streamingAssetsPath}/SpeechlyOnDevice/Models/{ModelBundle}"),
         deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
-        ModelBundle,
         debug: DebugPrint
       );
-      if (this.decoder == null) {
-        throw new Exception("Speechly on-device spoken language understanding (SLU) is not available. Please contact Speechly to enable on-device support.");
-      }
     }
 
     if (SpeechlyEnv == SpeechlyEnvironment.Production || SpeechlyEnv == SpeechlyEnvironment.Staging) {
