@@ -69,13 +69,13 @@ Speechly Client for Unity is on-device speech recognition ready. Enabling on-dev
 
 #### Install libSpeechly for each target platform
 
-- OS X (Intel): Replace the zero-length placeholder file `libSpeechlyDecoder.dylib` in `Assets/com.speechly.speechly-unity/SpeechlyOnDevice/Libraries/OS_X/libSpeechlyDecoder.dylib`
-- Android (arm64): Replace the zero-length placeholder file `libSpeechlyDecoder.so` in `Assets/com.speechly.speechly-unity/SpeechlyOnDevice/Libraries/Android/libSpeechlyDecoder.so`
+- OS X (Intel): Replace the zero-length placeholder file `libSpeechlyDecoder.dylib` in `Assets/com.speechly.speechly-unity/SpeechlyOnDevice/libSpeechly/OS_X/libSpeechlyDecoder.dylib`
+- Android (arm64): Replace the zero-length placeholder file `libSpeechlyDecoder.so` in `Assets/com.speechly.speechly-unity/SpeechlyOnDevice/libSpeechly/Android/libSpeechlyDecoder.so`
 - Other platforms: Follow the installation instruction provided with the files.
 
 #### Installing the speech recognition model
 
-- Add the `my-custom-model.bundle` file into `speechly-unity/Assets/StreamingAssets/SpeechlyOnDevice/Models/dummy.bundle`
+- Add the `my-custom-model.bundle` file into `speechly-unity/Assets/StreamingAssets/SpeechlyOnDevice/Models/`
 - Select the `Speechly.prefab` and enter the model's filename (e.g. `my-custom-model.bundle`) as the value for Model Bundle property.
 
 ### Reference
