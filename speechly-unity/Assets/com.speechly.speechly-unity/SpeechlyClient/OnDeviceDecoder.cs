@@ -12,45 +12,45 @@ namespace Speechly.SLUClient {
 
   public class OnDeviceDecoder : IDecoder
   {
-    public const string ERROR_BOILERPLATE = "An error occurred with the following call:\n";
+    private const string ERROR_BOILERPLATE = "An error occurred with the following call:\n";
 
-    /// Get/SetParam{I/F} param_ids from decoder.h
+    /// Get/SetParam{I/F} param_ids from Constants.h
 
     /// @warning EXPERIMENTAL Decoder Info readonly
-    public const uint  SPEECHLY_DECODER_INFO_PROGRESS_MS_I =            500;
+    private const uint SPEECHLY_DECODER_INFO_PROGRESS_MS_I =             500;
     /// @warning EXPERIMENTAL VAD signal-to-noise energy ratio needed for frame to be 'loud'. Use as param_id to Get/SetParamF().
-    public const uint SPEECHLY_VAD_SIGNAL_TO_NOISE_DB_F =               1000;
+    private const uint SPEECHLY_VAD_SIGNAL_TO_NOISE_DB_F =               1000;
     /// @warning EXPERIMENTAL VAD Energy threshold - below this won't trigger activation. Range (-90.0f, 0.0f). Use as param_id to Get/SetParamF().
-    public const uint SPEECHLY_VAD_NOISE_GATE_DB_F =                    1001;
+    private const uint SPEECHLY_VAD_NOISE_GATE_DB_F =                    1001;
     /// @warning EXPERIMENTAL VAD Rate of background noise learn. Defined as duration in which background noise energy is moved halfway towards current frame's energy. Range (0, 5000). Use as param_id to Get/SetParamI().
-    public const uint SPEECHLY_VAD_NOISE_LEARN_HALFTIME_MS_I =          1002;
+    private const uint SPEECHLY_VAD_NOISE_LEARN_HALFTIME_MS_I =          1002;
     /// @warning EXPERIMENTAL VAD 'loud' to 'silent' ratio in signal_search_frames to activate 'is_signal_detected'. Range(.0f, 1.0f). Use as param_id to Get/SetParamF().
-    public const uint SPEECHLY_VAD_SIGNAL_ACTIVATION_F =                1003;
+    private const uint SPEECHLY_VAD_SIGNAL_ACTIVATION_F =                1003;
     /// @warning EXPERIMENTAL VAD 'loud' to 'silent' ratio in signal_search_frames to keep 'is_signal_detected' active. Only evaluated when the sustain period is over. Range(.0f, 1.0f). Use as param_id to Get/SetParamF().
-    public const uint SPEECHLY_VAD_SIGNAL_RELEASE_F =                   1004;
+    private const uint SPEECHLY_VAD_SIGNAL_RELEASE_F =                   1004;
     /// @warning EXPERIMENTAL VAD duration to keep 'is_signal_detected' active. Renewed as long as VADActivation is holds true. Range(0, 8000). Use as param_id to Get/SetParamI().
-    public const uint SPEECHLY_VAD_SIGNAL_SUSTAIN_MS_I =                1005;
+    private const uint SPEECHLY_VAD_SIGNAL_SUSTAIN_MS_I =                1005;
     /// @warning EXPERIMENTAL VAD number of past audio frames analyzed by energy threshold VAD. Range(1, 32). Use as param_id to Get/SetParamI().
-    public const uint SPEECHLY_VAD_SIGNAL_SEARCH_FRAMES_I =             1006;
+    private const uint SPEECHLY_VAD_SIGNAL_SEARCH_FRAMES_I =             1006;
     /// @warning EXPERIMENTAL VAD Info readonly signal db at last processed frame
-    public const uint SPEECHLY_VAD_INFO_SIGNAL_DB_F =                   1007;
+    private const uint SPEECHLY_VAD_INFO_SIGNAL_DB_F =                   1007;
     /// @warning EXPERIMENTAL VAD Info readonly adaptive noise level at last processed prame
-    public const uint SPEECHLY_VAD_INFO_NOISE_LEVEL_DB_F =              1008;
+    private const uint SPEECHLY_VAD_INFO_NOISE_LEVEL_DB_F =              1008;
     /// @warning EXPERIMENTAL VAD_INFO READONLY 1 if VAD has detected signal and is sending audio for decoding after last processed frame. 0 if not.
-    public const uint SPEECHLY_VAD_INFO_IS_SIGNAL_DETECTED_I =          1009;
+    private const uint SPEECHLY_VAD_INFO_IS_SIGNAL_DETECTED_I =          1009;
 
     // End: Get/SetParam{I/F} param_ids
 
-    public const uint SPEECHLY_ERROR_UNEXPECTED_PARAMETER = 64;
-    public const uint SPEECHLY_ERROR_EXPIRED_MODEL = 32;
-    public const uint SPEECHLY_ERROR_INVALID_MODEL = 16;
-    public const uint SPEECHLY_ERROR_MISMATCH_IN_MODEL_ARCHITECTURE = 8;
-    public const uint SPEECHLY_ERROR_UNEXPECTED_PARAMETER_VALUE = 4;
-    public const uint SPEECHLY_ERROR_MEMORY_ERROR = 2;
-    public const uint SPEECHLY_ERROR_UNEXPECTED_ERROR = 1;
-    public const uint SPEECHLY_ERROR_NONE = 0;
+    private const uint SPEECHLY_ERROR_UNEXPECTED_PARAMETER = 64;
+    private const uint SPEECHLY_ERROR_EXPIRED_MODEL = 32;
+    private const uint SPEECHLY_ERROR_INVALID_MODEL = 16;
+    private const uint SPEECHLY_ERROR_MISMATCH_IN_MODEL_ARCHITECTURE = 8;
+    private const uint SPEECHLY_ERROR_UNEXPECTED_PARAMETER_VALUE = 4;
+    private const uint SPEECHLY_ERROR_MEMORY_ERROR = 2;
+    private const uint SPEECHLY_ERROR_UNEXPECTED_ERROR = 1;
+    private const uint SPEECHLY_ERROR_NONE = 0;
 
-    // Imported Decoder.h API from https://github.com/speechly/speechly-decoder/blob/main/library/include/Decoder.h
+    // libSpeechly Decoder.h API
 
     [DllImport ("SpeechlyDecoder")]
     private static extern IntPtr DecoderFactory_CreateFromModelArchive([MarshalAs(UnmanagedType.LPArray)] byte[] buf, int buf_len, ref DecoderError error);
