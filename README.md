@@ -11,10 +11,12 @@ Speech recognition runs by default in Speechly cloud (online). On-device (offlin
 - [speechly-dotnet/](speechly-dotnet/) contains the C# SpeechlyClient without Unity dependencies
 - [speechly-unity/Assets/com.speechly.speechly-unity/](speechly-unity/Assets/com.speechly.speechly-unity/) folder contains the C# SpeechlyClient plus Unity-specifics like `Speechly.prefab` and `MicToSpeechly.cs` script and Unity sample projects:
   - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/MicToSpeechly/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/MicToSpeechly/)
-  - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/AudioFileToSpeechly/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/AudioFileToSpeechly/)
-  - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/VoiceCommands/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/VoiceCommands/)
+  - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/HandsFreeListening/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/HandsFreeListening/)
+  - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/HandsFreeListeningVR/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/HandsFreeListening/)
+  - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/HandsFreeListeningVR/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/AudioFileToSpeechly/)
+  - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/PointAndTalk/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/PointAndTalk/)
 
-## Unity usage
+## Unity
 
 ### Installation
 
@@ -37,46 +39,72 @@ Refer to https://docs.unity3d.com/Manual/upm-ui-install.html for instructions on
 - English
 - Finnish
 - Additional language support is discussed [here](https://github.com/speechly/speechly/discussions/139).
+
 ### Workflows
+
+#### Hands-free voice input via Unity microphone
 
 - Add the `Speechly.prefab` to your scene and select it.
 - In the inspector, enter a valid `App id` acquired from [Speechly dashboard](https://api.speechly.com/dashboard)
-- Check `debug print` and `VAD controls listening`
+- Check `VAD controls listening` and `debug print`.
+- Run the app, speak and see the console for the basic transcription results.
 
-`Speechly.prefab` is by default set with `Don't destroy on load` so it's available in every scene. It creates a `SpeechlyClient` singleton which you can can access with `MicToSpeechly.Instance.SpeechlyClient`. Please see [SpeechlyClient API](https://speechly.github.io/speechly-unity-dotnet/).
+#### Controlling listening with SpeechlyClient.Start() and Stop()
 
-To display speech-to-text in a TMP text field, you can use something like this:
+- Add the `Speechly.prefab` to your scene and select it.
+- In the inspector, enter a valid `App id` acquired from [Speechly dashboard](https://api.speechly.com/dashboard)
+- Check `debug print` to see basic transcription results in the console.
+- Create the following script to listen only when mouse/finger is pressed. Ensure that `VAD controls listening` is unchecked as we're controlling listening manually.
+- Run the app, press and hold anywhere on the screen and see the console for the basic transcription results.
 
 ```C#
-    void Start()
+  void Update()
+  {
+    SpeechlyClient speechlyClient = MicToSpeechly.Instance.SpeechlyClient;
+
+    if (Input.GetMouseButton(0))
     {
-      var speechlyClient = MicToSpeechly.Instance.SpeechlyClient;
-      speechlyClient.OnSegmentChange += (segment) =>
+      if (!speechlyClient.IsActive)
       {
-        Debug.Log(segment.ToString());
-        TranscriptText.text = segment.ToString(
-          (intent) => "",
-          (words, entityType) => $"<color=#15e8b5>{words}<color=#ffffff>",
-          "."
-        );
-      };
+        _ = speechlyClient.Start();
+      }
     }
+    else
+    {
+      if (speechlyClient.IsActive)
+      {
+        _ = speechlyClient.Stop();
+      }
+    }
+  }
 ```
 
-### On-device support
+`Speechly.prefab` is by default set with `Don't destroy on load` so it's available in every scene. It creates a `SpeechlyClient` singleton which you can can access with `MicToSpeechly.Instance.SpeechlyClient`.
 
-Speechly Client for Unity is on-device speech recognition ready. Enabling on-device support requires add-on files (libSpeechly, speech recognition model) from Speechly.
+#### Accessing speech recognition results via Segment API
 
-#### Install libSpeechly for each target platform
+- Use either hands-free listening or manual listening as described above.
+- To handle the speech-to-text results, attach a callback for `OnSegmentChange`. The following example displays the speeech transcription in a TMP text field.
 
-- OS X (Intel): Replace the zero-length placeholder file `libSpeechlyDecoder.dylib` in `Assets/com.speechly.speechly-unity/SpeechlyOnDevice/libSpeechly/OS_X/libSpeechlyDecoder.dylib`
-- Android (arm64): Replace the zero-length placeholder file `libSpeechlyDecoder.so` in `Assets/com.speechly.speechly-unity/SpeechlyOnDevice/libSpeechly/Android/libSpeechlyDecoder.so`
-- Other platforms: Follow the installation instruction provided with the files.
+```C#
+  void Start()
+  {
+    SpeechlyClient speechlyClient = MicToSpeechly.Instance.SpeechlyClient;
+    speechlyClient.OnSegmentChange += (segment) =>
+    {
+      Debug.Log(segment.ToString());
+      TranscriptText.text = segment.ToString(
+        (intent) => "",
+        (words, entityType) => $"<color=#15e8b5>{words}<color=#ffffff>",
+        "."
+      );
+    };
+  }
+```
 
-#### Installing the speech recognition model
+#### Using other audio sources
 
-- Add the `my-custom-model.bundle` file into `speechly-unity/Assets/StreamingAssets/SpeechlyOnDevice/Models/`
-- Select the `Speechly.prefab` and enter the model's filename (e.g. `my-custom-model.bundle`) as the value for Model Bundle property.
+You can send audio from other audio sources by calling `SpeechlyClient.Start()`, sending any number of packets containing samples as float32 array (mono 16kHz by default) using `SpeechlyClient.ProcessAudio()`. Finally, call `SpeechlyClient.Stop()`.
 
 ### Reference
 
@@ -98,13 +126,30 @@ Import [com.speechly.speechly-unity/Examples/PointAndTalk/](speechly-unity/Asset
 - `HandsFreeListening` demonstrates hands-free voice input.
 - `HandsFreeListeningVR` demonstrates hands-free voice input on a VR headset. Tested on Meta Quest 2.
 
-## OS X notes
+### On-device support
+
+Speechly Client for Unity is on-device speech recognition ready. Enabling on-device support requires add-on files (libSpeechly, speech recognition model) from Speechly.
+
+#### Install libSpeechly for each target platform
+
+- OS X (Intel): Replace the zero-length placeholder file `libSpeechlyDecoder.dylib` in `Assets/com.speechly.speechly-unity/SpeechlyOnDevice/libSpeechly/OS_X/libSpeechlyDecoder.dylib`
+- Android (arm64): Replace the zero-length placeholder file `libSpeechlyDecoder.so` in `Assets/com.speechly.speechly-unity/SpeechlyOnDevice/libSpeechly/Android/libSpeechlyDecoder.so`
+- Other platforms: Follow the installation instruction provided with the files.
+
+#### Installing the speech recognition model
+
+- Add the `my-custom-model.bundle` file into `speechly-unity/Assets/StreamingAssets/SpeechlyOnDevice/Models/`
+- Select the `Speechly.prefab` and enter the model's filename (e.g. `my-custom-model.bundle`) as the value for Model Bundle property.
+
+## Target player details
+
+### OS X
 
 To enable microphone input on OS X, set `Player Settings > Settings for PC, Mac & Linux Standalone > Other Settings > Microphone Usage Description`, to for example, "Voice input is automatically processed by Speechly.com".
 
-## Android notes
+### Android
 
-### Device testing
+#### Testing on an Android Device
 
 To diagnose problems with device builds, you can do the following:
 
@@ -117,7 +162,7 @@ adb logcat -s Unity:D
 - Use the app on device. Ensure it's listening (e.g. keep `Hold to talk` button pressed) and say "ONE, TWO, THREE". Then release the button.
 - You should see "ONE, TWO, THREE" displayed in the top-left corner of the screen. If not, see the terminal for errors.
 
-### Android troubleshooting
+#### Android troubleshooting
 
 - `Exception: Could not open microphone` and green VU meter won't move. Cause: There's no implementation in place to wait for permission prompt to complete so mic permission is not given on the first run and Microphone.Start() fails. Fix: Implement platform specific permission check, or, restart app after granting the permission.
 - `WebException: Error: NameResolutionFailure` and transcript won't change when button held and app is spoken to. Cause: Production builds restric access to internet. Fix: With Android target active, go Player settings and find "Internet Access" and change it to "required".
@@ -129,24 +174,24 @@ adb logcat -s Unity:D
 </linker>
 ```
 
-## Developing and contributing
-
-We are happy to receive community contributions! For small fixes, feel free to file a pull request. For bigger changes or new features start by filing an issue.
-
-- `./link-speechly-sources.sh` shell script will create hard links from `speechly-dotnet/Speechly/` to `speechly-unity/Assets/com.speechly.speechly-unity/` so shared .NET code remains is in sync. Please run the script after checking out the repo and before making any changes. If you can't use the script please ensure that the files are identical manually before opening a PR.
-- `./build-docs.sh` generates public API documentation using DocFX from triple-slash `///` comments with C# XML documentation tags.
-
-## C# Usage with dotnet
+## C# / dotnet
 
 ### Requirements
 
 - A C# development environment with .NET Standard 2.0 API:
   - Microsoft .NET Core 3 or later (tested with .NET 6.0.200)
 
-### Command line usage with `dotnet`
+### CLI usage with `dotnet`
 
 SpeechlyClient features can be run with prerecorded audio on the command line in `speechly-dotnet/` folder:
 
 - `dotnet run test` processes an example file, sends to Speechly cloud SLU and prints the received results in console.
 - `dotnet run vad` processes an example file, sends the utterances audio to files in `temp/` folder as 16 bit raw and creates an utterance timestamp `.tsv` (tab-separated values) for each audio file processed.
 - `dotnet run vad myaudiofiles/*.raw` processes a set of files with VAD.
+
+## Developing and contributing
+
+We are happy to receive community contributions! For small fixes, feel free to file a pull request. For bigger changes or new features start by filing an issue.
+
+- `./link-speechly-sources.sh` shell script will create hard links from `speechly-dotnet/Speechly/` to `speechly-unity/Assets/com.speechly.speechly-unity/` so shared .NET code remains is in sync. Please run the script after checking out the repo and before making any changes. If you can't use the script please ensure that the files are identical manually before opening a PR.
+- `./build-docs.sh` generates public API documentation using DocFX from triple-slash `///` comments with C# XML documentation tags.
