@@ -9,12 +9,12 @@ Speech recognition runs by default in Speechly cloud (online). On-device (offlin
 ## Package contents
 
 - [speechly-dotnet/](speechly-dotnet/) contains the C# SpeechlyClient without Unity dependencies
-- [speechly-unity/Assets/com.speechly.speechly-unity/](speechly-unity/Assets/com.speechly.speechly-unity/) folder contains the C# SpeechlyClient plus Unity-specifics like `Speechly.prefab` and `MicToSpeechly.cs` script and Unity sample projects:
-  - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/MicToSpeechly/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/MicToSpeechly/)
-  - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/HandsFreeListening/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/HandsFreeListening/)
-  - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/HandsFreeListeningVR/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/HandsFreeListening/)
-  - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/HandsFreeListeningVR/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/AudioFileToSpeechly/)
-  - [speechly-unity/Assets/com.speechly.speechly-unity/Examples/PointAndTalk/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/PointAndTalk/)
+- [speechly-unity/Assets/Speechly/](speechly-unity/Assets/Speechly/) folder contains the C# SpeechlyClient plus Unity-specifics like `Speechly.prefab` and `MicToSpeechly.cs` script and Unity sample projects:
+  - [speechly-unity/Assets/Speechly/Examples/MicToSpeechly/](speechly-unity/Assets/Speechly/Examples/MicToSpeechly/)
+  - [speechly-unity/Assets/Speechly/Examples/HandsFreeListening/](speechly-unity/Assets/Speechly/Examples/HandsFreeListening/)
+  - [speechly-unity/Assets/Speechly/Examples/HandsFreeListeningVR/](speechly-unity/Assets/Speechly/Examples/HandsFreeListening/)
+  - [speechly-unity/Assets/Speechly/Examples/HandsFreeListeningVR/](speechly-unity/Assets/Speechly/Examples/AudioFileToSpeechly/)
+  - [speechly-unity/Assets/Speechly/Examples/PointAndTalk/](speechly-unity/Assets/Speechly/Examples/PointAndTalk/)
 
 ## Unity
 
@@ -114,11 +114,11 @@ You can send audio from other audio sources by calling `SpeechlyClient.Start()`,
 
 #### MicToSpeechly
 
-Import [com.speechly.speechly-unity/Examples/MicToSpeechly/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/MicToSpeechly/) and `Speechly/` folders from [speechly-client.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage) to run a Unity sample scene that streams data from microphone to Speechly using [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/com.speechly.speechly-unity/Unity/MicToSpeechly.cs) script running on a GameObject. App-specific logic is in `UseSpeechly.cs` which registers a callback and shows speech-to-text results in the UI.
+Import [Speechly/Examples/MicToSpeechly/](speechly-unity/Assets/Speechly/Examples/MicToSpeechly/) and `Speechly/` folders from [speechly-client.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage) to run a Unity sample scene that streams data from microphone to Speechly using [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/Unity/MicToSpeechly.cs) script running on a GameObject. App-specific logic is in `UseSpeechly.cs` which registers a callback and shows speech-to-text results in the UI.
 
 #### PointAndTalk
 
-Import [com.speechly.speechly-unity/Examples/PointAndTalk/](speechly-unity/Assets/com.speechly.speechly-unity/Examples/PointAndTalk/) and `Speechly/` folders from `speechly-client.unitypackage` to run a Unity sample scene that showcases a point-and-talk interface: target an object and hold the mouse button to issue speech commands like "make it big and red" or "delete". Again, app-specific logic is in `UseSpeechly.cs` which registers a callback to respond to detected intents and keywords (entities).
+Import [Speechly/Examples/PointAndTalk/](speechly-unity/Assets/Speechly/Examples/PointAndTalk/) and `Speechly/` folders from `speechly-client.unitypackage` to run a Unity sample scene that showcases a point-and-talk interface: target an object and hold the mouse button to issue speech commands like "make it big and red" or "delete". Again, app-specific logic is in `UseSpeechly.cs` which registers a callback to respond to detected intents and keywords (entities).
 
 #### Other Examples
 
@@ -132,8 +132,8 @@ Speechly Client for Unity is on-device speech recognition ready. Enabling on-dev
 
 #### Install libSpeechly for each target platform
 
-- OS X (Intel): Replace the zero-length placeholder file `libSpeechlyDecoder.dylib` in `Assets/com.speechly.speechly-unity/SpeechlyOnDevice/libSpeechly/OS_X/libSpeechlyDecoder.dylib`
-- Android (arm64): Replace the zero-length placeholder file `libSpeechlyDecoder.so` in `Assets/com.speechly.speechly-unity/SpeechlyOnDevice/libSpeechly/Android/libSpeechlyDecoder.so`
+- OS X (Intel): Replace the zero-length placeholder file `libSpeechlyDecoder.dylib` in `Assets/Speechly/SpeechlyOnDevice/libSpeechly/OS_X/libSpeechlyDecoder.dylib`
+- Android (arm64): Replace the zero-length placeholder file `libSpeechlyDecoder.so` in `Assets/Speechly/SpeechlyOnDevice/libSpeechly/Android/libSpeechlyDecoder.so`
 - Other platforms: Follow the installation instruction provided with the files.
 
 #### Installing the speech recognition model
@@ -193,15 +193,15 @@ SpeechlyClient features can be run with prerecorded audio on the command line in
 
 We are happy to receive community contributions! For small fixes, feel free to file a pull request. For bigger changes or new features start by filing an issue.
 
-- `./link-speechly-sources.sh` shell script will create hard links from `speechly-dotnet/Speechly/` to `speechly-unity/Assets/com.speechly.speechly-unity/` so shared .NET code remains is in sync. Please run the script after checking out the repo and before making any changes. If you can't use the script please ensure that the files are identical manually before opening a PR.
+- `./link-speechly-sources.sh` shell script will create hard links from `speechly-dotnet/Speechly/` to `speechly-unity/Assets/Speechly/` so shared .NET code remains is in sync. Please run the script after checking out the repo and before making any changes. If you can't use the script please ensure that the files are identical manually before opening a PR.
 - `./build-docs.sh` generates public API documentation using DocFX from triple-slash `///` comments with C# XML documentation tags.
 
 ## Publishing an unitypackage
 
-An unitypackage release is created with Unity's Export package feature. It should contain `com.speechly.speechly-unity` and `StreamingAssets` folders which contain Speechly-specific code and assets. Other files and folders in the project should not be included.
+An unitypackage release is created with Unity's Export package feature. It should contain `Speechly` and `StreamingAssets` folders which contain Speechly-specific code and assets. Other files and folders in the project should not be included.
 
 - Open `speechly-unity/speechly-unity.sln` (or any Scene file within that solution) using Unity (currently 2021.3.12f LTS)
-- In the Project window, select `com.speechly.speechly-unity` and `StreamingAssets` folders, then right click one of them.
+- In the Project window, select `Speechly` and `StreamingAssets` folders, then right click one of them.
 - In the context menu, select `Export package...`.
 - In the Export package window, uncheck `Include dependencies`, then click `Export...`
 - Name the file `speechly.unitypackage` in the root folder
