@@ -10,7 +10,7 @@ Speech recognition runs by default in Speechly cloud (online). On-device (offlin
 
 - [speechly-dotnet/](speechly-dotnet/) contains the C# SpeechlyClient without Unity dependencies
 - [speechly-unity/Assets/Speechly/](speechly-unity/Assets/Speechly/) folder contains the C# SpeechlyClient plus Unity-specifics like `Speechly.prefab` and `MicToSpeechly.cs` script and Unity sample projects:
-  - [speechly-unity/Assets/Speechly/Examples/MicToSpeechly/](speechly-unity/Assets/Speechly/Examples/MicToSpeechly/)
+  - [speechly-unity/Assets/Speechly/Examples/PushToTalkButton/](speechly-unity/Assets/Speechly/Examples/MicToSpeechly/)
   - [speechly-unity/Assets/Speechly/Examples/HandsFreeListening/](speechly-unity/Assets/Speechly/Examples/HandsFreeListening/)
   - [speechly-unity/Assets/Speechly/Examples/HandsFreeListeningVR/](speechly-unity/Assets/Speechly/Examples/HandsFreeListening/)
   - [speechly-unity/Assets/Speechly/Examples/HandsFreeListeningVR/](speechly-unity/Assets/Speechly/Examples/AudioFileToSpeechly/)
