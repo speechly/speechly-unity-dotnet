@@ -20,11 +20,9 @@ Speech recognition runs by default in Speechly cloud (online). On-device (offlin
 
 ### Installation
 
-- Download [speechly-client.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage)
+- Download [speechly.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly.unitypackage)
 - Select Assets > Import Package > Custom Package... and select the downloaded file.
 - Import `Speechly/` folder from the package to your Unity project
-- Drop `MicToSpeechly` prefab to your scene hierarchy
-- Select it and enter a valid token in the `App Id` field
 
 Refer to https://docs.unity3d.com/Manual/upm-ui-install.html for instructions on using Unity packages.
 
@@ -36,11 +34,9 @@ Refer to https://docs.unity3d.com/Manual/upm-ui-install.html for instructions on
 
 ### Supported languages
 
-- English
-- Finnish
-- Additional language support is discussed [here](https://github.com/speechly/speechly/discussions/139).
+See language support [here](https://github.com/speechly/speechly/discussions/139).
 
-### Workflows
+### Usage
 
 #### Hands-free voice input via Unity microphone
 
@@ -110,15 +106,15 @@ You can send audio from other audio sources by calling `SpeechlyClient.Start()`,
 
 - [SpeechlyClient API documentation (DocFX generated)](https://speechly.github.io/speechly-unity-dotnet/)
 
-### Samples
+### Example scenes
 
-#### MicToSpeechly
+#### PushToTalkButton
 
-Import [Speechly/Examples/MicToSpeechly/](speechly-unity/Assets/Speechly/Examples/MicToSpeechly/) and `Speechly/` folders from [speechly-client.unitypackage](https://github.com/speechly/speechly-unity-dotnet/raw/main/speechly-client.unitypackage) to run a Unity sample scene that streams data from microphone to Speechly using [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/Unity/MicToSpeechly.cs) script running on a GameObject. App-specific logic is in `UseSpeechly.cs` which registers a callback and shows speech-to-text results in the UI.
+An Unity sample scene that streams data from microphone to Speechly using [MicToSpeechly.cs](https://github.com/speechly/speechly-unity-dotnet/blob/main/speechly-unity/Assets/Speechly/Unity/MicToSpeechly.cs) script running on a GameObject. App-specific logic is in `UseSpeechly.cs` which registers a callback and shows speech-to-text results in the UI.
 
 #### PointAndTalk
 
-Import [Speechly/Examples/PointAndTalk/](speechly-unity/Assets/Speechly/Examples/PointAndTalk/) and `Speechly/` folders from `speechly-client.unitypackage` to run a Unity sample scene that showcases a point-and-talk interface: target an object and hold the mouse button to issue speech commands like "make it big and red" or "delete". Again, app-specific logic is in `UseSpeechly.cs` which registers a callback to respond to detected intents and keywords (entities).
+An Unity sample scene that showcases a point-and-talk interface: target an object and hold the mouse button to issue speech commands like "make it big and red" or "delete". Again, app-specific logic is in `UseSpeechly.cs` which registers a callback to respond to detected intents and keywords (entities).
 
 #### Other Examples
 
@@ -132,8 +128,8 @@ Speechly Client for Unity is on-device speech recognition ready. Enabling on-dev
 
 #### Install libSpeechly for each target platform
 
-- OS X (Intel): Replace the zero-length placeholder file `libSpeechlyDecoder.dylib` in `Assets/Speechly/SpeechlyOnDevice/libSpeechly/OS_X/libSpeechlyDecoder.dylib`
-- Android (arm64): Replace the zero-length placeholder file `libSpeechlyDecoder.so` in `Assets/Speechly/SpeechlyOnDevice/libSpeechly/Android/libSpeechlyDecoder.so`
+- OS X (Intel): Replace the zero-length placeholder file `libSpeechlyDecoder.dylib` in `Assets/Speechly/SpeechlyOnDevice/libSpeechly/OS_X-x86-64/libSpeechlyDecoder.dylib`
+- Android (arm64): Replace the zero-length placeholder file `libSpeechlyDecoder.so` in `Assets/Speechly/SpeechlyOnDevice/libSpeechly/Android-ARM64/libSpeechlyDecoder.so`
 - Other platforms: Follow the installation instruction provided with the files.
 
 #### Installing the speech recognition model
@@ -200,8 +196,8 @@ We are happy to receive community contributions! For small fixes, feel free to f
 
 An unitypackage release is created with Unity's Export package feature. It should contain `Speechly` and `StreamingAssets` folders which contain Speechly-specific code and assets. Other files and folders in the project should not be included.
 
-- Open `speechly-unity/speechly-unity.sln` (or any Scene file within that solution) using Unity (currently 2021.3.12f LTS)
-- In the Project window, select `Speechly` and `StreamingAssets` folders, then right click one of them.
+- Open the folder `speechly-unity/` subfolder (or any Scene file within that solution) using Unity Hub. The project is currently in Unity 2021.3.12f LTS.
+- In the Project window, select `Speechly` and `StreamingAssets` folders, then right click them to open the context menu.
 - In the context menu, select `Export package...`.
 - In the Export package window, uncheck `Include dependencies`, then click `Export...`
 - Name the file `speechly.unitypackage` in the root folder
