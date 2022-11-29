@@ -65,10 +65,10 @@ linkSource () {
 }
 
 HARDLINK_SOURCE="speechly-dotnet/Speechly/SpeechlyClient"
-HARDLINK_DEST="speechly-unity/Assets/com.speechly.speechly-unity/SpeechlyClient"
+HARDLINK_DEST="speechly-unity/Assets/Speechly/SpeechlyClient"
 linkSource $HARDLINK_SOURCE $HARDLINK_DEST
 
 HARDLINK_SOURCE="speechly-dotnet/Speechly/SpeechlyClientTest"
-HARDLINK_DEST="speechly-unity/Assets/com.speechly.speechly-unity/Examples/AudioFileToSpeechly/SpeechlyClientTest"
+HARDLINK_DEST="speechly-unity/Assets/Speechly/Examples/AudioFileToSpeechly/SpeechlyClientTest"
 
 linkSource $HARDLINK_SOURCE $HARDLINK_DEST

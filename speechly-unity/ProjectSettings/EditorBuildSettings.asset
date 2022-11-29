@@ -6,10 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 0
-    path: Assets/com.speechly.speechly-unity/Examples/PointAndTalk/PointAndTalkScene.unity
+    path: Assets/Speechly/Examples/PointAndTalk/PointAndTalkScene.unity
     guid: a00d3f6bd307c4dab91fd7357cf15f63
   - enabled: 1
-    path: Assets/com.speechly.speechly-unity/Examples/HandsFreeListeningVR/HandsFreeListeningVR.unity
+    path: Assets/Speechly/Examples/HandsFreeListeningVR/HandsFreeListeningVR.unity
     guid: d325ecd93be5f4b4fafda54abcab7bb0
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 9c58551dbc9f04181902e4049d427a3b,

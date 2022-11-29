@@ -14,7 +14,7 @@ docfx.console/
 *.dylib
 
 # Allow the distribution unitypackage
-!speechlyclient.unitypackage
+!speechly.unitypackage
 
 # OS X system files
 .DS_Store
