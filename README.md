@@ -196,6 +196,17 @@ We are happy to receive community contributions! For small fixes, feel free to f
 - `./link-speechly-sources.sh` shell script will create hard links from `speechly-dotnet/Speechly/` to `speechly-unity/Assets/com.speechly.speechly-unity/` so shared .NET code remains is in sync. Please run the script after checking out the repo and before making any changes. If you can't use the script please ensure that the files are identical manually before opening a PR.
 - `./build-docs.sh` generates public API documentation using DocFX from triple-slash `///` comments with C# XML documentation tags.
 
+## Publishing an unitypackage
+
+An unitypackage release is created with Unity's Export package feature. It should contain `com.speechly.speechly-unity` and `StreamingAssets` folders which contain Speechly-specific code and assets. Other files and folders in the project should not be included.
+
+- Open `speechly-unity/speechly-unity.sln` (or any Scene file within that solution) using Unity (currently 2021.3.12f LTS)
+- In the Project window, select `com.speechly.speechly-unity` and `StreamingAssets` folders, then right click one of them.
+- In the context menu, select `Export package...`.
+- In the Export package window, uncheck `Include dependencies`, then click `Export...`
+- Name the file `speechly.unitypackage` in the root folder
+- Add to git and push.
+
 ## License, terms and privacy
 
 - These Unity SDK files are distributed under MIT License.
