@@ -29,8 +29,8 @@ namespace Speechly.SLUClient {
 /// <summary>
 /// Read the combined results of automatic speech recoginition (ASR) and natural language detection (NLU).
 /// 
-/// You can control when to start and stop process speech either manually with <see cref="Start"/> and <see cref="Stop"/> or
-/// automatically by providing a voice activity detection (VAD) field to <see cref="SpeechlyClient"/>.
+/// You can control when to start and stop process speech either manually with <see cref="Start"/> and <see cref="Stop"/>.
+/// Alternatively, you may let SpeechlyClient control this automatically by setting setting AudioProcessorOptions.VADControlsListening to true upon SpeechlyClient.Initialize() or by calling SpeechlyClient.AdjustAudioProcessor(true).
 /// </summary>
 
     public SegmentChangeDelegate OnSegmentChange = (Segment segment) => {};
