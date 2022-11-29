@@ -1,6 +1,11 @@
+v2.1.0 (2022-11-01)
+- Added libSpeechly v1.1.2 readiness for on-device speech recognition.
+- Added HandsFreeListeningVR example. Enabled XR in project.
+- Organized folder structure for Asset Store publishing: Everything should be in Assets/com.speechly.speechly-unity/ except for special StreamingAssets folder
+
 v2.0.1 (2022-09-05)
 - ModelExpiredException
-- SpeechRecongnitionSettings to contain silence segmentation setting. CloudDecoder support for boost vocabulary.
+- SpeechRecognitionSettings to contain silence segmentation setting. CloudDecoder support for boost vocabulary.
 
 v2.0.0 (2022-08-31)
 - Introduced AudioProcessorSettings and SpeechRecoginitionSettings in MicToSpeechly

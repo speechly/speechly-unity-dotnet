@@ -1,0 +1,73 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &2238053259677155662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2238053259677155648}
+  - component: {fileID: 2238053259677155663}
+  m_Layer: 0
+  m_Name: Speechly
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2238053259677155648
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2238053259677155662}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2238053259677155663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2238053259677155662}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f6b6837b89e74c51819907efcc77c50, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SpeechlyEnv: 0
+  AppId: 
+  CaptureDeviceName: 
+  ModelBundle: dummy.bundle
+  DebugPrint: 0
+  AudioProcessorSettings:
+    InputSampleRate: 16000
+    InternalSampleRate: 16000
+    FrameMillis: 30
+    HistoryFrames: 8
+    VADControlsListening: 0
+    VADSettings:
+      SignalToNoiseDb: 3
+      NoiseGateDb: -24
+      NoiseLearnHalftimeMillis: 400
+      SignalSearchFrames: 5
+      SignalActivation: 0.7
+      SignalRelease: 0.2
+      SignalSustainMillis: 3000
+  SpeechRecognitionSettings:
+    SilenceSegmentationMillis: 720
+    BoostVocabulary:
+      Vocabulary: 
+      Weight: 0
+  Output:
+    IsSignalDetected: 0
+    SignalDb: 0
+    NoiseLevelDb: 0
