@@ -16,14 +16,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Logger.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Logger
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Logger.cs
     startLine: 3
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: 'public class Logger : object'
@@ -51,14 +51,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Logger.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Log
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Logger.cs
     startLine: 5
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static Logger.LoggerDelegate Log
@@ -84,14 +84,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Logger.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: LogError
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Logger.cs
     startLine: 10
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static Logger.LoggerDelegate LogError

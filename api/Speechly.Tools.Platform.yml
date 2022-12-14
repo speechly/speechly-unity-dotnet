@@ -21,14 +21,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Platform
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
     startLine: 8
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: 'public class Platform : object'
@@ -56,14 +56,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ConfigPath
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
     startLine: 10
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static string ConfigPath
@@ -89,14 +89,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: GetDeviceId
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
     startLine: 12
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static string GetDeviceId(string seed = null)
@@ -126,14 +126,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Fetch
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
     startLine: 34
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static Task<byte[]> Fetch(string url)
@@ -163,14 +163,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: GetPersistentStoragePath
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-    startLine: 62
+    path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
+    startLine: 70
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static string GetPersistentStoragePath()
@@ -197,14 +197,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: GuidFromString
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-    startLine: 73
+    path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
+    startLine: 81
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static string GuidFromString(string s)
@@ -234,14 +234,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: RestoreOrCreateConfig
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-    startLine: 85
+    path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
+    startLine: 93
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: >-
@@ -278,14 +278,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SaveConfig
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Platform.cs
-    startLine: 96
+    path: speechly-dotnet/Speechly/SpeechlyClient/Platform.cs
+    startLine: 104
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static void SaveConfig<T>(T configData, string ConfigFileName)

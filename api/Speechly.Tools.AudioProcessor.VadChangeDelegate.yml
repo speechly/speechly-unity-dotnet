@@ -14,14 +14,14 @@ items:
   type: Delegate
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: VadChangeDelegate
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
     startLine: 12
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public delegate void VadChangeDelegate(bool isSignalDetected);

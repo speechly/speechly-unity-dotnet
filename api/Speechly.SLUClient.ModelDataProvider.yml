@@ -1,0 +1,129 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.ModelDataProvider
+  commentId: T:Speechly.SLUClient.ModelDataProvider
+  id: ModelDataProvider
+  parent: Speechly.SLUClient
+  children: []
+  langs:
+  - csharp
+  - vb
+  name: ModelDataProvider
+  nameWithType: ModelDataProvider
+  fullName: Speechly.SLUClient.ModelDataProvider
+  type: Delegate
+  source:
+    remote:
+      path: speechly-dotnet/Speechly/SpeechlyClient/OnDeviceDecoder.cs
+      branch: main
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: ModelDataProvider
+    path: speechly-dotnet/Speechly/SpeechlyClient/OnDeviceDecoder.cs
+    startLine: 10
+  assemblies:
+  - speechly-dotnet
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public delegate Task<byte[]> ModelDataProvider();
+    return:
+      type: Task{System.Byte[]}
+    content.vb: Public Delegate Function ModelDataProvider As Task(Of Byte())
+  modifiers.csharp:
+  - public
+  - delegate
+  modifiers.vb:
+  - Public
+  - Delegate
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: Task{System.Byte[]}
+  commentId: '!:Task{System.Byte[]}'
+  definition: Task`1
+  name: Task<Byte[]>
+  nameWithType: Task<Byte[]>
+  fullName: Task<System.Byte[]>
+  nameWithType.vb: Task(Of Byte())
+  fullName.vb: Task(Of System.Byte())
+  name.vb: Task(Of Byte())
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - uid: System.Byte
+    name: Byte
+    nameWithType: Byte
+    fullName: System.Byte
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: Task`1
+  isExternal: true
+  name: Task<>
+  nameWithType: Task<>
+  fullName: Task<>
+  nameWithType.vb: Task(Of )
+  fullName.vb: Task(Of )
+  name.vb: Task(Of )
+  spec.csharp:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: Task`1
+    name: Task
+    nameWithType: Task
+    fullName: Task
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: ''
+    nameWithType: ''
+    fullName: ''
+  - name: )
+    nameWithType: )
+    fullName: )

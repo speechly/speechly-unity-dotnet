@@ -15,14 +15,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: MsgTentativeTranscript
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 293
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   syntax:
     content: 'public class MsgTentativeTranscript : object'
@@ -50,14 +50,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: data
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 298
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   syntax:
     content: public MsgTentativeTranscript.Data data

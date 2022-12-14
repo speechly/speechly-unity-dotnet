@@ -6,6 +6,10 @@
     name: CloudDecoder
   - uid: Speechly.SLUClient.IDecoder
     name: IDecoder
+  - uid: Speechly.SLUClient.ModelDataProvider
+    name: ModelDataProvider
+  - uid: Speechly.SLUClient.OnDeviceDecoder
+    name: OnDeviceDecoder
   - uid: Speechly.SLUClient.Segment
     name: Segment
   - uid: Speechly.SLUClient.SpeechlyClient

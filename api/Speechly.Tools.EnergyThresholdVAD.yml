@@ -19,14 +19,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/EnergyThresholdVAD.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: EnergyThresholdVAD
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/EnergyThresholdVAD.cs
     startLine: 18
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   summary: "\nAdaptive energy threshold voice activity detection (VAD) implementation.\nIt can be used to enable hands-free operation of the SLU decoder.\n\nWhen enough frames with a signal stronger than SignalToNoiseDb have been detected, IsSignalDetected goes true. When enough silent frames have been detected, IsSignalDetected goes false after the sustain time.\nUse its public fields to configure the static noise gate level, signal-to-noise level, activation/deactivation treshold (ratio of signal to silent frames) and the signal sustain time.\nThe background noise level gradually adapts when no signal is detected.\n\nIsSignalDetected can be used to drive SpeechlyClient&apos;s Start and Stop automatically by setting ControlListening true.\n"
   example: []
@@ -56,14 +56,14 @@ items:
   type: Property
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/EnergyThresholdVAD.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Options
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/EnergyThresholdVAD.cs
     startLine: 21
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public VADOptions Options { get; }
@@ -91,14 +91,14 @@ items:
   type: Property
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/EnergyThresholdVAD.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Output
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/EnergyThresholdVAD.cs
     startLine: 22
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public AudioInfo Output { get; }
@@ -126,14 +126,14 @@ items:
   type: Constructor
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/EnergyThresholdVAD.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: .ctor
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/EnergyThresholdVAD.cs
     startLine: 30
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public EnergyThresholdVAD(VADOptions options, AudioInfo output)
@@ -161,14 +161,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/EnergyThresholdVAD.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessFrame
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/EnergyThresholdVAD.cs
     startLine: 35
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public void ProcessFrame(float[] floats, int start = 0, int length = null)
@@ -201,14 +201,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/EnergyThresholdVAD.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ResetVAD
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/EnergyThresholdVAD.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/EnergyThresholdVAD.cs
     startLine: 104
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public void ResetVAD()

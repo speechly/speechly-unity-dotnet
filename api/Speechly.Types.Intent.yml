@@ -16,14 +16,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Intent
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 280
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   syntax:
     content: 'public class Intent : object'
@@ -51,14 +51,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: intent
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 281
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   syntax:
     content: public string intent
@@ -82,14 +82,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: isFinal
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 282
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   syntax:
     content: public bool isFinal

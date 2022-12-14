@@ -22,14 +22,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: VADOptions
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 122
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   summary: "\nOptions for Voice Activity Detection (VAD)\n"
   example: []
@@ -59,14 +59,14 @@ items:
   type: Property
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Enabled
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 127
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   example: []
   syntax:
@@ -96,14 +96,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SignalToNoiseDb
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 136
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   example: []
   syntax:
@@ -129,14 +129,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: NoiseGateDb
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 145
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   example: []
   syntax:
@@ -162,14 +162,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: NoiseLearnHalftimeMillis
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 154
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   example: []
   syntax:
@@ -195,14 +195,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SignalSearchFrames
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 163
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   syntax:
     content: public int SignalSearchFrames
@@ -226,14 +226,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SignalActivation
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 172
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   example: []
   syntax:
@@ -259,14 +259,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SignalRelease
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 181
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   example: []
   syntax:
@@ -292,14 +292,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SignalSustainMillis
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 190
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   example: []
   syntax:

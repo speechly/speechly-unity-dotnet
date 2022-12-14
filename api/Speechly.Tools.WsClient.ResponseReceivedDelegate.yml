@@ -14,14 +14,14 @@ items:
   type: Delegate
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ResponseReceivedDelegate
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
     startLine: 21
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public delegate void ResponseReceivedDelegate(MemoryStream inputStream);

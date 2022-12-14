@@ -1,0 +1,110 @@
+### YamlMime:ManagedReference
+items:
+- uid: Speechly.SLUClient.OnDeviceDecoder
+  commentId: T:Speechly.SLUClient.OnDeviceDecoder
+  id: OnDeviceDecoder
+  parent: Speechly.SLUClient
+  children:
+  - Speechly.SLUClient.OnDeviceDecoder.#ctor(Speechly.SLUClient.ModelDataProvider,System.String,System.Boolean)
+  langs:
+  - csharp
+  - vb
+  name: OnDeviceDecoder
+  nameWithType: OnDeviceDecoder
+  fullName: Speechly.SLUClient.OnDeviceDecoder
+  type: Class
+  source:
+    remote:
+      path: speechly-dotnet/Speechly/SpeechlyClient/OnDeviceDecoder.cs
+      branch: main
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: OnDeviceDecoder
+    path: speechly-dotnet/Speechly/SpeechlyClient/OnDeviceDecoder.cs
+    startLine: 12
+  assemblies:
+  - speechly-dotnet
+  namespace: Speechly.SLUClient
+  syntax:
+    content: 'public class OnDeviceDecoder : IDecoder'
+    content.vb: >-
+      Public Class OnDeviceDecoder
+          Inherits IDecoder
+  inheritance:
+  - System.Object
+  - Speechly.SLUClient.IDecoder
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+- uid: Speechly.SLUClient.OnDeviceDecoder.#ctor(Speechly.SLUClient.ModelDataProvider,System.String,System.Boolean)
+  commentId: M:Speechly.SLUClient.OnDeviceDecoder.#ctor(Speechly.SLUClient.ModelDataProvider,System.String,System.Boolean)
+  id: '#ctor(Speechly.SLUClient.ModelDataProvider,System.String,System.Boolean)'
+  parent: Speechly.SLUClient.OnDeviceDecoder
+  langs:
+  - csharp
+  - vb
+  name: OnDeviceDecoder(ModelDataProvider, String, Boolean)
+  nameWithType: OnDeviceDecoder.OnDeviceDecoder(ModelDataProvider, String, Boolean)
+  fullName: Speechly.SLUClient.OnDeviceDecoder.OnDeviceDecoder(Speechly.SLUClient.ModelDataProvider, System.String, System.Boolean)
+  type: Constructor
+  source:
+    remote:
+      path: speechly-dotnet/Speechly/SpeechlyClient/OnDeviceDecoder.cs
+      branch: main
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: .ctor
+    path: speechly-dotnet/Speechly/SpeechlyClient/OnDeviceDecoder.cs
+    startLine: 160
+  assemblies:
+  - speechly-dotnet
+  namespace: Speechly.SLUClient
+  syntax:
+    content: public OnDeviceDecoder(ModelDataProvider modelBundleProvider, string deviceId, bool debug = false)
+    parameters:
+    - id: modelBundleProvider
+      type: Speechly.SLUClient.ModelDataProvider
+    - id: deviceId
+      type: System.String
+    - id: debug
+      type: System.Boolean
+    content.vb: Public Sub New(modelBundleProvider As ModelDataProvider, deviceId As String, debug As Boolean = False)
+  overload: Speechly.SLUClient.OnDeviceDecoder.#ctor*
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+references:
+- uid: Speechly.SLUClient
+  commentId: N:Speechly.SLUClient
+  name: Speechly.SLUClient
+  nameWithType: Speechly.SLUClient
+  fullName: Speechly.SLUClient
+- uid: Speechly.SLUClient.IDecoder
+  commentId: T:Speechly.SLUClient.IDecoder
+  parent: Speechly.SLUClient
+  name: IDecoder
+  nameWithType: IDecoder
+  fullName: Speechly.SLUClient.IDecoder
+- uid: Speechly.SLUClient.OnDeviceDecoder.#ctor*
+  commentId: Overload:Speechly.SLUClient.OnDeviceDecoder.#ctor
+  name: OnDeviceDecoder
+  nameWithType: OnDeviceDecoder.OnDeviceDecoder
+  fullName: Speechly.SLUClient.OnDeviceDecoder.OnDeviceDecoder
+- uid: Speechly.SLUClient.ModelDataProvider
+  commentId: T:Speechly.SLUClient.ModelDataProvider
+  parent: Speechly.SLUClient
+  name: ModelDataProvider
+  nameWithType: ModelDataProvider
+  fullName: Speechly.SLUClient.ModelDataProvider
+- uid: System.String
+  isExternal: true
+  name: String
+  nameWithType: String
+  fullName: System.String
+- uid: System.Boolean
+  isExternal: true
+  name: Boolean
+  nameWithType: Boolean
+  fullName: System.Boolean

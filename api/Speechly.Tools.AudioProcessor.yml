@@ -24,14 +24,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: AudioProcessor
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
     startLine: 8
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: 'public class AudioProcessor : object'
@@ -59,14 +59,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnSendAudio
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
     startLine: 14
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public AudioProcessor.SendAudioDelegate OnSendAudio
@@ -90,14 +90,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnVadStateChange
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
     startLine: 15
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public AudioProcessor.VadChangeDelegate OnVadStateChange
@@ -121,14 +121,14 @@ items:
   type: Property
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Vad
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
     startLine: 16
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public EnergyThresholdVAD Vad { get; }
@@ -156,14 +156,14 @@ items:
   type: Property
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Options
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
     startLine: 17
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public AudioProcessorOptions Options { get; }
@@ -191,14 +191,14 @@ items:
   type: Property
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Output
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
     startLine: 18
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public AudioInfo Output { get; }
@@ -226,14 +226,14 @@ items:
   type: Constructor
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: .ctor
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
     startLine: 29
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public AudioProcessor(AudioProcessorOptions options, AudioInfo output, bool debug = false)
@@ -263,14 +263,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Start
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
     startLine: 44
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public void Start()
@@ -293,14 +293,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Stop
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
     startLine: 50
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public void Stop()
@@ -323,14 +323,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Reset
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
     startLine: 56
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public void Reset(int inputSampleRate = 0)
@@ -356,14 +356,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessAudio
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioProcessor.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioProcessor.cs
     startLine: 93
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   summary: "\nProcess speech audio samples from a microphone or other audio source.\n\nIt&apos;s recommended to constantly feed new audio as long as you want to use Speechly&apos;s SLU services.\n\nYou can control when to start and stop process speech either manually with <xref href=\"Speechly.Tools.AudioProcessor.Start\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.Tools.AudioProcessor.Stop\" data-throw-if-not-resolved=\"false\"></xref> or\nautomatically by providing a voice activity detection (VAD) field to <see cref=\"!:SpeechlyClient\"></see>.\n\nThe audio is handled as follows:\n- Downsample to 16kHz if needed\n- Add to history ringbuffer\n- Calculate energy (VAD)\n- Automatic Start/Stop (VAD)\n- Send utterance audio to a file\n- Send utterance audio to Speechly SLU decoder\n"
   example: []

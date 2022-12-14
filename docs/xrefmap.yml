@@ -32,6 +32,31 @@ references:
   commentId: T:Speechly.SLUClient.IDecoder
   fullName: Speechly.SLUClient.IDecoder
   nameWithType: IDecoder
+- uid: Speechly.SLUClient.ModelDataProvider
+  name: ModelDataProvider
+  href: api/Speechly.SLUClient.ModelDataProvider.html
+  commentId: T:Speechly.SLUClient.ModelDataProvider
+  fullName: Speechly.SLUClient.ModelDataProvider
+  nameWithType: ModelDataProvider
+- uid: Speechly.SLUClient.OnDeviceDecoder
+  name: OnDeviceDecoder
+  href: api/Speechly.SLUClient.OnDeviceDecoder.html
+  commentId: T:Speechly.SLUClient.OnDeviceDecoder
+  fullName: Speechly.SLUClient.OnDeviceDecoder
+  nameWithType: OnDeviceDecoder
+- uid: Speechly.SLUClient.OnDeviceDecoder.#ctor(Speechly.SLUClient.ModelDataProvider,System.String,System.Boolean)
+  name: OnDeviceDecoder(ModelDataProvider, String, Boolean)
+  href: api/Speechly.SLUClient.OnDeviceDecoder.html#Speechly_SLUClient_OnDeviceDecoder__ctor_Speechly_SLUClient_ModelDataProvider_System_String_System_Boolean_
+  commentId: M:Speechly.SLUClient.OnDeviceDecoder.#ctor(Speechly.SLUClient.ModelDataProvider,System.String,System.Boolean)
+  fullName: Speechly.SLUClient.OnDeviceDecoder.OnDeviceDecoder(Speechly.SLUClient.ModelDataProvider, System.String, System.Boolean)
+  nameWithType: OnDeviceDecoder.OnDeviceDecoder(ModelDataProvider, String, Boolean)
+- uid: Speechly.SLUClient.OnDeviceDecoder.#ctor*
+  name: OnDeviceDecoder
+  href: api/Speechly.SLUClient.OnDeviceDecoder.html#Speechly_SLUClient_OnDeviceDecoder__ctor_
+  commentId: Overload:Speechly.SLUClient.OnDeviceDecoder.#ctor
+  isSpec: "True"
+  fullName: Speechly.SLUClient.OnDeviceDecoder.OnDeviceDecoder
+  nameWithType: OnDeviceDecoder.OnDeviceDecoder
 - uid: Speechly.SLUClient.Segment
   name: Segment
   href: api/Speechly.SLUClient.Segment.html

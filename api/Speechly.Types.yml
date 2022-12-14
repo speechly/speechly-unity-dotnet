@@ -44,7 +44,7 @@ items:
   fullName: Speechly.Types
   type: Namespace
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
 references:
 - uid: Speechly.Types.SegmentChangeDelegate
   commentId: T:Speechly.Types.SegmentChangeDelegate

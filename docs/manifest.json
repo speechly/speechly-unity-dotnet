@@ -9,10 +9,10 @@
       "output": {
         ".html": {
           "relative_path": "CHANGELOG.html",
-          "hash": "6GpL3IMWg43tMZDMjI8IOYKJOhXxEAfEXMb0i7fdC3M="
+          "hash": "HsrHG0pYwhCZFndBPkXvxnw22iutRfbQRydn7kLN4u4="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -24,19 +24,7 @@
       "output": {
         ".html": {
           "relative_path": "README.html",
-          "hash": "Ua7JEn5wRakUDGjL9ro35I64N+YnzR5m0x7x8vKxIr0="
-        }
-      },
-      "is_incremental": false,
-      "version": ""
-    },
-    {
-      "type": "Conceptual",
-      "source_relative_path": "REMOTEBRANCH.md",
-      "output": {
-        ".html": {
-          "relative_path": "REMOTEBRANCH.html",
-          "hash": "Vj4VvVXOvfLMLdj3lNEYlEwaVxyjL1muTtyDUlgUF3Q="
+          "hash": "19yZEwnCMI7qFZLHfLbNKRcU4jO4zn6SbZdnIwLpVl8="
         }
       },
       "is_incremental": true,
@@ -48,10 +36,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.CloudDecoder.html",
-          "hash": "BX23AkHwZxCzhiq9zhalbNmRpZqpXV1locgraqitH8o="
+          "hash": "s7M5JGGuUgPzZw2HHN2xlyR1hDQiD3WHEjmaEyPMHh4="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -60,10 +48,34 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.IDecoder.html",
-          "hash": "8DYUv9cKrLG3tRBQfSUf4N7RgYT8HzbMS0SC1H2rReU="
+          "hash": "RsEz/UPncAB7k0JHn8DqZl1AgQoDequ4OreDTt1CSHE="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.SLUClient.ModelDataProvider.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.SLUClient.ModelDataProvider.html",
+          "hash": "lI9TXYzcBS4eeC+AghCGt2Vxmc0HW/uqhgvJifZVYmM="
+        }
+      },
+      "is_incremental": true,
+      "version": ""
+    },
+    {
+      "type": "ManagedReference",
+      "source_relative_path": "api/Speechly.SLUClient.OnDeviceDecoder.yml",
+      "output": {
+        ".html": {
+          "relative_path": "api/Speechly.SLUClient.OnDeviceDecoder.html",
+          "hash": "iSWB7cIBLpuSFB56SvDWbihUvZ8G5CI6YB9SyNseM/c="
+        }
+      },
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -72,10 +84,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.Segment.html",
-          "hash": "+O9JLHj4n5gj8pxUOdUgJu/dXj6zdRJM8o3Zzs5ZuNI="
+          "hash": "PnWrbaFTe9/RsHo2sDp+2ihlMKevZrfwyyKIb/+2UFY="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -84,7 +96,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.SpeechlyClient.html",
-          "hash": "KtJGWBSL9ETLoCZP9v/7OGFSGkUUXurQHrhlLv5LhTY="
+          "hash": "OGDLpcLyNhnMayiyd6Srdp5puHoWHl4N0pQHh8j96UA="
         }
       },
       "is_incremental": false,
@@ -96,7 +108,7 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.SLUClient.html",
-          "hash": "o1KRXhNmjSD6k9UG+YX2O2cuGZwZiM9ElxlS7R1G9RU="
+          "hash": "4kjlS7Ikfb+VicflSunOz8thqE7vaLQHAuQPAWHx5KI="
         }
       },
       "is_incremental": false,
@@ -108,10 +120,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Tools.AudioProcessor.SendAudioDelegate.html",
-          "hash": "PIL/LzFSW496e08f9kVfsDVGW9Sr2GVjxVUQtYBP6c4="
+          "hash": "UYI8p4MqGe52xLE0jKeDvnIH0tPCpaTvSiJ/7MTL5Cc="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -120,10 +132,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Tools.AudioProcessor.VadChangeDelegate.html",
-          "hash": "+W9/squ8pBsU/iCp9TkVE60IyjKVjBkKUdYjEWErpZw="
+          "hash": "XWDzRE5F4IlU+JA3QFV7+6NeBQ7qChWr5rCwIdzV46w="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -132,10 +144,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Tools.AudioProcessor.html",
-          "hash": "ADAd2z6Jo9PLOVU1460ExAFGwYXCIkq9/H8ltLW8cuo="
+          "hash": "4ePf1FS0eg9gabnVNyaw2af5YdPu12E7/Sp9PlmVwLU="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -144,10 +156,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Tools.AudioTools.html",
-          "hash": "JFiriisxQ8YkMnqn+Yf6I0F5h7q3sxqvqw6zR3F+UrQ="
+          "hash": "DhKt0GeTlDLNtEPdboxPqPeY8isExLIxGwYu43kr6F4="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -156,10 +168,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Tools.EnergyThresholdVAD.html",
-          "hash": "oqXQbJNP/xaiI2s3Z0ZeuYaUw99QrftJB+HmTNRNmmY="
+          "hash": "KuFE9z98I8XmEtKWv+HKM1g+0wnL15iEBxaTM9X/Y2M="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -168,10 +180,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Tools.JSON.html",
-          "hash": "8Wdne3idFruLxRbRBSbDnNViZCgpV51BISCKISFLoiI="
+          "hash": "vHn1nm2WzS6FxaCDu470nvyuxN6+nkJSdBJE/06Exes="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -180,10 +192,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Tools.Logger.LoggerDelegate.html",
-          "hash": "kgy8oe5dzWTQOolg6mhU+mM9Jz5jq/t5IAUKEkrMOvc="
+          "hash": "hNeZWA3VGx3xhR0RZ6os4p4GwlB6jbijjBNmbiBBjdg="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -192,10 +204,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Tools.Logger.html",
-          "hash": "QOObne6YWKGcVvFdoZFRbWw7LWdcBAmGqu70HG0vVLM="
+          "hash": "8csG9ornw2jBOGypJ5TT4CIrzNsW1w/gA4xwwU2B8zI="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -204,10 +216,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Tools.Platform.html",
-          "hash": "TsnA7shzyzp+1AOHZcMZi91g2145JvZcDutcYV9peXs="
+          "hash": "Gfyj9yHX8EKvGCZ9aCoPCwB0ZE8STYKjYDIqRWxNEbI="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -216,10 +228,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Tools.WsClient.ResponseReceivedDelegate.html",
-          "hash": "OoDxAIijLPJ809IpL2Otnaxbd13w0HzpeI3sepF/hrg="
+          "hash": "eDto+/ICx45PLBd1dCtGnmGg+ri/lj6nG6yTg2Ta6wU="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -228,10 +240,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Tools.WsClient.html",
-          "hash": "ZrEhkpqkEga+7Bo4rpFK/yFddO4pM6E9tn6r9VGNkDo="
+          "hash": "f5+VnhOBkhDO4SRpBnpDHtcabqPTwPA7z3yCPyoEnQs="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -240,10 +252,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Tools.html",
-          "hash": "Gmd9NyxSFgbmEegYJZO+NnGF1wCWKl8ZKxvjmy0AkhY="
+          "hash": "BLJoO7CgVAlZ1vJGmImjq+QhNeJAIDs/MyH7BBgYO/0="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -252,10 +264,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.AudioInfo.html",
-          "hash": "BlZ6fmCU7MTlnmNdH40q5y0ASgloycKXrBMP02Utx/g="
+          "hash": "iWX5JJ5VXtm81wTdO5hEkzXrHczBy3G3PPjj8CHqlBU="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -264,10 +276,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.AudioProcessorOptions.html",
-          "hash": "6BE03l2xa9uiXjotPrrKUHxrIQq/gmAEYXCgzHkFcdY="
+          "hash": "0D9SOpm2KVFrZ22dyfNJsjjV19J/55ICL57ezpBvzJc="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -276,10 +288,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.BeautifyEntity.html",
-          "hash": "85SryKLDH3Q/eAr0TrJHE7Uq5jBH0QKKyGbAZqZvA00="
+          "hash": "6m45zfjaKWW+WsdNI3mtrp1ToZLvR5OaQL9OY4fkdus="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -288,10 +300,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.BeautifyIntent.html",
-          "hash": "RBpkiSwYspFpJA3pdz986KecMG1AU2OUzZg4s7tMaTU="
+          "hash": "+uwO4icXBG4imdyvA36hd7vtRXSMgBbgAxkXY1/8f80="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -300,10 +312,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.ContextOptions.ShallowFusionSettings.html",
-          "hash": "r30wREeQk6nit7olzKJSArLyy8zlhfEn8HmhUyjkzaY="
+          "hash": "tsmFNejwGiR9/tPZecG5P4u94nFKiW8bnfKEUSPYPUM="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -312,10 +324,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.ContextOptions.html",
-          "hash": "mKgJj2HfkPZi6rlDgcSqyR25s8H05Wa7GMaLtsw5518="
+          "hash": "fD8p3p0sSkuPM41Cw8i9nyS1iWFPjdQKFaV+pBMPnfM="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -324,10 +336,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.Entity.html",
-          "hash": "hkYqQZkwtsuG/eR+9MrSQoDWitSKaRGi5tuV2FItyeA="
+          "hash": "7bKURIYApNcVR8xdhTmucMqiXY3nCBtHhfCZOCviKNg="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -336,10 +348,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.EntityDelegate.html",
-          "hash": "7xkPQQnHukFMspF189W6f0du7obARb+nYKk44ISbtgM="
+          "hash": "wXL/fx02I7A+wpGVPcQFyAm6nkmK/Y8EUyP6kG+c23g="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -348,10 +360,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.Intent.html",
-          "hash": "SAW4JfJxpFRVfzsOiRXu0rQgMf940GRlIhIicpKxodo="
+          "hash": "lTWjSlaE8vyxhS9d9X+MoJTW1kHVCujhSXyNhdRpYh0="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -360,10 +372,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.IntentDelegate.html",
-          "hash": "kHkHvBeJjezshxORBSvl71L0tnE34BwxT2lASF6O2kI="
+          "hash": "Eq+ihOOANCRiVXY0hCrr7z9Vf2nmkf/kAbcIR4vGLkU="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -372,10 +384,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.ModelExpiredException.html",
-          "hash": "EjnI4zCvU0RFujB3ZXEbc5S07+2M+14Q3N4ZbscuXIk="
+          "hash": "KjrIge5uzZ3yCSgbsRklZoQYE7eRCx+DYP6KH/M56tc="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -384,10 +396,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.MsgCommon.html",
-          "hash": "uZnwpdpaRihd9KcdoLWDDrEqQdXPi7dK2jwF+I1tfbQ="
+          "hash": "aPwByxgjdi2kuRMsui+y0TYHsV5LJ4ApqBVOUtosFPw="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -396,10 +408,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.MsgEntity.html",
-          "hash": "dIt01UtOI+fJoqJEo0WXxmxUAUFXz3mUlhXXqegNdxA="
+          "hash": "jeEhmAUSYU9lARN5TxNRDV3u1m6GCYdKCEsRP4GLv9E="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -408,10 +420,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.MsgIntent.Data.html",
-          "hash": "Hl9TPiRseSVOpEeF/SXBMoX0SHMgi1Pp/Y272foxlBM="
+          "hash": "OsBiXgrB9koKuIRyKPPQMBewcf/mECDIp7QrNYthcoA="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -420,10 +432,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.MsgIntent.html",
-          "hash": "O1U24D7Qn57GLbOhArYalmz0le5zUFAwDNAMsEL68t4="
+          "hash": "lFRKkTNHiwvBHzAKnZMqmPjBAM/FccANrC3CUKiVXMM="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -432,10 +444,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.MsgTentativeEntity.Data.html",
-          "hash": "w5oRVpPnzOhrNdxE/Iv/8R3Hia85mImwRrZLb+BnZQ4="
+          "hash": "voK/3w3EmxFnCa7yuMl7Hx0faLFc36wNVki0A5u7kQc="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -444,10 +456,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.MsgTentativeEntity.html",
-          "hash": "abzNMd1N7LGd1tg4N+KMc6B37cM2zGKH8DfkmTjxrgA="
+          "hash": "7k1iNfbyCbpSQLqvH9koruSshHtinZgYiJDEYclTiXY="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -456,10 +468,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.MsgTentativeTranscript.Data.html",
-          "hash": "pPxJSjF1Wi/R9wRA/fequYTPNWNwa/B20zqF+gcbKMY="
+          "hash": "1FIKHMUUrdrJEmGQNX1CpNJwXbgG0Q2mNqS75F1/wtA="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -468,10 +480,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.MsgTentativeTranscript.html",
-          "hash": "5bl4ON2dlU5ikHBzOiRexsv+DmU0xOlwHvGtchr38O0="
+          "hash": "CmDVCc+RKyHFGqj8sE3ITgnTK3Zb7BODQeiq1+gp5j4="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -480,10 +492,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.MsgTranscript.html",
-          "hash": "KyeRdS8eMKx7TTEkRajq00MYu+tVZ2ep75Vw6kImMK8="
+          "hash": "z/4wDZ1jU+W/TPfwVjfmlshGq/kGk/cyP+uYHEiKXKQ="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -492,10 +504,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.SegmentChangeDelegate.html",
-          "hash": "77auSVXgLX5rE3Ikd4NBHaLmRB4aGwnmEdGtZOabsiA="
+          "hash": "3VIhuILXLJiGiswgcaJqfw3Zo4jT1vlp476jyw+R9y8="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -504,10 +516,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.StartDelegate.html",
-          "hash": "OBspTMQUOwi11ERsczA37/ydgyYvIHsFOxlA53PVnEo="
+          "hash": "bVsXQ6pzs8BHQLQQ1Lu+c7gfeIo3lfFcM/epZJce9b8="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -516,10 +528,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.StartMessage.Options.html",
-          "hash": "O25R9UPdQCUi7+dI4/NCpb4lspm+Hd7wA9J2UqnGO5M="
+          "hash": "jTZ/AuetGMaExNKhnmN7K4YoPrQcrv/OkOuonD/CPpg="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -528,10 +540,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.StartMessage.html",
-          "hash": "ew7HRYUDPkZQ6CDzEu4Hx4cXQI3CK1FE35oVDMvECtA="
+          "hash": "8nDN/zQS9AjCszNg+wZ9gAmtodZ5sV4g612AkdRGMv4="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -540,10 +552,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.StartStreamDelegate.html",
-          "hash": "ql32iwtxxfcXKMJF/ALoD1laEqsd8i9Bl19JdujD4bw="
+          "hash": "0FcGnOrBoTz+U8uVAVnTm2kqXC3KLeBjkQNhnyHhPTs="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -552,10 +564,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.StopDelegate.html",
-          "hash": "65QIJhXOXWRPTlUpuv6oJNUdZvHN/3JhziiWF8GMCg0="
+          "hash": "oGzz2JaTeX0EsQPy8wTDjRaO24oJkYGA4JfuWrMJk3U="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -564,10 +576,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.StopStreamDelegate.html",
-          "hash": "u6SEJ7n4BfEzCxuVbXsEjYOuy+nVgNiTvU5+YKRSQmY="
+          "hash": "poeFPEoja7sWY7hGvwCnTi+Xp1Er7r8ei+t++/oh6yM="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -576,10 +588,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.TentativeEntityDelegate.html",
-          "hash": "P5nziTV8dGI33WLizjWXBVlfp5NlwK7vdyou1NHO0jM="
+          "hash": "mBlQ4AzekuXJuxXxGgxGzeptFDW9EuaY8oVeu+RCiMQ="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -588,10 +600,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.TentativeTranscriptDelegate.html",
-          "hash": "flIXlCFr9f/3OHcyZ2bcpJuOoTkOA2P2hxLzPrS9SaM="
+          "hash": "G/WYarw7bXSUhOYi87Xh9NFChy+TWolJQ8wDwQ86IZs="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -600,10 +612,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.TranscriptDelegate.html",
-          "hash": "DyRGrbrwCZibIpOpVa3CaYACn8vIT4jVH5Zuy7Wqu/8="
+          "hash": "WrLOWeYt9fWpgjSEoiCQuCIjdzUbDRe8b18JJNcuhu0="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -612,10 +624,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.VADOptions.html",
-          "hash": "dLBv1D6WQjlgiBb3qo9YiPEpNUeexCt00hjucrNV2Sw="
+          "hash": "1z/9cmupyWJpq1j5woVZLGgwtzRENRLGLkoy3Fcok5w="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -624,10 +636,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.Word.html",
-          "hash": "YOt9A/yMjA7iaWM1B1yCm02MM52klZxCHoas5NDr15Y="
+          "hash": "PQiOavol7FXihKw4D0kX5ctZZozfPWsQK/xinxZPqVE="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -636,10 +648,10 @@
       "output": {
         ".html": {
           "relative_path": "api/Speechly.Types.html",
-          "hash": "0gEAAfqW0OPCFUVsmZeykteDrqWzDKOhBxulO0CngQA="
+          "hash": "/cVMDnY+yKTje7wUJ8qN3qXLCj1/73z8WavccKqD90U="
         }
       },
-      "is_incremental": false,
+      "is_incremental": true,
       "version": ""
     },
     {
@@ -648,7 +660,7 @@
       "output": {
         ".html": {
           "relative_path": "api/toc.html",
-          "hash": "N98g2NuS7Iy2HKJr0w5kBn6hlMNdlSaj/9ZKf+tqX/c="
+          "hash": "AhzzsK7azEENKQpJght+WQO6t/j4cRIDcsvoLupMX2w="
         }
       },
       "is_incremental": false,
@@ -663,7 +675,7 @@
       "output": {
         ".html": {
           "relative_path": "index.html",
-          "hash": "EPaRLlby3+ZMXoE+Gu24FGmDDLU0bDl8/ifG520mO3U="
+          "hash": "y4cB/xbpdxcsrm5qIGed0Y/6H89rG7Azui7/7pV8pSg="
         }
       },
       "is_incremental": true,
@@ -682,14 +694,14 @@
         "ConceptualDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 4,
-          "skipped_file_count": 2
+          "total_file_count": 3,
+          "skipped_file_count": 3
         },
         "ManagedReferenceDocumentProcessor": {
           "can_incremental": true,
           "incrementalPhase": "build",
-          "total_file_count": 50,
-          "skipped_file_count": 16
+          "total_file_count": 52,
+          "skipped_file_count": 51
         },
         "TocDocumentProcessor": {
           "can_incremental": false,

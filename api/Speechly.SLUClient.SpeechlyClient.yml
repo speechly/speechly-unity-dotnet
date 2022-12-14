@@ -43,14 +43,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SpeechlyClient
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 26
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   summary: "\nCreate a new Speechly Spoken Language Understading (SLU) Client to process speech and provide the results of automatic speech recogition (ASR) and natural langugage understanding (NLU) using delegates.\n\n#### Usage\n\n- Create a new SpeechlyClient instance.\n- Create an SLU decoder (<xref href=\"Speechly.SLUClient.CloudDecoder\" data-throw-if-not-resolved=\"false\"></xref>) and pass it to `SpeechlyClient`&apos;s <xref href=\"Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder%2cSpeechly.Types.AudioProcessorOptions%2cSpeechly.Types.ContextOptions%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref>.\n- Attach delegates like <xref href=\"Speechly.SLUClient.SpeechlyClient.OnSegmentChange\" data-throw-if-not-resolved=\"false\"></xref> to listen to and handle the SLU results.\n- Feed audio to process with <xref href=\"Speechly.SLUClient.SpeechlyClient.ProcessAudio(System.Single%5b%5d%2cSystem.Int32%2cSystem.Int32)\" data-throw-if-not-resolved=\"false\"></xref>.\n- (delegates are firing up as speech is processed)\n- When you don&apos;t need SLU services any more call <xref href=\"Speechly.SLUClient.SpeechlyClient.Shutdown\" data-throw-if-not-resolved=\"false\"></xref> to free resources.\n\nYou can feed audio continuously, but control when to start and stop process speech with <xref href=\"Speechly.SLUClient.SpeechlyClient.Start(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.SLUClient.SpeechlyClient.Stop\" data-throw-if-not-resolved=\"false\"></xref> or\nlet voice activity detection (VAD) handle that automatically by passing <xref href=\"Speechly.Tools.EnergyThresholdVAD\" data-throw-if-not-resolved=\"false\"></xref> to SpeechlyClient constructor.\n"
   example: []
@@ -80,16 +80,16 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnSegmentChange
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 35
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
-  summary: "\nRead the combined results of automatic speech recoginition (ASR) and natural language detection (NLU).\n\nYou can control when to start and stop process speech either manually with <xref href=\"Speechly.SLUClient.SpeechlyClient.Start(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.SLUClient.SpeechlyClient.Stop\" data-throw-if-not-resolved=\"false\"></xref> or\nautomatically by providing a voice activity detection (VAD) field to <xref href=\"Speechly.SLUClient.SpeechlyClient\" data-throw-if-not-resolved=\"false\"></xref>.\n"
+  summary: "\nRead the combined results of automatic speech recoginition (ASR) and natural language detection (NLU).\n\nYou can control when to start and stop process speech either manually with <xref href=\"Speechly.SLUClient.SpeechlyClient.Start(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.SLUClient.SpeechlyClient.Stop\" data-throw-if-not-resolved=\"false\"></xref>.\nAlternatively, you may let SpeechlyClient control this automatically by setting setting AudioProcessorOptions.VADControlsListening to true upon SpeechlyClient.Initialize() or by calling SpeechlyClient.AdjustAudioProcessor(true).\n"
   example: []
   syntax:
     content: public SegmentChangeDelegate OnSegmentChange
@@ -113,14 +113,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnTentativeTranscript
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 36
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public TentativeTranscriptDelegate OnTentativeTranscript
@@ -144,14 +144,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnTranscript
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 37
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public TranscriptDelegate OnTranscript
@@ -175,14 +175,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnTentativeEntity
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 38
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public TentativeEntityDelegate OnTentativeEntity
@@ -206,14 +206,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnEntity
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 39
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public EntityDelegate OnEntity
@@ -237,14 +237,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnTentativeIntent
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 40
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public IntentDelegate OnTentativeIntent
@@ -268,14 +268,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnIntent
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 41
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public IntentDelegate OnIntent
@@ -299,14 +299,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnStartStream
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 42
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public StartStreamDelegate OnStartStream
@@ -330,14 +330,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnStopStream
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 43
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public StopStreamDelegate OnStopStream
@@ -361,14 +361,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnStart
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 44
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public StartDelegate OnStart
@@ -392,14 +392,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnStop
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 45
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public StopDelegate OnStop
@@ -423,14 +423,14 @@ items:
   type: Property
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Output
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 47
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public AudioInfo Output { get; }
@@ -458,14 +458,14 @@ items:
   type: Property
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: IsAudioStreaming
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 51
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public bool IsAudioStreaming { get; }
@@ -493,14 +493,14 @@ items:
   type: Property
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: IsReady
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 54
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   example: []
   syntax:
@@ -529,14 +529,14 @@ items:
   type: Property
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: IsActive
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 61
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   example: []
   syntax:
@@ -565,14 +565,14 @@ items:
   type: Property
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: AudioInputStreamIdentifier
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 64
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   example: []
   syntax:
@@ -601,14 +601,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Debug
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 67
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   example: []
   syntax:
@@ -633,14 +633,14 @@ items:
   type: Constructor
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: .ctor
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 93
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   summary: "\nCreate a new SpeechlyClient to process audio and fire delegates to provide SLU results.\n"
   example: []
@@ -652,7 +652,7 @@ items:
       description: 'Setting `manualUpdate = true` postpones SpeechlyClient&apos;s delegates (OnSegmentChange, OnTranscript...) until you manually run <xref href="Speechly.SLUClient.SpeechlyClient.Update" data-throw-if-not-resolved="false"></xref>. This enables you to call Unity API in SpeechlyClient&apos;s delegates, as Unity API should only be used in the main Unity thread. (Default: false)'
     - id: saveToFolder
       type: System.String
-      description: 'Defines a local folder to save utterance files as 16 bit, 16000 hZ mono raw. Null disables saving. (default: `null`)'
+      description: 'Defines a local folder to save utterance files as 16 bit, 16000 Hz mono raw. Null disables saving. (default: `null`)'
     - id: output
       type: Speechly.Types.AudioInfo
     - id: debug
@@ -677,14 +677,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Initialize
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 123
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   summary: "\nSLU decoder instance to use like <xref href=\"Speechly.SLUClient.CloudDecoder\" data-throw-if-not-resolved=\"false\"></xref>.\n\nThe SLU decoder provides the automatic speech recognition (ASR) and\nnatural language understanding (NLU) capabilities via SLU delegates (OnSegmentChange, OnTranscript...).\n"
   example: []
@@ -723,14 +723,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StartStream
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 175
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+    startLine: 176
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   summary: "\n`StartStream` should be called at start of a continuous audio stream. It resets the stream sample counters and history. For backwards compability, ProcessAudio and Start ensure it&apos;s been called.\n`OnStreamStart` delegate is triggered upon a call to StartStream.\n"
   example: []
@@ -760,14 +760,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StopStream
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 197
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+    startLine: 198
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   summary: "\n`StopStream` should be called at the end of a continuous audio stream.\n`OnStreamStop` delegate is triggered upon a call to StopStream.\n"
   example: []
@@ -795,14 +795,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: AdjustAudioProcessor
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 216
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+    startLine: 217
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   summary: "\nControl AudioProcessor parameters.\n"
   example: []
@@ -834,14 +834,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Start
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 241
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+    startLine: 242
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   summary: "\nStart listening for user speech and feeding it to the SLU decoder.\n`OnContextStart` is triggered upon a call to Start. It&apos;s also triggered by automatic VAD activation.\n\nYou don&apos;t need to await this call if you don&apos;t need the utterance id.\n"
   example: []
@@ -873,14 +873,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessAudioFile
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 280
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+    startLine: 281
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public void ProcessAudioFile(string fileName)
@@ -906,16 +906,16 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessAudio
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 309
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+    startLine: 310
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
-  summary: "\nProcess speech audio samples from a microphone or other audio source.\n\nIt&apos;s recommended to constantly feed new audio as long as you want to use Speechly&apos;s SLU services.\n\nYou can control when to start and stop process speech either manually with <xref href=\"Speechly.SLUClient.SpeechlyClient.Start(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.SLUClient.SpeechlyClient.Stop\" data-throw-if-not-resolved=\"false\"></xref> or\nautomatically by providing a voice activity detection (VAD) field to <xref href=\"Speechly.SLUClient.SpeechlyClient\" data-throw-if-not-resolved=\"false\"></xref>.\n\nThe audio is handled as follows:\n- Downsample to 16kHz if needed\n- Add to history ringbuffer\n- Calculate energy (VAD)\n- Automatic Start/Stop (VAD)\n- Send utterance audio to a file\n- Send utterance audio to Speechly SLU decoder\n"
+  summary: "\nProcess speech audio samples from a microphone or other audio source.\n\nIt&apos;s recommended to feed audio early and often instead of large chunks to benefit from real-time ASR and NLU output.\n\nYou can control when to start and stop process speech either manually with <xref href=\"Speechly.SLUClient.SpeechlyClient.Start(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"Speechly.SLUClient.SpeechlyClient.Stop\" data-throw-if-not-resolved=\"false\"></xref>.\nAlternatively you may use automatic voice activity detection (VAD) with <xref href=\"Speechly.Types.AudioProcessorOptions\" data-throw-if-not-resolved=\"false\"></xref> passed to <xref href=\"Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder%2cSpeechly.Types.AudioProcessorOptions%2cSpeechly.Types.ContextOptions%2cSystem.Boolean)\" data-throw-if-not-resolved=\"false\"></xref>.\n\nThe audio is handled as follows:\n- Downsample to 16kHz if needed\n- Add to history ringbuffer\n- Calculate energy (VAD)\n- Automatic Start/Stop (VAD)\n- Send utterance audio to a file\n- Send utterance audio to Speechly SLU decoder\n"
   example: []
   syntax:
     content: public void ProcessAudio(float[] floats, int start = 0, int length = null)
@@ -951,14 +951,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessAudio
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 323
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+    startLine: 324
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public void ProcessAudio(Stream fileStream)
@@ -984,14 +984,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Stop
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 376
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+    startLine: 377
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   summary: "\nStop listening for user speech.\n`OnContextStop` is triggered upon a call to Stop. It&apos;s also triggered by automatic VAD deactivation.\n\nYou don&apos;t need to await this call if you don&apos;t need the utterance id.\n"
   example: []
@@ -1019,14 +1019,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Update
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 407
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+    startLine: 408
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   summary: "\nCall Update in your game loop to fire Speechly delegates manually if you want them to run in main UI/Unity thread.\n"
   example: []
@@ -1051,14 +1051,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Shutdown
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/SpeechlyClient.cs
-    startLine: 511
+    path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
+    startLine: 512
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   summary: "\nCloses any connections (e.g. cloud SLU) and frees resources.\n"
   example: []
@@ -1114,11 +1114,6 @@ references:
   name: Speechly.Tools
   nameWithType: Speechly.Tools
   fullName: Speechly.Tools
-- uid: Speechly.SLUClient.SpeechlyClient
-  commentId: T:Speechly.SLUClient.SpeechlyClient
-  name: SpeechlyClient
-  nameWithType: SpeechlyClient
-  fullName: Speechly.SLUClient.SpeechlyClient
 - uid: Speechly.Types.SegmentChangeDelegate
   commentId: T:Speechly.Types.SegmentChangeDelegate
   parent: Speechly.Types
