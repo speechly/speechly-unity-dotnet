@@ -23,14 +23,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Segment
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
     startLine: 11
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   summary: "\nA high level API for automatic speech recognition (ASR) and natural language understanding (NLU) results.\nResults will accumulate in Segment for the duration of the an utterance.\n"
   example: []
@@ -60,14 +60,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: id
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
     startLine: 12
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public int id
@@ -91,14 +91,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: contextId
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
     startLine: 13
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public string contextId
@@ -122,14 +122,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: isFinal
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
     startLine: 14
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public bool isFinal
@@ -153,14 +153,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: words
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
     startLine: 15
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public Word[] words
@@ -184,14 +184,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: entities
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
     startLine: 16
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public Dictionary<string, Entity> entities
@@ -215,14 +215,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: intent
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
     startLine: 17
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public Intent intent
@@ -246,14 +246,14 @@ items:
   type: Constructor
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: .ctor
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
     startLine: 19
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public Segment(string audio_context, int segment_id)
@@ -281,14 +281,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ToString
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
     startLine: 24
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public override string ToString()
@@ -315,14 +315,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ToString
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Segment.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Segment.cs
     startLine: 32
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: public string ToString(BeautifyIntent intentTag, BeautifyEntity entityTag, string confirmationMark)

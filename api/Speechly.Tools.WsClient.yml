@@ -21,14 +21,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: WsClient
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
     startLine: 19
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: 'public class WsClient : IDisposable'
@@ -56,14 +56,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: OnResponseReceived
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
     startLine: 22
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public WsClient.ResponseReceivedDelegate OnResponseReceived
@@ -87,14 +87,14 @@ items:
   type: Property
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ReceiveBufferSize
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
     startLine: 29
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public int ReceiveBufferSize { get; set; }
@@ -122,14 +122,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ConnectAsync
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
     startLine: 31
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public async Task ConnectAsync(string url, string authToken)
@@ -160,14 +160,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: DisconnectAsync
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
     startLine: 48
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public async Task DisconnectAsync()
@@ -193,14 +193,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SendText
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
     startLine: 66
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public void SendText(string text)
@@ -226,14 +226,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SendBytes
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
     startLine: 74
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public void SendBytes(ArraySegment<byte> byteArraySegment)
@@ -262,14 +262,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Dispose
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/WSClient.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/WSClient.cs
     startLine: 134
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public void Dispose()

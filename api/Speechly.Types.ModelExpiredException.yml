@@ -17,14 +17,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ModelExpiredException
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 27
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   syntax:
     content: 'public class ModelExpiredException : Exception'
@@ -52,14 +52,14 @@ items:
   type: Constructor
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: .ctor
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 29
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   syntax:
     content: public ModelExpiredException()
@@ -82,14 +82,14 @@ items:
   type: Constructor
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: .ctor
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 30
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   syntax:
     content: public ModelExpiredException(string message)
@@ -115,14 +115,14 @@ items:
   type: Constructor
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: .ctor
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 31
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   syntax:
     content: public ModelExpiredException(string message, Exception inner)

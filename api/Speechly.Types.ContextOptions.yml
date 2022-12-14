@@ -16,14 +16,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ContextOptions
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 196
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   summary: "\nOptions for speech recognition\n"
   example: []
@@ -53,14 +53,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: SilenceSegmentationMillis
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 227
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   syntax:
     content: public int SilenceSegmentationMillis
@@ -84,14 +84,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: BoostVocabulary
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Types.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
     startLine: 232
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Types
   syntax:
     content: public ContextOptions.ShallowFusionSettings BoostVocabulary

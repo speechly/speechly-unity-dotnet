@@ -15,14 +15,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/CloudDecoder.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: CloudDecoder
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/CloudDecoder.cs
     startLine: 17
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   summary: "\nProvides speech processing with Speechly&apos;s cloud SLU service.\n\nInternally handles authentication using https and audio streaming via secure websocket.\nAudio is streamed when listening is started with SpeechlyClient.Start().\nStreaming stops upon call to SpeechlyClient.Stop().\n"
   example: []
@@ -53,14 +53,14 @@ items:
   type: Constructor
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/CloudDecoder.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: .ctor
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/CloudDecoder.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/CloudDecoder.cs
     startLine: 40
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   summary: "\nInitialize speech processing with Speechly&apos;s cloud SLU service.\n"
   example: []

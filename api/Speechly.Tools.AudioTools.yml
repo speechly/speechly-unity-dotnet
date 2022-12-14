@@ -21,14 +21,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: AudioTools
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
     startLine: 3
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: 'public class AudioTools : object'
@@ -56,14 +56,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Downsample
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
     startLine: 5
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static void Downsample(in float[] src, ref float[] dest, int sourceIndex = 0, int sourceLength = null, int destIndex = 0, int destLength = null)
@@ -104,14 +104,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: GetEnergy
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
     startLine: 49
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static float GetEnergy(in float[] samples, int start = 0, int length = null)
@@ -148,14 +148,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: GetAudioPeak
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
     startLine: 60
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static float GetAudioPeak(in float[] samples, int start = 0, int length = null)
@@ -192,14 +192,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ConvertInt16ToFloat
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
     startLine: 73
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static int ConvertInt16ToFloat(in byte[] src, ref float[] dest, int srcStartSample = 0, int lengthSamples = null, int dstIndex = 0)
@@ -240,14 +240,14 @@ items:
   type: Field
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: LOG_2_PLUS_LOG_5
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
     startLine: 86
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static readonly double LOG_2_PLUS_LOG_5
@@ -275,14 +275,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: EnergyToDb
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
     startLine: 88
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static float EnergyToDb(float energy)
@@ -312,14 +312,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: DbToEnergy
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/AudioProcessing/AudioTools.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/AudioProcessing/AudioTools.cs
     startLine: 92
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static float DbToEnergy(float db)

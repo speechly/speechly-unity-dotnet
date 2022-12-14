@@ -18,14 +18,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/JSON.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: JSON
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/JSON.cs
     startLine: 5
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: 'public class JSON : object'
@@ -53,14 +53,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/JSON.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StringifyToStream
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/JSON.cs
     startLine: 6
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static MemoryStream StringifyToStream<T>(T obj)
@@ -95,14 +95,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/JSON.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Stringify
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/JSON.cs
     startLine: 13
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public static string Stringify<T>(T obj)
@@ -137,14 +137,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/JSON.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ParseFromStream
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/JSON.cs
     startLine: 20
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: >-
@@ -183,14 +183,14 @@ items:
   type: Method
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/JSON.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Parse
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/JSON.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/JSON.cs
     startLine: 27
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: >-

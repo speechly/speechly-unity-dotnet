@@ -14,14 +14,14 @@ items:
   type: Delegate
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/Logger.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: LoggerDelegate
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/Logger.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/Logger.cs
     startLine: 4
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.Tools
   syntax:
     content: public delegate void LoggerDelegate(string s);

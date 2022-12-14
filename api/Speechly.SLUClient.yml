@@ -6,6 +6,8 @@ items:
   children:
   - Speechly.SLUClient.CloudDecoder
   - Speechly.SLUClient.IDecoder
+  - Speechly.SLUClient.ModelDataProvider
+  - Speechly.SLUClient.OnDeviceDecoder
   - Speechly.SLUClient.Segment
   - Speechly.SLUClient.SpeechlyClient
   langs:
@@ -16,7 +18,7 @@ items:
   fullName: Speechly.SLUClient
   type: Namespace
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
 references:
 - uid: Speechly.SLUClient.CloudDecoder
   commentId: T:Speechly.SLUClient.CloudDecoder
@@ -29,6 +31,17 @@ references:
   name: IDecoder
   nameWithType: IDecoder
   fullName: Speechly.SLUClient.IDecoder
+- uid: Speechly.SLUClient.ModelDataProvider
+  commentId: T:Speechly.SLUClient.ModelDataProvider
+  parent: Speechly.SLUClient
+  name: ModelDataProvider
+  nameWithType: ModelDataProvider
+  fullName: Speechly.SLUClient.ModelDataProvider
+- uid: Speechly.SLUClient.OnDeviceDecoder
+  commentId: T:Speechly.SLUClient.OnDeviceDecoder
+  name: OnDeviceDecoder
+  nameWithType: OnDeviceDecoder
+  fullName: Speechly.SLUClient.OnDeviceDecoder
 - uid: Speechly.SLUClient.Segment
   commentId: T:Speechly.SLUClient.Segment
   parent: Speechly.SLUClient

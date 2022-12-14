@@ -14,14 +14,14 @@ items:
   type: Class
   source:
     remote:
-      path: speechly-client-net-standard-2.0/Speechly/SLUClient/IDecoder.cs
-      branch: feature/new-library-2022-08
+      path: speechly-dotnet/Speechly/SpeechlyClient/IDecoder.cs
+      branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: IDecoder
-    path: speechly-client-net-standard-2.0/Speechly/SLUClient/IDecoder.cs
+    path: speechly-dotnet/Speechly/SpeechlyClient/IDecoder.cs
     startLine: 7
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
   namespace: Speechly.SLUClient
   syntax:
     content: 'public abstract class IDecoder : object'
@@ -32,6 +32,7 @@ items:
   - System.Object
   derivedClasses:
   - Speechly.SLUClient.CloudDecoder
+  - Speechly.SLUClient.OnDeviceDecoder
   modifiers.csharp:
   - public
   - abstract

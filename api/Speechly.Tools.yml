@@ -23,7 +23,7 @@ items:
   fullName: Speechly.Tools
   type: Namespace
   assemblies:
-  - speechly-unity-net-standard-2.0
+  - speechly-dotnet
 references:
 - uid: Speechly.Tools.AudioProcessor
   commentId: T:Speechly.Tools.AudioProcessor

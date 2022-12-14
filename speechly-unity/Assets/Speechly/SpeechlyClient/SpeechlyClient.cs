@@ -87,7 +87,7 @@ namespace Speechly.SLUClient {
 /// <param name="historyFrames">Count of the audio history frames (default: `5`). Total history duration will be historyFrames * frameSamples.</param>
 /// <param name="frameMillis">Size of one audio frame (default: `30` ms). Total history duration will be historyFrames*frameSamples. History is sent upon Start to capture the start of utterance which especially important with VAD, which activates with a constant delay.</param>
 /// <param name="manualUpdate">Setting `manualUpdate = true` postpones SpeechlyClient's delegates (OnSegmentChange, OnTranscript...) until you manually run <see cref="Update"/>. This enables you to call Unity API in SpeechlyClient's delegates, as Unity API should only be used in the main Unity thread. (Default: false)</param>
-/// <param name="saveToFolder">Defines a local folder to save utterance files as 16 bit, 16000 hZ mono raw. Null disables saving. (default: `null`)</param>
+/// <param name="saveToFolder">Defines a local folder to save utterance files as 16 bit, 16000 Hz mono raw. Null disables saving. (default: `null`)</param>
 /// <param name="inputSampleRate">Define the sample rate of incoming audio (default: `16000`)</param>
 /// <param name="debug">Enable debug prints thru <see cref="Logger.Log"/> delegate. (default: `false`)</param>
 
@@ -291,10 +291,10 @@ namespace Speechly.SLUClient {
 /// <summary>
 /// Process speech audio samples from a microphone or other audio source.
 ///
-/// It's recommended to constantly feed new audio as long as you want to use Speechly's SLU services.
+/// It's recommended to feed audio early and often instead of large chunks to benefit from real-time ASR and NLU output.
 ///
-/// You can control when to start and stop process speech either manually with <see cref="Start"/> and <see cref="Stop"/> or
-/// automatically by providing a voice activity detection (VAD) field to <see cref="SpeechlyClient"/>.
+/// You can control when to start and stop process speech either manually with <see cref="Start"/> and <see cref="Stop"/>.
+/// Alternatively you may use automatic voice activity detection (VAD) with <see cref="AudioProcessorOptions"/> passed to <see cref="Initialize"/>.
 /// 
 /// The audio is handled as follows:
 /// - Downsample to 16kHz if needed
