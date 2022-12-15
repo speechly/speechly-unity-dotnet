@@ -173,11 +173,11 @@ namespace Speechly.SLUClient {
       try {
         bundle_buf = await this.modelBundleProvider();
       } catch (Exception e) {
-        throw new Exception($"Failed to load Speechly on-device Model Bundle. Please check if the file exists.\n{e.Message}");
+        throw new Exception($"Failed to load Speechly model bundle. Please check if the file exists.\n{e.Message}");
       }
 
-      if (bundle_buf.Length == 0) {
-        throw new Exception($"Failed to load Speechly on-device Model Bundle. The file has zero length.\nAre you trying to load placeholder dummy.bundle? Please contact Speechly to enable on-device support.");
+      if (bundle_buf == null || bundle_buf.Length == 0) {
+        throw new Exception($"Could not load Speechly model bundle or it has zero length.\nAre you trying to load placeholder dummy.bundle? Please contact Speechly to enable on-device support.");
       }
 
       decoderFactoryHandle = DecoderFactory_CreateFromModelArchive(bundle_buf, bundle_buf.Length, ref error);
