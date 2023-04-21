@@ -122,11 +122,16 @@ namespace Speechly.SLUClient {
     internal void EndSegment() {
       lock(this) {
         // Filter away any entities which were not finalized.
+        List<string> notFinalizedKeys = new List<string>();
         foreach (KeyValuePair<string, Entity> entity in entities) {
           if (!entity.Value.isFinal) {
-            this.entities.Remove(entity.Key);
+            notFinalizedKeys.Add(entity.Key);
           }
         }
+        foreach (var key in notFinalizedKeys) {
+          this.entities.Remove(key);
+        }
+
 
         // Filter away any transcripts which were not finalized. Keep indices intact.
         for (int i = 0; i < words.Length; i++) {
