@@ -57,6 +57,7 @@ public partial class MicToSpeechly : MonoBehaviour
   private bool wasVADEnabled;
   private Coroutine runSpeechlyCoroutine = null;
   IDecoder decoder = null;
+  Task decoderInitializationTask = null;
 
   private void Awake() 
   { 
@@ -79,7 +80,7 @@ public partial class MicToSpeechly : MonoBehaviour
     DontDestroyOnLoad(this.gameObject);
   }
 
-  void OnEnable() {
+  async void OnEnable() {
     // Show device caps
     // int minFreq, maxFreq;
     // Microphone.GetDeviceCaps(CaptureDeviceName, out minFreq, out maxFreq);
@@ -102,38 +103,53 @@ public partial class MicToSpeechly : MonoBehaviour
     }
 
     wasVADEnabled = this.AudioProcessorSettings.VADControlsListening;
+
+    // Make sure the async OnDisable is not running and shutting down the decoder
+    while (runSpeechlyCoroutine != null) {
+        await Task.Delay(TimeSpan.FromMilliseconds(100));
+    }
+
     runSpeechlyCoroutine = StartCoroutine(RunSpeechly());
   }
 
   async void OnDisable() {
     if (runSpeechlyCoroutine != null) StopCoroutine(runSpeechlyCoroutine);
-    runSpeechlyCoroutine = null;
+    // Make sure the decoder initialization completed before shutting down
+    if (decoderInitializationTask != null) {
+      while (decoderInitializationTask?.IsCompleted == false) {
+        await Task.Delay(TimeSpan.FromMilliseconds(100));
+      }
+      decoderInitializationTask = null;
+    }
     await SpeechlyClient.Shutdown();
+    runSpeechlyCoroutine = null;
   }
 
   private IEnumerator RunSpeechly()
   {
-    if (SpeechlyEnv == SpeechlyEnvironment.OnDevice) {
-      decoder = new OnDeviceDecoder(
-        async () => await Platform.Fetch($"{Application.streamingAssetsPath}/SpeechlyOnDevice/Models/{ModelBundle}"),
-        deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
-        debug: DebugPrint
-      );
-    }
+    if (decoder == null) {
+      if (SpeechlyEnv == SpeechlyEnvironment.OnDevice) {
+        decoder = new OnDeviceDecoder(
+          async () => await Platform.Fetch($"{Application.streamingAssetsPath}/SpeechlyOnDevice/Models/{ModelBundle}"),
+          deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
+          debug: DebugPrint
+        );
+      }
 
-    if (SpeechlyEnv == SpeechlyEnvironment.Production || SpeechlyEnv == SpeechlyEnvironment.Staging) {
-      decoder = new CloudDecoder(
-        apiUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "https://staging.speechly.com",
-        appId: String.IsNullOrWhiteSpace(this.AppId) ? null : this.AppId,
-        deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
-        debug: DebugPrint
-      );
+      if (SpeechlyEnv == SpeechlyEnvironment.Production || SpeechlyEnv == SpeechlyEnvironment.Staging) {
+        decoder = new CloudDecoder(
+          apiUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "https://staging.speechly.com",
+          appId: String.IsNullOrWhiteSpace(this.AppId) ? null : this.AppId,
+          deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
+          debug: DebugPrint
+        );
+      }
     }
 
     // Wait for connect
-    Task task;
-    task = SpeechlyClient.Initialize(decoder, AudioProcessorSettings, SpeechRecognitionSettings, preferLibSpeechlyAudioProcessor: SpeechlyEnv == SpeechlyEnvironment.OnDevice);
-    yield return new WaitUntil(() => task.IsCompleted);
+    decoderInitializationTask = SpeechlyClient.Initialize(decoder, AudioProcessorSettings, SpeechRecognitionSettings, preferLibSpeechlyAudioProcessor: SpeechlyEnv == SpeechlyEnvironment.OnDevice);
+    yield return new WaitUntil(() => decoderInitializationTask.IsCompleted);
+    decoderInitializationTask = null;
 
     while (true) {
       // Relay debug state

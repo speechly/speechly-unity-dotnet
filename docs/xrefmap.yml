@@ -1166,6 +1166,12 @@ references:
   commentId: T:Speechly.Types.ContextOptions
   fullName: Speechly.Types.ContextOptions
   nameWithType: ContextOptions
+- uid: Speechly.Types.ContextOptions.BlockSize
+  name: BlockSize
+  href: api/Speechly.Types.ContextOptions.html#Speechly_Types_ContextOptions_BlockSize
+  commentId: F:Speechly.Types.ContextOptions.BlockSize
+  fullName: Speechly.Types.ContextOptions.BlockSize
+  nameWithType: ContextOptions.BlockSize
 - uid: Speechly.Types.ContextOptions.BoostVocabulary
   name: BoostVocabulary
   href: api/Speechly.Types.ContextOptions.html#Speechly_Types_ContextOptions_BoostVocabulary

@@ -5,6 +5,7 @@ items:
   id: ContextOptions
   parent: Speechly.Types
   children:
+  - Speechly.Types.ContextOptions.BlockSize
   - Speechly.Types.ContextOptions.BoostVocabulary
   - Speechly.Types.ContextOptions.SilenceSegmentationMillis
   langs:
@@ -71,6 +72,37 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: Speechly.Types.ContextOptions.BlockSize
+  commentId: F:Speechly.Types.ContextOptions.BlockSize
+  id: BlockSize
+  parent: Speechly.Types.ContextOptions
+  langs:
+  - csharp
+  - vb
+  name: BlockSize
+  nameWithType: ContextOptions.BlockSize
+  fullName: Speechly.Types.ContextOptions.BlockSize
+  type: Field
+  source:
+    remote:
+      path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+      branch: main
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: BlockSize
+    path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
+    startLine: 234
+  assemblies:
+  - speechly-dotnet
+  namespace: Speechly.Types
+  syntax:
+    content: public int BlockSize
+    return:
+      type: System.Int32
+    content.vb: Public BlockSize As Integer
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
 - uid: Speechly.Types.ContextOptions.BoostVocabulary
   commentId: F:Speechly.Types.ContextOptions.BoostVocabulary
   id: BoostVocabulary
@@ -89,7 +121,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: BoostVocabulary
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 232
+    startLine: 239
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types

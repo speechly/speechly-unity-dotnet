@@ -56,7 +56,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: .ctor
     path: speechly-dotnet/Speechly/SpeechlyClient/OnDeviceDecoder.cs
-    startLine: 160
+    startLine: 162
   assemblies:
   - speechly-dotnet
   namespace: Speechly.SLUClient

@@ -118,6 +118,7 @@
   "Speechly.Types.BeautifyEntity": "Speechly.Types.BeautifyEntity.yml",
   "Speechly.Types.BeautifyIntent": "Speechly.Types.BeautifyIntent.yml",
   "Speechly.Types.ContextOptions": "Speechly.Types.ContextOptions.yml",
+  "Speechly.Types.ContextOptions.BlockSize": "Speechly.Types.ContextOptions.yml",
   "Speechly.Types.ContextOptions.BoostVocabulary": "Speechly.Types.ContextOptions.yml",
   "Speechly.Types.ContextOptions.ShallowFusionSettings": "Speechly.Types.ContextOptions.ShallowFusionSettings.yml",
   "Speechly.Types.ContextOptions.ShallowFusionSettings.Vocabulary": "Speechly.Types.ContextOptions.ShallowFusionSettings.yml",

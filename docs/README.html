@@ -64,7 +64,7 @@
 
 <h2 id="overview">Overview</h2>
 <p><a href="https://www.speechly.com/?utm_source=github&amp;utm_medium=react-client&amp;utm_campaign=text">Speechly</a> is an API for building voice features and voice chat moderation into games, XR, applications and web sites. Speechly Client Library for Unity and C# streams audio for analysis and provides real-time speech-to-text transcription and information extracted from the speech via the library's C# API.</p>
-<p>Speech recognition runs by default in Speechly cloud (online). On-device (offline) capabilities are available via separate libSpeechly add-on that runs machine learning models on the device itself using Core ML and TensorFlow Lite.</p>
+<p>Speech recognition runs by default in Speechly cloud (online). On-device (offline) capabilities are available via separate libSpeechly add-on that runs machine learning models on the device itself using ONNX runtime or TensorFlow Lite.</p>
 <h2 id="package-contents">Package contents</h2>
 <ul>
 <li><a href="speechly-dotnet/">speechly-dotnet/</a> contains the C# SpeechlyClient without Unity dependencies</li>
@@ -88,7 +88,7 @@
 <p>Refer to <a href="https://docs.unity3d.com/Manual/upm-ui-install.html">https://docs.unity3d.com/Manual/upm-ui-install.html</a> for instructions on using Unity packages.</p>
 <h3 id="requirements">Requirements</h3>
 <ul>
-<li>Unity 2018.1 or later (tested with 2019.4.36f1 and 2021.2.12f1)</li>
+<li>Unity 2018.1 or later (tested with 2019.4.36f1 and 2021.3.27f1)</li>
 <li>TextMeshPro (examples only)</li>
 <li>XR Plug-in Management (VR example only)</li>
 </ul>
@@ -134,7 +134,7 @@
 <h4 id="accessing-speech-recognition-results-via-segment-api">Accessing speech recognition results via Segment API</h4>
 <ul>
 <li>Use either hands-free listening or manual listening as described above.</li>
-<li>To handle the speech-to-text results, attach a callback for <code>OnSegmentChange</code>. The following example displays the speeech transcription in a TMP text field.</li>
+<li>To handle the speech-to-text results, attach a callback for <code>OnSegmentChange</code>. The following example displays the speech transcription in a TMP text field.</li>
 </ul>
 <pre><code class="lang-C#">  void Start()
   {
@@ -232,7 +232,7 @@
 <h2 id="publishing-an-unitypackage">Publishing an unitypackage</h2>
 <p>An unitypackage release is created with Unity's Export package feature. It should contain <code>Speechly</code> and <code>StreamingAssets</code> folders which contain Speechly-specific code and assets. Other files and folders in the project should not be included.</p>
 <ul>
-<li>Open the folder <code>speechly-unity/</code> subfolder (or any Scene file within that solution) using Unity Hub. The project is currently in Unity 2021.3.12f LTS.</li>
+<li>Open the folder <code>speechly-unity/</code> subfolder (or any Scene file within that solution) using Unity Hub. The project is currently in Unity 2021.3.27f LTS.</li>
 <li>In the Project window, select <code>Speechly</code> and <code>StreamingAssets</code> folders, then right click them to open the context menu.</li>
 <li>In the context menu, select <code>Export package...</code>.</li>
 <li>In the Export package window, uncheck <code>Include dependencies</code>, then click <code>Export...</code></li>

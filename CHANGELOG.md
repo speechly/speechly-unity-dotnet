@@ -1,3 +1,8 @@
+v2.2.0 (2023-06-16)
+- Reworked MicToSpeechly state transitions
+- Improved the control flow in the on-device decoder to avoid stray messages
+- New decoder parameter: Block size
+
 v2.1.0 (2022-11-01)
 - Added libSpeechly v1.1.2 readiness for on-device speech recognition.
 - Added HandsFreeListeningVR example. Enabled XR in project.

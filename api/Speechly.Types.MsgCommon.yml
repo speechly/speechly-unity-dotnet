@@ -22,7 +22,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: MsgCommon
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 318
+    startLine: 325
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types
@@ -57,7 +57,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: type
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 319
+    startLine: 326
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types
@@ -92,7 +92,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: audio_context
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 320
+    startLine: 327
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types
@@ -127,7 +127,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: segment_id
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 321
+    startLine: 328
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types

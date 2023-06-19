@@ -228,6 +228,13 @@ namespace Speechly.Types {
     public int SilenceSegmentationMillis = 720;
 
     #if UNITY_EDITOR
+    [Range(1, 50)]
+    [Tooltip("Streaming recognizer buffer size. Lower values minimize the latency but increase CPU consumption.")]
+    [SerializeField]
+    #endif
+    public int BlockSize = 6;
+
+    #if UNITY_EDITOR
     [SerializeField]
     #endif
     public ShallowFusionSettings BoostVocabulary;
