@@ -56,12 +56,17 @@ public partial class MicToSpeechly : MonoBehaviour
   private int oldRingbufferPos;
   private bool wasVADEnabled;
   private Coroutine runSpeechlyCoroutine = null;
+  IDecoder ondevice_decoder = null;
   IDecoder decoder = null;
   Task decoderInitializationTask = null;
+  private bool last_desired_state = false;  // Disabled/Enabled
+  private bool on_enable_running = false;
+  private bool on_disable_running = false;
+  private object on_disable_lock = new object();
 
   private void Awake() 
-  { 
-    if (_instance != null && _instance != this) 
+  {
+    if (_instance != null && _instance != this)
     { 
       Destroy(this.gameObject);
       return;
@@ -86,9 +91,27 @@ public partial class MicToSpeechly : MonoBehaviour
     // Microphone.GetDeviceCaps(CaptureDeviceName, out minFreq, out maxFreq);
     // Debug.Log($"minFreq {minFreq} maxFreq {maxFreq}");
 
+    last_desired_state = true;
+    if (on_enable_running) {
+      // Already running OnEnable, nothing to do
+      return;
+    }
+    on_enable_running = true;
+
     int capturedAudioBufferMillis = 500;
     int micBufferMillis = AudioProcessorSettings.FrameMillis * AudioProcessorSettings.HistoryFrames + capturedAudioBufferMillis;
     int micBufferSecs = (micBufferMillis / 1000) + 1;
+
+    // Make sure the async OnDisable is not running and shutting down the decoder
+    while (on_disable_running) {
+        await Task.Delay(TimeSpan.FromMilliseconds(100));
+    }
+    if (last_desired_state == false) {
+      // While running OnEnable, the component was disabled, so do not start
+      on_enable_running = false;
+      return;
+    }
+
     // Start audio capture
     clip = Microphone.Start(CaptureDeviceName, true, micBufferSecs, AudioProcessorSettings.InputSampleRate);
 
@@ -104,46 +127,69 @@ public partial class MicToSpeechly : MonoBehaviour
 
     wasVADEnabled = this.AudioProcessorSettings.VADControlsListening;
 
-    // Make sure the async OnDisable is not running and shutting down the decoder
-    while (runSpeechlyCoroutine != null) {
-        await Task.Delay(TimeSpan.FromMilliseconds(100));
-    }
-
     runSpeechlyCoroutine = StartCoroutine(RunSpeechly());
+    on_enable_running = false;
   }
 
   async void OnDisable() {
-    if (runSpeechlyCoroutine != null) StopCoroutine(runSpeechlyCoroutine);
-    // Make sure the decoder initialization completed before shutting down
-    if (decoderInitializationTask != null) {
-      while (decoderInitializationTask?.IsCompleted == false) {
+    if (_instance == this) {
+      if (on_disable_running) {
+        // Already running OnDisable, nothing to do
+        return;
+      }
+      last_desired_state = false;
+      // Let OnEnable finish first, if it is running. We keep on_disable_running as false to avoid deadlocks with OnEnable.
+      // However, multiple OnDisable calls may be waiting at the same time.
+      while (on_enable_running && !on_disable_running) {
         await Task.Delay(TimeSpan.FromMilliseconds(100));
       }
-      decoderInitializationTask = null;
+      lock (on_disable_lock) {
+        if (on_disable_running) {
+          // Another instance of OnDisable started executing, nothing to do
+          return;
+        }
+        on_disable_running = true;
+      }
+
+      // Make sure the decoder initialization completed before shutting down
+      if (decoderInitializationTask != null) {
+        while (decoderInitializationTask?.IsCompleted == false) {
+          await Task.Delay(TimeSpan.FromMilliseconds(100));
+        }
+        decoderInitializationTask = null;
+      }
+      if (last_desired_state == true) {
+        // While running OnDisable, the component was enabled, so stop here
+        on_disable_running = false;
+        return;
+      }
+      if (runSpeechlyCoroutine != null) StopCoroutine(runSpeechlyCoroutine);
+      await SpeechlyClient.Shutdown();
+      decoder = null;
+      clip = null;
+      runSpeechlyCoroutine = null;
+      on_disable_running = false;
     }
-    await SpeechlyClient.Shutdown();
-    runSpeechlyCoroutine = null;
   }
 
   private IEnumerator RunSpeechly()
   {
-    if (decoder == null) {
-      if (SpeechlyEnv == SpeechlyEnvironment.OnDevice) {
-        decoder = new OnDeviceDecoder(
+    if (SpeechlyEnv == SpeechlyEnvironment.OnDevice) {
+      if (ondevice_decoder == null) {
+        ondevice_decoder = new OnDeviceDecoder(
           async () => await Platform.Fetch($"{Application.streamingAssetsPath}/SpeechlyOnDevice/Models/{ModelBundle}"),
           deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
           debug: DebugPrint
         );
       }
-
-      if (SpeechlyEnv == SpeechlyEnvironment.Production || SpeechlyEnv == SpeechlyEnvironment.Staging) {
-        decoder = new CloudDecoder(
-          apiUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "https://staging.speechly.com",
-          appId: String.IsNullOrWhiteSpace(this.AppId) ? null : this.AppId,
-          deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
-          debug: DebugPrint
-        );
-      }
+      decoder = ondevice_decoder;
+    } else if (SpeechlyEnv == SpeechlyEnvironment.Production || SpeechlyEnv == SpeechlyEnvironment.Staging) {
+      decoder = new CloudDecoder(
+        apiUrl: SpeechlyEnv == SpeechlyEnvironment.Production ? null : "https://staging.speechly.com",
+        appId: String.IsNullOrWhiteSpace(this.AppId) ? null : this.AppId,
+        deviceId: Platform.GetDeviceId(SystemInfo.deviceUniqueIdentifier),
+        debug: DebugPrint
+      );
     }
 
     // Wait for connect
@@ -153,7 +199,7 @@ public partial class MicToSpeechly : MonoBehaviour
 
     while (true) {
       // Relay debug state
-      SpeechlyClient.Debug = DebugPrint;
+      SpeechlyClient.debug = DebugPrint;
       // Fire handlers in main Unity thread
       SpeechlyClient.Update();
 
