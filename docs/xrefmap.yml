@@ -57,6 +57,19 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.OnDeviceDecoder.OnDeviceDecoder
   nameWithType: OnDeviceDecoder.OnDeviceDecoder
+- uid: Speechly.SLUClient.OnDeviceDecoder.Finalize
+  name: Finalize()
+  href: api/Speechly.SLUClient.OnDeviceDecoder.html#Speechly_SLUClient_OnDeviceDecoder_Finalize
+  commentId: M:Speechly.SLUClient.OnDeviceDecoder.Finalize
+  fullName: Speechly.SLUClient.OnDeviceDecoder.Finalize()
+  nameWithType: OnDeviceDecoder.Finalize()
+- uid: Speechly.SLUClient.OnDeviceDecoder.Finalize*
+  name: Finalize
+  href: api/Speechly.SLUClient.OnDeviceDecoder.html#Speechly_SLUClient_OnDeviceDecoder_Finalize_
+  commentId: Overload:Speechly.SLUClient.OnDeviceDecoder.Finalize
+  isSpec: "True"
+  fullName: Speechly.SLUClient.OnDeviceDecoder.Finalize
+  nameWithType: OnDeviceDecoder.Finalize
 - uid: Speechly.SLUClient.Segment
   name: Segment
   href: api/Speechly.SLUClient.Segment.html
@@ -179,12 +192,12 @@ references:
   isSpec: "True"
   fullName: Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier
   nameWithType: SpeechlyClient.AudioInputStreamIdentifier
-- uid: Speechly.SLUClient.SpeechlyClient.Debug
-  name: Debug
-  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Debug
-  commentId: F:Speechly.SLUClient.SpeechlyClient.Debug
-  fullName: Speechly.SLUClient.SpeechlyClient.Debug
-  nameWithType: SpeechlyClient.Debug
+- uid: Speechly.SLUClient.SpeechlyClient.debug
+  name: debug
+  href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_debug
+  commentId: F:Speechly.SLUClient.SpeechlyClient.debug
+  fullName: Speechly.SLUClient.SpeechlyClient.debug
+  nameWithType: SpeechlyClient.debug
 - uid: Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder,Speechly.Types.AudioProcessorOptions,Speechly.Types.ContextOptions,System.Boolean)
   name: Initialize(IDecoder, AudioProcessorOptions, ContextOptions, Boolean)
   href: api/Speechly.SLUClient.SpeechlyClient.html#Speechly_SLUClient_SpeechlyClient_Initialize_Speechly_SLUClient_IDecoder_Speechly_Types_AudioProcessorOptions_Speechly_Types_ContextOptions_System_Boolean_

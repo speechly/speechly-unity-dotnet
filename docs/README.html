@@ -95,6 +95,15 @@
 <h3 id="supported-languages">Supported languages</h3>
 <p>See language support <a href="https://github.com/speechly/speechly/discussions/139">here</a>.</p>
 <h3 id="usage">Usage</h3>
+<p>General usage pattern for Unity is to add <code>Speechly.prefab</code> to your scene, configure it properly, and then interact
+with it using either <code>MicToSpeechly</code> or the internal <code>SpeechlyClient</code> which is accessible as <code>MicToSpeechly.Instance.SpeechlyClient</code>.</p>
+<p><code>Speechly.prefab</code> is by default set with <code>Don't destroy on load</code> so it's available in every scene. It creates a <code>SpeechlyClient</code> singleton which you can can access with <code>MicToSpeechly.Instance.SpeechlyClient</code>.
+When configured in voice-activated mode, <code>MicToSpeechly</code> will start listening to the microphone as soon as it is enabled.
+If you want to stop the speech recognition, you can disable the game object associated with <code>MicToSpeechly</code>:</p>
+<pre><code class="lang-C#">MicToSpeechly.Instance?.gameObject.SetActive(false);
+</code></pre>
+<p>Similarly, enable the listening again by setting the object active. Because <code>MicToSpeechly</code> is not destroyed on scene changes,
+do not add your own scripts to the same game object as <code>MicToSpeechly</code> so that they will operate correctly.</p>
 <h4 id="hands-free-voice-input-via-unity-microphone">Hands-free voice input via Unity microphone</h4>
 <ul>
 <li>Add the <code>Speechly.prefab</code> to your scene and select it.</li>
@@ -102,7 +111,7 @@
 <li>Check <code>VAD controls listening</code> and <code>debug print</code>.</li>
 <li>Run the app, speak and see the console for the basic transcription results.</li>
 </ul>
-<h4 id="controlling-listening-with-speechlyclientstart-and-stop">Controlling listening with SpeechlyClient.Start() and Stop()</h4>
+<h4 id="controlling-listening-manually-with-speechlyclientstart-and-stop">Controlling listening manually with SpeechlyClient.Start() and Stop()</h4>
 <ul>
 <li>Add the <code>Speechly.prefab</code> to your scene and select it.</li>
 <li>In the inspector, enter a valid <code>App id</code> acquired from <a href="https://api.speechly.com/dashboard">Speechly dashboard</a></li>
@@ -130,7 +139,6 @@
     }
   }
 </code></pre>
-<p><code>Speechly.prefab</code> is by default set with <code>Don't destroy on load</code> so it's available in every scene. It creates a <code>SpeechlyClient</code> singleton which you can can access with <code>MicToSpeechly.Instance.SpeechlyClient</code>.</p>
 <h4 id="accessing-speech-recognition-results-via-segment-api">Accessing speech recognition results via Segment API</h4>
 <ul>
 <li>Use either hands-free listening or manual listening as described above.</li>
@@ -151,7 +159,8 @@
   }
 </code></pre>
 <h4 id="using-other-audio-sources">Using other audio sources</h4>
-<p>You can send audio from other audio sources by calling <code>SpeechlyClient.Start()</code>, sending any number of packets containing samples as float32 array (mono 16kHz by default) using <code>SpeechlyClient.ProcessAudio()</code>. Finally, call <code>SpeechlyClient.Stop()</code>.</p>
+<p>You can send audio from other audio sources by calling <code>SpeechlyClient.Start()</code>, sending any number of packets containing samples as float32 array (mono 16kHz by default) using <code>SpeechlyClient.ProcessAudio()</code>. Finally, call <code>SpeechlyClient.Stop()</code>.
+In this case, you need to handle <code>SpeechlyClient</code> creation, initialization, and shutdown yourself, or modify <code>MicToSpeechly</code> to not process the microphone audio at the same time.</p>
 <h3 id="reference">Reference</h3>
 <ul>
 <li><a href="https://speechly.github.io/speechly-unity-dotnet/">SpeechlyClient API documentation (DocFX generated)</a></li>
@@ -257,7 +266,7 @@
               <div class="contribution">
                 <ul class="nav">
                   <li>
-                    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/main/README.md/#L1" class="contribution-link">Improve this Doc</a>
+                    <a href="https://github.com/speechly/speechly-unity-dotnet/blob/v2.2.0/README.md/#L1" class="contribution-link">Improve this Doc</a>
                   </li>
                 </ul>
               </div>

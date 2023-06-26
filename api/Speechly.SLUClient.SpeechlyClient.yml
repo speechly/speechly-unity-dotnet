@@ -8,7 +8,7 @@ items:
   - Speechly.SLUClient.SpeechlyClient.#ctor(System.Boolean,System.String,Speechly.Types.AudioInfo,System.Boolean)
   - Speechly.SLUClient.SpeechlyClient.AdjustAudioProcessor(System.Nullable{System.Boolean})
   - Speechly.SLUClient.SpeechlyClient.AudioInputStreamIdentifier
-  - Speechly.SLUClient.SpeechlyClient.Debug
+  - Speechly.SLUClient.SpeechlyClient.debug
   - Speechly.SLUClient.SpeechlyClient.Initialize(Speechly.SLUClient.IDecoder,Speechly.Types.AudioProcessorOptions,Speechly.Types.ContextOptions,System.Boolean)
   - Speechly.SLUClient.SpeechlyClient.IsActive
   - Speechly.SLUClient.SpeechlyClient.IsAudioStreaming
@@ -588,23 +588,23 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
-- uid: Speechly.SLUClient.SpeechlyClient.Debug
-  commentId: F:Speechly.SLUClient.SpeechlyClient.Debug
-  id: Debug
+- uid: Speechly.SLUClient.SpeechlyClient.debug
+  commentId: F:Speechly.SLUClient.SpeechlyClient.debug
+  id: debug
   parent: Speechly.SLUClient.SpeechlyClient
   langs:
   - csharp
   - vb
-  name: Debug
-  nameWithType: SpeechlyClient.Debug
-  fullName: Speechly.SLUClient.SpeechlyClient.Debug
+  name: debug
+  nameWithType: SpeechlyClient.debug
+  fullName: Speechly.SLUClient.SpeechlyClient.debug
   type: Field
   source:
     remote:
       path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
       branch: main
       repo: git@github.com:speechly/speechly-unity-dotnet.git
-    id: Debug
+    id: debug
     path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
     startLine: 67
   assemblies:
@@ -612,10 +612,10 @@ items:
   namespace: Speechly.SLUClient
   example: []
   syntax:
-    content: public bool Debug
+    content: public bool debug
     return:
       type: System.Boolean
-    content.vb: Public Debug As Boolean
+    content.vb: Public debug As Boolean
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -638,7 +638,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: .ctor
     path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
-    startLine: 94
+    startLine: 91
   assemblies:
   - speechly-dotnet
   namespace: Speechly.SLUClient
@@ -682,7 +682,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Initialize
     path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
-    startLine: 124
+    startLine: 121
   assemblies:
   - speechly-dotnet
   namespace: Speechly.SLUClient
@@ -728,7 +728,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StartStream
     path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
-    startLine: 178
+    startLine: 175
   assemblies:
   - speechly-dotnet
   namespace: Speechly.SLUClient
@@ -765,7 +765,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: StopStream
     path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
-    startLine: 200
+    startLine: 197
   assemblies:
   - speechly-dotnet
   namespace: Speechly.SLUClient
@@ -800,7 +800,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: AdjustAudioProcessor
     path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
-    startLine: 219
+    startLine: 215
   assemblies:
   - speechly-dotnet
   namespace: Speechly.SLUClient
@@ -839,7 +839,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Start
     path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
-    startLine: 244
+    startLine: 240
   assemblies:
   - speechly-dotnet
   namespace: Speechly.SLUClient
@@ -878,7 +878,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessAudioFile
     path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
-    startLine: 283
+    startLine: 278
   assemblies:
   - speechly-dotnet
   namespace: Speechly.SLUClient
@@ -911,7 +911,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessAudio
     path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
-    startLine: 312
+    startLine: 307
   assemblies:
   - speechly-dotnet
   namespace: Speechly.SLUClient
@@ -956,7 +956,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: ProcessAudio
     path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
-    startLine: 326
+    startLine: 321
   assemblies:
   - speechly-dotnet
   namespace: Speechly.SLUClient
@@ -989,7 +989,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Stop
     path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
-    startLine: 379
+    startLine: 374
   assemblies:
   - speechly-dotnet
   namespace: Speechly.SLUClient
@@ -1024,7 +1024,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Update
     path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
-    startLine: 410
+    startLine: 405
   assemblies:
   - speechly-dotnet
   namespace: Speechly.SLUClient
@@ -1056,7 +1056,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Shutdown
     path: speechly-dotnet/Speechly/SpeechlyClient/SpeechlyClient.cs
-    startLine: 518
+    startLine: 513
   assemblies:
   - speechly-dotnet
   namespace: Speechly.SLUClient
