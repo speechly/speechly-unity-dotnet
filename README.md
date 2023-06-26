@@ -38,6 +38,21 @@ See language support [here](https://github.com/speechly/speechly/discussions/139
 
 ### Usage
 
+General usage pattern for Unity is to add `Speechly.prefab` to your scene, configure it properly, and then interact
+with it using either `MicToSpeechly` or the internal `SpeechlyClient` which is accessible as `MicToSpeechly.Instance.SpeechlyClient`.
+
+`Speechly.prefab` is by default set with `Don't destroy on load` so it's available in every scene. It creates a `SpeechlyClient` singleton which you can can access with `MicToSpeechly.Instance.SpeechlyClient`.
+When configured in voice-activated mode, `MicToSpeechly` will start listening to the microphone as soon as it is enabled.
+If you want to stop the speech recognition, you can disable the game object associated with `MicToSpeechly`:
+
+```C#
+MicToSpeechly.Instance?.gameObject.SetActive(false);
+```
+
+Similarly, enable the listening again by setting the object active. Because `MicToSpeechly` is not destroyed on scene changes,
+do not add your own scripts to the same game object as `MicToSpeechly` so that they will operate correctly.
+
+
 #### Hands-free voice input via Unity microphone
 
 - Add the `Speechly.prefab` to your scene and select it.
@@ -45,7 +60,7 @@ See language support [here](https://github.com/speechly/speechly/discussions/139
 - Check `VAD controls listening` and `debug print`.
 - Run the app, speak and see the console for the basic transcription results.
 
-#### Controlling listening with SpeechlyClient.Start() and Stop()
+#### Controlling listening manually with SpeechlyClient.Start() and Stop()
 
 - Add the `Speechly.prefab` to your scene and select it.
 - In the inspector, enter a valid `App id` acquired from [Speechly dashboard](https://api.speechly.com/dashboard)
@@ -75,8 +90,6 @@ See language support [here](https://github.com/speechly/speechly/discussions/139
   }
 ```
 
-`Speechly.prefab` is by default set with `Don't destroy on load` so it's available in every scene. It creates a `SpeechlyClient` singleton which you can can access with `MicToSpeechly.Instance.SpeechlyClient`.
-
 #### Accessing speech recognition results via Segment API
 
 - Use either hands-free listening or manual listening as described above.
@@ -101,6 +114,7 @@ See language support [here](https://github.com/speechly/speechly/discussions/139
 #### Using other audio sources
 
 You can send audio from other audio sources by calling `SpeechlyClient.Start()`, sending any number of packets containing samples as float32 array (mono 16kHz by default) using `SpeechlyClient.ProcessAudio()`. Finally, call `SpeechlyClient.Stop()`.
+In this case, you need to handle `SpeechlyClient` creation, initialization, and shutdown yourself, or modify `MicToSpeechly` to not process the microphone audio at the same time.
 
 ### Reference
 

@@ -84,9 +84,6 @@ namespace Speechly.SLUClient {
 /// <summary>
 /// Create a new SpeechlyClient to process audio and fire delegates to provide SLU results.
 /// </summary>
-/// <param name="vad"><see cref="EnergyThresholdVAD"/> instance to control automatic listening on/off. Null disables VAD. (default: `null`)</param>
-/// <param name="historyFrames">Count of the audio history frames (default: `5`). Total history duration will be historyFrames * frameSamples.</param>
-/// <param name="frameMillis">Size of one audio frame (default: `30` ms). Total history duration will be historyFrames*frameSamples. History is sent upon Start to capture the start of utterance which especially important with VAD, which activates with a constant delay.</param>
 /// <param name="manualUpdate">Setting `manualUpdate = true` postpones SpeechlyClient's delegates (OnSegmentChange, OnTranscript...) until you manually run <see cref="Update"/>. This enables you to call Unity API in SpeechlyClient's delegates, as Unity API should only be used in the main Unity thread. (Default: false)</param>
 /// <param name="saveToFolder">Defines a local folder to save utterance files as 16 bit, 16000 Hz mono raw. Null disables saving. (default: `null`)</param>
 /// <param name="inputSampleRate">Define the sample rate of incoming audio (default: `16000`)</param>
