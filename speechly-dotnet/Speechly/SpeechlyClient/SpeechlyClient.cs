@@ -3,8 +3,9 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
-using Speechly.Types;
 using Speechly.Tools;
+using Speechly.Types;
+using Logger = Speechly.Tools.Logger;
 
 namespace Speechly.SLUClient {
 
@@ -195,11 +196,11 @@ namespace Speechly.SLUClient {
 /// `StopStream` should be called at the end of a continuous audio stream.
 /// `OnStreamStop` delegate is triggered upon a call to StopStream.
 /// </summary>
-    public void StopStream(bool auto = false) {
+    public async Task StopStream(bool auto = false) {
       if (IsAudioStreaming) {
         if ((auto && streamAutoStarted) || !streamAutoStarted) {
           if (IsActive) {
-            _ = Stop();
+            await Stop();
           }
         }
 
@@ -276,12 +277,12 @@ namespace Speechly.SLUClient {
       }
     }
 
-    public void ProcessAudioFile(string fileName) {
+    public async Task ProcessAudioFile(string fileName) {
       string outBaseName = Path.GetFileNameWithoutExtension(fileName);
       var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
       StartStream(outBaseName);
       ProcessAudio(fileStream);
-      StopStream();
+      await StopStream();
       fileStream.Close();
     }
 
@@ -512,18 +513,19 @@ namespace Speechly.SLUClient {
 /// <returns>Task that completes with the shutdown.</returns>
 
     public async Task Shutdown() {
-      StopStream();
+      await StopStream();
 
-      if (this.decoder != null) {
+      if (decoder != null) {
         await decoder.Shutdown();
         if (this.manualUpdate) {
           decoder.OnMessage -= QueueMessage;
         } else {
           decoder.OnMessage -= OnMessage;
         }
+        activeContexts.Clear();
       }
 
-      this.decoder = null;
+      decoder = null;
     }
 
   }

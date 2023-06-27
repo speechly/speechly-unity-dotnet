@@ -133,11 +133,11 @@ public partial class MicToSpeechly : MonoBehaviour
 
   async void OnDisable() {
     if (_instance == this) {
+      last_desired_state = false;
       if (on_disable_running) {
         // Already running OnDisable, nothing to do
         return;
       }
-      last_desired_state = false;
       // Let OnEnable finish first, if it is running. We keep on_disable_running as false to avoid deadlocks with OnEnable.
       // However, multiple OnDisable calls may be waiting at the same time.
       while (on_enable_running && !on_disable_running) {
@@ -157,11 +157,6 @@ public partial class MicToSpeechly : MonoBehaviour
           await Task.Delay(TimeSpan.FromMilliseconds(100));
         }
         decoderInitializationTask = null;
-      }
-      if (last_desired_state == true) {
-        // While running OnDisable, the component was enabled, so stop here
-        on_disable_running = false;
-        return;
       }
       if (runSpeechlyCoroutine != null) StopCoroutine(runSpeechlyCoroutine);
       await SpeechlyClient.Shutdown();
