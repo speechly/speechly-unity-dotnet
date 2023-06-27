@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using Speechly.SLUClient;
+using Speechly.Types;
 using UnityEngine.UI;
 using TMPro;
 
@@ -13,11 +14,12 @@ namespace Speechly.Example.NoiseGateTriggerVR
     public TMP_Text ButtonText;
     public TMP_Text TranscriptText;
     private SpeechlyClient speechlyClient;
+    private SegmentChangeDelegate SegmentUpdate;
 
     void Start()
     {
       speechlyClient = MicToSpeechly.Instance.SpeechlyClient;
-      speechlyClient.OnSegmentChange += (segment) =>
+      SegmentUpdate = (segment) =>
       {
         Debug.Log(segment.ToString());
         TranscriptText.text = segment.ToString(
@@ -26,6 +28,22 @@ namespace Speechly.Example.NoiseGateTriggerVR
           "."
         );
       };
+      speechlyClient.OnSegmentChange += SegmentUpdate;
+    }
+
+    void OnEnable()
+    {
+      MicToSpeechly.Instance?.gameObject.SetActive(true);
+    }
+
+    void OnDisable()
+    {
+      MicToSpeechly.Instance?.gameObject.SetActive(false);
+    }
+
+    void OnDestroy()
+    {
+      speechlyClient.OnSegmentChange -= SegmentUpdate;
     }
 
     void Update()

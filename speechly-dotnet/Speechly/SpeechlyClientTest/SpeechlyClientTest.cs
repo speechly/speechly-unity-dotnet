@@ -19,7 +19,7 @@ namespace Speechly.SLUClient {
       client.OnSegmentChange = (segment) => {
         Logger.Log(segment.ToString());
       };
-      
+
       client.OnTentativeTranscript = (msg) => {
         StringBuilder sb = new StringBuilder();
         sb.Append($"Tentative transcript ({msg.data.words.Length} words): ");
@@ -33,16 +33,16 @@ namespace Speechly.SLUClient {
         Logger.Log(sb.ToString());
       };
       client.OnTentativeIntent = (msg) => Logger.Log($"Tentative intent: '{msg.data.intent}'");
-      
+
       client.OnTranscript = (msg) => Logger.Log($"Final transcript: '{msg.data.word}'@{msg.data.index} {msg.data.startTimestamp}..{msg.data.endTimestamp}ms");
       client.OnEntity = (msg) => Logger.Log($"Final entity '{msg.data.type}' with value '{msg.data.value}' @ {msg.data.startPosition}..{msg.data.endPosition}");
       client.OnIntent = (msg) => Logger.Log($"Intent: '{msg.data.intent}'");
 
       stopWatch.Restart();
-      
+
       var decoder = new CloudDecoder(
         apiUrl: "https://staging.speechly.com",
-        appId: "76e901c8-7795-43d5-9c5c-4a25d5edf80e", // Restaurant booking configuration
+        appId: "8fb67f1e-69df-4d25-811b-4413a3264be2",
         deviceId: Platform.GetDeviceId()
       );
 
@@ -52,9 +52,11 @@ namespace Speechly.SLUClient {
       stopWatch.Restart();
       _ = client.Start();
 
-      client.ProcessAudioFile(fileName);
+      await client.ProcessAudioFile(fileName);
       await client.Stop();
       var sluTime = stopWatch.ElapsedMilliseconds;
+
+      await client.Shutdown();
 
       Logger.Log($"==== STATS ====");
       Logger.Log($"Connect time: {connectTime} ms");
@@ -81,7 +83,13 @@ namespace Speechly.SLUClient {
         debug: true
       );
 
-      await client.Initialize(decoder: null, audioProcessorOptions: new AudioProcessorOptions() { VADControlsListening = true } );
+      var decoder = new CloudDecoder(
+        apiUrl: "https://staging.speechly.com",
+        appId: "8fb67f1e-69df-4d25-811b-4413a3264be2",
+        deviceId: Platform.GetDeviceId()
+      );
+
+      await client.Initialize(decoder: decoder, audioProcessorOptions: new AudioProcessorOptions() { VADControlsListening = true } );
 
       client.OnStartStream = () => {
         Logger.Log("client.OnStartStream");
@@ -92,8 +100,10 @@ namespace Speechly.SLUClient {
 
       client.OnStopStream = () => {
         Logger.Log("client.OnStopStream");
-        logUtteranceStream.Close();
-        logUtteranceStream = null;
+        if (logUtteranceFolder != null) {
+          logUtteranceStream.Close();
+          logUtteranceStream = null;
+        }
       };
 
       client.OnStart = () => {
@@ -104,13 +114,12 @@ namespace Speechly.SLUClient {
       client.OnStop = () => {
         Logger.Log("client.OnStop");
         string serialString = client.Output.UtteranceSerial.ToString().PadLeft(4, '0');
-        logUtteranceStream.WriteLine($"{client.AudioInputStreamIdentifier}\t{serialString}\t{utteranceStartSamplePos}\t{client.Output.SamplesSent}");
+        logUtteranceStream?.WriteLine($"{client.AudioInputStreamIdentifier}\t{serialString}\t{utteranceStartSamplePos}\t{client.Output.SamplesSent}");
       };
 
       stopWatch.Restart();
-      // _ = client.Start();
-      client.ProcessAudioFile(fileName);
-      // await client.Stop();
+      await client.ProcessAudioFile(fileName);
+      await client.Shutdown();
       var processTime = stopWatch.ElapsedMilliseconds;
 
       Logger.Log($"==== STATS ====");
