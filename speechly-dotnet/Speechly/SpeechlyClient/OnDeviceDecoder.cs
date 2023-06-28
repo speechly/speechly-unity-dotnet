@@ -193,6 +193,7 @@ namespace Speechly.SLUClient {
         decoderFactoryHandle = DecoderFactory_CreateFromModelArchive(bundle_buf, bundle_buf.Length, ref error);
 
         if (SPEECHLY_ERROR_NONE != error.error_code) {
+          decoderFactoryHandle = IntPtr.Zero;
           string errorDescription = $"Error while loading Speechly model files.\n";
           errorDescription += $"DecoderFactory_CreateFromModelArchive code {error.error_code}: ";
           if (0 != (error.error_code & SPEECHLY_ERROR_MISMATCH_IN_MODEL_ARCHITECTURE)) {
