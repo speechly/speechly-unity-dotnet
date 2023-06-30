@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 170076734}
-  m_IndirectSpecularColor: {r: 0.44657874, g: 0.49641275, b: 0.5748172, a: 1}
+  m_IndirectSpecularColor: {r: 0.4465788, g: 0.49641287, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -199,6 +199,16 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Enabled
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2238053259677155663, guid: 84ef6b74c92d54cfcbd639dbf91128b0,
+        type: 3}
+      propertyPath: ModelBundle
+      value: dummy.ort
+      objectReference: {fileID: 0}
+    - target: {fileID: 2238053259677155663, guid: 84ef6b74c92d54cfcbd639dbf91128b0,
+        type: 3}
+      propertyPath: SpeechlyEnv
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2238053259677155663, guid: 84ef6b74c92d54cfcbd639dbf91128b0,
         type: 3}
@@ -1235,6 +1245,7 @@ GameObject:
   - component: {fileID: 683314862}
   - component: {fileID: 683314861}
   - component: {fileID: 683314860}
+  - component: {fileID: 683314863}
   m_Layer: 0
   m_Name: EventSystem
   m_TagString: Untagged
@@ -1292,6 +1303,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &683314863
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 683314859}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0629558749aad4d32a233823b0685a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1073776681
 GameObject:
   m_ObjectHideFlags: 0
@@ -1379,6 +1402,7 @@ GameObject:
   - component: {fileID: 1255822666}
   - component: {fileID: 1255822665}
   - component: {fileID: 1255822664}
+  - component: {fileID: 1255822667}
   m_Layer: 0
   m_Name: Canvas
   m_TagString: Untagged
@@ -1446,6 +1470,23 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 800, y: 400}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1255822667
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1255822663}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 979204ce5b94d4780a3c33f9a0802125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  SliderEnergy: {fileID: 275751998}
+  SliderBaselineEnergy: {fileID: 451804423}
+  Fill: {fileID: 358568578}
+  ButtonText: {fileID: 322247389}
+  TranscriptText: {fileID: 1813099634}
 --- !u!1 &1291174019
 GameObject:
   m_ObjectHideFlags: 0
@@ -1999,29 +2040,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2069320975}
   m_CullTransparentMesh: 0
---- !u!1 &2090495895 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 2238053259677155662, guid: 84ef6b74c92d54cfcbd639dbf91128b0,
-    type: 3}
-  m_PrefabInstance: {fileID: 27899248}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &2090495896
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2090495895}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 979204ce5b94d4780a3c33f9a0802125, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  SliderEnergy: {fileID: 275751998}
-  SliderBaselineEnergy: {fileID: 451804423}
-  Fill: {fileID: 358568578}
-  ButtonText: {fileID: 322247389}
-  TranscriptText: {fileID: 1813099634}
 --- !u!850595691 &2102522476
 LightingSettings:
   m_ObjectHideFlags: 0

@@ -22,7 +22,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Options
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 237
+    startLine: 244
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types
@@ -57,7 +57,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: vocabulary
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 240
+    startLine: 247
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types
@@ -88,7 +88,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: vocabulary_bias
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 242
+    startLine: 249
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types
@@ -119,7 +119,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: silence_triggered_segmentation
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 244
+    startLine: 251
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types

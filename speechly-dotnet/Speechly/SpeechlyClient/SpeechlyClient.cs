@@ -3,8 +3,9 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using System.Collections.Concurrent;
-using Speechly.Types;
 using Speechly.Tools;
+using Speechly.Types;
+using Logger = Speechly.Tools.Logger;
 
 namespace Speechly.SLUClient {
 
@@ -65,7 +66,7 @@ namespace Speechly.SLUClient {
     public string AudioInputStreamIdentifier { get; private set; } = "utterance";
 
     /// Enable debug prints
-    public bool Debug = false;
+    public bool debug = false;
 
     /// Message queue used when manualUpdate is true. Delegates are fired with a call to Update() that should be run in the desired thread (main) thread.
     private ConcurrentQueue<SegmentMessage> messageQueue = new ConcurrentQueue<SegmentMessage>();
@@ -80,12 +81,10 @@ namespace Speechly.SLUClient {
 
     private IDecoder decoder;
 
+
 /// <summary>
 /// Create a new SpeechlyClient to process audio and fire delegates to provide SLU results.
 /// </summary>
-/// <param name="vad"><see cref="EnergyThresholdVAD"/> instance to control automatic listening on/off. Null disables VAD. (default: `null`)</param>
-/// <param name="historyFrames">Count of the audio history frames (default: `5`). Total history duration will be historyFrames * frameSamples.</param>
-/// <param name="frameMillis">Size of one audio frame (default: `30` ms). Total history duration will be historyFrames*frameSamples. History is sent upon Start to capture the start of utterance which especially important with VAD, which activates with a constant delay.</param>
 /// <param name="manualUpdate">Setting `manualUpdate = true` postpones SpeechlyClient's delegates (OnSegmentChange, OnTranscript...) until you manually run <see cref="Update"/>. This enables you to call Unity API in SpeechlyClient's delegates, as Unity API should only be used in the main Unity thread. (Default: false)</param>
 /// <param name="saveToFolder">Defines a local folder to save utterance files as 16 bit, 16000 Hz mono raw. Null disables saving. (default: `null`)</param>
 /// <param name="inputSampleRate">Define the sample rate of incoming audio (default: `16000`)</param>
@@ -100,7 +99,7 @@ namespace Speechly.SLUClient {
 
       this.manualUpdate = manualUpdate;
       this.saveToFolder = saveToFolder;
-      this.Debug = debug;
+      this.debug = debug;
 
       if (output == null) {
         this.Output = new AudioInfo();
@@ -132,6 +131,23 @@ namespace Speechly.SLUClient {
       }
       this.contextOptions = contextOptions;
 
+      if (!preferLibSpeechlyAudioProcessor) {
+        this.AudioProcessor = new AudioProcessor(
+          audioProcessorOptions,
+          this.Output,
+          this.debug
+        );
+
+        this.AudioProcessor.OnSendAudio += SendAudio;
+        this.AudioProcessor.OnVadStateChange += (isSignalDetected) => {
+          if (isSignalDetected) {
+            _ = Start();
+          } else {
+            _ = Stop();
+          }
+        };
+      }
+
       if (this.decoder == null && decoder != null) {
         try {
           if (this.manualUpdate) {
@@ -147,25 +163,9 @@ namespace Speechly.SLUClient {
           this.decoder = decoder;
         } catch (Exception e) {
           Logger.LogError(e.ToString());
+          this.decoder = null;
           throw;
         }
-      }
-
-      if (!preferLibSpeechlyAudioProcessor) {
-        this.AudioProcessor = new AudioProcessor(
-          audioProcessorOptions,
-          this.Output,
-          this.Debug
-        );
-
-        this.AudioProcessor.OnSendAudio += SendAudio;
-        this.AudioProcessor.OnVadStateChange += (isSignalDetected) => {
-          if (isSignalDetected) {
-            _ = Start();
-          } else {
-            _ = Stop();
-          }
-        };
       }
 
     }
@@ -185,7 +185,7 @@ namespace Speechly.SLUClient {
         OnStartStream();
 
         // Start receiving results if using libSpeechly AudioProcessor
-        if (AudioProcessor == null && audioProcessorOptions.VADControlsListening) {
+        if (AudioProcessor == null && audioProcessorOptions.VADControlsListening && !auto) {
           _ = Start();
         }
 
@@ -196,17 +196,16 @@ namespace Speechly.SLUClient {
 /// `StopStream` should be called at the end of a continuous audio stream.
 /// `OnStreamStop` delegate is triggered upon a call to StopStream.
 /// </summary>
-    public void StopStream(bool auto = false) {
+    public async Task StopStream(bool auto = false) {
       if (IsAudioStreaming) {
         if ((auto && streamAutoStarted) || !streamAutoStarted) {
           if (IsActive) {
-            _ = Stop();
+            await Stop();
           }
-
-          IsAudioStreaming = false;
-        
-          OnStopStream();
         }
+
+        IsAudioStreaming = false;
+        OnStopStream();
       }
     }
 
@@ -241,6 +240,9 @@ namespace Speechly.SLUClient {
 /// <returns>An unique utterance id.</returns>
 
     public Task<string> Start(string appId = null) {
+      if (this.decoder == null) {
+        throw new Exception("SpeechlyClient not ready for Start call!");
+      }
       if (IsActive) {
         throw new Exception("Already listening.");
       }
@@ -266,25 +268,21 @@ namespace Speechly.SLUClient {
 
       OnStart();
 
-      if (this.decoder != null) {
-        try {
-          return this.decoder.Start();
-        } catch (Exception e) {
-          IsActive = false;
-          Logger.LogError(e.ToString());
-          throw;
-        }
+      try {
+        return this.decoder.Start();
+      } catch (Exception e) {
+        IsActive = false;
+        Logger.LogError(e.ToString());
+        throw;
       }
-      
-      return Task.FromResult(contextId);
     }
 
-    public void ProcessAudioFile(string fileName) {
+    public async Task ProcessAudioFile(string fileName) {
       string outBaseName = Path.GetFileNameWithoutExtension(fileName);
       var fileStream = new FileStream(fileName, FileMode.Open, FileAccess.Read, FileShare.Read);
       StartStream(outBaseName);
       ProcessAudio(fileStream);
-      StopStream();
+      await StopStream();
       fileStream.Close();
     }
 
@@ -421,12 +419,12 @@ namespace Speechly.SLUClient {
     {
       switch (msgCommon.type) {
         case "started": {
-          if (Debug) Logger.Log($"Started context '{msgCommon.audio_context}'");
+          if (debug) Logger.Log($"Started context '{msgCommon.audio_context}'");
           activeContexts.Add(msgCommon.audio_context, new Dictionary<int, Segment>());
           break;
         }
         case "stopped": {
-          if (Debug) Logger.Log($"Stopped context '{msgCommon.audio_context}'");
+          if (debug) Logger.Log($"Stopped context '{msgCommon.audio_context}'");
           activeContexts.Remove(msgCommon.audio_context);
           break;
         }
@@ -441,67 +439,71 @@ namespace Speechly.SLUClient {
     {
 
       Segment segmentState;
-      if (!activeContexts[msgCommon.audio_context].TryGetValue(msgCommon.segment_id, out segmentState)) {
-        segmentState = new Segment(msgCommon.audio_context, msgCommon.segment_id);
-        activeContexts[msgCommon.audio_context].Add(msgCommon.segment_id, segmentState);
-      }
+      if (msgCommon.audio_context != null && activeContexts.ContainsKey(msgCommon.audio_context)) {
+        if (!activeContexts[msgCommon.audio_context].TryGetValue(msgCommon.segment_id, out segmentState)) {
+          segmentState = new Segment(msgCommon.audio_context, msgCommon.segment_id);
+          activeContexts[msgCommon.audio_context].Add(msgCommon.segment_id, segmentState);
+        }
 
-      switch (msgCommon.type) {
-        case "tentative_transcript": {
-          var msg = JSON.Parse(msgString, new MsgTentativeTranscript());
-          segmentState.UpdateTranscript(msg.data.words);
-          if (Debug) Logger.Log(segmentState.ToString());
-          OnTentativeTranscript(msg);
-          break;
+        switch (msgCommon.type) {
+          case "tentative_transcript": {
+            var msg = JSON.Parse(msgString, new MsgTentativeTranscript());
+            segmentState.UpdateTranscript(msg.data.words);
+            if (debug) Logger.Log(segmentState.ToString());
+            OnTentativeTranscript(msg);
+            break;
+          }
+          case "transcript": {
+            var msg = JSON.Parse(msgString, new MsgTranscript());
+            msg.data.isFinal = true;
+            segmentState.UpdateTranscript(msg.data);
+            if (debug) Logger.Log(segmentState.ToString());
+            OnTranscript(msg);
+            break;
+          }
+          case "tentative_entities": {
+            var msg = JSON.Parse(msgString, new MsgTentativeEntity());
+            segmentState.UpdateEntity(msg.data.entities);
+            if (debug) Logger.Log(segmentState.ToString());
+            OnTentativeEntity(msg);
+            break;
+          }
+          case "entity": {
+            var msg = JSON.Parse(msgString, new MsgEntity());
+            msg.data.isFinal = true;
+            segmentState.UpdateEntity(msg.data);
+            if (debug) Logger.Log(segmentState.ToString());
+            OnEntity(msg);
+            break;
+          }
+          case "tentative_intent": {
+            var msg = JSON.Parse(msgString, new MsgIntent());
+            segmentState.UpdateIntent(msg.data.intent, false);
+            if (debug) Logger.Log(segmentState.ToString());
+            OnTentativeIntent(msg);
+            break;
+          }
+          case "intent": {
+            var msg = JSON.Parse(msgString, new MsgIntent());
+            segmentState.UpdateIntent(msg.data.intent, true);
+            if (debug) Logger.Log(segmentState.ToString());
+            OnIntent(msg);
+            break;
+          }
+          case "segment_end": {
+            segmentState.EndSegment();
+            if (debug) Logger.Log(segmentState.ToString());
+            break;
+          }
+          default: {
+            throw new Exception($"Unhandled message type '{msgCommon.type}' with content: {msgString}");
+          }
         }
-        case "transcript": {
-          var msg = JSON.Parse(msgString, new MsgTranscript());
-          msg.data.isFinal = true;
-          segmentState.UpdateTranscript(msg.data);
-          if (Debug) Logger.Log(segmentState.ToString());
-          OnTranscript(msg);
-          break;
-        }
-        case "tentative_entities": {
-          var msg = JSON.Parse(msgString, new MsgTentativeEntity());
-          segmentState.UpdateEntity(msg.data.entities);
-          if (Debug) Logger.Log(segmentState.ToString());
-          OnTentativeEntity(msg);
-          break;
-        }
-        case "entity": {
-          var msg = JSON.Parse(msgString, new MsgEntity());
-          msg.data.isFinal = true;
-          segmentState.UpdateEntity(msg.data);
-          if (Debug) Logger.Log(segmentState.ToString());
-          OnEntity(msg);
-          break;
-        }
-        case "tentative_intent": {
-          var msg = JSON.Parse(msgString, new MsgIntent());
-          segmentState.UpdateIntent(msg.data.intent, false);
-          if (Debug) Logger.Log(segmentState.ToString());
-          OnTentativeIntent(msg);
-          break;
-        }
-        case "intent": {
-          var msg = JSON.Parse(msgString, new MsgIntent());
-          segmentState.UpdateIntent(msg.data.intent, true);
-          if (Debug) Logger.Log(segmentState.ToString());
-          OnIntent(msg);
-          break;
-        }
-        case "segment_end": {
-          segmentState.EndSegment();
-          if (Debug) Logger.Log(segmentState.ToString());
-          break;
-        }
-        default: {
-          throw new Exception($"Unhandled message type '{msgCommon.type}' with content: {msgString}");
-        }
-      }
 
-      OnSegmentChange(segmentState);
+        OnSegmentChange(segmentState);
+      } else {
+        if (debug) Logger.Log($"Received a '{msgCommon.type}' message with an unknown audio context '{msgCommon.audio_context}'");
+      }
     }
 
 
@@ -511,12 +513,19 @@ namespace Speechly.SLUClient {
 /// <returns>Task that completes with the shutdown.</returns>
 
     public async Task Shutdown() {
-      StopStream();
+      await StopStream();
 
-      if (this.decoder != null) {
+      if (decoder != null) {
         await decoder.Shutdown();
+        if (this.manualUpdate) {
+          decoder.OnMessage -= QueueMessage;
+        } else {
+          decoder.OnMessage -= OnMessage;
+        }
+        activeContexts.Clear();
       }
-      this.decoder = null;
+
+      decoder = null;
     }
 
   }

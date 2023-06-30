@@ -4,7 +4,7 @@
 
 [Speechly](https://www.speechly.com/?utm_source=github&utm_medium=react-client&utm_campaign=text) is an API for building voice features and voice chat moderation into games, XR, applications and web sites. Speechly Client Library for Unity and C# streams audio for analysis and provides real-time speech-to-text transcription and information extracted from the speech via the library's C# API.
 
-Speech recognition runs by default in Speechly cloud (online). On-device (offline) capabilities are available via separate libSpeechly add-on that runs machine learning models on the device itself using Core ML and TensorFlow Lite.
+Speech recognition runs by default in Speechly cloud (online). On-device (offline) capabilities are available via separate libSpeechly add-on that runs machine learning models on the device itself using ONNX runtime or TensorFlow Lite.
 
 ## Package contents
 
@@ -28,7 +28,7 @@ Refer to https://docs.unity3d.com/Manual/upm-ui-install.html for instructions on
 
 ### Requirements
 
-- Unity 2018.1 or later (tested with 2019.4.36f1 and 2021.2.12f1)
+- Unity 2018.1 or later (tested with 2019.4.36f1 and 2021.3.27f1)
 - TextMeshPro (examples only)
 - XR Plug-in Management (VR example only)
 
@@ -38,6 +38,21 @@ See language support [here](https://github.com/speechly/speechly/discussions/139
 
 ### Usage
 
+General usage pattern for Unity is to add `Speechly.prefab` to your scene, configure it properly, and then interact
+with it using either `MicToSpeechly` or the internal `SpeechlyClient` which is accessible as `MicToSpeechly.Instance.SpeechlyClient`.
+
+`Speechly.prefab` is by default set with `Don't destroy on load` so it's available in every scene. It creates a `SpeechlyClient` singleton which you can can access with `MicToSpeechly.Instance.SpeechlyClient`.
+When configured in voice-activated mode, `MicToSpeechly` will start listening to the microphone as soon as it is enabled.
+If you want to stop the speech recognition, you can disable the game object associated with `MicToSpeechly`:
+
+```C#
+MicToSpeechly.Instance?.gameObject.SetActive(false);
+```
+
+Similarly, enable the listening again by setting the object active. Because `MicToSpeechly` is not destroyed on scene changes,
+do not add your own scripts to the same game object as `MicToSpeechly` so that they will operate correctly.
+
+
 #### Hands-free voice input via Unity microphone
 
 - Add the `Speechly.prefab` to your scene and select it.
@@ -45,7 +60,7 @@ See language support [here](https://github.com/speechly/speechly/discussions/139
 - Check `VAD controls listening` and `debug print`.
 - Run the app, speak and see the console for the basic transcription results.
 
-#### Controlling listening with SpeechlyClient.Start() and Stop()
+#### Controlling listening manually with SpeechlyClient.Start() and Stop()
 
 - Add the `Speechly.prefab` to your scene and select it.
 - In the inspector, enter a valid `App id` acquired from [Speechly dashboard](https://api.speechly.com/dashboard)
@@ -75,12 +90,10 @@ See language support [here](https://github.com/speechly/speechly/discussions/139
   }
 ```
 
-`Speechly.prefab` is by default set with `Don't destroy on load` so it's available in every scene. It creates a `SpeechlyClient` singleton which you can can access with `MicToSpeechly.Instance.SpeechlyClient`.
-
 #### Accessing speech recognition results via Segment API
 
 - Use either hands-free listening or manual listening as described above.
-- To handle the speech-to-text results, attach a callback for `OnSegmentChange`. The following example displays the speeech transcription in a TMP text field.
+- To handle the speech-to-text results, attach a callback for `OnSegmentChange`. The following example displays the speech transcription in a TMP text field.
 
 ```C#
   void Start()
@@ -101,6 +114,7 @@ See language support [here](https://github.com/speechly/speechly/discussions/139
 #### Using other audio sources
 
 You can send audio from other audio sources by calling `SpeechlyClient.Start()`, sending any number of packets containing samples as float32 array (mono 16kHz by default) using `SpeechlyClient.ProcessAudio()`. Finally, call `SpeechlyClient.Stop()`.
+In this case, you need to handle `SpeechlyClient` creation, initialization, and shutdown yourself, or modify `MicToSpeechly` to not process the microphone audio at the same time.
 
 ### Reference
 
@@ -196,7 +210,7 @@ We are happy to receive community contributions! For small fixes, feel free to f
 
 An unitypackage release is created with Unity's Export package feature. It should contain `Speechly` and `StreamingAssets` folders which contain Speechly-specific code and assets. Other files and folders in the project should not be included.
 
-- Open the folder `speechly-unity/` subfolder (or any Scene file within that solution) using Unity Hub. The project is currently in Unity 2021.3.12f LTS.
+- Open the folder `speechly-unity/` subfolder (or any Scene file within that solution) using Unity Hub. The project is currently in Unity 2021.3.27f LTS.
 - In the Project window, select `Speechly` and `StreamingAssets` folders, then right click them to open the context menu.
 - In the context menu, select `Export package...`.
 - In the Export package window, uncheck `Include dependencies`, then click `Export...`

@@ -64,6 +64,7 @@ MonoBehaviour:
       SignalSustainMillis: 3000
   SpeechRecognitionSettings:
     SilenceSegmentationMillis: 720
+    BlockSize: 6
     BoostVocabulary:
       Vocabulary: 
       Weight: 0

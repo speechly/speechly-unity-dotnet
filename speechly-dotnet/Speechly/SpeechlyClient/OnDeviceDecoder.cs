@@ -38,6 +38,8 @@ namespace Speechly.SLUClient {
     private const uint SPEECHLY_VAD_INFO_NOISE_LEVEL_DB_F =              1008;
     /// @warning EXPERIMENTAL VAD_INFO READONLY 1 if VAD has detected signal and is sending audio for decoding after last processed frame. 0 if not.
     private const uint SPEECHLY_VAD_INFO_IS_SIGNAL_DETECTED_I =          1009;
+    /// @warning EXPERIMENTAL Set decoder processing block multiplier (>= 1).
+    private const uint SPEECHLY_DECODER_BLOCK_MULTIPLIER_I =             2000;
 
     // End: Get/SetParam{I/F} param_ids
 
@@ -145,8 +147,8 @@ namespace Speechly.SLUClient {
       public uint error_code;
     };
 
-    private IntPtr decoderFactoryHandle;
-    private IntPtr decoderHandle;
+    private IntPtr decoderFactoryHandle = IntPtr.Zero;
+    private IntPtr decoderHandle = IntPtr.Zero;
     private Task receiveTask;
     private int wordCounter;
     private string deviceId;
@@ -162,6 +164,13 @@ namespace Speechly.SLUClient {
       this.deviceId = deviceId;
       this.modelBundleProvider = modelBundleProvider;
       this.debug = debug;
+    }
+
+    ~OnDeviceDecoder() {
+      if (decoderFactoryHandle != IntPtr.Zero) {
+        DecoderFactory_Destroy(decoderFactoryHandle);
+        decoderFactoryHandle = IntPtr.Zero;
+      }
     }
 
     override internal async Task Initialize(AudioProcessorOptions audioProcessorOptions, ContextOptions contextOptions, AudioInfo audioInfo) {
@@ -180,27 +189,30 @@ namespace Speechly.SLUClient {
         throw new Exception($"Could not load Speechly model bundle or it has zero length.\nAre you trying to load placeholder dummy.bundle? Please contact Speechly to enable on-device support.");
       }
 
-      decoderFactoryHandle = DecoderFactory_CreateFromModelArchive(bundle_buf, bundle_buf.Length, ref error);
+      if (decoderFactoryHandle == IntPtr.Zero) {
+        decoderFactoryHandle = DecoderFactory_CreateFromModelArchive(bundle_buf, bundle_buf.Length, ref error);
 
-      if (SPEECHLY_ERROR_NONE != error.error_code) {
-        string errorDescription = $"Error while loading Speechly model files.\n";
-        errorDescription += $"DecoderFactory_CreateFromModelArchive code {error.error_code}: ";
-        if (0 != (error.error_code & SPEECHLY_ERROR_MISMATCH_IN_MODEL_ARCHITECTURE)) {
-          errorDescription += $"SPEECHLY_ERROR_MISMATCH_IN_MODEL_ARCHITECTURE ";
+        if (SPEECHLY_ERROR_NONE != error.error_code) {
+          decoderFactoryHandle = IntPtr.Zero;
+          string errorDescription = $"Error while loading Speechly model files.\n";
+          errorDescription += $"DecoderFactory_CreateFromModelArchive code {error.error_code}: ";
+          if (0 != (error.error_code & SPEECHLY_ERROR_MISMATCH_IN_MODEL_ARCHITECTURE)) {
+            errorDescription += $"SPEECHLY_ERROR_MISMATCH_IN_MODEL_ARCHITECTURE ";
+          }
+          if (0 != (error.error_code & SPEECHLY_ERROR_INVALID_MODEL)) {
+            errorDescription += $"SPEECHLY_ERROR_INVALID_MODEL ";
+          }
+          if (0 != (error.error_code & SPEECHLY_ERROR_EXPIRED_MODEL)) {
+            errorDescription += $"SPEECHLY_ERROR_EXPIRED_MODEL ";
+            // Throw a special exception for model expiration so it can be catched
+            throw new ModelExpiredException($"{errorDescription}\n");
+          }
+          throw new Exception($"{errorDescription}\n");
         }
-        if (0 != (error.error_code & SPEECHLY_ERROR_INVALID_MODEL)) {
-          errorDescription += $"SPEECHLY_ERROR_INVALID_MODEL ";
-        }
-        if (0 != (error.error_code & SPEECHLY_ERROR_EXPIRED_MODEL)) {
-          errorDescription += $"SPEECHLY_ERROR_EXPIRED_MODEL ";
-          // Throw a special exception for model expiration so it can be catched
-          throw new ModelExpiredException($"{errorDescription}\n");
-        }
-        throw new Exception($"{errorDescription}\n");
-      }
 
-      if (decoderFactoryHandle == null) {
-        throw new Exception($"Unknown error with DecoderFactory_CreateFromBuffers. There's probably something wrong with the Speechly model file.");
+        if (decoderFactoryHandle == IntPtr.Zero) {
+          throw new Exception($"Unknown error with DecoderFactory_CreateFromBuffers. There's probably something wrong with the Speechly model file.");
+        }
       }
 
       DecoderFactory_SetSegmentationDelay(decoderFactoryHandle, contextOptions.SilenceSegmentationMillis, ref error);
@@ -225,7 +237,7 @@ namespace Speechly.SLUClient {
         throw new Exception($"{errorDescription}\n");
       }
 
-      if (decoderHandle == null) {
+      if (decoderHandle == IntPtr.Zero) {
         throw new Exception($"Whoops. An error occurred with DecoderFactory_GetDecoder. Please contact Speechly.");
       }
 
@@ -238,6 +250,15 @@ namespace Speechly.SLUClient {
         // Use input sample rate. C# AudioProcessor should be inactive, so it's not downsampling
         SetInputSampleRate(audioProcessorOptions.InputSampleRate);
         SetVADConfiguration(audioProcessorOptions.VADSettings);
+      }
+
+      if (contextOptions != null) {
+        Decoder_SetParamI(decoderHandle, SPEECHLY_DECODER_BLOCK_MULTIPLIER_I, contextOptions.BlockSize, ref error);
+        if (SPEECHLY_ERROR_NONE != error.error_code) {
+          string errorDescription = ERROR_BOILERPLATE;
+          errorDescription += $"Decoder_SetParamI code {error.error_code}.";
+          throw new Exception($"{errorDescription}\n");
+        }
       }
 
       CTS = new CancellationTokenSource();
@@ -261,7 +282,7 @@ namespace Speechly.SLUClient {
         errorDescription += $"Decoder_SetInputSampleRate code {error.error_code}.";
         throw new Exception($"{errorDescription}\n");
       }
-    }    
+    }
 
     internal void EnableVAD(bool enabled) {
       Decoder_EnableVAD(decoderHandle, enabled ? 1 : 0, ref error);
@@ -296,29 +317,28 @@ namespace Speechly.SLUClient {
     }
 
     override internal Task<string> Start() {
-      wordCounter = 0;
-      segmentIndex = 0;
-      contextSerial++;
-      string contextId = $"ondevice_{contextSerial}";
-      activeContexts.Enqueue(contextId);
-      OnMessage(new MsgCommon{type = "started", audio_context = contextId, segment_id = 0}, "");
+      string contextId = "";
+      if (decoderHandle != IntPtr.Zero) {
+        wordCounter = 0;
+        segmentIndex = 0;
+        contextSerial++;
+        contextId = $"ondevice_{contextSerial}";
+        activeContexts.Enqueue(contextId);
+        OnMessage(new MsgCommon{type = "started", audio_context = contextId, segment_id = 0}, "");
+      } else {
+        Logger.LogError("Start called without an initialized decoder");
+      }
       return Task.FromResult(contextId);
     }
 
     override internal Task<string> Stop() {
-      var samples = new float[0];
-
-      var sampleGCHandle = GCHandle.Alloc(samples, GCHandleType.Pinned); // Pin the array
-      IntPtr sampleAddr = Marshal.UnsafeAddrOfPinnedArrayElement(samples, 0);
-      Decoder_WriteSamples(decoderHandle, sampleAddr, 0, 1, ref error);
-      sampleGCHandle.Free();
-      if (SPEECHLY_ERROR_NONE != error.error_code) {
-        string errorDescription = ERROR_BOILERPLATE;
-        errorDescription += $"Decoder_WriteSamples code {error.error_code}.";
-        throw new Exception($"{errorDescription}\n");
+      string contextId = "";
+      if (activeContexts.TryPeek(out contextId)) {
+        float[] dummy = new float[0];
+        SendAudio(dummy, 0, dummy.Length, true);
+      } else {
+        if (debug) Logger.Log("Stop called without an audio context, ignoring");
       }
-      string contextId;
-      if (!activeContexts.TryPeek(out contextId)) throw new Exception("No active context");
       return Task.FromResult(contextId);
     }
 
@@ -329,47 +349,49 @@ namespace Speechly.SLUClient {
     internal void SendAudio(float[] samples, int start = 0, int length = -1, bool final = false) {
       if (length < 0) length = samples.Length;
 
-      var sampleGCHandle = GCHandle.Alloc(samples, GCHandleType.Pinned); // Pin the array
-      IntPtr sampleAddr = Marshal.UnsafeAddrOfPinnedArrayElement(samples, start);
-      Decoder_WriteSamples(decoderHandle, sampleAddr, length, final ? 1 : 0, ref error);
-      sampleGCHandle.Free();
-      if (SPEECHLY_ERROR_NONE != error.error_code) {
-        string errorDescription = ERROR_BOILERPLATE;
-        errorDescription += $"Decoder_WriteSamples code {error.error_code}.";
-        throw new Exception($"{errorDescription}\n");
-      }
+      if (decoderHandle != IntPtr.Zero) {
+        var sampleGCHandle = GCHandle.Alloc(samples, GCHandleType.Pinned); // Pin the array
+        IntPtr sampleAddr = Marshal.UnsafeAddrOfPinnedArrayElement(samples, start);
+        Decoder_WriteSamples(decoderHandle, sampleAddr, length, final ? 1 : 0, ref error);
+        sampleGCHandle.Free();
+        if (SPEECHLY_ERROR_NONE != error.error_code) {
+          string errorDescription = ERROR_BOILERPLATE;
+          errorDescription += $"Decoder_WriteSamples code {error.error_code}.";
+          throw new Exception($"{errorDescription}\n");
+        }
 
-      // Update the latest signal levels
-      Output.SignalDb = Decoder_GetParamF(decoderHandle, SPEECHLY_VAD_INFO_SIGNAL_DB_F, ref error);
-      Output.NoiseLevelDb = Decoder_GetParamF(decoderHandle, SPEECHLY_VAD_INFO_NOISE_LEVEL_DB_F, ref error);
-      Output.IsSignalDetected = Decoder_GetParamI(decoderHandle, SPEECHLY_VAD_INFO_IS_SIGNAL_DETECTED_I, ref error) == 1 ? true : false;
-      if (SPEECHLY_ERROR_NONE != error.error_code) {
-        string errorDescription = "An error occurred while querying libSpeechly VAD state:\n";
-        errorDescription += $"Error code {error.error_code}.";
-        throw new Exception($"{errorDescription}\n");
+        // Update the latest signal levels
+        Output.SignalDb = Decoder_GetParamF(decoderHandle, SPEECHLY_VAD_INFO_SIGNAL_DB_F, ref error);
+        Output.NoiseLevelDb = Decoder_GetParamF(decoderHandle, SPEECHLY_VAD_INFO_NOISE_LEVEL_DB_F, ref error);
+        Output.IsSignalDetected = Decoder_GetParamI(decoderHandle, SPEECHLY_VAD_INFO_IS_SIGNAL_DETECTED_I, ref error) == 1 ? true : false;
+        if (SPEECHLY_ERROR_NONE != error.error_code) {
+          string errorDescription = "An error occurred while querying libSpeechly VAD state:\n";
+          errorDescription += $"Error code {error.error_code}.";
+          throw new Exception($"{errorDescription}\n");
+        }
+      } else {
+        Logger.LogError("SendAudio called without an initialized decoder");
       }
     }
 
     private void ReceiveLoop()
     {
-      try
-      {
-        bool endOfAudioStream = false;
-        while (!(endOfAudioStream && CTS.Token.IsCancellationRequested)) {
-          IntPtr resultsHandle = Decoder_WaitResults(decoderHandle, ref error);
-          if (SPEECHLY_ERROR_NONE != error.error_code) {
-            string errorDescription = ERROR_BOILERPLATE;
-            errorDescription += $"Decoder_WaitResults code {error.error_code}.";
-            throw new Exception($"{errorDescription}\n");
-          }
-          CResultWord resultWord = Marshal.PtrToStructure<CResultWord>(resultsHandle);
-          string s = Marshal.PtrToStringAnsi(resultWord.word);  // @TODO Use something like Marshal.PtrToStringUTF8 (Net Standard 2.1 only)
-          endOfAudioStream = String.IsNullOrEmpty(s);
-          if (!CTS.Token.IsCancellationRequested) {
-            string contextId = null;
+      bool endOfAudioStream = false;
+      while (!(endOfAudioStream && CTS.Token.IsCancellationRequested)) {
+        IntPtr resultsHandle = Decoder_WaitResults(decoderHandle, ref error);
+        if (SPEECHLY_ERROR_NONE != error.error_code) {
+          string errorDescription = ERROR_BOILERPLATE;
+          errorDescription += $"Decoder_WaitResults code {error.error_code}.";
+          throw new Exception($"{errorDescription}\n");
+        }
+        CResultWord resultWord = Marshal.PtrToStructure<CResultWord>(resultsHandle);
+        string s = Marshal.PtrToStringAnsi(resultWord.word);  // @TODO Use something like Marshal.PtrToStringUTF8 (Net Standard 2.1 only)
+        endOfAudioStream = String.IsNullOrEmpty(s);
+        if (!CTS.Token.IsCancellationRequested) {
+          string contextId = null;
 
-            if (!endOfAudioStream) {
-              activeContexts.TryPeek(out contextId);
+          if (!endOfAudioStream) {
+            if (activeContexts.TryPeek(out contextId)) {
               if (s != segmentEndToken) {
                 var msgTranscript = new MsgTranscript{
                   data = new Word{word = s, startTimestamp = resultWord.start_time, endTimestamp = resultWord.end_time, index = wordCounter, isFinal = true}
@@ -382,19 +404,24 @@ namespace Speechly.SLUClient {
                 wordCounter = 0;
               }
             } else {
-              activeContexts.TryDequeue(out contextId);
+              Logger.LogError("Received a transcription message without a context, ignoring");
+            }
+          } else {
+            if (activeContexts.TryDequeue(out contextId)) {
               if (wordCounter > 0) {
                 OnMessage(new MsgCommon{type = "segment_end", audio_context = contextId, segment_id = segmentIndex}, "");
               }
               OnMessage(new MsgCommon{type = "stopped", audio_context = contextId, segment_id = segmentIndex}, "");
+            } else {
+              Logger.LogError("Received end of audio stream without a context, ignoring");
             }
           }
-          CResultWord_Destroy(resultsHandle);
         }
-      } catch (TaskCanceledException) {
-        Logger.LogError("Whoopsie, an exception...");
-        throw;
+        CResultWord_Destroy(resultsHandle);
       }
+      // Make sure activeContexts is empty
+      string tmp = null;
+      while (activeContexts.TryDequeue(out tmp));
     }
 
     override internal async Task Shutdown()
@@ -403,16 +430,14 @@ namespace Speechly.SLUClient {
       if (CTS != null) {
         CTS.Cancel();
       }
-      if (decoderHandle != null) {
+      if (decoderHandle != IntPtr.Zero) {
         // Send end of audio to exit Decoder_WaitResults and ultimately ReceiveLoop thread
         float[] dummy = new float[0];
         SendAudio(dummy, 0, dummy.Length, true);
         await receiveTask;
         if (debug) Logger.Log("Cleaning up...");
         Decoder_Destroy(decoderHandle);
-      }
-      if (decoderFactoryHandle != null) {
-        DecoderFactory_Destroy(decoderFactoryHandle);
+        decoderHandle = IntPtr.Zero;
       }
       if (debug) Logger.Log("Completed shutdown");
     }

@@ -24,7 +24,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: Word
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 254
+    startLine: 261
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types
@@ -59,7 +59,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: word
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 257
+    startLine: 264
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types
@@ -90,7 +90,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: index
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 259
+    startLine: 266
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types
@@ -121,7 +121,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: startTimestamp
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 261
+    startLine: 268
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types
@@ -152,7 +152,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: endTimestamp
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 263
+    startLine: 270
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types
@@ -183,7 +183,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: isFinal
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 264
+    startLine: 271
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types

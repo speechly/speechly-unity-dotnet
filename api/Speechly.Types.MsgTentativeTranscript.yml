@@ -20,7 +20,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: MsgTentativeTranscript
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 293
+    startLine: 300
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types
@@ -55,7 +55,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: data
     path: speechly-dotnet/Speechly/SpeechlyClient/Types.cs
-    startLine: 298
+    startLine: 305
   assemblies:
   - speechly-dotnet
   namespace: Speechly.Types

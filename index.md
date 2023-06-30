@@ -31,7 +31,6 @@ client.OnSegmentChange = (segment) => {
 };
 
 var decoder = new CloudDecoder(
-  apiUrl: "https://staging.speechly.com",
   appId: "MY_APP_ID_FROM_SPEECHLY_DASHBOARD",
   deviceId: Platform.GetDeviceId()
 );

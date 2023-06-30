@@ -6,6 +6,7 @@ items:
   parent: Speechly.SLUClient
   children:
   - Speechly.SLUClient.OnDeviceDecoder.#ctor(Speechly.SLUClient.ModelDataProvider,System.String,System.Boolean)
+  - Speechly.SLUClient.OnDeviceDecoder.Finalize
   langs:
   - csharp
   - vb
@@ -56,7 +57,7 @@ items:
       repo: git@github.com:speechly/speechly-unity-dotnet.git
     id: .ctor
     path: speechly-dotnet/Speechly/SpeechlyClient/OnDeviceDecoder.cs
-    startLine: 160
+    startLine: 162
   assemblies:
   - speechly-dotnet
   namespace: Speechly.SLUClient
@@ -75,6 +76,36 @@ items:
   - public
   modifiers.vb:
   - Public
+- uid: Speechly.SLUClient.OnDeviceDecoder.Finalize
+  commentId: M:Speechly.SLUClient.OnDeviceDecoder.Finalize
+  id: Finalize
+  parent: Speechly.SLUClient.OnDeviceDecoder
+  langs:
+  - csharp
+  - vb
+  name: Finalize()
+  nameWithType: OnDeviceDecoder.Finalize()
+  fullName: Speechly.SLUClient.OnDeviceDecoder.Finalize()
+  type: Method
+  source:
+    remote:
+      path: speechly-dotnet/Speechly/SpeechlyClient/OnDeviceDecoder.cs
+      branch: main
+      repo: git@github.com:speechly/speechly-unity-dotnet.git
+    id: Finalize
+    path: speechly-dotnet/Speechly/SpeechlyClient/OnDeviceDecoder.cs
+    startLine: 168
+  assemblies:
+  - speechly-dotnet
+  namespace: Speechly.SLUClient
+  syntax:
+    content: protected void Finalize()
+    content.vb: Protected Sub Finalize
+  overload: Speechly.SLUClient.OnDeviceDecoder.Finalize*
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
 references:
 - uid: Speechly.SLUClient
   commentId: N:Speechly.SLUClient
@@ -108,3 +139,8 @@ references:
   name: Boolean
   nameWithType: Boolean
   fullName: System.Boolean
+- uid: Speechly.SLUClient.OnDeviceDecoder.Finalize*
+  commentId: Overload:Speechly.SLUClient.OnDeviceDecoder.Finalize
+  name: Finalize
+  nameWithType: OnDeviceDecoder.Finalize
+  fullName: Speechly.SLUClient.OnDeviceDecoder.Finalize
